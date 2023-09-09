@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=3 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Texture2D" uid="uid://buyxn1wnthdxl" path="res://Resources/Backgrounds/battleback1.png" id="1_t62cp"]
 [ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="2_e71he"]
-[ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_phgxq"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5w40"]
-bg_color = Color(0, 0.721569, 0.305882, 1)
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -39,12 +35,6 @@ offset_bottom = 133.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-
-[node name="ProgressBar" type="ProgressBar" parent="EnemyContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_phgxq")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/background = SubResource("StyleBoxFlat_y5w40")
 
 [node name="Enemy" type="TextureRect" parent="EnemyContainer"]
 texture_filter = 1
