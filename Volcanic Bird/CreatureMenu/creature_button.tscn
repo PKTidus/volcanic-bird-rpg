@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs8rlnooal4yd"]
+
+[ext_resource type="Script" path="res://CreatureMenu/creature_button.gd" id="1_sbntr"]
+
+[node name="CreatureButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_sbntr")
+
+[node name="EquippedMarker" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 12.0
+offset_right = 78.0
+offset_bottom = 38.0
+text = "E"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtp18akevrn8v"]
+
+[ext_resource type="Script" path="res://CreatureMenu/CreatureMenu.gd" id="1_4q546"]
+[ext_resource type="PackedScene" uid="uid://cs8rlnooal4yd" path="res://CreatureMenu/creature_button.tscn" id="1_xh84t"]
+[ext_resource type="PackedScene" uid="uid://cabx0stuuqixk" path="res://CreatureMenu/battle_group.tscn" id="2_exaw5"]
+
+[node name="Inventory" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4q546")
+
+[node name="Characters" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 1.0
+offset_right = 543.0
+offset_bottom = 644.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Characters"]
+custom_minimum_size = Vector2(333, 500)
+layout_mode = 2
+
+[node name="CreatureButton" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton2" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton3" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton4" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton5" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton6" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton7" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton8" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 58.0
+offset_right = 728.0
+offset_bottom = 84.0
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 755.0
+offset_top = 394.0
+offset_right = 844.0
+offset_bottom = 420.0
+
+[node name="Stats" type="Label" parent="."]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 96.0
+offset_right = 719.0
+offset_bottom = 122.0
+text = "Stats"
+
+[node name="BattleGroup" parent="." instance=ExtResource("2_exaw5")]
+layout_mode = 0

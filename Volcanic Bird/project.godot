@@ -14,3 +14,7 @@ config/name="Volcanic Bird: Bird Quest"
 run/main_scene="res://Main Menu/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Global.gd"
