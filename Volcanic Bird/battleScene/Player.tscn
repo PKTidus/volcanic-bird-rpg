@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddqhdls5j841b"]
+
+[ext_resource type="Script" path="res://battleScene/Player.gd" id="1_maeio"]
+[ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_jmjbr"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_maeio")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Player Name" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jmjbr")
+theme_override_font_sizes/font_size = 30
+text = "Name"
+
+[node name="HP MP Container" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HP" type="Label" parent="VBoxContainer/HP MP Container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jmjbr")
+theme_override_font_sizes/font_size = 30
+text = "HP"
+
+[node name="MP" type="Label" parent="VBoxContainer/HP MP Container"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jmjbr")
+theme_override_font_sizes/font_size = 30
+text = "MP"

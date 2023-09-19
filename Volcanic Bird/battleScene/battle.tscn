@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=10 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Texture2D" uid="uid://buyxn1wnthdxl" path="res://Resources/Backgrounds/battleback1.png" id="1_t62cp"]
-[ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="2_e71he"]
+[ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
+[ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
+[ext_resource type="PackedScene" uid="uid://ddqhdls5j841b" path="res://battleScene/Player.tscn" id="3_lstsa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8d6x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0hxcs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkgmw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyegs"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -10,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -21,23 +34,106 @@ grow_vertical = 2
 texture = ExtResource("1_t62cp")
 expand_mode = 5
 
-[node name="EnemyContainer" type="VBoxContainer" parent="."]
+[node name="Actions Panel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -133.5
-offset_right = 110.0
-offset_bottom = 133.5
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+
+[node name="Actions Container" type="HBoxContainer" parent="Actions Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Enemy" type="TextureRect" parent="EnemyContainer"]
-texture_filter = 1
+[node name="Attack" type="Button" parent="Actions Panel/Actions Container"]
 layout_mode = 2
-texture = ExtResource("2_e71he")
-stretch_mode = 4
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_35rru")
+text = "Attack"
+
+[node name="Skill" type="Button" parent="Actions Panel/Actions Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f8d6x")
+text = "Skill"
+
+[node name="Defend" type="Button" parent="Actions Panel/Actions Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0hxcs")
+text = "Defend"
+
+[node name="Item" type="Button" parent="Actions Panel/Actions Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fkgmw")
+text = "Item"
+
+[node name="Run" type="Button" parent="Actions Panel/Actions Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uyegs")
+text = "Run"
+
+[node name="Enemies Container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 512.0
+grow_horizontal = 2
+
+[node name="Enemy1" parent="Enemies Container" instance=ExtResource("2_864hm")]
+position = Vector2(192, 192)
+
+[node name="Enemy2" parent="Enemies Container" instance=ExtResource("2_864hm")]
+position = Vector2(576, 192)
+
+[node name="Enemy3" parent="Enemies Container" instance=ExtResource("2_864hm")]
+position = Vector2(960, 192)
+
+[node name="Party Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Party Container" type="HBoxContainer" parent="Party Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+
+[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+position = Vector2(128, 0)
+
+[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+position = Vector2(256, 0)
+
+[node name="Player4" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+position = Vector2(384, 0)

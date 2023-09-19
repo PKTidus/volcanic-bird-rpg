@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://qsiytlf42ajo"]
+
+[ext_resource type="Script" path="res://battleScene/Enemy.gd" id="1_5xfbd"]
+[ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="2_eqc0u"]
+[ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4wj1"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qnr0t"]
+bg_color = Color(0, 1, 0, 1)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_5xfbd")
+
+[node name="Enemy Container" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -132.5
+offset_right = 110.0
+offset_bottom = 132.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite" type="TextureRect" parent="Enemy Container"]
+layout_mode = 2
+texture = ExtResource("2_eqc0u")
+stretch_mode = 3
+
+[node name="Health Bar" type="ProgressBar" parent="Enemy Container"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_e4wj1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qnr0t")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Enemy Container/Health Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_0nh3q")
+theme_override_font_sizes/font_size = 30
+text = "50/100"
+horizontal_alignment = 1
+vertical_alignment = 1
