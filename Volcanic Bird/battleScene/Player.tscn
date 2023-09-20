@@ -16,7 +16,6 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jmjbr")
 theme_override_font_sizes/font_size = 30
-text = "Name"
 
 [node name="HP MP Container" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

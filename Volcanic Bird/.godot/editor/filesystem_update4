@@ -3,3 +3,4 @@ res://battleScene/Enemy.gd
 res://battleScene/battle.tscn
 res://Main Menu/main_menu.tscn
 res://battleScene/Player.tscn
+res://battleScene/Player.gd
