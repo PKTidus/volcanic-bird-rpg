@@ -40,7 +40,6 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_e4wj1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qnr0t")
-value = 50.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Enemy Container/Health Bar"]
@@ -53,6 +52,5 @@ grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_0nh3q")
 theme_override_font_sizes/font_size = 30
-text = "50/100"
 horizontal_alignment = 1
 vertical_alignment = 1
