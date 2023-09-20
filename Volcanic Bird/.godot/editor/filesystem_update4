@@ -1,6 +1,3 @@
-res://battleScene/Enemy.tscn
-res://battleScene/Enemy.gd
 res://battleScene/battle.tscn
-res://Main Menu/main_menu.tscn
 res://battleScene/Player.tscn
-res://battleScene/Player.gd
+res://battleScene/Enemy.tscn
