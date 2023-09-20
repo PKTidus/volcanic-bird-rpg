@@ -1,5 +1,5 @@
-res://battleScene/battle.tscn
-res://battleScene/Action.tscn
-res://battleScene/Player.tscn
-res://Main Menu/main_menu.tscn
 res://battleScene/Enemy.tscn
+res://battleScene/Enemy.gd
+res://battleScene/battle.tscn
+res://Main Menu/main_menu.tscn
+res://battleScene/Player.tscn

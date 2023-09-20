@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://qsiytlf42ajo"]
+[gd_scene load_steps=5 format=3 uid="uid://qsiytlf42ajo"]
 
 [ext_resource type="Script" path="res://battleScene/Enemy.gd" id="1_5xfbd"]
-[ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="2_eqc0u"]
 [ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4wj1"]
@@ -33,7 +32,6 @@ grow_vertical = 2
 
 [node name="Sprite" type="TextureRect" parent="Enemy Container"]
 layout_mode = 2
-texture = ExtResource("2_eqc0u")
 stretch_mode = 3
 
 [node name="Health Bar" type="ProgressBar" parent="Enemy Container"]
