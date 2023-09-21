@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Resources/Enemies/flower.png" type="Texture" id = 1]
+[ext_resource path="res://Creatures/Creature.gd" type="Script" id = 2]
+
+[resource]
+script = ExtResource( 2 )
+name = "Tree Boi" 
+description = "Boi is a tree"
+texture = ExtResource( 1 )
