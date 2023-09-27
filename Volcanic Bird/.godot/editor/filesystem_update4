@@ -1,4 +1,4 @@
 res://battleScene/battle.tscn
+res://battleScene/battle.gd
 res://battleScene/Player.tscn
 res://battleScene/Enemy.tscn
-res://battleScene/Enemy.gd

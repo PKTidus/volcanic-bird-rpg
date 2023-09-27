@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=13 format=3 uid="uid://fjahry34au5i"]
 
+[ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="Texture2D" uid="uid://buyxn1wnthdxl" path="res://Resources/Backgrounds/battleback1.png" id="1_t62cp"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
 [ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
@@ -24,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_c1aan")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="TextureRect" parent="."]
@@ -91,6 +93,12 @@ theme_override_fonts/font = ExtResource("2_ivqmm")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uyegs")
 text = "Run"
+
+[node name="Textbox" type="Label" parent="Actions Panel/Actions Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
 
 [node name="Enemies Container" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -160,3 +168,9 @@ position = Vector2(384, 0)
 player_name = "Player 4"
 hp = 50
 mp = 100
+
+[connection signal="pressed" from="Actions Panel/Actions Container/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Actions Panel/Actions Container/Skill" to="." method="_on_skill_pressed"]
+[connection signal="pressed" from="Actions Panel/Actions Container/Defend" to="." method="_on_defend_pressed"]
+[connection signal="pressed" from="Actions Panel/Actions Container/Item" to="." method="_on_item_pressed"]
+[connection signal="pressed" from="Actions Panel/Actions Container/Run" to="." method="_on_run_pressed"]
