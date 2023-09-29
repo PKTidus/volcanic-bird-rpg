@@ -1,15 +1,16 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1695774641
+::res://::1696018247
 BattleGroup.gd::GDScript::-1::1695495817::0::1::::<>VBoxContainer<>::
 Global.gd::GDScript::-1::1695074881::0::1::::<>Node<>::
 icon.svg::CompressedTexture2D::2721261134079640640::1695074881::1695244319::1::::<><>::
 Main Menu.gd::GDScript::-1::1695074881::0::1::::<>Control<>::
-::res://battleScene/::1695495933
-battle.tscn::PackedScene::369537049817262372::1695495933::0::1::::<><>::uid://buyxn1wnthdxl::::res://Resources/Backgrounds/battleback1.png<>uid://qsiytlf42ajo::::res://battleScene/Enemy.tscn<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf<>uid://ddqhdls5j841b::::res://battleScene/Player.tscn<>uid://bpxjfercakhen::::res://Resources/Enemies/tree.png<>uid://dqqp0fyrw8x4c::::res://Resources/Enemies/flower.png
+::res://battleScene/::1695777972
+battle.gd::GDScript::-1::1695777969::0::1::::<>Control<>::
+battle.tscn::PackedScene::369537049817262372::1695777972::0::1::::<><>::res://battleScene/battle.gd<>uid://buyxn1wnthdxl::::res://Resources/Backgrounds/battleback1.png<>uid://qsiytlf42ajo::::res://battleScene/Enemy.tscn<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf<>uid://ddqhdls5j841b::::res://battleScene/Player.tscn<>uid://bpxjfercakhen::::res://Resources/Enemies/tree.png<>uid://dqqp0fyrw8x4c::::res://Resources/Enemies/flower.png
 Enemy.gd::GDScript::-1::1695245268::0::1::::<>Node2D<>::
-Enemy.tscn::PackedScene::1160709907980937032::1695495933::0::1::::<><>::res://battleScene/Enemy.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
+Enemy.tscn::PackedScene::1160709907980937032::1695777972::0::1::::<><>::res://battleScene/Enemy.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
 Player.gd::GDScript::-1::1695244303::0::1::::<>Node2D<>::
-Player.tscn::PackedScene::7403289609329188929::1695495933::0::1::::<><>::res://battleScene/Player.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
+Player.tscn::PackedScene::7403289609329188929::1695777972::0::1::::<><>::res://battleScene/Player.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
 ::res://CreatureMenu/::1695495817
 battle_group.gd::GDScript::-1::1695495817::0::1::::<>RefCounted<>::
 battle_group.tscn::PackedScene::4776347856529173560::1695495817::0::1::::<><>::res://BattleGroup.gd<>uid://c16hqaadkji2q
