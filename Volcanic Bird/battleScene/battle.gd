@@ -32,6 +32,7 @@ var currentEnemyCounter # range from 1-3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hideEnemyButtons()
 	getPlayerInfo()
 	getEnemyInfo()
 	
@@ -67,9 +68,10 @@ func trackBattle():
 
 func _on_attack_pressed():
 	print("Attack Button Pressed")
-	
 	showTextBox("Which enemy?")
-
+	showEnemyButtons()
+	
+		
 func _on_skill_pressed():
 	print("Skill Button Pressed")
 	
@@ -113,3 +115,27 @@ func showButtons():
 	$"Actions Panel/Actions Container/Defend".show()
 	$"Actions Panel/Actions Container/Item".show()
 	$"Actions Panel/Actions Container/Run".show()
+
+func hideEnemyButtons():
+	$"Enemies Container/Enemy1/Button".hide()
+	$"Enemies Container/Enemy2/Button".hide()
+	$"Enemies Container/Enemy3/Button".hide()
+
+func showEnemyButtons():
+	$"Enemies Container/Enemy1/Button".show()
+	$"Enemies Container/Enemy2/Button".show()
+	$"Enemies Container/Enemy3/Button".show()
+
+func _on_enemy1_pressed():
+	print("Enemy 1 clicked fr")
+	# Subtracts enemy hp by 5
+	# $"Enemies Container/Enemy1/Enemy Container/Health Bar".value -= 5
+	# $"Enemies Container/Enemy1/Enemy Container/Health Bar/Label".text = str($"Enemies Container/Enemy1/Enemy Container/Health Bar".value) + "/" + str($"Enemies Container/Enemy1/Enemy Container/Health Bar".max_value)
+	
+func _on_enemy2_pressed():
+	print("Enemy 2 clicked fr")
+	$"Enemies Container/Enemy2/Enemy Container/Health Bar".value -= 5
+	
+func _on_enemy3_pressed():
+	print("Enemy 3 clicked fr")
+	$"Enemies Container/Enemy3/Enemy Container/Health Bar".value -= 5
