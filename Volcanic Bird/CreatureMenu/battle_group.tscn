@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cabx0stuuqixk"]
 
-[ext_resource type="Script" path="res://BattleGroup.gd" id="1_11qmn"]
+[ext_resource type="Script" path="res://CreatureMenu/BattleGroup.gd" id="1_50s2s"]
 [ext_resource type="PackedScene" uid="uid://c16hqaadkji2q" path="res://CreatureMenu/battle_group_button.tscn" id="1_xbcrt"]
 
 [node name="BattleGroup" type="VBoxContainer"]
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 offset_right = -936.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_11qmn")
+script = ExtResource("1_50s2s")
 
 [node name="BattleGroupButton" parent="." instance=ExtResource("1_xbcrt")]
 layout_mode = 2

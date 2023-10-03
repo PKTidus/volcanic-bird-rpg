@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b03giqetc2fcu"]
+[gd_scene load_steps=3 format=3 uid="uid://b03giqetc2fcu"]
 
-[ext_resource type="PackedScene" uid="uid://cabx0stuuqixk" path="res://CreatureMenu/battle_group.tscn" id="1_0470q"]
+[ext_resource type="Script" path="res://PartyScreen/PartyScreen.gd" id="1_ydbjm"]
+[ext_resource type="PackedScene" uid="uid://c384665b1e2y2" path="res://PartyScreen/BattleGroupButtonParty.tscn" id="2_ahxow"]
 
 [node name="PartyScreen" type="Panel"]
 anchors_preset = 15
@@ -8,16 +9,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ydbjm")
 
-[node name="BattleGroup" parent="." instance=ExtResource("1_0470q")]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
 offset_right = 192.0
-offset_bottom = 640.0
-grow_horizontal = 1
-grow_vertical = 1
+offset_bottom = 648.0
+
+[node name="BattleGroupButtonParty" parent="VBoxContainer" instance=ExtResource("2_ahxow")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleGroupButtonParty2" parent="VBoxContainer" instance=ExtResource("2_ahxow")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleGroupButtonParty3" parent="VBoxContainer" instance=ExtResource("2_ahxow")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleGroupButtonParty4" parent="VBoxContainer" instance=ExtResource("2_ahxow")]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
@@ -26,7 +39,7 @@ offset_top = 32.0
 offset_right = 480.0
 offset_bottom = 55.0
 
-[node name="Label" type="Label" parent="."]
+[node name="Description" type="Label" parent="."]
 layout_mode = 0
 offset_left = 256.0
 offset_top = 88.0
@@ -40,5 +53,3 @@ offset_top = 384.0
 offset_right = 1088.0
 offset_bottom = 616.0
 columns = 7
-
-[editable path="BattleGroup"]
