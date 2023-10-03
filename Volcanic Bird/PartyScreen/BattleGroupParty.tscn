@@ -1,30 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://cabx0stuuqixk"]
+[gd_scene load_steps=3 format=3 uid="uid://bwbenom43g7t2"]
 
-[ext_resource type="Script" path="res://CreatureMenu/BattleGroup.gd" id="1_50s2s"]
-[ext_resource type="PackedScene" uid="uid://c16hqaadkji2q" path="res://CreatureMenu/battle_group_button.tscn" id="1_xbcrt"]
+[ext_resource type="Script" path="res://PartyScreen/BattleGroupParty.gd" id="1_lh3y0"]
+[ext_resource type="PackedScene" uid="uid://c16hqaadkji2q" path="res://CreatureMenu/battle_group_button.tscn" id="2_mlaso"]
 
 [node name="BattleGroup" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -936.0
+offset_right = -943.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_50s2s")
+script = ExtResource("1_lh3y0")
 
-[node name="BattleGroupButton" parent="." instance=ExtResource("1_xbcrt")]
+[node name="BattleGroupButton" parent="." instance=ExtResource("2_mlaso")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BattleGroupButton2" parent="." instance=ExtResource("1_xbcrt")]
+[node name="BattleGroupButton2" parent="." instance=ExtResource("2_mlaso")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BattleGroupButton3" parent="." instance=ExtResource("1_xbcrt")]
+[node name="BattleGroupButton3" parent="." instance=ExtResource("2_mlaso")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="BattleGroupButton4" parent="." instance=ExtResource("1_xbcrt")]
+[node name="BattleGroupButton4" parent="." instance=ExtResource("2_mlaso")]
 layout_mode = 2
 size_flags_vertical = 3
 

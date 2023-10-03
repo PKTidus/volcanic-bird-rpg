@@ -111,14 +111,8 @@ grow_horizontal = 2
 [node name="Enemy1" parent="Enemies Container" instance=ExtResource("2_864hm")]
 position = Vector2(192, 192)
 asset = ExtResource("4_wchqa")
-current_hp = 90
+current_hp = 100
 max_hp = 100
-
-[node name="Button" type="Button" parent="Enemies Container/Enemy1"]
-offset_left = -104.0
-offset_top = -80.0
-offset_right = 104.0
-offset_bottom = 120.0
 
 [node name="Enemy2" parent="Enemies Container" instance=ExtResource("2_864hm")]
 position = Vector2(576, 192)
@@ -126,23 +120,11 @@ asset = ExtResource("5_ebsu0")
 current_hp = 50
 max_hp = 100
 
-[node name="Button" type="Button" parent="Enemies Container/Enemy2"]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 120.0
-offset_bottom = 120.0
-
 [node name="Enemy3" parent="Enemies Container" instance=ExtResource("2_864hm")]
 position = Vector2(960, 192)
 asset = ExtResource("4_wchqa")
 current_hp = 1
 max_hp = 1000
-
-[node name="Button" type="Button" parent="Enemies Container/Enemy3"]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 112.0
-offset_bottom = 128.0
 
 [node name="Party Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -192,6 +174,3 @@ mp = 100
 [connection signal="pressed" from="Actions Panel/Actions Container/Defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Item" to="." method="_on_item_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Run" to="." method="_on_run_pressed"]
-[connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
-[connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
-[connection signal="pressed" from="Enemies Container/Enemy3/Button" to="." method="_on_enemy3_pressed"]
