@@ -1,48 +1,62 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1696182346
-BattleGroup.gd::GDScript::-1::1696171742::0::1::::<>VBoxContainer<>::
-Global.gd::GDScript::-1::1696171742::0::1::::<>Node<>::
-icon.svg::CompressedTexture2D::2721261134079640640::1696171742::1696171803::1::::<><>::
-Main Menu.gd::GDScript::-1::1696171742::0::1::::<>Control<>::
-::res://battleScene/::1696182236
-battle.gd::GDScript::-1::1696182236::0::1::::<>Control<>::
-battle.tscn::PackedScene::369537049817262372::1696181021::0::1::::<><>::res://battleScene/battle.gd<>uid://buyxn1wnthdxl::::res://Resources/Backgrounds/battleback1.png<>uid://qsiytlf42ajo::::res://battleScene/Enemy.tscn<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf<>uid://ddqhdls5j841b::::res://battleScene/Player.tscn<>uid://bpxjfercakhen::::res://Resources/Enemies/tree.png<>uid://dqqp0fyrw8x4c::::res://Resources/Enemies/flower.png
-Enemy.gd::GDScript::-1::1696171742::0::1::::<>Node2D<>::
-Enemy.tscn::PackedScene::1160709907980937032::1696181021::0::1::::<><>::res://battleScene/Enemy.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
-Player.gd::GDScript::-1::1696171742::0::1::::<>Node2D<>::
-Player.tscn::PackedScene::7403289609329188929::1696181021::0::1::::<><>::res://battleScene/Player.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
-::res://CreatureMenu/::1696171742
-battle_group.gd::GDScript::-1::1696171742::0::1::::<>RefCounted<>::
-battle_group.tscn::PackedScene::4776347856529173560::1696171742::0::1::::<><>::res://BattleGroup.gd<>uid://c16hqaadkji2q
-battle_group_button.gd::GDScript::-1::1696171742::0::1::::<>Button<>::
-battle_group_button.tscn::PackedScene::6662200604152774286::1696171742::0::1::::<><>::res://CreatureMenu/battle_group_button.gd
-CreatureMenu.gd::GDScript::-1::1696171742::0::1::::<>Panel<>::
-CreatureMenu.tscn::PackedScene::8525453335182137987::1696171742::0::1::::<><>::res://CreatureMenu/CreatureMenu.gd<>uid://cs8rlnooal4yd
-creature_button.gd::GDScript::-1::1696171742::0::1::::<>Button<>::
-creature_button.tscn::PackedScene::6105417556432117695::1696171742::0::1::::<><>::res://CreatureMenu/creature_button.gd
-::res://Creatures/::1696171742
-Creature.gd::GDScript::-1::1696171742::0::1::::Creatures<>Resource<>::
-Purple_Flower.tres::Resource/Resource::8709943103809424633::1696171742::0::1::::<><>::uid://dqqp0fyrw8x4c
-Tree.tres::Resource/Resource::846971512324610738::1696171742::0::1::::<><>::uid://bpxjfercakhen
-::res://Inventory/::1696171742
-Inventory.tscn::PackedScene::8525453335182137987::1696171742::0::1::::<><>::uid://dk1alikiqledi
-::res://Main Menu/::1696171742
-between_floors_menu.tscn::PackedScene::6453238684694461846::1696171742::0::1::::<><>::uid://dk1alikiqledi
-camp_menu.gd::GDScript::-1::1696171742::0::1::::<>Control<>::
-camp_menu.tscn::PackedScene::4282643584689024868::1696171742::0::1::::<><>::res://Main Menu/camp_menu.gd<>uid://dk1alikiqledi
-dungeon.tscn::PackedScene::8904343796199675951::1696171742::0::1::::<><>::uid://dk1alikiqledi
-hub_menu.gd::GDScript::-1::1696171742::0::1::::<>Control<>::
-hub_menu.tscn::PackedScene::2392475771421862391::1696171742::0::1::::<><>::res://Main Menu/hub_menu.gd<>uid://dk1alikiqledi
-main_menu.tscn::PackedScene::3154444517897865837::1696171742::0::1::::<><>::res://Main Menu.gd<>uid://dk1alikiqledi
-save_files.tscn::PackedScene::6652631819760713819::1696171742::0::1::::<><>::
-::res://PartyScreen/::1696171742
-PartyScreen.tscn::PackedScene::4199323787485255108::1696171742::0::1::::<><>::uid://cabx0stuuqixk
-::res://Resources/::1696171742
-::res://Resources/Backgrounds/::1696171742
-battleback1.png::CompressedTexture2D::3841163728914706861::1696171742::1696171742::1::::<><>::
-::res://Resources/Enemies/::1696171742
-flower.png::CompressedTexture2D::8316269293587080000::1696171742::1696171742::1::::<><>::
-Purple_Flower.tres::Resource::-1::1696171742::0::1::::<><>::res://Resources/Enemies/flower.png<>res://Creatures/Creature.gd
-tree.png::CompressedTexture2D::3487289644957732097::1696171742::1696171742::1::::<><>::
-::res://Resources/Fonts/::1696171742
-NESCyrillic.ttf::FontFile::7914844388818282198::1696171742::1696171742::1::::<><>::
+::res://::1696459237
+BattleGroup.gd::GDScript::-1::1696456943::0::1::::<>VBoxContainer<>::
+Global.gd::GDScript::-1::1696456943::0::1::::<>Node<>::
+icon.svg::CompressedTexture2D::2721261134079640640::1696456943::1696456943::1::::<><>::
+Main Menu.gd::GDScript::-1::1696456943::0::1::::<>Control<>::
+Moves.gd::GDScript::-1::1696456943::0::1::::Moves<>RefCounted<>::
+Player.gd::GDScript::-1::1696458780::0::1::::<>Panel<>::
+::res://battleScene/::1696459237
+battle.gd::GDScript::-1::1696458828::0::1::::<>Control<>::
+battle.tscn::PackedScene::369537049817262372::1696459237::0::1::::<><>::res://battleScene/battle.gd<>uid://buyxn1wnthdxl::::res://Resources/Backgrounds/battleback1.png<>uid://qsiytlf42ajo::::res://battleScene/Enemy.tscn<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf<>uid://bpxjfercakhen::::res://Resources/Enemies/tree.png<>uid://dqqp0fyrw8x4c::::res://Resources/Enemies/flower.png<>uid://boe11sr5b1bb1::::res://battleScene/Player.tscn
+Enemy.gd::GDScript::-1::1696456943::0::1::::Enemy<>Node2D<>::
+Enemy.tscn::PackedScene::1160709907980937032::1696458974::0::1::::<><>::res://battleScene/Enemy.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
+Player.tscn::PackedScene::3378948051142648736::1696459292::0::1::::<><>::res://Player.gd<>uid://dk1alikiqledi::::res://Resources/Fonts/NESCyrillic.ttf
+::res://CreatureMenu/::1696456984
+BattleGroup.gd::GDScript::-1::1696456943::0::1::::<>VBoxContainer<>::
+battle_group.gd::GDScript::-1::1696456943::0::1::::<>RefCounted<>::
+battle_group.tscn::PackedScene::4776347856529173560::1696456943::0::1::::<><>::res://CreatureMenu/BattleGroup.gd<>uid://c16hqaadkji2q
+battle_group_button.gd::GDScript::-1::1696456943::0::1::::<>Button<>::
+battle_group_button.tscn::PackedScene::6662200604152774286::1696456943::0::1::::<><>::res://CreatureMenu/battle_group_button.gd
+CreatureMenu.gd::GDScript::-1::1696456943::0::1::::<>Panel<>::
+CreatureMenu.tscn::PackedScene::8525453335182137987::1696456943::0::1::::<><>::res://CreatureMenu/CreatureMenu.gd<>uid://cs8rlnooal4yd
+creature_button.gd::GDScript::-1::1696456943::0::1::::<>Button<>::
+creature_button.tscn::PackedScene::6105417556432117695::1696456943::0::1::::<><>::res://CreatureMenu/creature_button.gd<>uid://mcjq5uunblqo
+::res://Creatures/::1696456984
+Creature.gd::GDScript::-1::1696456943::0::1::::Creatures<>Resource<>::
+Purple_Flower.tres::Resource/Resource::8709943103809424633::1696456943::0::1::::<><>::uid://dqqp0fyrw8x4c
+Tree.tres::Resource/Resource::846971512324610738::1696456943::0::1::::<><>::uid://bpxjfercakhen
+::res://Inventory/::1696456984
+Inventory.tscn::PackedScene::8525453335182137987::1696456943::0::1::::<><>::uid://dk1alikiqledi
+::res://ItemManagement/::1696456984
+ItemButton.gd::GDScript::-1::1696456943::0::1::::<>Button<>::
+ItemButton.tscn::PackedScene::430782622399118265::1696456943::0::1::::<><>::res://ItemManagement/ItemButton.gd
+ItemManagement.gd::GDScript::-1::1696456943::0::1::::<>Panel<>::
+ItemManagement.tscn::PackedScene::7133939646516218638::1696456943::0::1::::<><>::res://ItemManagement/ItemManagement.gd<>uid://gew6rpa0i0nl
+StorageItem.gd::GDScript::-1::1696456943::0::1::::<>Button<>::
+StorageItem.tscn::PackedScene::1503114730595004002::1696456943::0::1::::<><>::res://ItemManagement/StorageItem.gd
+::res://Main Menu/::1696456984
+between_floors_menu.tscn::PackedScene::6453238684694461846::1696456943::0::1::::<><>::uid://dk1alikiqledi
+camp_menu.gd::GDScript::-1::1696456943::0::1::::<>Control<>::
+camp_menu.tscn::PackedScene::4282643584689024868::1696456943::0::1::::<><>::res://Main Menu/camp_menu.gd<>uid://dk1alikiqledi
+dungeon.tscn::PackedScene::8904343796199675951::1696456943::0::1::::<><>::uid://dk1alikiqledi
+hub_menu.gd::GDScript::-1::1696456943::0::1::::<>Control<>::
+hub_menu.tscn::PackedScene::2392475771421862391::1696456943::0::1::::<><>::res://Main Menu/hub_menu.gd<>uid://dk1alikiqledi
+main_menu.tscn::PackedScene::3154444517897865837::1696456943::0::1::::<><>::res://Main Menu.gd<>uid://dk1alikiqledi
+save_files.tscn::PackedScene::6652631819760713819::1696456943::0::1::::<><>::
+::res://PartyScreen/::1696456984
+BattleGroupButtonParty.gd::GDScript::-1::1696456943::0::1::::<>Button<>::
+BattleGroupButtonParty.tscn::PackedScene::6808071282184717079::1696456943::0::1::::<><>::res://PartyScreen/BattleGroupButtonParty.gd
+BattleGroupParty.gd::GDScript::-1::1696456943::0::1::::<>RefCounted<>::
+BattleGroupParty.tscn::PackedScene::3932906459995575985::1696456943::0::1::::<><>::res://PartyScreen/BattleGroupParty.gd<>uid://c16hqaadkji2q
+PartyScreen.gd::GDScript::-1::1696456943::0::1::::<>Panel<>::
+PartyScreen.tscn::PackedScene::4199323787485255108::1696456943::0::1::::<><>::res://PartyScreen/PartyScreen.gd<>uid://c384665b1e2y2
+::res://Resources/::1696429005
+::res://Resources/Backgrounds/::1696456984
+battleback1.png::CompressedTexture2D::3841163728914706861::1696456943::1696456943::1::::<><>::
+::res://Resources/Enemies/::1696456984
+flower.png::CompressedTexture2D::8316269293587080000::1696456943::1696456943::1::::<><>::
+Purple_Flower.tres::Resource::-1::1696456943::0::1::::<><>::res://Resources/Enemies/flower.png<>res://Creatures/Creature.gd
+tree.png::CompressedTexture2D::3487289644957732097::1696456943::1696456943::1::::<><>::
+::res://Resources/Fonts/::1696456984
+NESCyrillic.ttf::FontFile::7914844388818282198::1696456943::1696456943::1::::<><>::

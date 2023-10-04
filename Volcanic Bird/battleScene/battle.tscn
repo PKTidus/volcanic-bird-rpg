@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://buyxn1wnthdxl" path="res://Resources/Backgrounds/battleback1.png" id="1_t62cp"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
 [ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
-[ext_resource type="PackedScene" uid="uid://ddqhdls5j841b" path="res://battleScene/Player.tscn" id="3_lstsa"]
 [ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="4_wchqa"]
 [ext_resource type="Texture2D" uid="uid://dqqp0fyrw8x4c" path="res://Resources/Enemies/flower.png" id="5_ebsu0"]
+[ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_uu1e0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -158,37 +158,40 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Party Container" type="HBoxContainer" parent="Party Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 8
-alignment = 1
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 136.0
 
-[node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
-player_name = "Player 1"
-hp = 1
-mp = 2
+[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+layout_mode = 2
+size_flags_horizontal = 3
+player_name = "Nikola"
+hp = 6
+mp = 6
 
-[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
-position = Vector2(128, 0)
-player_name = "Player 2"
-hp = 10
-mp = 20
+[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+layout_mode = 2
+size_flags_horizontal = 3
+player_name = "Pedor"
 
-[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
-position = Vector2(256, 0)
-player_name = "Player 3"
-hp = 100
-mp = 100
+[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+layout_mode = 2
+size_flags_horizontal = 3
+player_name = "Pidro"
 
-[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
-position = Vector2(384, 0)
-player_name = "Player 4"
-hp = 50
-mp = 100
+[node name="Player4" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+layout_mode = 2
+size_flags_horizontal = 3
+player_name = "Pydro"
+hp = 4
+max_hp = -5
+
+[node name="BackButton" type="Button" parent="Party Panel/Party Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 27
+text = "Back Button"
 
 [connection signal="pressed" from="Actions Panel/Actions Container/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Skill" to="." method="_on_skill_pressed"]
