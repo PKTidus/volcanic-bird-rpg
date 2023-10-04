@@ -1,6 +1,8 @@
-res://battleScene/battle.tscn
-res://battleScene/battle.gd
-res://Creatures/Creature.gd
+res://creature_panel.tscn
 res://battleScene/Player.tscn
+res://battleScene/Player.gd
+res://Player.tscn
+res://Player.gd
+res://battleScene/battle.tscn
 res://battleScene/Enemy.tscn
-res://battleScene/Enemy.gd
+res://battleScene/battle.gd

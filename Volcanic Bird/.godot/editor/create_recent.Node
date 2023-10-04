@@ -1,8 +1,8 @@
 Button
-Label
 HBoxContainer
-VBoxContainer
 Panel
+Label
+VBoxContainer
 Control
 ProgressBar
 TextureRect
