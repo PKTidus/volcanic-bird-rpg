@@ -122,7 +122,7 @@ func showEnemyButtons():
 	if has_node("Enemies Container/Enemy3"):
 		$"Enemies Container/Enemy3/Button".show()
 
-func _on_enemy1_pressed():	
+func _on_enemy1_pressed():
 	attackEnemy(enemy1)
 	selectedEnemies[currentPlayerCounter] = 1
 	updatePlayerCounter()
