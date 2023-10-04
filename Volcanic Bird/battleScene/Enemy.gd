@@ -18,11 +18,20 @@ func _ready():
 	if asset != null:
 		$"Enemy Container/Sprite".texture = asset
 	
-	# Update health
-	$"Enemy Container/Health Bar".value = current_hp
-	$"Enemy Container/Health Bar".max_value = max_hp
-	$"Enemy Container/Health Bar/Label".text = str(current_hp) + "/" + str(max_hp)
+	updateHealth()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func updateHealth():
+	# Update current and max HP
+	$"Enemy Container/Health Bar".value = current_hp
+	$"Enemy Container/Health Bar".max_value = max_hp
+	
+	# Prevent a negative current HP
+	if current_hp < 0:
+		current_hp = 0
+	
+	# Update label
+	$"Enemy Container/Health Bar/Label".text = str(current_hp) + "/" + str(max_hp)

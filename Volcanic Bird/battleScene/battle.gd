@@ -6,27 +6,11 @@ var player2
 var player3
 var player4
 
-# store each player's move during their turn
-# 0 = attack
-# 1 = skill
-# 2 = defend
-# 3 = item
-var player1Move
-var player2Move
-var player3Move
-var player4Move
-
 # 3 enemies max
 var enemy1
 var enemy2
 var enemy3
 
-# store each enemy's move during their turn
-var enemy1Move
-var enemy2Move
-var enemy3Move
-
-var activeCharacter
 var currentPlayerCounter # range from 1-4
 var currentEnemyCounter # range from 1-3
 
@@ -128,14 +112,15 @@ func showEnemyButtons():
 
 func _on_enemy1_pressed():
 	print("Enemy 1 clicked fr")
-	# Subtracts enemy hp by 5
-	# $"Enemies Container/Enemy1/Enemy Container/Health Bar".value -= 5
-	# $"Enemies Container/Enemy1/Enemy Container/Health Bar/Label".text = str($"Enemies Container/Enemy1/Enemy Container/Health Bar".value) + "/" + str($"Enemies Container/Enemy1/Enemy Container/Health Bar".max_value)
+	$"Enemies Container/Enemy1".current_hp -= 5
+	$"Enemies Container/Enemy1".updateHealth()
 	
 func _on_enemy2_pressed():
 	print("Enemy 2 clicked fr")
-	$"Enemies Container/Enemy2/Enemy Container/Health Bar".value -= 5
+	$"Enemies Container/Enemy2".current_hp -= 5
+	$"Enemies Container/Enemy2".updateHealth()
 	
 func _on_enemy3_pressed():
 	print("Enemy 3 clicked fr")
-	$"Enemies Container/Enemy3/Enemy Container/Health Bar".value -= 5
+	$"Enemies Container/Enemy3".current_hp -= 5
+	$"Enemies Container/Enemy3".updateHealth()
