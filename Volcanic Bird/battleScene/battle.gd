@@ -1,10 +1,10 @@
 extends Control
 
 # 4 party members max
+var player0 = null
 var player1 = null
 var player2 = null
 var player3 = null
-var player4 = null
 
 var selectedEnemies = [0, 0, 0, 0]
 
@@ -32,10 +32,10 @@ func _process(delta):
 	pass
 
 func getPlayerInfo():
+	player0 = $"Party Panel/Party Container/Player0"
 	player1 = $"Party Panel/Party Container/Player1"
 	player2 = $"Party Panel/Party Container/Player2"
 	player3 = $"Party Panel/Party Container/Player3"
-	player4 = $"Party Panel/Party Container/Player4"
 
 func getEnemyInfo():
 	enemy1 = $"Enemies Container/Enemy1"
@@ -158,13 +158,13 @@ func attackEnemy(enemy):
 func updatePlayerCounter():
 	currentPlayerCounter += 1
 	
-	if player1 == null and currentPlayerCounter == 0:
+	if player0 == null and currentPlayerCounter == 0:
 		currentPlayerCounter += 1
-	elif player2 == null and currentPlayerCounter == 1:
+	elif player1 == null and currentPlayerCounter == 1:
 		currentPlayerCounter += 1
-	elif player3 == null and currentPlayerCounter == 2:
+	elif player2 == null and currentPlayerCounter == 2:
 		currentPlayerCounter += 1
-	elif player4 == null and currentPlayerCounter == 3:
+	elif player3 == null and currentPlayerCounter == 3:
 		currentPlayerCounter += 1
 	
 	if currentPlayerCounter >= 4:

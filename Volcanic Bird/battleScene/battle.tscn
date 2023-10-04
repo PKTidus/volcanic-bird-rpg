@@ -167,24 +167,24 @@ grow_vertical = 2
 size_flags_vertical = 8
 alignment = 1
 
-[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+[node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
 player_name = "Player 1"
 hp = 1
 mp = 2
 
-[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
 position = Vector2(128, 0)
 player_name = "Player 2"
 hp = 10
 mp = 20
 
-[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
 position = Vector2(256, 0)
 player_name = "Player 3"
 hp = 100
 mp = 100
 
-[node name="Player4" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
+[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("3_lstsa")]
 position = Vector2(384, 0)
 player_name = "Player 4"
 hp = 50
