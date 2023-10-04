@@ -1,10 +1,10 @@
 extends Control
 
 # 4 party members max
-var player1
-var player2
-var player3
-var player4
+var player1 = null
+var player2 = null
+var player3 = null
+var player4 = null
 
 var selectedEnemies = [0, 0, 0, 0]
 
@@ -157,6 +157,15 @@ func attackEnemy(enemy):
 
 func updatePlayerCounter():
 	currentPlayerCounter += 1
+	
+	if player1 == null and currentPlayerCounter == 0:
+		currentPlayerCounter += 1
+	elif player2 == null and currentPlayerCounter == 1:
+		currentPlayerCounter += 1
+	elif player3 == null and currentPlayerCounter == 2:
+		currentPlayerCounter += 1
+	elif player4 == null and currentPlayerCounter == 3:
+		currentPlayerCounter += 1
 	
 	if currentPlayerCounter >= 4:
 		currentPlayerCounter = 0
