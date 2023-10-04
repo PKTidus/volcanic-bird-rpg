@@ -6,6 +6,11 @@ var player1 = null
 var player2 = null
 var player3 = null
 
+# Array for storing the attacks
+# Indices are the players (0-3)
+# Values are the selected enemies (0-3)
+# 	0 is for not attacking
+# 	1-3 is for the enemy node
 var selectedEnemies = [0, 0, 0, 0]
 
 # 3 enemies max
@@ -117,10 +122,12 @@ func showEnemyButtons():
 	if has_node("Enemies Container/Enemy3"):
 		$"Enemies Container/Enemy3/Button".show()
 
-func _on_enemy1_pressed():
+func _on_enemy1_pressed():	
 	attackEnemy(enemy1)
 	selectedEnemies[currentPlayerCounter] = 1
 	updatePlayerCounter()
+	
+	print(selectedEnemies)
 	
 	hideEnemyButtons()
 	hideTextBox()
@@ -133,6 +140,8 @@ func _on_enemy2_pressed():
 	selectedEnemies[currentPlayerCounter] = 2
 	updatePlayerCounter()
 	
+	print(selectedEnemies)
+	
 	hideEnemyButtons()
 	hideTextBox()
 	showButtons()
@@ -143,6 +152,8 @@ func _on_enemy3_pressed():
 	attackEnemy(enemy3)
 	selectedEnemies[currentPlayerCounter] = 3
 	updatePlayerCounter()
+	
+	print(selectedEnemies)
 	
 	hideEnemyButtons()
 	hideTextBox()
