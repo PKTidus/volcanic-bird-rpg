@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cabx0stuuqixk"]
+
+[ext_resource type="Script" path="res://CreatureMenu/BattleGroup.gd" id="1_50s2s"]
+[ext_resource type="PackedScene" uid="uid://c16hqaadkji2q" path="res://CreatureMenu/battle_group_button.tscn" id="1_xbcrt"]
+
+[node name="BattleGroup" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -936.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_50s2s")
+
+[node name="BattleGroupButton" parent="." instance=ExtResource("1_xbcrt")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleGroupButton2" parent="." instance=ExtResource("1_xbcrt")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleGroupButton3" parent="." instance=ExtResource("1_xbcrt")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BattleGroupButton4" parent="." instance=ExtResource("1_xbcrt")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="BattleGroupButton" to="." method="_on_battle_group_button_pressed"]
+[connection signal="pressed" from="BattleGroupButton2" to="." method="_on_battle_group_button_2_pressed"]
+[connection signal="pressed" from="BattleGroupButton3" to="." method="_on_battle_group_button_3_pressed"]
+[connection signal="pressed" from="BattleGroupButton4" to="." method="_on_battle_group_button_4_pressed"]

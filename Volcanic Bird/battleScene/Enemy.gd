@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Enemy
+
 @export var asset : Resource
 @export var current_hp : int
 @export var max_hp : int

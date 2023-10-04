@@ -22,3 +22,4 @@ func instanceInventorySlots():
 func onCreatureSlotFocus():
 	$Name.text = str(Global.current_name)
 	$Description.text = str(Global.current_description)
+	
