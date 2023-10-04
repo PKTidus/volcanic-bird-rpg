@@ -110,7 +110,6 @@ grow_horizontal = 2
 
 [node name="Enemy1" parent="Enemies Container" instance=ExtResource("2_864hm")]
 position = Vector2(192, 192)
-enemy_name = "Treey"
 asset = ExtResource("4_wchqa")
 current_hp = 90
 max_hp = 100
@@ -123,7 +122,6 @@ offset_bottom = 120.0
 
 [node name="Enemy2" parent="Enemies Container" instance=ExtResource("2_864hm")]
 position = Vector2(576, 192)
-enemy_name = "Flowey"
 asset = ExtResource("5_ebsu0")
 current_hp = 50
 max_hp = 100
@@ -136,7 +134,6 @@ offset_bottom = 120.0
 
 [node name="Enemy3" parent="Enemies Container" instance=ExtResource("2_864hm")]
 position = Vector2(960, 192)
-enemy_name = "Enemy 3 at Home"
 asset = ExtResource("4_wchqa")
 current_hp = 1
 max_hp = 1000

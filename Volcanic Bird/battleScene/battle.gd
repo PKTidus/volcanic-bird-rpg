@@ -6,6 +6,8 @@ var player2
 var player3
 var player4
 
+var selectedEnemies = [0, 0, 0, 0]
+
 # 3 enemies max
 var enemy1
 var enemy2
@@ -54,8 +56,7 @@ func _on_attack_pressed():
 	print("Attack Button Pressed")
 	showTextBox("Which enemy?")
 	showEnemyButtons()
-	
-		
+
 func _on_skill_pressed():
 	print("Skill Button Pressed")
 	
@@ -111,16 +112,39 @@ func showEnemyButtons():
 	$"Enemies Container/Enemy3/Button".show()
 
 func _on_enemy1_pressed():
-	print("Enemy 1 clicked fr")
-	$"Enemies Container/Enemy1".current_hp -= 5
-	$"Enemies Container/Enemy1".updateHealth()
+	attackEnemy(enemy1)
+	selectedEnemies[currentPlayerCounter] = 1
+	updatePlayerCounter()
 	
+	hideEnemyButtons()
+	hideTextBox()
+	showButtons()
+
 func _on_enemy2_pressed():
-	print("Enemy 2 clicked fr")
-	$"Enemies Container/Enemy2".current_hp -= 5
-	$"Enemies Container/Enemy2".updateHealth()
+	attackEnemy(enemy2)
+	selectedEnemies[currentPlayerCounter] = 2
+	updatePlayerCounter()
 	
+	hideEnemyButtons()
+	hideTextBox()
+	showButtons()
+
 func _on_enemy3_pressed():
-	print("Enemy 3 clicked fr")
-	$"Enemies Container/Enemy3".current_hp -= 5
-	$"Enemies Container/Enemy3".updateHealth()
+	attackEnemy(enemy3)
+	selectedEnemies[currentPlayerCounter] = 3
+	updatePlayerCounter()
+	
+	hideEnemyButtons()
+	hideTextBox()
+	showButtons()
+
+func attackEnemy(enemy):
+	print(enemy.enemy_name + " clicked fr")
+	enemy.current_hp -= 5
+	enemy.updateHealth()
+
+func updatePlayerCounter():
+	currentPlayerCounter += 1
+	
+	if currentPlayerCounter >= 4:
+		currentPlayerCounter = 1
