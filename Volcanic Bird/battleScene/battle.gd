@@ -102,14 +102,20 @@ func showButtons():
 	$"Actions Panel/Actions Container/Run".show()
 
 func hideEnemyButtons():
-	$"Enemies Container/Enemy1/Button".hide()
-	$"Enemies Container/Enemy2/Button".hide()
-	$"Enemies Container/Enemy3/Button".hide()
+	if has_node("Enemies Container/Enemy1"):
+		$"Enemies Container/Enemy1/Button".hide()
+	if has_node("Enemies Container/Enemy2"):
+		$"Enemies Container/Enemy2/Button".hide()
+	if has_node("Enemies Container/Enemy3"):
+		$"Enemies Container/Enemy3/Button".hide()
 
 func showEnemyButtons():
-	$"Enemies Container/Enemy1/Button".show()
-	$"Enemies Container/Enemy2/Button".show()
-	$"Enemies Container/Enemy3/Button".show()
+	if has_node("Enemies Container/Enemy1"):
+		$"Enemies Container/Enemy1/Button".show()
+	if has_node("Enemies Container/Enemy2"):
+		$"Enemies Container/Enemy2/Button".show()
+	if has_node("Enemies Container/Enemy3"):
+		$"Enemies Container/Enemy3/Button".show()
 
 func _on_enemy1_pressed():
 	attackEnemy(enemy1)
