@@ -22,8 +22,8 @@ func _ready():
 	getPlayerInfo()
 	getEnemyInfo()
 	
-	currentPlayerCounter = 1
-	currentEnemyCounter = 1
+	currentPlayerCounter = 0
+	currentEnemyCounter = 0
 	
 	trackBattle()
 
@@ -43,14 +43,14 @@ func getEnemyInfo():
 	enemy3 = $"Enemies Container/Enemy3"
 
 func trackBattle():
-	if currentPlayerCounter == 1:
+	if currentPlayerCounter == 0:
+		print("Player 0's Turn")
+	elif currentPlayerCounter == 1:
 		print("Player 1's Turn")
 	elif currentPlayerCounter == 2:
 		print("Player 2's Turn")
 	elif currentPlayerCounter == 3:
 		print("Player 3's Turn")
-	elif currentPlayerCounter == 4:
-		print("Player 4's Turn")
 
 func _on_attack_pressed():
 	print("Attack Button Pressed")
@@ -119,6 +119,8 @@ func _on_enemy1_pressed():
 	hideEnemyButtons()
 	hideTextBox()
 	showButtons()
+	
+	trackBattle()
 
 func _on_enemy2_pressed():
 	attackEnemy(enemy2)
@@ -128,6 +130,8 @@ func _on_enemy2_pressed():
 	hideEnemyButtons()
 	hideTextBox()
 	showButtons()
+	
+	trackBattle()
 
 func _on_enemy3_pressed():
 	attackEnemy(enemy3)
@@ -137,6 +141,8 @@ func _on_enemy3_pressed():
 	hideEnemyButtons()
 	hideTextBox()
 	showButtons()
+	
+	trackBattle()
 
 func attackEnemy(enemy):
 	print(enemy.enemy_name + " clicked fr")
@@ -147,4 +153,4 @@ func updatePlayerCounter():
 	currentPlayerCounter += 1
 	
 	if currentPlayerCounter >= 4:
-		currentPlayerCounter = 1
+		currentPlayerCounter = 0
