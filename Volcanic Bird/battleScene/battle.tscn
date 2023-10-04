@@ -162,24 +162,24 @@ layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 136.0
 
-[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+[node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 size_flags_horizontal = 3
 player_name = "Nikola"
 hp = 6
 mp = 6
 
-[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 size_flags_horizontal = 3
 player_name = "Pedor"
 
-[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 size_flags_horizontal = 3
 player_name = "Pidro"
 
-[node name="Player4" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
+[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 size_flags_horizontal = 3
 player_name = "Pydro"
