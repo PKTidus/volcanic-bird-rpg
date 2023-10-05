@@ -1,3 +1,8 @@
 res://battleScene/battle.tscn
 res://battleScene/Enemy.tscn
 res://battleScene/Player.tscn
+res://Creatures/Creature.gd
+res://battleScene/battle.gd
+res://CreatureMenu/CreatureMenu.tscn
+res://Creatures/SkillList.gd
+res://Creatures/Skill.gd
