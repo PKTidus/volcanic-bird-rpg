@@ -14,8 +14,6 @@ func fillBattleGroupSlots():
 	$BattleGroupButton3.creatureData = Global.battleGroup[2]
 	$BattleGroupButton4.creatureData = Global.battleGroup[3]
 
-
-
 func _on_battle_group_button_pressed():
 	Global.draggedCreatureIndex = 0
 	Global.addToBattleGroup()

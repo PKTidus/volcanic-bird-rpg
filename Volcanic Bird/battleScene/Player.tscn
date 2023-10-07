@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://battleScene/Player.gd" id="1_maeio"]
 [ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
 
-[node name="Player" type="Panel"]
+[node name="Player" type="Button"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

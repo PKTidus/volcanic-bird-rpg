@@ -1,22 +1,14 @@
-extends Panel
+extends Button
 
-@export var player_name : String
-@export var hp : int
-@export var max_hp : int
-@export var mp : int
+signal updateButtons
 
-var level
-var experience
-var defense
-var speed
+@export var creatureData : Resource
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$"Name".text = player_name
-	$"HPNumber".text = str(hp) + "/" + str(max_hp)
-	$"MPNumber".text = str(mp)
+	self.connect("updateButtons", updateButton)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func updateButton():
+	$"Name".text = creatureData.name
+	$"HPNumber".text = str(creatureData.cur_hp) + "/" + str(creatureData.max_hp)
+	$"MPNumber".text = str(creatureData.cur_mp) + "/" + str(creatureData.max_mp)

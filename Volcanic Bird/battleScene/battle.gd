@@ -23,19 +23,34 @@ var currentEnemyCounter # range from 1-3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	setupSampleGroup()
 	hideEnemyButtons()
 	getPlayerInfo()
 	getEnemyInfo()
+	loadCreatures()
 	
 	currentPlayerCounter = 0
 	currentEnemyCounter = 0
 	
 	trackBattle()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+# Simply for loading in sample creatures, not needed for final build
+func setupSampleGroup():
+	Global.battleGroup[0] = load("res://Creatures/Purple_Flower.tres")
+	Global.battleGroup[1] = load("res://Creatures/Wizard.tres")
+	Global.battleGroup[2] = load("res://Creatures/Shroom.tres")
+	Global.battleGroup[3] = load("res://Creatures/Wizard.tres")
+	
+# To load in the creatures into the buttons and their health and mp
+func loadCreatures():
+	var currentIndex = 0
+	for node in $"Party Panel/Party Container".get_children():
+		node.creatureData = Global.battleGroup[currentIndex]
+		currentIndex += 1 
+		node.emit_signal("updateButtons")
+		if currentIndex == 4:
+			break
+	
 func getPlayerInfo():
 	player0 = $"Party Panel/Party Container/Player0"
 	player1 = $"Party Panel/Party Container/Player1"

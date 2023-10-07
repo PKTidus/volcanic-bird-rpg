@@ -4,14 +4,13 @@ class_name Enemy
 
 @export var enemy_name : String
 @export var asset : Resource
-@export var current_hp : int
+@export var cur_hp : int
 @export var max_hp : int
-
-var level
-var health_points
-var magic_points
-var defense
-var speed
+@export var level : int
+@export var health_points : int
+@export var magic_points : int
+@export var defense : int
+@export var speed : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,13 +26,13 @@ func _process(delta):
 
 func updateHealth():
 	# Update current and max HP
-	$"Enemy Container/Health Bar".value = current_hp
+	$"Enemy Container/Health Bar".value = cur_hp
 	$"Enemy Container/Health Bar".max_value = max_hp
 	
 	# Prevent a negative current HP and remove the enemy
-	if current_hp <= 0:
-		current_hp = 0
+	if cur_hp <= 0:
+		cur_hp = 0
 		queue_free()
 	
 	# Update label
-	$"Enemy Container/Health Bar/Label".text = str(current_hp) + "/" + str(max_hp)
+	$"Enemy Container/Health Bar/Label".text = str(cur_hp) + "/" + str(max_hp)

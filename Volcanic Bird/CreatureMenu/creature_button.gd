@@ -5,7 +5,6 @@ signal creatureSlotFocus
 @export var creatureData : Resource
 
 func _ready():
-	#self.group = Global.playerBattleGroup_buttongroup
 	Global.connect("battleGroup_changed", onInventoryChange)
 	equippedMarker()
 	updateSlot()
