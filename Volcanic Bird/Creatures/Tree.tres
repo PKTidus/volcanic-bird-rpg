@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
 [ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]

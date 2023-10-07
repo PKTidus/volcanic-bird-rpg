@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=14 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="Texture2D" uid="uid://buyxn1wnthdxl" path="res://Resources/Backgrounds/battleback1.png" id="1_t62cp"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
 [ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="4_wchqa"]
 [ext_resource type="Texture2D" uid="uid://dqqp0fyrw8x4c" path="res://Resources/Enemies/flower.png" id="5_ebsu0"]
+[ext_resource type="Texture2D" uid="uid://ols38c3kupv1" path="res://Resources/Enemies/wizard.png" id="7_lxee1"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_uu1e0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
@@ -135,7 +136,7 @@ offset_bottom = 120.0
 [node name="Enemy3" parent="Enemies Container" instance=ExtResource("2_864hm")]
 position = Vector2(960, 192)
 enemy_name = "Enemy 3 at Home"
-asset = ExtResource("4_wchqa")
+asset = ExtResource("7_lxee1")
 max_hp = 1000
 
 [node name="Button" type="Button" parent="Enemies Container/Enemy3"]
