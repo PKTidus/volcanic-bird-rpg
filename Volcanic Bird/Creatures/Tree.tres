@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
+[gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
 [ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
@@ -8,15 +8,11 @@ script = ExtResource("2")
 name = "Tree Boi"
 description = "Boi is a tree"
 texture = ExtResource("1")
-level = 0
-experience = 0
 agility = 5
 strength = 10
 intelligence = 10
 max_hp = 0
 max_mp = 0
-cur_hp = 0
-cur_mp = 0
 attack_damage = 0
 magic_attack_damage = 0
 defense = 0

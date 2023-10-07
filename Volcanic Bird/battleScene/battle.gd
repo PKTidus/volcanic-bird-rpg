@@ -21,7 +21,6 @@ var enemy3
 var currentPlayerCounter # range from 1-4
 var currentEnemyCounter # range from 1-3
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	setupSampleGroup()
 	hideEnemyButtons()
@@ -50,7 +49,7 @@ func loadCreatures():
 		node.emit_signal("updateButtons")
 		if currentIndex == 4:
 			break
-	
+
 func getPlayerInfo():
 	player0 = $"Party Panel/Party Container/Player0"
 	player1 = $"Party Panel/Party Container/Player1"
