@@ -1,8 +1,12 @@
 res://battleScene/battle.tscn
 res://battleScene/Enemy.tscn
 res://battleScene/Player.tscn
-res://Creatures/Creature.gd
-res://battleScene/battle.gd
+res://Inventory/Inventory.tscn
+res://CreatureMenu/battle_group.tscn
+res://CreatureMenu/battle_group_button.tscn
 res://CreatureMenu/CreatureMenu.tscn
+res://Main Menu/save_files.tscn
+res://CreatureMenu/creature_button.tscn
 res://Creatures/SkillList.gd
 res://Creatures/Skill.gd
+res://battleScene/battle.gd

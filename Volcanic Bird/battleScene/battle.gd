@@ -77,9 +77,12 @@ func _on_attack_pressed():
 	showEnemyButtons()
 
 func _on_skill_pressed():
-	print("Skill Button Pressed")
+	var skills = SkillList.new()
+	skills.initializeSkills()
+	print(skills.getSkillList())
+	skills.printSkillList()
 	
-	showTextBox("TODO")
+	showTextBox("Which Skill?")
 
 func _on_defend_pressed():
 	print("Defend Button Pressed")
