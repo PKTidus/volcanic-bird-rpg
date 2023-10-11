@@ -95,11 +95,24 @@ func _on_item_pressed():
 	showTextBox("TODO")
 
 func _on_run_pressed():
-	print("Run Button Pressed")
+	var rng = RandomNumberGenerator.new()
+	var randomNumber = rng.randi_range(1, 100)
 	
-	showTextBox("You and your party ran away.")
+	# Low Chance: Party escapes unharmed
+	if randomNumber >= 1 && randomNumber <= 20:
+		showTextBox("You and your party ran away.")
+	
+	# High Chance: Party escapes with hp damage
+	elif randomNumber >= 21 && randomNumber <= 100:
+		showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
+		player0.decreaseHealth(5)
+		player1.decreaseHealth(5)
+		player2.decreaseHealth(5)
+		player3.decreaseHealth(5)
+	
 	await get_tree().create_timer(3).timeout # pause the game for 3 seconds
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
+
 
 func hideTextBox():
 	showButtons()
