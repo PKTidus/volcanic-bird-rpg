@@ -148,7 +148,7 @@ func _on_run_pressed():
 	elif randomNumber >= 21 && randomNumber <= 100:
 		showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
 		player0.creatureData.decreaseHealth(5)
-		player1.creatureData.decreaseHealth(5)
+		player1.creatureData.decreaseHealth(1)
 		player2.creatureData.decreaseHealth(5)
 		player3.creatureData.decreaseHealth(5)
 		
