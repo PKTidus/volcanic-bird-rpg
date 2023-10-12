@@ -1,8 +1,6 @@
-res://creature_panel.tscn
-res://battleScene/Player.tscn
 res://battleScene/Player.gd
-res://Player.tscn
-res://Player.gd
-res://battleScene/battle.tscn
-res://battleScene/Enemy.tscn
+res://Skills/Skill.tscn
+res://Creatures/Creature.gd
+res://Creatures/Purple_Flower.tres
+res://Skills/Skill.gd
 res://battleScene/battle.gd

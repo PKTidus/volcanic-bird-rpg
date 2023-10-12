@@ -119,10 +119,12 @@ func _on_attack_pressed():
 	showEnemyButtons()
 
 func _on_skill_pressed():
-	var skills = SkillList.new()
-	skills.initializeSkills()
-	print(skills.getSkillList())
-	skills.printSkillList()
+#	var skills = SkillList.new()
+#	skills.initializeSkills()
+#	print(skills.getSkillList())
+#	skills.printSkillList()
+	
+	$"Skill List Panel".show()
 	
 	showTextBox("Which Skill?")
 

@@ -25,6 +25,7 @@ class_name Creatures
 @export var AGI_growth : int
 @export var INT_growth : int
 # TODO : List of Skills and when they unlock
+# @export var skillList = [preload("res://Skills/Brap.tres")]
 
 func levelUp():
 	agility += 5
