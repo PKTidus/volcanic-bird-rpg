@@ -1,23 +1,16 @@
-[gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
+[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3]
 
-[ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/tree.png" id="1"]
-[ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Resources/Enemies/blood-eyed-tree.png" id="1"]
+[ext_resource type="Script" path="res://EnemyData.gd" id="2"]
 
 [resource]
 script = ExtResource("2")
-name = "Tree Boi"
-description = "Boi is a tree"
-texture = ExtResource("1")
-agility = 5
-strength = 10
-intelligence = 10
-max_hp = 10
-max_mp = 10
-attack_damage = 20
-magic_attack_damage = 0
-defense = 20
-magic_defense = 5
-speed = 5
-STR_growth = 6
-AGI_growth = 2
-INT_growth = 1
+enemy_name = "Tree Boi"
+asset = ExtResource("1")
+current_hp = 5
+max_hp = 1000
+level = 4
+health_points = 5
+magic_points = 5
+defense = 0
+speed = 0

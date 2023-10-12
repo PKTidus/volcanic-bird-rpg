@@ -1,39 +1,28 @@
 extends Node2D
 
-class_name Enemy
+signal updateEnemy
 
-@export var enemy_name : String
-@export var asset : Resource
-@export var current_hp : int
-@export var max_hp : int
-
-var level
-var health_points
-var magic_points
-var defense
-var speed
+@export var enemyData : Resource
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Load the texture of the enemy
-	if asset != null:
-		$"Enemy Container/Sprite".texture = asset
-	
-	updateHealth()
+	self.connect("updateEnemy", updateAsset)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func updateAsset():
+	# Load the texture of the enemy
+	if enemyData.asset != null:
+		$"Enemy Container/Sprite".texture = enemyData.asset
+	updateHealth()
 
 func updateHealth():
 	# Update current and max HP
-	$"Enemy Container/Health Bar".value = current_hp
-	$"Enemy Container/Health Bar".max_value = max_hp
+	$"Enemy Container/Health Bar".value = enemyData.current_hp
+	$"Enemy Container/Health Bar".max_value = enemyData.max_hp
 	
 	# Prevent a negative current HP and remove the enemy
-	if current_hp <= 0:
-		current_hp = 0
+	if enemyData.current_hp <= 0:
+		enemyData.current_hp = 0
 		queue_free()
 	
 	# Update label
-	$"Enemy Container/Health Bar/Label".text = str(current_hp) + "/" + str(max_hp)
+	$"Enemy Container/Health Bar/Label".text = str(enemyData.current_hp) + "/" + str(enemyData.max_hp)

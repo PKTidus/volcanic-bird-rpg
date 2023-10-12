@@ -66,6 +66,7 @@ text = "Gello"
 
 [node name="Characters" type="ScrollContainer" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 4.0
 offset_top = 68.0
 offset_right = 337.0

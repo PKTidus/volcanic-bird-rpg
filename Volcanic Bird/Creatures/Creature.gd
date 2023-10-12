@@ -10,8 +10,12 @@ class_name Creatures
 @export var agility : float
 @export var strength : float
 @export var intelligence : float
+@export var level : int
+@export var experience : int
 @export var max_hp : int # Strength
 @export var max_mp : int # Intelligence
+@export var cur_hp : int
+@export var cur_mp : int
 @export var attack_damage : int # Strength
 @export var magic_attack_damage : int # Intelligence
 @export var defense : int # Strength
@@ -42,3 +46,29 @@ func modifyIntelligence(value : int):
 	magic_attack_damage += value
 	magic_defense += value
 	max_mp += value
+	
+func initializeCreature(sampleCreature):
+	name = sampleCreature.name
+	description = sampleCreature.description
+	texture = sampleCreature.texture
+	level = sampleCreature.level
+	experience = sampleCreature.experience
+	agility = sampleCreature.agility
+	strength = sampleCreature.strength
+	intelligence = sampleCreature.intelligence
+	max_hp = sampleCreature.max_hp
+	max_mp = sampleCreature.max_mp
+	cur_hp = sampleCreature.cur_hp
+	cur_mp = sampleCreature.cur_mp
+	attack_damage = sampleCreature.attack_damage
+	magic_attack_damage = sampleCreature.magic_attack_damage
+	defense = sampleCreature.defense
+	magic_defense = sampleCreature.magic_defense
+	speed = sampleCreature.speed
+	STR_growth = sampleCreature.STR_growth
+	AGI_growth = sampleCreature.AGI_growth
+	INT_growth = sampleCreature.INT_growth
+	
+	
+func decreaseHealth(amount):
+	cur_hp -= amount
