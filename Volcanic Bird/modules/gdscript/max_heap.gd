@@ -1,7 +1,5 @@
 class_name MaxHeap
 
-# NOTE: NO KEY CAN EVER BE 0, TALK TO TOM IF THIS IS A PROBLEM <3
-
 var max_size
 var size = 0
 var heap = []
