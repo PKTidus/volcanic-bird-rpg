@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://dwdfqw467p7kn"]
+
+[ext_resource type="Texture2D" uid="uid://dqqp0fyrw8x4c" path="res://Resources/Enemies/flower.png" id="1"]
+[ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+name = "Flower"
+description = "IDk why a flower is an enemy but cool"
+texture = ExtResource("1")
+agility = 0.0
+strength = 0.0
+intelligence = 0.0
+level = 0
+experience = 0
+max_hp = 0
+max_mp = 0
+cur_hp = 0
+cur_mp = 0
+attack_damage = 0
+magic_attack_damage = 0
+defense = 0
+magic_defense = 0
+speed = 0
+STR_growth = 0
+AGI_growth = 0
+INT_growth = 0
+skillList = Array[Resource("res://Skills/Skill.gd")]([null])

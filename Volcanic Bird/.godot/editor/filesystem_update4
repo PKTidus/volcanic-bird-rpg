@@ -1,13 +1,4 @@
-res://Skills/Skill.tscn
-res://battleScene/Player.gd
 res://battleScene/battle.tscn
-res://Creatures/Purple_Flower.tres
-res://Creatures/Creature.gd
-res://Skills/Skill.gd
-res://CreatureMenu/battle_group_button.tscn
-res://Skills/SkillLoad.gd
 res://battleScene/battle.gd
-res://CreatureMenu/creature_button.tscn
-res://CreatureMenu/CreatureMenu.tscn
-res://Global.gd
 res://Item.gd
+res://Skills/Skill.tscn

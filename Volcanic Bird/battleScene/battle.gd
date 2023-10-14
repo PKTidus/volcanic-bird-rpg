@@ -13,6 +13,13 @@ var player3 = null
 # 	1-3 is for the enemy node
 var selectedEnemies = [0, 0, 0, 0]
 
+# Array for storing the party members defending
+# Indices are the players (0-3)
+# Values are a flag
+# 	0 is for not defending
+# 	1 is for defending
+var defendingPlayers = [0, 0, 0, 0]
+
 # 3 enemies max
 var enemy1
 var enemy2
@@ -101,6 +108,9 @@ func getEnemyInfo():
 	enemy3 = $"Enemies Container/Enemy3"
 
 func trackBattle():
+	print("Selected Enemies:  " + str(selectedEnemies))
+	print("Defending Players: " + str(defendingPlayers))
+	
 	if currentPlayerCounter == 0:
 		print("Player 0's Turn")
 	elif currentPlayerCounter == 1:
@@ -145,7 +155,14 @@ func _on_skill_pressed():
 func _on_defend_pressed():
 	print("Defend Button Pressed")
 	
-	showTextBox("TODO")
+	defendingPlayers[currentPlayerCounter] = 1
+	updatePlayerCounter()
+	
+	hideEnemyButtons()
+	hideTextBox()
+	showButtons()
+	
+	trackBattle()
 
 func _on_item_pressed():
 	print("Item Button Pressed")
