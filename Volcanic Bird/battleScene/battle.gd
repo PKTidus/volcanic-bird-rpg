@@ -11,7 +11,9 @@ var player3 = null
 # Values are the selected enemies (0-3)
 # 	0 is for not attacking
 # 	1-3 is for the enemy node
-var selectedEnemies = [0, 0, 0, 0]
+var selectedEnemies = [null, null, null, null]
+
+# Array for storing moves
 
 # Array for storing the party members defending
 # Indices are the players (0-3)
@@ -37,6 +39,8 @@ var currentEnemyCounter # range from 1-3
 func _ready():
 	setupSampleGroup()
 	setupSampleEnemy()
+	loadSampleItem() # please remove, testing purposes only
+	initializeMoves()
 	hideEnemyButtons()
 	getPlayerInfo()
 	getEnemyInfo()
@@ -74,10 +78,24 @@ func setupSampleEnemy():
 	sampleEnemy1 = load("res://Creatures/Tree.tres")
 	sampleEnemy2 = load("res://Creatures/Tree.tres")
 	sampleEnemy3 = load("res://Creatures/Tree.tres")
-	sampleArray.append(sampleEnemy1)
-	sampleArray.append(sampleEnemy2)
-	sampleArray.append(sampleEnemy3)
+	var loadEnemy1 = Enemy.new()
+	var loadEnemy2 = Enemy.new()
+	var loadEnemy3 = Enemy.new()
 	
+	loadEnemy1.initializeEnemyData(sampleEnemy1)
+	loadEnemy2.initializeEnemyData(sampleEnemy2)
+	loadEnemy3.initializeEnemyData(sampleEnemy3)
+	
+	sampleArray.append(loadEnemy1)
+	sampleArray.append(loadEnemy2)
+	sampleArray.append(loadEnemy3)
+
+func loadSampleItem():
+	var tempItem = Item.new()
+	var sampleItem = load("res://Items/HealingPotion.tres")
+	tempItem.initializeItem(sampleItem)
+	Global.itemInventory.append(tempItem)
+
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
 	var currentIndex = 0
@@ -95,7 +113,20 @@ func loadEnemies():
 		node.enemyData = sampleArray[currentIndex]
 		currentIndex += 1 
 		node.emit_signal("updateEnemy")
-	
+
+func initializeMoves():
+	var index = 0
+	# Creature's Moves
+	for i in range(4):
+		var currentMove = Moves.new()
+		currentMove.move = 0
+		currentMove.source = Global.battleGroup[i]
+		currentMove.target = null
+		selectedEnemies[index] = currentMove
+		index += 1
+		if index >= 4:
+			break
+
 func getPlayerInfo():
 	player0 = $"Party Panel/Party Container/Player0"
 	player1 = $"Party Panel/Party Container/Player1"
@@ -165,9 +196,19 @@ func _on_defend_pressed():
 	trackBattle()
 
 func _on_item_pressed():
-	print("Item Button Pressed")
-	
-	showTextBox("TODO")
+	for node in $"Item List Panel/Item List Container".get_children():
+		node.hide()
+		
+	var index = 0
+	for node in $"Item List Panel/Item List Container".get_children():
+		node.Item = Global.itemInventory[index]
+		node.emit_signal("updateItemButton")
+		node.show()
+		index += 1
+		if index >= Global.itemInventory.size():
+			break
+	$"Item List Panel".show()
+	showTextBox("Which Item?")
 
 func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
@@ -181,7 +222,7 @@ func _on_run_pressed():
 	elif randomNumber >= 21 && randomNumber <= 100:
 		showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
 		player0.creatureData.decreaseHealth(5)
-		player1.creatureData.decreaseHealth(1)
+		player1.creatureData.decreaseHealth(5)
 		player2.creatureData.decreaseHealth(5)
 		player3.creatureData.decreaseHealth(5)
 		
@@ -233,8 +274,9 @@ func showEnemyButtons():
 		$"Enemies Container/Enemy3/Button".show()
 
 func _on_enemy1_pressed():
-	attackEnemy(enemy1)
-	selectedEnemies[currentPlayerCounter] = 1
+	# attackEnemy(enemy1)
+	selectedEnemies[currentPlayerCounter].target = enemy1
+	selectedEnemies[currentPlayerCounter].move = 1
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -246,8 +288,9 @@ func _on_enemy1_pressed():
 	trackBattle()
 
 func _on_enemy2_pressed():
-	attackEnemy(enemy2)
-	selectedEnemies[currentPlayerCounter] = 2
+	# attackEnemy(enemy2)
+	selectedEnemies[currentPlayerCounter].target = enemy2
+	selectedEnemies[currentPlayerCounter].move = 2
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -259,8 +302,9 @@ func _on_enemy2_pressed():
 	trackBattle()
 
 func _on_enemy3_pressed():
-	attackEnemy(enemy3)
-	selectedEnemies[currentPlayerCounter] = 3
+	# attackEnemy(enemy3)
+	selectedEnemies[currentPlayerCounter].target = enemy3
+	selectedEnemies[currentPlayerCounter].move = 3
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -276,6 +320,12 @@ func attackEnemy(enemy):
 	enemy.enemyData.current_hp -= 5
 	enemy.updateHealth()
 
+func processAttacks():
+	for i in range(4):
+		selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].source.attack_damage
+		print(selectedEnemies[i].source.attack_damage)
+		selectedEnemies[i].target.updateHealth()
+
 func updatePlayerCounter():
 	currentPlayerCounter += 1
 	
@@ -289,4 +339,5 @@ func updatePlayerCounter():
 		currentPlayerCounter += 1
 	
 	if currentPlayerCounter >= 4:
+		processAttacks()
 		currentPlayerCounter = 0

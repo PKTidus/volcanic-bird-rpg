@@ -6,7 +6,7 @@ signal updateItems
 # Player Items and Other needed details
 var battleGroup = [null, null, null, null] # 4x null because of 4 creatures in group
 var creatureStorage = ["res://Creatures/Purple_Flower.tres"]
-var itemInventory = ["res://Creatures/Tree.tres"] 
+var itemInventory = [] 
 var itemStorage = ["res://Creatures/Purple_Flower.tres"]
 
 # Creature Parts For Creature Menu

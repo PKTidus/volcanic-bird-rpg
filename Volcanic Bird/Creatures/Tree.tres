@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="Enemy" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
 
-[ext_resource type="Texture2D" path="res://Resources/Enemies/blood-eyed-tree.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dxa525pbw8h2r" path="res://Resources/Enemies/blood-eyed-tree.png" id="1"]
 [ext_resource type="Script" path="res://EnemyData.gd" id="2"]
 
 [resource]
 script = ExtResource("2")
 enemy_name = "Tree Boi"
 asset = ExtResource("1")
-current_hp = 5
+current_hp = 1000
 max_hp = 1000
 level = 4
 health_points = 5

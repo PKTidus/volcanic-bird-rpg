@@ -1,5 +1,5 @@
 class_name Moves
 
 var move: int
-var creature: Resource
-var target: Resource
+var source: Resource
+var target: Node2D

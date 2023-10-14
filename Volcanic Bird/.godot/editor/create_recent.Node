@@ -1,8 +1,3 @@
-Button
+Node2D
 Label
-Panel
-HBoxContainer
-VBoxContainer
-Control
-ProgressBar
-TextureRect
+Button
