@@ -25,3 +25,5 @@ speed = 0
 STR_growth = 0
 AGI_growth = 0
 INT_growth = 0
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/Brap.tres"])
+skillList = Array[Resource]([])

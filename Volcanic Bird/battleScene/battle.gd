@@ -62,9 +62,6 @@ func setupSampleGroup():
 	Global.battleGroup[2] = creature3
 	Global.battleGroup[3] = creature4
 	
-	print(Global.battleGroup[0])
-	print(Global.battleGroup[1])
-	
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
 	sampleEnemy1 = load("res://Creatures/Tree.tres")
@@ -123,9 +120,26 @@ func _on_skill_pressed():
 #	skills.initializeSkills()
 #	print(skills.getSkillList())
 #	skills.printSkillList()
+	# This is to hide the buttons we have loaded in the scene
+	for node in $"Skill List Panel/Skill List Container".get_children():
+		node.hide()
 	
+	# This is where we load in the skills
+	# The if statement is an error check if the skills array is empty
+	# Shouldn't be empty if all the creatures have skills but good error check
+	# I set the button skills (what skill the button contains) to the skillList of the
+	# Creature in that specific index and then I emit the signal to update those changes
+	# to the buttons interface and then I show that specific node that does contain a skill
+	var index = 0
+	for node in $"Skill List Panel/Skill List Container".get_children():
+		if Global.battleGroup[currentPlayerCounter].skillList.size() != 0:
+			node.skill = Global.battleGroup[currentPlayerCounter].skillList[index]
+			node.emit_signal("updateSkillButton")
+			node.show()
+			index += 1
+			if index >= Global.battleGroup[currentPlayerCounter].skillList.size():
+				break
 	$"Skill List Panel".show()
-	
 	showTextBox("Which Skill?")
 
 func _on_defend_pressed():

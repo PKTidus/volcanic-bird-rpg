@@ -1,3 +1,5 @@
+extends Resource
+
 class_name Item
 
 var modify_strength : int

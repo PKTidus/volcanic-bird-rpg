@@ -25,7 +25,8 @@ class_name Creatures
 @export var AGI_growth : int
 @export var INT_growth : int
 # TODO : List of Skills and when they unlock
-# @export var skillList = [preload("res://Skills/Brap.tres")]
+@export var skillPreload : Array[String]
+@export var skillList : Array[Resource]
 
 func levelUp():
 	agility += 5
@@ -33,7 +34,7 @@ func levelUp():
 	intelligence += 5
 	modifyStrength(5)
 	modifyIntelligence(5)
-	modifyAgility(5)	
+	modifyAgility(5)
 	
 func modifyStrength(value : int):
 	attack_damage += value
@@ -69,7 +70,26 @@ func initializeCreature(sampleCreature):
 	STR_growth = sampleCreature.STR_growth
 	AGI_growth = sampleCreature.AGI_growth
 	INT_growth = sampleCreature.INT_growth
+	initializeSkills(sampleCreature)
 	
+func initializeSkills(sampleCreature):
+	for skill in sampleCreature.skillPreload:
+		var newSkill = load(skill)
+		var newSkillMove = Skill.new()
+		newSkillMove = initializeSkillsList(newSkill, newSkillMove)
+		skillList.append(newSkillMove)
+	
+func initializeSkillsList(newSkill, newSkillMove):
+	newSkillMove.hp_cost = newSkill.hp_cost
+	newSkillMove.mp_cost = newSkill.mp_cost
+	newSkillMove.damage_cal = newSkill.damage_cal
+	newSkillMove.heal_cal = newSkill.heal_cal
+	newSkillMove.buff_value = newSkill.buff_value
+	newSkillMove.type = newSkill.type
+	newSkillMove.nameLabel = newSkill.nameLabel
+	newSkillMove.costLabel = newSkill.costLabel
+	newSkillMove.descriptionLabel = newSkill.descriptionLabel
+	return newSkillMove
 	
 func decreaseHealth(amount):
 	cur_hp -= amount
