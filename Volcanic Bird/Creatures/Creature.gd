@@ -24,7 +24,6 @@ class_name Creatures
 @export var STR_growth : int
 @export var AGI_growth : int
 @export var INT_growth : int
-# TODO : List of Skills and when they unlock
 @export var skillPreload : Array[String]
 @export var skillList : Array[Resource]
 

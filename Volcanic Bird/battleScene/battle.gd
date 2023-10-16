@@ -95,7 +95,7 @@ func loadSampleItem():
 	var sampleItem = load("res://Items/HealingPotion.tres")
 	tempItem.initializeItem(sampleItem)
 	Global.itemInventory.append(tempItem)
-
+  
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
 	var currentIndex = 0

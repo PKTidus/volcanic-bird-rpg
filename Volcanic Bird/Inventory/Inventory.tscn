@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtp18akevrn8v"]
+[gd_scene load_steps=3 format=3 uid="uid://dtp18akevrn8v"]
 
 [ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_1muuf"]
+[ext_resource type="Script" path="res://Inventory/TestButton.gd" id="2_glntv"]
 
 [node name="Inventory" type="Panel"]
 anchors_preset = 15
@@ -142,3 +143,14 @@ offset_top = 450.0
 offset_right = 610.416
 offset_bottom = 464.336
 text = "Battle Group"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 576.0
+offset_right = 288.0
+offset_bottom = 624.0
+text = "RUN MY TEST (devs only!!!!!!!)"
+script = ExtResource("2_glntv")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
