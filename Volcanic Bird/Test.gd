@@ -1,11 +1,8 @@
 extends Control
 
 var myCreature = load("res://Creatures/Tree.tres")
+var myEnemy = load("res://Creatures/Tree.tres")
 
-func _ready():	
-	
-	print("test!!!!!!!!!")
-	
-func test_begin():
-	print("I WAS CLICKED YIPEE!")
-	
+func _ready():
+	var myMoves = Moves.new()
+	print(myEnemy.level)

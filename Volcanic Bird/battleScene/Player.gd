@@ -13,6 +13,5 @@ func updateButton():
 	$"HPNumber".text = str(creatureData.cur_hp) + "/" + str(creatureData.max_hp)
 	$"MPNumber".text = str(creatureData.cur_mp) + "/" + str(creatureData.max_mp)
 
-func decreaseHealth(amount):
-	creatureData.cur_hp -= amount
+func updateHealth():
 	$"HPNumber".text = str(creatureData.cur_hp) + "/" + str(creatureData.max_hp)

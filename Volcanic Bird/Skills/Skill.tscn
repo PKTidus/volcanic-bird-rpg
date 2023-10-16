@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://r4ctkdh2s8lg"]
+
+[ext_resource type="Script" path="res://Skills/SkillLoad.gd" id="1_a6w7y"]
+[ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_f666y"]
+
+[node name="Skill" type="Node2D"]
+script = ExtResource("1_a6w7y")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 192.0
+offset_bottom = 192.0
+
+[node name="Name" type="Label" parent="Button"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_f666y")
+theme_override_font_sizes/font_size = 29
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cost" type="Label" parent="Button"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 192.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("2_f666y")
+theme_override_font_sizes/font_size = 27
+text = "10 HP 10 MP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="Button"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("2_f666y")
+theme_override_font_sizes/font_size = 29
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
