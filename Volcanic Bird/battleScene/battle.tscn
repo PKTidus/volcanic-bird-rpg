@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=14 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="Texture2D" uid="uid://buyxn1wnthdxl" path="res://Resources/Backgrounds/battleback1.png" id="1_t62cp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_u4d07"]
 [ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_h375h"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_uu1e0"]
+[ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_vd5q4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -224,6 +225,10 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_ivqmm")
 theme_override_font_sizes/font_size = 27
 text = "Back Button"
+
+[node name="Results" parent="." instance=ExtResource("8_vd5q4")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Actions Panel/Actions Container/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Skill" to="." method="_on_skill_pressed"]
