@@ -12,3 +12,8 @@ func updateSkill():
 	$Button/Name.text = skill.nameLabel
 	$Button/Cost.text = skill.costLabel
 	$Button/Description.text = skill.descriptionLabel
+
+func _on_button_pressed():
+	Global.clickedSkill = skill
+	print(Global.clickedSkill)
+	Global.ringSkillSignal()

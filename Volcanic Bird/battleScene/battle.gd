@@ -1,5 +1,6 @@
 extends Control
 
+
 # 4 party members max
 var player0 = null
 var player1 = null
@@ -12,6 +13,11 @@ var player3 = null
 # 	0 is for not attacking
 # 	1-3 is for the enemy node
 var selectedEnemies = [null, null, null, null]
+
+# 1 = attack
+# 2 = skill
+# 3 = item
+var typeOfMove = 0
 
 # Array for storing the party members defending
 # Indices are the players (0-3)
@@ -38,6 +44,7 @@ func _ready():
 	setupSampleGroup() # testing purposes
 	setupSampleEnemy() # testing purposes
 	loadSampleItem() # please remove, testing purposes only
+	connectSignals()
 	initializeMoves()
 	hideEnemyButtons()
 	getPlayerInfo()
@@ -50,6 +57,15 @@ func _ready():
 	
 	trackBattle()
 
+func connectSignals():
+	Global.connect("skillObtained", closePanelAndShowEnemies)
+	
+func closePanelAndShowEnemies():
+	print("reached the signal")
+	$"Skill List Panel".hide()
+	showTextBox("Which enemy?")
+	showEnemyButtons()
+	
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
 	var samepleCreature1 = load("res://Creatures/Purple_Flower.tres")
@@ -150,11 +166,13 @@ func trackBattle():
 		print("Player 3's Turn")
 
 func _on_attack_pressed():
+	typeOfMove = 1
 	print("Attack Button Pressed")
 	showTextBox("Which enemy?")
 	showEnemyButtons()
 
 func _on_skill_pressed():
+	typeOfMove = 2
 #	var skills = SkillList.new()
 #	skills.initializeSkills()
 #	print(skills.getSkillList())
@@ -194,6 +212,7 @@ func _on_defend_pressed():
 	trackBattle()
 
 func _on_item_pressed():
+	typeOfMove = 3
 	for node in $"Item List Panel/Item List Container".get_children():
 		node.hide()
 		
@@ -274,7 +293,11 @@ func showEnemyButtons():
 func _on_enemy1_pressed():
 	# attackEnemy(enemy1)
 	selectedEnemies[currentPlayerCounter].target = enemy1
-	selectedEnemies[currentPlayerCounter].move = 1
+	selectedEnemies[currentPlayerCounter].move = typeOfMove
+	
+	if typeOfMove == 2:
+		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+		
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -288,7 +311,11 @@ func _on_enemy1_pressed():
 func _on_enemy2_pressed():
 	# attackEnemy(enemy2)
 	selectedEnemies[currentPlayerCounter].target = enemy2
-	selectedEnemies[currentPlayerCounter].move = 1
+	selectedEnemies[currentPlayerCounter].move = typeOfMove
+	
+	if typeOfMove == 2:
+		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+	
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -302,7 +329,11 @@ func _on_enemy2_pressed():
 func _on_enemy3_pressed():
 	# attackEnemy(enemy3)
 	selectedEnemies[currentPlayerCounter].target = enemy3
-	selectedEnemies[currentPlayerCounter].move = 1
+	selectedEnemies[currentPlayerCounter].move = typeOfMove
+	
+	if typeOfMove == 2:
+		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+	
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -320,9 +351,14 @@ func attackEnemy(enemy):
 
 func processAttacks():
 	for i in range(4):
-		selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].source.attack_damage
-		print(selectedEnemies[i].source.attack_damage)
-		selectedEnemies[i].target.updateHealth()
+		if selectedEnemies[i].move == 1:
+			selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].source.attack_damage
+			print(selectedEnemies[i].source.attack_damage)
+			selectedEnemies[i].target.updateHealth()
+		if selectedEnemies[i].move == 2:
+			selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].skill.damage_cal
+			print(selectedEnemies[i].source.attack_damage)
+			selectedEnemies[i].target.updateHealth()
 
 func updatePlayerCounter():
 	currentPlayerCounter += 1
