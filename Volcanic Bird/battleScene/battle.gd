@@ -13,8 +13,6 @@ var player3 = null
 # 	1-3 is for the enemy node
 var selectedEnemies = [null, null, null, null]
 
-# Array for storing moves
-
 # Array for storing the party members defending
 # Indices are the players (0-3)
 # Values are a flag
@@ -37,14 +35,14 @@ var currentPlayerCounter # range from 1-4
 var currentEnemyCounter # range from 1-3
 
 func _ready():
-	setupSampleGroup()
-	setupSampleEnemy()
+	setupSampleGroup() # testing purposes
+	setupSampleEnemy() # testing purposes
 	loadSampleItem() # please remove, testing purposes only
 	initializeMoves()
 	hideEnemyButtons()
 	getPlayerInfo()
 	getEnemyInfo()
-	loadCreatures()
+	loadCreatures() 
 	loadEnemies()
 	
 	currentPlayerCounter = 0
@@ -290,7 +288,7 @@ func _on_enemy1_pressed():
 func _on_enemy2_pressed():
 	# attackEnemy(enemy2)
 	selectedEnemies[currentPlayerCounter].target = enemy2
-	selectedEnemies[currentPlayerCounter].move = 2
+	selectedEnemies[currentPlayerCounter].move = 1
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -304,7 +302,7 @@ func _on_enemy2_pressed():
 func _on_enemy3_pressed():
 	# attackEnemy(enemy3)
 	selectedEnemies[currentPlayerCounter].target = enemy3
-	selectedEnemies[currentPlayerCounter].move = 3
+	selectedEnemies[currentPlayerCounter].move = 1
 	updatePlayerCounter()
 	
 	print(selectedEnemies)

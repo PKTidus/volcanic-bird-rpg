@@ -161,6 +161,9 @@ position = Vector2(384, 0)
 [node name="Skill 4" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_u4d07")]
 position = Vector2(576, 0)
 
+[node name="Skill 5" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_u4d07")]
+position = Vector2(768, 0)
+
 [node name="Item List Panel" type="Panel" parent="."]
 visible = false
 layout_mode = 2
