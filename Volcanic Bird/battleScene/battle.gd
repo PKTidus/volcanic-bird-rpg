@@ -337,6 +337,8 @@ func _on_enemy2_pressed():
 	
 	if typeOfMove == 2:
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+	if typeOfMove == 3:
+		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
 	
 	updatePlayerCounter()
 	
@@ -355,6 +357,8 @@ func _on_enemy3_pressed():
 	
 	if typeOfMove == 2:
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+	if typeOfMove == 3:
+		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
 	
 	updatePlayerCounter()
 	
@@ -404,7 +408,7 @@ func processAttacks():
 			# Check if it is consumable item
 			if selectedEnemies[i].itemInUse.type == 0:
 				selectedEnemies[i].friendlyTarget.cur_hp += selectedEnemies[i].itemInUse.hp_heal
-			# Check if it is modifier item
+			# Check if it is modifier itemd
 			if selectedEnemies[i].itemInUse.type == 1:
 				selectedEnemies[i].friendlyTarget.strength += selectedEnemies[i].itemInUse.modify_strength
 				selectedEnemies[i].friendlyTarget.agility += selectedEnemies[i].itemInUse.modify_agility
@@ -500,7 +504,7 @@ func _on_player_2_pressed():
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
-		trackBattle()	
+		trackBattle()
 	typeOfMove = -1
 
 func _on_player_3_pressed():
