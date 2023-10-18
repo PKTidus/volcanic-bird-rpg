@@ -3,6 +3,7 @@ extends Node
 signal battleGroup_changed
 signal updateItems
 signal skillObtained
+signal itemObtained
 
 # Player Items and Other needed details
 var battleGroup = [null, null, null, null] # 4x null because of 4 creatures in group
@@ -24,6 +25,7 @@ var draggedItemIncentoryIndex = 0
 var draggedItemStorage
 var draggedItemStorageIndex = 0
 
+var clickedItem
 var clickedSkill
 # 0 = not friendly
 # 1 = friendly
@@ -31,6 +33,9 @@ var friendlyOrNot = 0
 
 func ringSkillSignal():
 	emit_signal("skillObtained")
+
+func ringItemSignal():
+	emit_signal("itemObtained")
 
 func addToBattleGroup():
 	print(draggedCreatureIndex)

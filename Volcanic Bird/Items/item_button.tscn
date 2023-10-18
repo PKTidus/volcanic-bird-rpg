@@ -26,6 +26,7 @@ theme_override_font_sizes/font_size = 27
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Description" type="Label" parent="Button"]
 layout_mode = 0
@@ -37,6 +38,7 @@ theme_override_font_sizes/font_size = 27
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Cost" type="Label" parent="Button"]
 layout_mode = 0
@@ -48,3 +50,6 @@ theme_override_font_sizes/font_size = 27
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_u4d07"]
 [ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_h375h"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_uu1e0"]
-[ext_resource type="PackedScene" path="res://battleScene/Results.tscn" id="8_vd5q4"]
+[ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_vd5q4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -183,13 +183,13 @@ grow_vertical = 2
 [node name="Item" parent="Item List Panel/Item List Container" instance=ExtResource("6_h375h")]
 
 [node name="Item2" parent="Item List Panel/Item List Container" instance=ExtResource("6_h375h")]
-position = Vector2(576, 0)
+position = Vector2(192, 0)
 
 [node name="Item3" parent="Item List Panel/Item List Container" instance=ExtResource("6_h375h")]
 position = Vector2(384, 0)
 
 [node name="Item4" parent="Item List Panel/Item List Container" instance=ExtResource("6_h375h")]
-position = Vector2(192, 0)
+position = Vector2(576, 0)
 
 [node name="Party Panel" type="Panel" parent="."]
 layout_mode = 1

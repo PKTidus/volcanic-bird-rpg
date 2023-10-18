@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("20")
-type = 0
-modify_strength = 0
+type = 1
+modify_strength = 10
 modify_agility = 0
-modify_intelligence = 0
+modify_intelligence = 10
 mp_heal = 0
-hp_heal = 30
+hp_heal = 0
 damage = 0
-nameLabel = "Healing Potion"
-costLabel = "Heals 30 HP"
-descriptionLabel = "A good drink."
+nameLabel = "Steroid"
+costLabel = "Boosts Attack Damage"
+descriptionLabel = "It's a bit spicy."

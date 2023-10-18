@@ -59,6 +59,7 @@ func _ready():
 
 func connectSignals():
 	Global.connect("skillObtained", closePanelAndShowEnemiesSkills)
+	Global.connect("itemObtained", closePanelAndShowAlliesItems)
 	
 func closePanelAndShowEnemiesSkills():
 	if Global.friendlyOrNot == 0:
@@ -70,7 +71,18 @@ func closePanelAndShowEnemiesSkills():
 		print("reached Frinedly")
 		$"Skill List Panel".hide()
 		showTextBox("Which ally?")
-	
+
+func closePanelAndShowAlliesItems():
+	if Global.friendlyOrNot == 1:
+		print("reached the signal for items")
+		$"Item List Panel".hide()
+		showTextBox("Which ally?")
+	elif Global.friendlyOrNot == 0:
+		print("reached the signal")
+		$"Item List Panel".hide()
+		showTextBox("Which enemy?")
+		showEnemyButtons()
+
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
 	var samepleCreature1 = load("res://Creatures/Purple_Flower.tres")
@@ -114,6 +126,16 @@ func loadSampleItem():
 	var sampleItem = load("res://Items/HealingPotion.tres")
 	tempItem.initializeItem(sampleItem)
 	Global.itemInventory.append(tempItem)
+	
+	var tempItem2 = Item.new()
+	var sampleItem2 = load("res://Items/Steroid.tres")
+	tempItem2.initializeItem(sampleItem2)
+	Global.itemInventory.append(tempItem2)
+	
+	var tempItem3 = Item.new()
+	var sampleItem3 = load("res://Items/DeadlyPoison.tres")
+	tempItem3.initializeItem(sampleItem3)
+	Global.itemInventory.append(tempItem3)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
@@ -295,6 +317,8 @@ func _on_enemy1_pressed():
 	
 	if typeOfMove == 2:
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+	if typeOfMove == 3:
+		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
 		
 	updatePlayerCounter()
 	
@@ -351,7 +375,6 @@ func processAttacks():
 	for i in range(4):
 		if selectedEnemies[i].move == 1:
 			selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].source.attack_damage
-			print(selectedEnemies[i].source.attack_damage)
 			selectedEnemies[i].target.updateHealth()
 		# this statement checks if this is a skill move
 		if selectedEnemies[i].move == 2:
@@ -366,7 +389,7 @@ func processAttacks():
 				selectedEnemies[i].friendlyTarget.cur_hp += selectedEnemies[i].skill.heal_cal
 				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
 				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
-			# this statement checks if this is an buff mvoe
+			# this statement checks if this is an buff move
 			if selectedEnemies[i].skill.type == 2:
 				selectedEnemies[i].friendlyTarget.cur_hp *= selectedEnemies[i].skill.buff_value
 				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
@@ -376,6 +399,22 @@ func processAttacks():
 				selectedEnemies[i].target.enemyData.current_hp *= selectedEnemies[i].skill.buff_value
 				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
 				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
+				selectedEnemies[i].target.updateHealth()
+		if selectedEnemies[i].move == 3:
+			# Check if it is consumable item
+			if selectedEnemies[i].itemInUse.type == 0:
+				selectedEnemies[i].friendlyTarget.cur_hp += selectedEnemies[i].itemInUse.hp_heal
+			# Check if it is modifier item
+			if selectedEnemies[i].itemInUse.type == 1:
+				selectedEnemies[i].friendlyTarget.strength += selectedEnemies[i].itemInUse.modify_strength
+				selectedEnemies[i].friendlyTarget.agility += selectedEnemies[i].itemInUse.modify_agility
+				selectedEnemies[i].friendlyTarget.intelligence += selectedEnemies[i].itemInUse.modify_intelligence
+				print(selectedEnemies[i].friendlyTarget.strength)
+				print(selectedEnemies[i].friendlyTarget.agility)
+				print(selectedEnemies[i].friendlyTarget.intelligence)
+			# Check if it is an attack item
+			if selectedEnemies[i].itemInUse.type == 2:
+				selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].itemInUse.damage
 				selectedEnemies[i].target.updateHealth()
 	updateBattleGroupHealth()
 	typeOfMove = 0
@@ -410,45 +449,76 @@ func _on_player_0_pressed():
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[0]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-		
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
-		
 		trackBattle()
+	if typeOfMove == 3 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[0]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		trackBattle()
+	
+	typeOfMove = -1
 
 func _on_player_1_pressed():
 	if typeOfMove == 2 and Global.friendlyOrNot == 1:
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[1]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-		
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
-		
 		trackBattle()
+	if typeOfMove == 3 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[1]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		trackBattle()
+	
+	typeOfMove = -1
 
 func _on_player_2_pressed():
 	if typeOfMove == 2 and Global.friendlyOrNot == 1:
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[2]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-		
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
-		
 		trackBattle()
+	if typeOfMove == 3 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[2]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		trackBattle()	
+	typeOfMove = -1
 
 func _on_player_3_pressed():
 	if typeOfMove == 2 and Global.friendlyOrNot == 1:
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[3]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-		
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
-		
 		trackBattle()
+	if typeOfMove == 3 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[2]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		trackBattle()
+		
+	typeOfMove = -1
