@@ -25,6 +25,9 @@ var draggedItemStorage
 var draggedItemStorageIndex = 0
 
 var clickedSkill
+# 0 = not friendly
+# 1 = friendly
+var friendlyOrNot = 0
 
 func ringSkillSignal():
 	emit_signal("skillObtained")

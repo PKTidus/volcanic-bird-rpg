@@ -58,13 +58,18 @@ func _ready():
 	trackBattle()
 
 func connectSignals():
-	Global.connect("skillObtained", closePanelAndShowEnemies)
+	Global.connect("skillObtained", closePanelAndShowEnemiesSkills)
 	
-func closePanelAndShowEnemies():
-	print("reached the signal")
-	$"Skill List Panel".hide()
-	showTextBox("Which enemy?")
-	showEnemyButtons()
+func closePanelAndShowEnemiesSkills():
+	if Global.friendlyOrNot == 0:
+		print("reached the signal")
+		$"Skill List Panel".hide()
+		showTextBox("Which enemy?")
+		showEnemyButtons()
+	elif Global.friendlyOrNot == 1:
+		print("reached Frinedly")
+		$"Skill List Panel".hide()
+		showTextBox("Which ally?")
 	
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
@@ -129,17 +134,13 @@ func loadEnemies():
 		node.emit_signal("updateEnemy")
 
 func initializeMoves():
-	var index = 0
 	# Creature's Moves
 	for i in range(4):
 		var currentMove = Moves.new()
 		currentMove.move = 0
 		currentMove.source = Global.battleGroup[i]
 		currentMove.target = null
-		selectedEnemies[index] = currentMove
-		index += 1
-		if index >= 4:
-			break
+		selectedEnemies[i] = currentMove
 
 func getPlayerInfo():
 	player0 = $"Party Panel/Party Container/Player0"
@@ -243,10 +244,7 @@ func _on_run_pressed():
 		player2.creatureData.decreaseHealth(5)
 		player3.creatureData.decreaseHealth(5)
 		
-		player0.updateHealth()
-		player1.updateHealth()
-		player2.updateHealth()
-		player3.updateHealth()
+		updateBattleGroupHealth()
 	
 	await get_tree().create_timer(3).timeout # pause the game for 3 seconds
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
@@ -355,10 +353,40 @@ func processAttacks():
 			selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].source.attack_damage
 			print(selectedEnemies[i].source.attack_damage)
 			selectedEnemies[i].target.updateHealth()
+		# this statement checks if this is a skill move
 		if selectedEnemies[i].move == 2:
-			selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].skill.damage_cal
-			print(selectedEnemies[i].source.attack_damage)
-			selectedEnemies[i].target.updateHealth()
+			# this statement checks if this is an attack skill move
+			if selectedEnemies[i].skill.type == 0:
+				selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].skill.damage_cal
+				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
+				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
+				selectedEnemies[i].target.updateHealth()
+			# this statement checks if this is a heal move
+			if selectedEnemies[i].skill.type == 1:
+				selectedEnemies[i].friendlyTarget.cur_hp += selectedEnemies[i].skill.heal_cal
+				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
+				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
+			# this statement checks if this is an buff mvoe
+			if selectedEnemies[i].skill.type == 2:
+				selectedEnemies[i].friendlyTarget.cur_hp *= selectedEnemies[i].skill.buff_value
+				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
+				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
+			# this statement checks if this is a debuff move
+			if selectedEnemies[i].skill.type == -2:
+				selectedEnemies[i].target.enemyData.current_hp *= selectedEnemies[i].skill.buff_value
+				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
+				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
+				selectedEnemies[i].target.updateHealth()
+	updateBattleGroupHealth()
+	typeOfMove = 0
+	Global.friendlyOrNot = -1
+
+
+func updateBattleGroupHealth():
+	player0.updateHealth()
+	player1.updateHealth()
+	player2.updateHealth()
+	player3.updateHealth()
 
 func updatePlayerCounter():
 	currentPlayerCounter += 1
@@ -375,3 +403,52 @@ func updatePlayerCounter():
 	if currentPlayerCounter >= 4:
 		processAttacks()
 		currentPlayerCounter = 0
+
+
+func _on_player_0_pressed():
+	if typeOfMove == 2 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[0]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+		
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		
+		trackBattle()
+
+func _on_player_1_pressed():
+	if typeOfMove == 2 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[1]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+		
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		
+		trackBattle()
+
+func _on_player_2_pressed():
+	if typeOfMove == 2 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[2]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+		
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		
+		trackBattle()
+
+func _on_player_3_pressed():
+	if typeOfMove == 2 and Global.friendlyOrNot == 1:
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[3]
+		selectedEnemies[currentPlayerCounter].move = typeOfMove
+		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
+		
+		updatePlayerCounter()
+		hideTextBox()
+		showButtons()
+		
+		trackBattle()
