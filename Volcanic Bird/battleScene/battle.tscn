@@ -39,11 +39,67 @@ grow_vertical = 2
 texture = ExtResource("1_t62cp")
 expand_mode = 5
 
+[node name="Textbox Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 64.0
+
+[node name="Textbox" type="Label" parent="Textbox Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+text = "Battle Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Enemies Container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 64.0
+offset_bottom = 448.0
+grow_horizontal = 2
+
+[node name="Enemy1" parent="Enemies Container" instance=ExtResource("2_864hm")]
+position = Vector2(192, 192)
+
+[node name="Button" type="Button" parent="Enemies Container/Enemy1"]
+offset_left = -104.0
+offset_top = -80.0
+offset_right = 104.0
+offset_bottom = 120.0
+
+[node name="Enemy2" parent="Enemies Container" instance=ExtResource("2_864hm")]
+position = Vector2(576, 192)
+
+[node name="Button" type="Button" parent="Enemies Container/Enemy2"]
+offset_left = -112.0
+offset_top = -88.0
+offset_right = 120.0
+offset_bottom = 120.0
+
+[node name="Enemy3" parent="Enemies Container" instance=ExtResource("2_864hm")]
+position = Vector2(960, 192)
+
+[node name="Button" type="Button" parent="Enemies Container/Enemy3"]
+offset_left = -112.0
+offset_top = -88.0
+offset_right = 112.0
+offset_bottom = 128.0
+
 [node name="Actions Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 64.0
+offset_top = 448.0
+offset_bottom = 512.0
 grow_horizontal = 2
 
 [node name="Actions Container" type="HBoxContainer" parent="Actions Panel"]
@@ -94,47 +150,6 @@ theme_override_fonts/font = ExtResource("2_ivqmm")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uyegs")
 text = "Run"
-
-[node name="Textbox" type="Label" parent="Actions Panel/Actions Container"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_ivqmm")
-theme_override_font_sizes/font_size = 30
-
-[node name="Enemies Container" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 64.0
-offset_bottom = 512.0
-grow_horizontal = 2
-
-[node name="Enemy1" parent="Enemies Container" instance=ExtResource("2_864hm")]
-position = Vector2(192, 192)
-
-[node name="Button" type="Button" parent="Enemies Container/Enemy1"]
-offset_left = -104.0
-offset_top = -80.0
-offset_right = 104.0
-offset_bottom = 120.0
-
-[node name="Enemy2" parent="Enemies Container" instance=ExtResource("2_864hm")]
-position = Vector2(576, 192)
-
-[node name="Button" type="Button" parent="Enemies Container/Enemy2"]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 120.0
-offset_bottom = 120.0
-
-[node name="Enemy3" parent="Enemies Container" instance=ExtResource("2_864hm")]
-position = Vector2(960, 192)
-
-[node name="Button" type="Button" parent="Enemies Container/Enemy3"]
-offset_left = -112.0
-offset_top = -88.0
-offset_right = 112.0
-offset_bottom = 128.0
 
 [node name="Skill List Panel" type="Panel" parent="."]
 visible = false
@@ -233,14 +248,14 @@ text = "Back Button"
 visible = false
 layout_mode = 1
 
+[connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
+[connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
+[connection signal="pressed" from="Enemies Container/Enemy3/Button" to="." method="_on_enemy3_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Skill" to="." method="_on_skill_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Item" to="." method="_on_item_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Run" to="." method="_on_run_pressed"]
-[connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
-[connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
-[connection signal="pressed" from="Enemies Container/Enemy3/Button" to="." method="_on_enemy3_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player0" to="." method="_on_player_0_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player1" to="." method="_on_player_1_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player2" to="." method="_on_player_2_pressed"]

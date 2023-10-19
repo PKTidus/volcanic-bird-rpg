@@ -274,11 +274,12 @@ func _on_run_pressed():
 
 func hideTextBox():
 	showButtons()
-	$"Actions Panel/Actions Container/Textbox".text = ""
+	$"Textbox Panel/Textbox"
+	$"Textbox Panel/Textbox".text = ""
 
 func showTextBox(text):
 	hideButtons()
-	$"Actions Panel/Actions Container/Textbox".text = text
+	$"Textbox Panel/Textbox".text = text
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()
