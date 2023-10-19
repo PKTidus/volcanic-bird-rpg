@@ -179,6 +179,16 @@ func trackBattle():
 	print("Selected Enemies:  " + str(selectedEnemies))
 	print("Defending Players: " + str(defendingPlayers))
 	
+	# Check if battle is over
+	if enemy1.enemyData.current_hp <= 0 && enemy2.enemyData.current_hp <= 0 && enemy3.enemyData.current_hp <= 0:
+		print("BATTLE OVER")
+		updateTextBox("You and your party won!")
+		disableButtons()
+		
+		await get_tree().create_timer(3).timeout # pause the game for 3 seconds
+		get_tree().change_scene_to_file("res://battleScene/Results.tscn") # go to the results scene
+		return
+	
 	if currentPlayerCounter == 0:
 		print("Player 0's Turn")
 		updateTextBox("It is " + player0.creatureData.name + "'s turn")
@@ -300,6 +310,13 @@ func showButtons():
 	$"Actions Panel/Actions Container/Defend".show()
 	$"Actions Panel/Actions Container/Item".show()
 	$"Actions Panel/Actions Container/Run".show()
+
+func disableButtons():
+	$"Actions Panel/Actions Container/Attack".disabled = true
+	$"Actions Panel/Actions Container/Skill".disabled = true
+	$"Actions Panel/Actions Container/Defend".disabled = true
+	$"Actions Panel/Actions Container/Item".disabled = true
+	$"Actions Panel/Actions Container/Run".disabled = true
 
 func hideEnemyButtons():
 	if has_node("Enemies Container/Enemy1"):
