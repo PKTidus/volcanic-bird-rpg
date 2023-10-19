@@ -181,12 +181,16 @@ func trackBattle():
 	
 	if currentPlayerCounter == 0:
 		print("Player 0's Turn")
+		updateTextBox("It is " + player0.creatureData.name + "'s turn")
 	elif currentPlayerCounter == 1:
 		print("Player 1's Turn")
+		updateTextBox("It is " + player1.creatureData.name + "'s turn")
 	elif currentPlayerCounter == 2:
 		print("Player 2's Turn")
+		updateTextBox("It is " + player2.creatureData.name + "'s turn")
 	elif currentPlayerCounter == 3:
 		print("Player 3's Turn")
+		updateTextBox("It is " + player3.creatureData.name + "'s turn")
 
 func _on_attack_pressed():
 	typeOfMove = 1
@@ -271,7 +275,6 @@ func _on_run_pressed():
 	await get_tree().create_timer(3).timeout # pause the game for 3 seconds
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
-
 func hideTextBox():
 	showButtons()
 	$"Textbox Panel/Textbox"
@@ -279,6 +282,9 @@ func hideTextBox():
 
 func showTextBox(text):
 	hideButtons()
+	$"Textbox Panel/Textbox".text = text
+
+func updateTextBox(text):
 	$"Textbox Panel/Textbox".text = text
 
 func hideButtons():
