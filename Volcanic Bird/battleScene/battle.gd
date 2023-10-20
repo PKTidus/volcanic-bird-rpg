@@ -196,7 +196,6 @@ func initializeMoves():
 	var currentMove = Moves.new()
 	currentMove.move = 0
 	currentMove.enemySource = enemy1
-	print(currentMove.enemySource.enemyData.speed)
 	currentMove.enemyTarget = Global.battleGroup[0]
 	currentMove.isEnemy = 1
 	selectedCreatures[0] = currentMove
@@ -204,7 +203,6 @@ func initializeMoves():
 	currentMove = Moves.new()
 	currentMove.move = 0
 	currentMove.enemySource = enemy2
-	print(currentMove.enemySource.enemyData.speed)
 	currentMove.enemyTarget = Global.battleGroup[1]
 	currentMove.isEnemy = 1
 	selectedCreatures[1] = currentMove
