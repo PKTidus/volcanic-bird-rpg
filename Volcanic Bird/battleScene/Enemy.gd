@@ -22,7 +22,8 @@ func updateHealth():
 	# Prevent a negative current HP and remove the enemy
 	if enemyData.current_hp <= 0:
 		enemyData.current_hp = 0
-		queue_free()
+		enemyData.isDead = true
+		$"Enemy Container".hide()
 	
 	# Update label
 	$"Enemy Container/Health Bar/Label".text = str(enemyData.current_hp) + "/" + str(enemyData.max_hp)

@@ -180,7 +180,7 @@ func trackBattle():
 	print("Defending Players: " + str(defendingPlayers))
 	
 	# Check if battle is over
-	if enemy1.enemyData.current_hp <= 0 && enemy2.enemyData.current_hp <= 0 && enemy3.enemyData.current_hp <= 0:
+	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
 		print("BATTLE OVER")
 		updateTextBox("You and your party won!")
 		disableButtons()
@@ -356,11 +356,11 @@ func hideEnemyButtons():
 		$"Enemies Container/Enemy3/Button".hide()
 
 func showEnemyButtons():
-	if has_node("Enemies Container/Enemy1"):
+	if !enemy1.enemyData.isDead:
 		$"Enemies Container/Enemy1/Button".show()
-	if has_node("Enemies Container/Enemy2"):
+	if !enemy2.enemyData.isDead:
 		$"Enemies Container/Enemy2/Button".show()
-	if has_node("Enemies Container/Enemy3"):
+	if !enemy3.enemyData.isDead:
 		$"Enemies Container/Enemy3/Button".show()
 
 func _on_enemy1_pressed():

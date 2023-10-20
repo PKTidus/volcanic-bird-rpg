@@ -11,6 +11,7 @@ class_name Enemy
 @export var magic_points : int
 @export var defense : int
 @export var speed : int
+@export var isDead : bool
 
 func initializeEnemyData(enemy):
 	enemy_name = enemy.enemy_name
