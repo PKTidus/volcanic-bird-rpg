@@ -187,7 +187,12 @@ func trackBattle():
 		
 		await get_tree().create_timer(3).timeout # pause the game for 3 seconds
 		$"Results".show() # display results scene
-		# get_tree().change_scene_to_file("res://battleScene/Results.tscn") # go to the results scene
+		
+		# Update the text labels in the results scene
+		updateResultsTextBox(0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
+		updateResultsTextBox(1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
+		updateResultsTextBox(2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
+		updateResultsTextBox(3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
 		return
 	
 	if currentPlayerCounter == 0:
@@ -297,6 +302,28 @@ func showTextBox(text):
 
 func updateTextBox(text):
 	$"Textbox Panel/Textbox".text = text
+
+func updateResultsTextBox(playerIndex: int, playerName: String, playerLevel: int, playerExperience: int, skillsLearned):
+	var initialLevel = playerLevel
+	playerExperience += calculateExperience(playerLevel)
+	var nextLevelExperience = calculateExperience(playerLevel + 1)
+	
+	while playerExperience >= nextLevelExperience:
+		playerLevel += 1
+		nextLevelExperience = calculateExperience(playerLevel + 1)
+	
+	$"Results/Panel/HBoxContainer/".get_child(playerIndex).get_child(0).text = playerName + "\n" + \
+	"Level " + str(initialLevel) + "->" + str(playerLevel) + "\n" + \
+	"To Next: " + str(playerExperience) + "/" + str(calculateExperience(playerLevel + 1)) + "\n" + \
+	"Obtained Skills:\n" + str(skillsLearned)
+	
+	Global.battleGroup[playerIndex].level = playerLevel
+	Global.battleGroup[playerIndex].experience = playerExperience
+	
+	print(str(Global.battleGroup[playerIndex].level) + " " + str(Global.battleGroup[playerIndex].experience))
+
+func calculateExperience(playerLevel: int):
+	return (4 * playerLevel ** 3) / 5
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()
