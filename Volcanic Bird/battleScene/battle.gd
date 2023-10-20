@@ -185,14 +185,15 @@ func trackBattle():
 		updateTextBox("You and your party won!")
 		disableButtons()
 		
-		await get_tree().create_timer(3).timeout # pause the game for 3 seconds
-		$"Results".show() # display results scene
+		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 		
 		# Update the text labels in the results scene
 		updateResultsTextBox(0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
 		updateResultsTextBox(1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
 		updateResultsTextBox(2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
 		updateResultsTextBox(3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
+		
+		$"Results".show() # display results scene
 		return
 	
 	if currentPlayerCounter == 0:
@@ -317,10 +318,10 @@ func updateResultsTextBox(playerIndex: int, playerName: String, playerLevel: int
 	"To Next: " + str(playerExperience) + "/" + str(calculateExperience(playerLevel + 1)) + "\n" + \
 	"Obtained Skills:\n" + str(skillsLearned)
 	
-	Global.battleGroup[playerIndex].level = playerLevel
-	Global.battleGroup[playerIndex].experience = playerExperience
-	
-	print(str(Global.battleGroup[playerIndex].level) + " " + str(Global.battleGroup[playerIndex].experience))
+	# TODO: Update player stats 
+	# Global.battleGroup[playerIndex].level = playerLevel
+	# Global.battleGroup[playerIndex].experience = playerExperience
+	# print(str(Global.battleGroup[playerIndex].level) + " " + str(Global.battleGroup[playerIndex].experience))
 
 func calculateExperience(playerLevel: int):
 	return (4 * playerLevel ** 3) / 5
