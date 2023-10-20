@@ -186,7 +186,8 @@ func trackBattle():
 		disableButtons()
 		
 		await get_tree().create_timer(3).timeout # pause the game for 3 seconds
-		get_tree().change_scene_to_file("res://battleScene/Results.tscn") # go to the results scene
+		$"Results".show() # display results scene
+		# get_tree().change_scene_to_file("res://battleScene/Results.tscn") # go to the results scene
 		return
 	
 	if currentPlayerCounter == 0:

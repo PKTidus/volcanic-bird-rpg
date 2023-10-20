@@ -246,7 +246,13 @@ text = "Back Button"
 
 [node name="Results" parent="." instance=ExtResource("8_vd5q4")]
 visible = false
-layout_mode = 1
+layout_mode = 2
+offset_left = 576.0
+offset_top = 184.0
+offset_right = 576.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
