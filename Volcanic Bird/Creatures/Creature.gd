@@ -27,6 +27,7 @@ class_name Creatures
 @export var skillPreload : Array[String]
 @export var skillList : Array[Resource]
 
+
 func levelUp():
 	agility += 5
 	strength += 5

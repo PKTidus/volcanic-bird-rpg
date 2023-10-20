@@ -7,6 +7,7 @@
 script = ExtResource("2")
 enemy_name = "Tree Boi"
 asset = ExtResource("1")
+damage = 59
 current_hp = 1
 max_hp = 10
 level = 4
@@ -14,3 +15,4 @@ health_points = 5
 magic_points = 5
 defense = 0
 speed = 0
+isDead = false

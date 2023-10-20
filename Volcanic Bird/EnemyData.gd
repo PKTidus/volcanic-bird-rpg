@@ -4,6 +4,7 @@ class_name Enemy
 
 @export var enemy_name : String
 @export var asset : Resource
+@export var damage : int
 @export var current_hp : int
 @export var max_hp : int
 @export var level : int
@@ -16,6 +17,7 @@ class_name Enemy
 func initializeEnemyData(enemy):
 	enemy_name = enemy.enemy_name
 	asset = enemy.asset
+	damage = enemy.damage
 	current_hp = enemy.current_hp
 	max_hp = enemy.max_hp
 	level = enemy.level

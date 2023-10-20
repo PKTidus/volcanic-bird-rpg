@@ -13,6 +13,8 @@ var player3 = null
 # 	0 is for not attacking
 # 	1-3 is for the enemy node
 var selectedEnemies = [null, null, null, null]
+var selectedCreatures = [null, null, null, null]
+var movesArray = []
 
 # 1 = attack
 # 2 = skill
@@ -45,17 +47,42 @@ func _ready():
 	setupSampleEnemy() # testing purposes
 	loadSampleItem() # please remove, testing purposes only
 	connectSignals()
-	initializeMoves()
 	hideEnemyButtons()
 	getPlayerInfo()
 	getEnemyInfo()
 	loadCreatures() 
 	loadEnemies()
+	initializeMoves()
+	sortArrayBySpeed()
 	
 	currentPlayerCounter = 0
 	currentEnemyCounter = 0
 	
 	trackBattle()
+
+# This is an implementation of selection sort
+func basicSort():
+	for i in range(7):
+		var maximumIndex = i
+		
+		for j in range(i + 1, 7):
+			if movesArray[j].isEnemy == 1 and movesArray[maximumIndex].isEnemy == 1:
+				if movesArray[maximumIndex].enemySource.enemyData.speed < movesArray[j].enemySource.enemyData.speed:
+					maximumIndex = j
+			elif movesArray[j].isEnemy == 0 and movesArray[maximumIndex].isEnemy == 0:
+				if movesArray[maximumIndex].source.speed < movesArray[j].source.speed:
+					maximumIndex = j
+			elif movesArray[j].isEnemy == 0 and movesArray[maximumIndex].isEnemy == 1:
+				if movesArray[maximumIndex].enemySource.enemyData.speed < movesArray[j].source.speed:
+					maximumIndex = j
+			elif movesArray[j].isEnemy == 1 and movesArray[maximumIndex].isEnemy == 0:
+				if movesArray[maximumIndex].source.speed < movesArray[j].enemySource.enemyData.speed:
+					maximumIndex = j
+		# Swap the biggest element
+		var temp = movesArray[maximumIndex]
+		movesArray[maximumIndex] = movesArray[i]
+		movesArray[i] = temp
+
 
 func connectSignals():
 	Global.connect("skillObtained", closePanelAndShowEnemiesSkills)
@@ -162,7 +189,48 @@ func initializeMoves():
 		currentMove.move = 0
 		currentMove.source = Global.battleGroup[i]
 		currentMove.target = null
+		currentMove.isEnemy = 0
 		selectedEnemies[i] = currentMove
+	
+	# Manually Initialize Enemies
+	var currentMove = Moves.new()
+	currentMove.move = 0
+	currentMove.enemySource = enemy1
+	print(currentMove.enemySource.enemyData.speed)
+	currentMove.enemyTarget = Global.battleGroup[0]
+	currentMove.isEnemy = 1
+	selectedCreatures[0] = currentMove
+	
+	currentMove = Moves.new()
+	currentMove.move = 0
+	currentMove.enemySource = enemy2
+	print(currentMove.enemySource.enemyData.speed)
+	currentMove.enemyTarget = Global.battleGroup[1]
+	currentMove.isEnemy = 1
+	selectedCreatures[1] = currentMove
+	
+	currentMove = Moves.new()
+	currentMove.move = 0
+	currentMove.enemySource = enemy3
+	currentMove.enemyTarget = Global.battleGroup[0]
+	currentMove.isEnemy = 1
+	selectedCreatures[2] = currentMove
+
+func sortArrayBySpeed():
+	for i in range(4):
+		movesArray.append(selectedEnemies[i])
+	for i in range(3):
+		movesArray.append(selectedCreatures[i])
+	
+	basicSort()
+	
+	for i in range(7):
+		if movesArray[i].isEnemy == 1:
+			print(movesArray[i].enemySource.enemyData.speed)
+			print(movesArray[i].enemySource.enemyData.enemy_name)
+		elif movesArray[i].isEnemy == 0:
+			print(movesArray[i].source.speed)
+			print(movesArray[i].source.name)
 
 func getPlayerInfo():
 	player0 = $"Party Panel/Party Container/Player0"
@@ -429,54 +497,58 @@ func attackEnemy(enemy):
 	enemy.updateHealth()
 
 func processAttacks():
-	for i in range(4):
-		if selectedEnemies[i].move == 1:
-			selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].source.attack_damage
-			selectedEnemies[i].target.updateHealth()
-		# this statement checks if this is a skill move
-		if selectedEnemies[i].move == 2:
-			# this statement checks if this is an attack skill move
-			if selectedEnemies[i].skill.type == 0:
-				selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].skill.damage_cal
-				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
-				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
-				selectedEnemies[i].target.updateHealth()
-			# this statement checks if this is a heal move
-			if selectedEnemies[i].skill.type == 1:
-				selectedEnemies[i].friendlyTarget.cur_hp += selectedEnemies[i].skill.heal_cal
-				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
-				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
-			# this statement checks if this is an buff move
-			if selectedEnemies[i].skill.type == 2:
-				selectedEnemies[i].friendlyTarget.cur_hp *= selectedEnemies[i].skill.buff_value
-				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
-				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
-			# this statement checks if this is a debuff move
-			if selectedEnemies[i].skill.type == -2:
-				selectedEnemies[i].target.enemyData.current_hp *= selectedEnemies[i].skill.buff_value
-				selectedEnemies[i].source.cur_hp -= selectedEnemies[i].skill.hp_cost
-				selectedEnemies[i].source.cur_mp -= selectedEnemies[i].skill.mp_cost
-				selectedEnemies[i].target.updateHealth()
-		if selectedEnemies[i].move == 3:
-			# Check if it is consumable item
-			if selectedEnemies[i].itemInUse.type == 0:
-				selectedEnemies[i].friendlyTarget.cur_hp += selectedEnemies[i].itemInUse.hp_heal
-			# Check if it is modifier itemd
-			if selectedEnemies[i].itemInUse.type == 1:
-				selectedEnemies[i].friendlyTarget.strength += selectedEnemies[i].itemInUse.modify_strength
-				selectedEnemies[i].friendlyTarget.agility += selectedEnemies[i].itemInUse.modify_agility
-				selectedEnemies[i].friendlyTarget.intelligence += selectedEnemies[i].itemInUse.modify_intelligence
-				print(selectedEnemies[i].friendlyTarget.strength)
-				print(selectedEnemies[i].friendlyTarget.agility)
-				print(selectedEnemies[i].friendlyTarget.intelligence)
-			# Check if it is an attack item
-			if selectedEnemies[i].itemInUse.type == 2:
-				selectedEnemies[i].target.enemyData.current_hp -= selectedEnemies[i].itemInUse.damage
-				selectedEnemies[i].target.updateHealth()
+	for i in range(7):
+		if movesArray[i].isEnemy == 0:
+			if movesArray[i].move == 1:
+				movesArray[i].target.enemyData.current_hp -= movesArray[i].source.attack_damage
+				movesArray[i].target.updateHealth()
+			# this statement checks if this is a skill move
+			if movesArray[i].move == 2:
+				# this statement checks if this is an attack skill move
+				if movesArray[i].skill.type == 0:
+					movesArray[i].target.enemyData.current_hp -= movesArray[i].skill.damage_cal
+					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+					movesArray[i].target.updateHealth()
+				# this statement checks if this is a heal move
+				if movesArray[i].skill.type == 1:
+					movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
+					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+				# this statement checks if this is an buff move
+				if movesArray[i].skill.type == 2:
+					movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
+					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+				# this statement checks if this is a debuff move
+				if movesArray[i].skill.type == -2:
+					movesArray[i].target.enemyData.current_hp *= movesArray[i].skill.buff_value
+					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+					movesArray[i].target.updateHealth()
+			if movesArray[i].move == 3:
+				# Check if it is consumable item
+				if movesArray[i].itemInUse.type == 0:
+					movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
+				# Check if it is modifier itemd
+				if movesArray[i].itemInUse.type == 1:
+					movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
+					movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
+					movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
+					print(movesArray[i].friendlyTarget.strength)
+					print(movesArray[i].friendlyTarget.agility)
+					print(movesArray[i].friendlyTarget.intelligence)
+				# Check if it is an attack item
+				if movesArray[i].itemInUse.type == 2:
+					movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
+					movesArray[i].target.updateHealth()
+		if movesArray[i].isEnemy == 1:
+			movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
 	updateBattleGroupHealth()
 	typeOfMove = 0
 	Global.friendlyOrNot = -1
-
+	showButtons()
+	hideTextBox()
 
 func updateBattleGroupHealth():
 	player0.updateHealth()
