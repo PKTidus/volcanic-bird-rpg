@@ -16,7 +16,12 @@ func processBattle():
 			handleEnemyMove(move)
 
 func handleEnemyMove(move):
-	move.enemyTarget.cur_hp -= move.enemySource.enemyData.damage
+	var source = move.enemySource
+	var target = move.enemyTarget
+	
+	# If the enemy isn't dead, do its attack
+	if !source.enemyData.isDead:
+		target.cur_hp -= move.enemySource.enemyData.damage
 
 func handleFriendlyMove(move):
 	if move.move == 1: 
@@ -56,10 +61,13 @@ func executeSkill(move):
 		handleBuffSkill(move)
 	# this statement checks if this is a debuff move
 	if move.skill.type == -2:
-		move.target.enemyData.current_hp *= move.skill.buff_value
-		move.source.cur_hp -= move.skill.hp_cost
-		move.source.cur_mp -= move.skill.mp_cost
-		move.target.updateHealth()
+		handleDebuffSkill(move)
+
+func handleDebuffSkill(move):
+	move.target.enemyData.current_hp *= move.skill.buff_value
+	move.source.cur_hp -= move.skill.hp_cost
+	move.source.cur_mp -= move.skill.mp_cost
+	move.target.updateHealth()
 
 func handleBuffSkill(move):
 	move.friendlyTarget.cur_hp *= move.skill.buff_value
