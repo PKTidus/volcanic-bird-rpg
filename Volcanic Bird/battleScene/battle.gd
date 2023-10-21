@@ -495,9 +495,10 @@ func attackEnemy(enemy):
 	enemy.updateHealth()
 
 func processAttacks():
+	# Execute all moves in the order they occur
 	var bh = BattleHelper.new(movesArray)
-	for i in range(7):
-		bh.processBattle()
+	bh.processBattle()
+		
 	updateBattleGroupHealth()
 	typeOfMove = 0
 	Global.friendlyOrNot = -1

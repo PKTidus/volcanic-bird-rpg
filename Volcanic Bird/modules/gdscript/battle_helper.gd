@@ -1,56 +1,83 @@
 class_name BattleHelper
 
-var movesArray
+var movesArray: Array
+var numMoves: int
 
 func _init(moveArray):
 	self.movesArray = moveArray
+	self.numMoves = len(self.movesArray)
 
 func processBattle():
-	for i in range(7):
-		if self.movesArray[i].isEnemy == 0:
-			# If basic attack...
-			if self.movesArray[i].move == 1:
-				self.movesArray[i].target.enemyData.current_hp -= self.movesArray[i].source.attack_damage
-				self.movesArray[i].target.updateHealth()
-			# this statement checks if this is a skill move
-			if self.movesArray[i].move == 2:
-				# this statement checks if this is an attack skill move
-				if self.movesArray[i].skill.type == 0:
-					self.movesArray[i].target.enemyData.current_hp -= self.movesArray[i].skill.damage_cal
-					self.movesArray[i].source.cur_hp -= self.movesArray[i].skill.hp_cost
-					self.movesArray[i].source.cur_mp -= self.movesArray[i].skill.mp_cost
-					self.movesArray[i].target.updateHealth()
-				# this statement checks if this is a heal move
-				if self.movesArray[i].skill.type == 1:
-					self.movesArray[i].friendlyTarget.cur_hp += self.movesArray[i].skill.heal_cal
-					self.movesArray[i].source.cur_hp -= self.movesArray[i].skill.hp_cost
-					self.movesArray[i].source.cur_mp -= self.movesArray[i].skill.mp_cost
-				# this statement checks if this is an buff move
-				if self.movesArray[i].skill.type == 2:
-					self.movesArray[i].friendlyTarget.cur_hp *= self.movesArray[i].skill.buff_value
-					self.movesArray[i].source.cur_hp -= self.movesArray[i].skill.hp_cost
-					self.movesArray[i].source.cur_mp -= self.movesArray[i].skill.mp_cost
-				# this statement checks if this is a debuff move
-				if self.movesArray[i].skill.type == -2:
-					self.movesArray[i].target.enemyData.current_hp *= self.movesArray[i].skill.buff_value
-					self.movesArray[i].source.cur_hp -= self.movesArray[i].skill.hp_cost
-					self.movesArray[i].source.cur_mp -= self.movesArray[i].skill.mp_cost
-					self.movesArray[i].target.updateHealth()
-			if self.movesArray[i].move == 3:
-				# Check if it is consumable item
-				if self.movesArray[i].itemInUse.type == 0:
-					self.movesArray[i].friendlyTarget.cur_hp += self.movesArray[i].itemInUse.hp_heal
-				# Check if it is modifier itemd
-				if self.movesArray[i].itemInUse.type == 1:
-					self.movesArray[i].friendlyTarget.strength += self.movesArray[i].itemInUse.modify_strength
-					self.movesArray[i].friendlyTarget.agility += self.movesArray[i].itemInUse.modify_agility
-					self.movesArray[i].friendlyTarget.intelligence += self.movesArray[i].itemInUse.modify_intelligence
-					print(self.movesArray[i].friendlyTarget.strength)
-					print(self.movesArray[i].friendlyTarget.agility)
-					print(self.movesArray[i].friendlyTarget.intelligence)
-				# Check if it is an attack item
-				if self.movesArray[i].itemInUse.type == 2:
-					self.movesArray[i].target.enemyData.current_hp -= self.movesArray[i].itemInUse.damage
-					self.movesArray[i].target.updateHealth()
-		if self.movesArray[i].isEnemy == 1:
-			self.movesArray[i].enemyTarget.cur_hp -= self.movesArray[i].enemySource.enemyData.damage
+	for i in range(self.numMoves):
+		var move = self.movesArray[i]
+		if move.isEnemy == 0:
+			handleFriendlyMove(move)
+		if move.isEnemy == 1:
+			handleEnemyMove(move)
+
+func handleEnemyMove(move):
+	move.enemyTarget.cur_hp -= move.enemySource.enemyData.damage
+
+func handleFriendlyMove(move):
+	if move.move == 1: 
+		executeBasicAttack(move)
+	elif move.move == 2: 
+		executeSkill(move)
+	elif move.move == 3:
+		handleItem(move)
+
+func handleItem(move):
+	if move.itemInUse.type == 0:
+		handleConsumableItem(move)
+	if move.itemInUse.type == 1:
+		handleModifierItem(move)
+	if move.itemInUse.type == 2:
+		handleAttackItem(move)
+
+func handleConsumableItem(move):
+	move.friendlyTarget.cur_hp += move.itemInUse.hp_heal
+
+func handleModifierItem(move):
+	move.friendlyTarget.strength += move.itemInUse.modify_strength
+	move.friendlyTarget.agility += move.itemInUse.modify_agility
+	move.friendlyTarget.intelligence += move.itemInUse.modify_intelligence
+	
+func handleAttackItem(move):
+	move.target.enemyData.current_hp -= move.itemInUse.damage
+	move.target.updateHealth()
+
+func executeSkill(move):
+	if move.skill.type == 0:
+		handleAttackSkill(move)
+	if move.skill.type == 1:
+		handleHealSkill(move)
+	# this statement checks if this is an buff move
+	if move.skill.type == 2:
+		handleBuffSkill(move)
+	# this statement checks if this is a debuff move
+	if move.skill.type == -2:
+		move.target.enemyData.current_hp *= move.skill.buff_value
+		move.source.cur_hp -= move.skill.hp_cost
+		move.source.cur_mp -= move.skill.mp_cost
+		move.target.updateHealth()
+
+func handleBuffSkill(move):
+	move.friendlyTarget.cur_hp *= move.skill.buff_value
+	move.source.cur_hp -= move.skill.hp_cost
+	move.source.cur_mp -= move.skill.mp_cost
+
+func handleHealSkill(move):
+	move.friendlyTarget.cur_hp += move.skill.heal_cal
+	move.source.cur_hp -= move.skill.hp_cost
+	move.source.cur_mp -= move.skill.mp_cost
+
+func handleAttackSkill(move):
+	move.target.enemyData.current_hp -= move.skill.damage_cal
+	move.source.cur_hp -= move.skill.hp_cost
+	move.source.cur_mp -= move.skill.mp_cost
+	move.target.updateHealth()
+
+func executeBasicAttack(move):
+	move.target.enemyData.current_hp -= move.source.attack_damage
+	move.target.updateHealth()
+	
