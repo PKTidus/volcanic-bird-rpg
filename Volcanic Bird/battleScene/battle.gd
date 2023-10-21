@@ -136,9 +136,9 @@ func setupSampleEnemy():
 	sampleEnemy1 = load("res://Creatures/Tree.tres")
 	sampleEnemy2 = load("res://Creatures/Tree.tres")
 	sampleEnemy3 = load("res://Creatures/Tree.tres")
-	var loadEnemy1 = Enemy.new()
-	var loadEnemy2 = Enemy.new()
-	var loadEnemy3 = Enemy.new()
+	var loadEnemy1 = EnemyData.new()
+	var loadEnemy2 = EnemyData.new()
+	var loadEnemy3 = EnemyData.new()
 	
 	loadEnemy1.initializeEnemyData(sampleEnemy1)
 	loadEnemy2.initializeEnemyData(sampleEnemy2)
@@ -495,53 +495,9 @@ func attackEnemy(enemy):
 	enemy.updateHealth()
 
 func processAttacks():
+	var bh = BattleHelper.new(movesArray)
 	for i in range(7):
-		if movesArray[i].isEnemy == 0:
-			if movesArray[i].move == 1:
-				movesArray[i].target.enemyData.current_hp -= movesArray[i].source.attack_damage
-				movesArray[i].target.updateHealth()
-			# this statement checks if this is a skill move
-			if movesArray[i].move == 2:
-				# this statement checks if this is an attack skill move
-				if movesArray[i].skill.type == 0:
-					movesArray[i].target.enemyData.current_hp -= movesArray[i].skill.damage_cal
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-					movesArray[i].target.updateHealth()
-				# this statement checks if this is a heal move
-				if movesArray[i].skill.type == 1:
-					movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-				# this statement checks if this is an buff move
-				if movesArray[i].skill.type == 2:
-					movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-				# this statement checks if this is a debuff move
-				if movesArray[i].skill.type == -2:
-					movesArray[i].target.enemyData.current_hp *= movesArray[i].skill.buff_value
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-					movesArray[i].target.updateHealth()
-			if movesArray[i].move == 3:
-				# Check if it is consumable item
-				if movesArray[i].itemInUse.type == 0:
-					movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
-				# Check if it is modifier itemd
-				if movesArray[i].itemInUse.type == 1:
-					movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
-					movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
-					movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
-					print(movesArray[i].friendlyTarget.strength)
-					print(movesArray[i].friendlyTarget.agility)
-					print(movesArray[i].friendlyTarget.intelligence)
-				# Check if it is an attack item
-				if movesArray[i].itemInUse.type == 2:
-					movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
-					movesArray[i].target.updateHealth()
-		if movesArray[i].isEnemy == 1:
-			movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
+		bh.processBattle()
 	updateBattleGroupHealth()
 	typeOfMove = 0
 	Global.friendlyOrNot = -1

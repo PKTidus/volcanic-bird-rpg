@@ -1,6 +1,6 @@
 extends Resource
 
-class_name Enemy
+class_name EnemyData
 
 @export var enemy_name : String
 @export var asset : Resource
