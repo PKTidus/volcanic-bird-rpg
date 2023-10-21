@@ -16,12 +16,19 @@ func processBattle():
 			handleEnemyMove(move)
 
 func handleEnemyMove(move):
-	var source = move.enemySource
+	var source = move.enemySource.enemyData
 	var target = move.enemyTarget
 	
-	# If the enemy isn't dead, do its attack
-	if !source.enemyData.isDead:
-		target.cur_hp -= move.enemySource.enemyData.damage
+	# If the source is dead, dont attack
+	if source.isDead:
+		return
+	
+	# If the target is dead, dont attack
+	if target.cur_hp <= 0:
+		return
+	
+	# Otherwise do the attack
+	target.cur_hp -= source.damage
 
 func moveSourceIsDead(move):
 	return move.source.cur_hp <= 0
