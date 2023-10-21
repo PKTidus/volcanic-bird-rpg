@@ -379,15 +379,20 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	var initialLevel = playerLevel
 	playerExperience += calculateExperience(playerLevel)
 	var nextLevelExperience = calculateExperience(playerLevel + 1)
+	var hasLeveledUp = false
 	
 	while playerExperience >= nextLevelExperience:
 		playerLevel += 1
 		nextLevelExperience = calculateExperience(playerLevel + 1)
+		hasLeveledUp = true
 	
-	# var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
+	if hasLeveledUp:
+		playerExperience = 0
+	
+	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
 	
 	$"Results/Panel/HBoxContainer/".get_child(playerIndex).get_child(0).text = playerName + "\n" + \
-	"Level " + str(playerLevel) + "\n" + \
+	"Level " + levelStr + "\n" + \
 	"To Next: " + str(playerExperience) + "/" + str(calculateExperience(playerLevel + 1)) + "\n" + \
 	"Obtained Skills:\n" + str(skillsLearned)
 	
