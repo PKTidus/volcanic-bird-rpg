@@ -29,6 +29,10 @@ func handleEnemyMove(move):
 	
 	# Otherwise do the attack
 	target.cur_hp -= source.damage
+	
+	# If the target has a health below 0, set it to 0
+	if target.cur_hp < 0:
+		target.cur_hp = 0
 
 func moveSourceIsDead(move):
 	return move.source.cur_hp <= 0
