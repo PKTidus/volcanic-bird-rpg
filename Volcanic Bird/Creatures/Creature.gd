@@ -93,3 +93,9 @@ func initializeSkillsList(newSkill, newSkillMove):
 	
 func decreaseHealth(amount):
 	cur_hp -= amount
+
+func setExperience(experience):
+	self.experience = experience
+
+func setLevel(level):
+	self.level = level

@@ -7,6 +7,8 @@ var player1 = null
 var player2 = null
 var player3 = null
 
+var samepleCreature1
+
 # Array for storing the attacks
 # Indices are the players (0-3)
 # Values are the selected enemies (0-3)
@@ -43,7 +45,10 @@ var currentPlayerCounter # range from 1-4
 var currentEnemyCounter # range from 1-3
 
 func _ready():
-	setupSampleGroup() # testing purposes
+	# comment this function to load sample creatures from the main menu scene while save battle data
+	# uncomment this function to load sample creatures from the battle scene while not saving battle data 
+	# setupSampleGroup() # testing purposes
+	
 	setupSampleEnemy() # testing purposes
 	loadSampleItem() # please remove, testing purposes only
 	connectSignals()
@@ -254,10 +259,10 @@ func trackBattle():
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 		
 		# Update the text labels in the results scene
-		updateResultsTextBox(0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
-		updateResultsTextBox(1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
-		updateResultsTextBox(2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
-		updateResultsTextBox(3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
+		updateResultsTextBox(player0, 0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
+		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
+		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
+		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
 		
 		$"Results".show() # display results scene
 		return
@@ -370,7 +375,7 @@ func showTextBox(text):
 func updateTextBox(text):
 	$"Textbox Panel/Textbox".text = text
 
-func updateResultsTextBox(playerIndex: int, playerName: String, playerLevel: int, playerExperience: int, skillsLearned):
+func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int, skillsLearned):
 	var initialLevel = playerLevel
 	playerExperience += calculateExperience(playerLevel)
 	var nextLevelExperience = calculateExperience(playerLevel + 1)
@@ -384,13 +389,15 @@ func updateResultsTextBox(playerIndex: int, playerName: String, playerLevel: int
 	"To Next: " + str(playerExperience) + "/" + str(calculateExperience(playerLevel + 1)) + "\n" + \
 	"Obtained Skills:\n" + str(skillsLearned)
 	
-	# TODO: Update player stats 
-	# Global.battleGroup[playerIndex].level = playerLevel
-	# Global.battleGroup[playerIndex].experience = playerExperience
-	# print(str(Global.battleGroup[playerIndex].level) + " " + str(Global.battleGroup[playerIndex].experience))
+	player.creatureData.setExperience(playerExperience)
+	player.creatureData.setLevel(playerLevel)
+	
+	await get_tree().create_timer(3).timeout # pause the game for 1.5 seconds
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
 func calculateExperience(playerLevel: int):
-	return (4 * playerLevel ** 3) / 5
+	var exp = ceil((4 * playerLevel ** 3 / 5.0))
+	return ceil(exp)
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()
