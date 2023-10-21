@@ -23,7 +23,13 @@ func handleEnemyMove(move):
 	if !source.enemyData.isDead:
 		target.cur_hp -= move.enemySource.enemyData.damage
 
+func moveSourceIsDead(move):
+	return move.source.cur_hp <= 0
+
 func handleFriendlyMove(move):
+	if moveSourceIsDead(move):
+		return
+	
 	if move.move == 1: 
 		executeBasicAttack(move)
 	elif move.move == 2: 
