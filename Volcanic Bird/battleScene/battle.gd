@@ -387,7 +387,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 		hasLeveledUp = true
 	
 	if hasLeveledUp:
-		playerExperience = 0
+		playerExperience -= calculateExperience(playerLevel)
 	
 	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
 	

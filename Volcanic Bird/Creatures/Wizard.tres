@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Enemies/wizard.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://djjut7naiewq0" path="res://Resources/Enemies/wizard.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -8,11 +8,11 @@ script = ExtResource("2")
 name = "Booty Wizard"
 description = "Wizard with a massive Booty"
 texture = ExtResource("1")
-level = 1
-experience = 1
 agility = 5
 strength = 10
 intelligence = 10
+level = 1
+experience = 6
 max_hp = 10
 max_mp = 10
 cur_hp = 10
@@ -25,3 +25,5 @@ speed = 10
 STR_growth = 6
 AGI_growth = 2
 INT_growth = 1
+skillPreload = Array[String]([])
+skillList = Array[Resource]([])
