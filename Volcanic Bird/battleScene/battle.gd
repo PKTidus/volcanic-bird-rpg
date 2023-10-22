@@ -268,17 +268,29 @@ func trackBattle():
 		return
 	
 	if currentPlayerCounter == 0:
-		print("Player 0's Turn")
-		updateTextBox("It is " + player0.creatureData.name + "'s turn")
-	elif currentPlayerCounter == 1:
-		print("Player 1's Turn")
-		updateTextBox("It is " + player1.creatureData.name + "'s turn")
-	elif currentPlayerCounter == 2:
-		print("Player 2's Turn")
-		updateTextBox("It is " + player2.creatureData.name + "'s turn")
-	elif currentPlayerCounter == 3:
-		print("Player 3's Turn")
-		updateTextBox("It is " + player3.creatureData.name + "'s turn")
+		if !player0.creatureData.isDead:
+			print("Player 0's Turn")
+			updateTextBox("It is " + player0.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
+	if currentPlayerCounter == 1:
+		if !player1.creatureData.isDead:
+			print("Player 1's Turn")
+			updateTextBox("It is " + player1.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
+	if currentPlayerCounter == 2:
+		if !player2.creatureData.isDead:
+			print("Player 2's Turn")
+			updateTextBox("It is " + player2.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
+	if currentPlayerCounter == 3:
+		if !player3.creatureData.isDead:
+			print("Player 3's Turn")
+			updateTextBox("It is " + player3.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
 
 func _on_attack_pressed():
 	typeOfMove = 1
@@ -527,15 +539,6 @@ func updateBattleGroupHealth():
 
 func updatePlayerCounter():
 	currentPlayerCounter += 1
-	
-	if player0 == null and currentPlayerCounter == 0:
-		currentPlayerCounter += 1
-	elif player1 == null and currentPlayerCounter == 1:
-		currentPlayerCounter += 1
-	elif player2 == null and currentPlayerCounter == 2:
-		currentPlayerCounter += 1
-	elif player3 == null and currentPlayerCounter == 3:
-		currentPlayerCounter += 1
 	
 	if currentPlayerCounter >= 4:
 		processAttacks()

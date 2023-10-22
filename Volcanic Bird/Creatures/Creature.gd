@@ -26,6 +26,7 @@ class_name Creatures
 @export var INT_growth : int
 @export var skillPreload : Array[String]
 @export var skillList : Array[Resource]
+@export var isDead : bool
 
 
 func levelUp():
