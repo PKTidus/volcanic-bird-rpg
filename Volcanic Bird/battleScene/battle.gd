@@ -7,6 +7,8 @@ var player1 = null
 var player2 = null
 var player3 = null
 
+var samepleCreature1
+
 # Array for storing the attacks
 # Indices are the players (0-3)
 # Values are the selected enemies (0-3)
@@ -43,7 +45,10 @@ var currentPlayerCounter # range from 1-4
 var currentEnemyCounter # range from 1-3
 
 func _ready():
-	setupSampleGroup() # testing purposes
+	# comment this function to load sample creatures from the main menu scene while save battle data
+	# uncomment this function to load sample creatures from the battle scene while not saving battle data 
+	# setupSampleGroup() # testing purposes
+	
 	setupSampleEnemy() # testing purposes
 	loadSampleItem() # please remove, testing purposes only
 	connectSignals()
@@ -136,9 +141,9 @@ func setupSampleEnemy():
 	sampleEnemy1 = load("res://Creatures/Tree.tres")
 	sampleEnemy2 = load("res://Creatures/Tree.tres")
 	sampleEnemy3 = load("res://Creatures/Tree.tres")
-	var loadEnemy1 = Enemy.new()
-	var loadEnemy2 = Enemy.new()
-	var loadEnemy3 = Enemy.new()
+	var loadEnemy1 = EnemyData.new()
+	var loadEnemy2 = EnemyData.new()
+	var loadEnemy3 = EnemyData.new()
 	
 	loadEnemy1.initializeEnemyData(sampleEnemy1)
 	loadEnemy2.initializeEnemyData(sampleEnemy2)
@@ -254,26 +259,38 @@ func trackBattle():
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 		
 		# Update the text labels in the results scene
-		updateResultsTextBox(0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
-		updateResultsTextBox(1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
-		updateResultsTextBox(2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
-		updateResultsTextBox(3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
+		updateResultsTextBox(player0, 0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
+		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
+		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
+		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
 		
 		$"Results".show() # display results scene
 		return
 	
 	if currentPlayerCounter == 0:
-		print("Player 0's Turn")
-		updateTextBox("It is " + player0.creatureData.name + "'s turn")
-	elif currentPlayerCounter == 1:
-		print("Player 1's Turn")
-		updateTextBox("It is " + player1.creatureData.name + "'s turn")
-	elif currentPlayerCounter == 2:
-		print("Player 2's Turn")
-		updateTextBox("It is " + player2.creatureData.name + "'s turn")
-	elif currentPlayerCounter == 3:
-		print("Player 3's Turn")
-		updateTextBox("It is " + player3.creatureData.name + "'s turn")
+		if !player0.creatureData.isDead:
+			print("Player 0's Turn")
+			updateTextBox("It is " + player0.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
+	if currentPlayerCounter == 1:
+		if !player1.creatureData.isDead:
+			print("Player 1's Turn")
+			updateTextBox("It is " + player1.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
+	if currentPlayerCounter == 2:
+		if !player2.creatureData.isDead:
+			print("Player 2's Turn")
+			updateTextBox("It is " + player2.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
+	if currentPlayerCounter == 3:
+		if !player3.creatureData.isDead:
+			print("Player 3's Turn")
+			updateTextBox("It is " + player3.creatureData.name + "'s turn")
+		else:
+			updatePlayerCounter()
 
 func _on_attack_pressed():
 	typeOfMove = 1
@@ -370,27 +387,36 @@ func showTextBox(text):
 func updateTextBox(text):
 	$"Textbox Panel/Textbox".text = text
 
-func updateResultsTextBox(playerIndex: int, playerName: String, playerLevel: int, playerExperience: int, skillsLearned):
+func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int, skillsLearned):
 	var initialLevel = playerLevel
 	playerExperience += calculateExperience(playerLevel)
 	var nextLevelExperience = calculateExperience(playerLevel + 1)
+	var hasLeveledUp = false
 	
 	while playerExperience >= nextLevelExperience:
 		playerLevel += 1
 		nextLevelExperience = calculateExperience(playerLevel + 1)
+		hasLeveledUp = true
+	
+	if hasLeveledUp:
+		playerExperience -= calculateExperience(playerLevel)
+	
+	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
 	
 	$"Results/Panel/HBoxContainer/".get_child(playerIndex).get_child(0).text = playerName + "\n" + \
-	"Level " + str(initialLevel) + "->" + str(playerLevel) + "\n" + \
+	"Level " + levelStr + "\n" + \
 	"To Next: " + str(playerExperience) + "/" + str(calculateExperience(playerLevel + 1)) + "\n" + \
 	"Obtained Skills:\n" + str(skillsLearned)
 	
-	# TODO: Update player stats 
-	# Global.battleGroup[playerIndex].level = playerLevel
-	# Global.battleGroup[playerIndex].experience = playerExperience
-	# print(str(Global.battleGroup[playerIndex].level) + " " + str(Global.battleGroup[playerIndex].experience))
+	player.creatureData.setExperience(playerExperience)
+	player.creatureData.setLevel(playerLevel)
+	
+	await get_tree().create_timer(3).timeout # pause the game for 1.5 seconds
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
 func calculateExperience(playerLevel: int):
-	return (4 * playerLevel ** 3) / 5
+	var exp = ceil((4 * playerLevel ** 3 / 5.0))
+	return ceil(exp)
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()
@@ -495,53 +521,10 @@ func attackEnemy(enemy):
 	enemy.updateHealth()
 
 func processAttacks():
-	for i in range(7):
-		if movesArray[i].isEnemy == 0:
-			if movesArray[i].move == 1:
-				movesArray[i].target.enemyData.current_hp -= movesArray[i].source.attack_damage
-				movesArray[i].target.updateHealth()
-			# this statement checks if this is a skill move
-			if movesArray[i].move == 2:
-				# this statement checks if this is an attack skill move
-				if movesArray[i].skill.type == 0:
-					movesArray[i].target.enemyData.current_hp -= movesArray[i].skill.damage_cal
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-					movesArray[i].target.updateHealth()
-				# this statement checks if this is a heal move
-				if movesArray[i].skill.type == 1:
-					movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-				# this statement checks if this is an buff move
-				if movesArray[i].skill.type == 2:
-					movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-				# this statement checks if this is a debuff move
-				if movesArray[i].skill.type == -2:
-					movesArray[i].target.enemyData.current_hp *= movesArray[i].skill.buff_value
-					movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-					movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-					movesArray[i].target.updateHealth()
-			if movesArray[i].move == 3:
-				# Check if it is consumable item
-				if movesArray[i].itemInUse.type == 0:
-					movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
-				# Check if it is modifier itemd
-				if movesArray[i].itemInUse.type == 1:
-					movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
-					movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
-					movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
-					print(movesArray[i].friendlyTarget.strength)
-					print(movesArray[i].friendlyTarget.agility)
-					print(movesArray[i].friendlyTarget.intelligence)
-				# Check if it is an attack item
-				if movesArray[i].itemInUse.type == 2:
-					movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
-					movesArray[i].target.updateHealth()
-		if movesArray[i].isEnemy == 1:
-			movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
+	# Execute all moves in the order they occur
+	var bh = BattleHelper.new(movesArray)
+	bh.processBattle()
+		
 	updateBattleGroupHealth()
 	typeOfMove = 0
 	Global.friendlyOrNot = -1
@@ -556,15 +539,6 @@ func updateBattleGroupHealth():
 
 func updatePlayerCounter():
 	currentPlayerCounter += 1
-	
-	if player0 == null and currentPlayerCounter == 0:
-		currentPlayerCounter += 1
-	elif player1 == null and currentPlayerCounter == 1:
-		currentPlayerCounter += 1
-	elif player2 == null and currentPlayerCounter == 2:
-		currentPlayerCounter += 1
-	elif player3 == null and currentPlayerCounter == 3:
-		currentPlayerCounter += 1
 	
 	if currentPlayerCounter >= 4:
 		processAttacks()

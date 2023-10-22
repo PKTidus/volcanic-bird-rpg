@@ -26,6 +26,7 @@ class_name Creatures
 @export var INT_growth : int
 @export var skillPreload : Array[String]
 @export var skillList : Array[Resource]
+@export var isDead : bool
 
 
 func levelUp():
@@ -93,3 +94,9 @@ func initializeSkillsList(newSkill, newSkillMove):
 	
 func decreaseHealth(amount):
 	cur_hp -= amount
+
+func setExperience(experience):	
+	self.experience = experience
+
+func setLevel(level):
+	self.level = level
