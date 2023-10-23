@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://qsiytlf42ajo"]
 
 [ext_resource type="Script" path="res://battleScene/Enemy.gd" id="1_5xfbd"]
-[ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
+[ext_resource type="FontFile" uid="uid://b1h3f7pjc7o6" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4wj1"]
 bg_color = Color(1, 0, 0, 1)
