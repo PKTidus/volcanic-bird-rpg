@@ -207,6 +207,12 @@ position = Vector2(384, 0)
 [node name="Item4" parent="Item List Panel/Item List Container" instance=ExtResource("6_h375h")]
 position = Vector2(576, 0)
 
+[node name="Item5" parent="Item List Panel/Item List Container" instance=ExtResource("6_h375h")]
+position = Vector2(768, 0)
+
+[node name="Item6" parent="Item List Panel/Item List Container" instance=ExtResource("6_h375h")]
+position = Vector2(960, 0)
+
 [node name="Party Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 12

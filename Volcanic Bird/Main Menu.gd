@@ -2,6 +2,7 @@ extends Control
 
 func _on_play_pressed():
 	setupSampleGroup()
+	loadSampleItem()
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 # Simply for loading in sample creatures, not needed for final build
@@ -24,6 +25,53 @@ func setupSampleGroup():
 	Global.battleGroup[1] = creature2
 	Global.battleGroup[2] = creature3
 	Global.battleGroup[3] = creature4
+	
+	var creature5 = Creatures.new()
+	var creature6 = Creatures.new()
+	var creature7 = Creatures.new()
+	var creature8 = Creatures.new() 
+	
+	creature5.initializeCreature(samepleCreature1)
+	creature6.initializeCreature(samepleCreature2)
+	creature7.initializeCreature(samepleCreature3)
+	creature8.initializeCreature(samepleCreature4)
+	
+	Global.creatureStorage.append(creature1)
+	Global.creatureStorage.append(creature2)
+	Global.creatureStorage.append(creature3)
+	Global.creatureStorage.append(creature4)
+	Global.creatureStorage.append(creature5)
+	Global.creatureStorage.append(creature6)
+	Global.creatureStorage.append(creature7)
+	Global.creatureStorage.append(creature8)
+	
+func loadSampleItem():
+	var tempItem = Item.new()
+	var sampleItem = load("res://Items/HealingPotion.tres")
+	tempItem.initializeItem(sampleItem)
+	Global.itemInventory.append(tempItem)
+	
+	var tempItem2 = Item.new()
+	var sampleItem2 = load("res://Items/Steroid.tres")
+	tempItem2.initializeItem(sampleItem2)
+	Global.itemInventory.append(tempItem2)
+	
+	var tempItem3 = Item.new()
+	var sampleItem3 = load("res://Items/DeadlyPoison.tres")
+	tempItem3.initializeItem(sampleItem3)
+	Global.itemInventory.append(tempItem3)
+	
+	var tempItem4 = Item.new()
+	tempItem4.initializeItem(sampleItem)
+	Global.itemStorage.append(tempItem4)
+	
+	var tempItem5 = Item.new()
+	tempItem5.initializeItem(sampleItem2)
+	Global.itemStorage.append(tempItem5)
+	
+	var tempItem6 = Item.new()
+	tempItem6.initializeItem(sampleItem3)
+	Global.itemStorage.append(tempItem6)
 
 func _on_load_game_pressed():
 	pass # Replace with function body.

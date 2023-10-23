@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtp18akevrn8v"]
+[gd_scene load_steps=5 format=3 uid="uid://dtp18akevrn8v"]
 
 [ext_resource type="Script" path="res://CreatureMenu/CreatureMenu.gd" id="1_4q546"]
 [ext_resource type="PackedScene" uid="uid://cs8rlnooal4yd" path="res://CreatureMenu/creature_button.tscn" id="1_xh84t"]
 [ext_resource type="PackedScene" uid="uid://cabx0stuuqixk" path="res://CreatureMenu/battle_group.tscn" id="2_exaw5"]
+[ext_resource type="FontFile" uid="uid://b1h3f7pjc7o6" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_odtno"]
 
 [node name="Inventory" type="Panel"]
 anchors_preset = 15
@@ -53,6 +54,15 @@ offset_left = 681.0
 offset_top = 58.0
 offset_right = 728.0
 offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("3_odtno")
+
+[node name="CurrentlyCarrying" type="Label" parent="."]
+layout_mode = 0
+offset_left = 854.0
+offset_top = 11.0
+offset_right = 1093.0
+offset_bottom = 37.0
+theme_override_fonts/font = ExtResource("3_odtno")
 
 [node name="Description" type="Label" parent="."]
 layout_mode = 0
@@ -60,14 +70,34 @@ offset_left = 755.0
 offset_top = 394.0
 offset_right = 844.0
 offset_bottom = 420.0
+theme_override_fonts/font = ExtResource("3_odtno")
 
-[node name="Stats" type="Label" parent="."]
+[node name="Stats" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 679.0
 offset_top = 96.0
-offset_right = 719.0
-offset_bottom = 122.0
-text = "Stats"
+offset_right = 972.0
+offset_bottom = 256.0
+
+[node name="CurHP" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+
+[node name="CurMP" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+
+[node name="Speed" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+
+[node name="AttackDamage" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+
+[node name="Level" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
 
 [node name="BattleGroup" parent="." instance=ExtResource("2_exaw5")]
 layout_mode = 0
@@ -78,3 +108,15 @@ offset_right = 176.0
 offset_bottom = 648.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 964.0
+offset_top = 597.0
+offset_right = 1120.0
+offset_bottom = 628.0
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 27
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -16,9 +16,7 @@ func instanceSlots():
 		var newInventorySlot = inventorySlot.instantiate()
 		
 		if Global.itemInventory[inventoryIndex] is Object:
-			newInventorySlot.creatureData = Global.itemInventory[inventoryIndex]
-		elif Global.itemInventory[inventoryIndex] is String:
-			newInventorySlot.creatureData = load(Global.itemInventory[inventoryIndex])
+			newInventorySlot.Item = Global.itemInventory[inventoryIndex]
 			
 		$InventoryContainer/VBoxContainer.add_child(newInventorySlot)
 		
@@ -27,9 +25,7 @@ func instanceSlots():
 		var newStorageSlot = storageSlot.instantiate()
 		
 		if Global.itemStorage[storageIndex] is Object:
-			newStorageSlot.creatureData = Global.itemStorage[storageIndex]
-		else:
-			newStorageSlot.creatureData = load(Global.itemStorage[storageIndex])
+			newStorageSlot.Item = Global.itemStorage[storageIndex]
 			
 		$StorageContainer/VBoxContainer.add_child(newStorageSlot)
 
@@ -39,3 +35,6 @@ func _on_add_to_storage_pressed():
 	
 func _on_add_to_inventory_pressed():
 	Global.addToInventory()
+
+func _on_back_pressed():
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")

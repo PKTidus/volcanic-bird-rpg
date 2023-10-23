@@ -16,10 +16,20 @@ func instanceInventorySlots():
 	for itemIndex in Global.creatureStorage.size():
 		var creatureSlot = load("res://CreatureMenu/creature_button.tscn")
 		var newCreatureSlot = creatureSlot.instantiate()
-		newCreatureSlot.creatureData = load(Global.creatureStorage[itemIndex])
+		newCreatureSlot.creatureData = Global.creatureStorage[itemIndex]
 		$Characters/VBoxContainer.add_child(newCreatureSlot)
 		newCreatureSlot.connect("creatureSlotFocus", onCreatureSlotFocus)
 func onCreatureSlotFocus():
-	$Name.text = str(Global.current_name)
+	$Name.text = "Name = " + str(Global.current_name)
 	$Description.text = str(Global.current_description)
+	$Stats/AttackDamage.text = "Attack Damage = " + str(Global.current_damage)
+	$Stats/CurHP.text = "Current HP = " + str(Global.current_hp)
+	$Stats/CurMP.text = "Current MP = " + str(Global.current_mp)
+	$Stats/Speed.text = "Speed = " + str(Global.current_speed)
+	$Stats/Level.text = "Level = " + str(Global.current_level)
+	$CurrentlyCarrying.text = "Currently Carrying = " + str(Global.current_name)
 	
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")

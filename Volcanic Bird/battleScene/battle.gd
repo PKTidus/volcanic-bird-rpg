@@ -53,7 +53,6 @@ func _ready():
 	# setupSampleGroup() # testing purposes
 	
 	setupSampleEnemy() # testing purposes
-	loadSampleItem() # please remove, testing purposes only
 	connectSignals()
 	hideEnemyButtons()
 	getPlayerInfo()
@@ -155,22 +154,6 @@ func setupSampleEnemy():
 	sampleArray.append(loadEnemy1)
 	sampleArray.append(loadEnemy2)
 	sampleArray.append(loadEnemy3)
-
-func loadSampleItem():
-	var tempItem = Item.new()
-	var sampleItem = load("res://Items/HealingPotion.tres")
-	tempItem.initializeItem(sampleItem)
-	Global.itemInventory.append(tempItem)
-	
-	var tempItem2 = Item.new()
-	var sampleItem2 = load("res://Items/Steroid.tres")
-	tempItem2.initializeItem(sampleItem2)
-	Global.itemInventory.append(tempItem2)
-	
-	var tempItem3 = Item.new()
-	var sampleItem3 = load("res://Items/DeadlyPoison.tres")
-	tempItem3.initializeItem(sampleItem3)
-	Global.itemInventory.append(tempItem3)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
