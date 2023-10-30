@@ -18,6 +18,9 @@ var selectedEnemies = [null, null, null, null]
 var selectedCreatures = [null, null, null, null]
 var movesArray = []
 
+var currentMoveIndex = 0
+var processMove = false
+
 # 1 = attack
 # 2 = skill
 # 3 = item
@@ -50,7 +53,6 @@ func _ready():
 	# setupSampleGroup() # testing purposes
 	
 	setupSampleEnemy() # testing purposes
-	loadSampleItem() # please remove, testing purposes only
 	connectSignals()
 	hideEnemyButtons()
 	getPlayerInfo()
@@ -152,22 +154,6 @@ func setupSampleEnemy():
 	sampleArray.append(loadEnemy1)
 	sampleArray.append(loadEnemy2)
 	sampleArray.append(loadEnemy3)
-
-func loadSampleItem():
-	var tempItem = Item.new()
-	var sampleItem = load("res://Items/HealingPotion.tres")
-	tempItem.initializeItem(sampleItem)
-	Global.itemInventory.append(tempItem)
-	
-	var tempItem2 = Item.new()
-	var sampleItem2 = load("res://Items/Steroid.tres")
-	tempItem2.initializeItem(sampleItem2)
-	Global.itemInventory.append(tempItem2)
-	
-	var tempItem3 = Item.new()
-	var sampleItem3 = load("res://Items/DeadlyPoison.tres")
-	tempItem3.initializeItem(sampleItem3)
-	Global.itemInventory.append(tempItem3)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
@@ -201,24 +187,24 @@ func initializeMoves():
 	var currentMove = Moves.new()
 	currentMove.move = 0
 	currentMove.enemySource = enemy1
-	currentMove.enemyTarget = Global.battleGroup[0]
+	currentMove.enemyTarget = null
 	currentMove.isEnemy = 1
 	selectedCreatures[0] = currentMove
 	
 	currentMove = Moves.new()
 	currentMove.move = 0
 	currentMove.enemySource = enemy2
-	currentMove.enemyTarget = Global.battleGroup[1]
+	currentMove.enemyTarget = null
 	currentMove.isEnemy = 1
 	selectedCreatures[1] = currentMove
 	
 	currentMove = Moves.new()
 	currentMove.move = 0
 	currentMove.enemySource = enemy3
-	currentMove.enemyTarget = Global.battleGroup[0]
+	currentMove.enemyTarget = null
 	currentMove.isEnemy = 1
 	selectedCreatures[2] = currentMove
-
+ 
 func sortArrayBySpeed():
 	for i in range(4):
 		movesArray.append(selectedEnemies[i])
@@ -531,6 +517,62 @@ func processAttacks():
 	showButtons()
 	hideTextBox()
 
+func processAttacksOld():
+	for i in range(7):
+		if movesArray[i].isEnemy == 0:
+			if !movesArray[i].source.isDead:
+				if movesArray[i].move == 1:
+					movesArray[i].target.enemyData.current_hp -= movesArray[i].source.attack_damage
+					movesArray[i].target.updateHealth()
+					# print(currentPlayerCounter)
+					# showTextBox(str(movesArray[i].source.name) + " dealt " + str(movesArray[i].source.attack_damage) + " to " + str(movesArray[i].target.enemyData.enemy_name))
+				# this statement checks if this is a skill move
+				if movesArray[i].move == 2:
+					# this statement checks if this is an attack skill move
+					if movesArray[i].skill.type == 0:
+						movesArray[i].target.enemyData.current_hp -= movesArray[i].skill.damage_cal
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+						movesArray[i].target.updateHealth()
+					# this statement checks if this is a heal move
+					if movesArray[i].skill.type == 1:
+						movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+					# this statement checks if this is an buff move
+					if movesArray[i].skill.type == 2:
+						movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+					# this statement checks if this is a debuff move
+					if movesArray[i].skill.type == -2:
+						movesArray[i].target.enemyData.current_hp *= movesArray[i].skill.buff_value
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+						movesArray[i].target.updateHealth()
+				if movesArray[i].move == 3:
+					# Check if it is consumable item
+					if movesArray[i].itemInUse.type == 0:
+						movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
+					# Check if it is modifier itemd
+					if movesArray[i].itemInUse.type == 1:
+						movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
+						movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
+						movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
+					# Check if it is an attack item
+					if movesArray[i].itemInUse.type == 2:
+						movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
+						movesArray[i].target.updateHealth()
+		if movesArray[i].isEnemy == 1:
+			if !movesArray[i].enemySource.enemyData.isDead:
+				movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
+	updateBattleGroupHealth()
+	typeOfMove = 0
+	currentMoveIndex = 0
+	Global.friendlyOrNot = -1
+	showButtons()
+	hideTextBox()
+
 func updateBattleGroupHealth():
 	player0.updateHealth()
 	player1.updateHealth()
@@ -541,9 +583,15 @@ func updatePlayerCounter():
 	currentPlayerCounter += 1
 	
 	if currentPlayerCounter >= 4:
-		processAttacks()
+		currentMoveIndex = 0
+		selectEnemyMoves()
+		processAttacksOld()
 		currentPlayerCounter = 0
 
+func selectEnemyMoves():
+	for i in range(7):
+		if movesArray[i].isEnemy == 1:
+			movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
 
 func _on_player_0_pressed():
 	if typeOfMove == 2 and Global.friendlyOrNot == 1:
@@ -623,3 +671,8 @@ func _on_player_3_pressed():
 		trackBattle()
 		
 	typeOfMove = -1
+
+
+func _on_timer_timeout():
+	currentMoveIndex += 1
+	processAttacksOld()

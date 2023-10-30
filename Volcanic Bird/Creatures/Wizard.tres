@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://djjut7naiewq0" path="res://Resources/Enemies/wizard.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b0cvsdnrmmghq" path="res://Resources/Enemies/wizard.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -13,10 +13,10 @@ strength = 10
 intelligence = 10
 level = 1
 experience = 6
-max_hp = 10
-max_mp = 10
-cur_hp = 10
-cur_mp = 10
+max_hp = 15
+max_mp = 50
+cur_hp = 15
+cur_mp = 50
 attack_damage = 20
 magic_attack_damage = 0
 defense = 20
@@ -25,5 +25,6 @@ speed = 10
 STR_growth = 6
 AGI_growth = 2
 INT_growth = 1
-skillPreload = Array[String]([])
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres"])
 skillList = Array[Resource]([])
+isDead = false

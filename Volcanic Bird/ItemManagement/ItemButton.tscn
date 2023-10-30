@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://gew6rpa0i0nl"]
+[gd_scene load_steps=3 format=3 uid="uid://gew6rpa0i0nl"]
 
+[ext_resource type="FontFile" uid="uid://b1h3f7pjc7o6" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_cmw5t"]
 [ext_resource type="Script" path="res://ItemManagement/ItemButton.gd" id="1_xw75q"]
 
 [node name="ItemButton" type="Button"]
@@ -10,6 +11,7 @@ offset_right = -912.0
 offset_bottom = -616.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_cmw5t")
 text = "Placeholder"
 script = ExtResource("1_xw75q")
 

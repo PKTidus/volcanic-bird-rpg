@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8vy7c6bun1mg"]
+[gd_scene load_steps=5 format=3 uid="uid://c8vy7c6bun1mg"]
 
 [ext_resource type="Script" path="res://ItemManagement/ItemManagement.gd" id="1_ainkq"]
 [ext_resource type="PackedScene" uid="uid://gew6rpa0i0nl" path="res://ItemManagement/ItemButton.tscn" id="1_mf5xk"]
 [ext_resource type="PackedScene" uid="uid://voecyqrxfcqc" path="res://ItemManagement/StorageItem.tscn" id="2_jflef"]
+[ext_resource type="FontFile" uid="uid://b1h3f7pjc7o6" path="res://Resources/Fonts/NESCyrillic.ttf" id="4_t535t"]
 
 [node name="ItemManagement" type="Panel"]
 anchors_preset = 15
@@ -111,7 +112,17 @@ offset_left = 112.0
 offset_top = 592.0
 offset_right = 336.0
 offset_bottom = 623.0
+theme_override_fonts/font = ExtResource("4_t535t")
 text = "Inventory to Storage"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 980.0
+offset_top = 593.0
+offset_right = 1137.0
+offset_bottom = 627.0
+theme_override_fonts/font = ExtResource("4_t535t")
+text = "Back"
 
 [node name="AddToInventory" type="Button" parent="."]
 layout_mode = 0
@@ -119,7 +130,9 @@ offset_left = 688.0
 offset_top = 592.0
 offset_right = 912.0
 offset_bottom = 623.0
+theme_override_fonts/font = ExtResource("4_t535t")
 text = "Storage to Inventory"
 
 [connection signal="pressed" from="AddToStorage" to="." method="_on_add_to_storage_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="AddToInventory" to="." method="_on_add_to_inventory_pressed"]

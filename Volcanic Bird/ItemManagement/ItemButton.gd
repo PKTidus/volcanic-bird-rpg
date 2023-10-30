@@ -1,15 +1,14 @@
 extends Button
 
-@export var creatureData : Resource
+@export var Item : Resource
 
 func _ready():
 	Global.connect("updateItems", updateSlot)
 	updateSlot()
 	
 func updateSlot():
-	if creatureData != null:
-		self.icon = creatureData.texture
-		self.text = str(creatureData.name)
+	if Item != null:
+		self.text = str(Item.nameLabel)
 
 func _on_pressed():
-	Global.draggedItemInventory = creatureData
+	Global.draggedItemInventory = Item
