@@ -16,3 +16,10 @@ class_name Skill
 @export var nameLabel : String
 @export var costLabel : String
 @export var descriptionLabel : String
+
+func initializeSkill(hp_cost, mp_cost, damage_cal, heal_cal, buff_value):
+	self.hp_cost = hp_cost
+	self.mp_cost = mp_cost
+	self.damage_cal = damage_cal
+	self.heal_cal = heal_cal
+	self.buff_value = buff_value
