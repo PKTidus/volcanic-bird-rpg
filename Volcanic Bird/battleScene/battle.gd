@@ -28,10 +28,10 @@ var typeOfMove = 0
 
 # Array for storing the party members defending
 # Indices are the players (0-3)
-# Values are a flag
-# 	0 is for not defending
-# 	1 is for defending
-var defendingPlayers = [0, 0, 0, 0]
+# Values are the references
+# 	a null is for not defending
+# 	a reference is for defending
+var defendingPlayers = [null, null, null, null]
 
 # 3 enemies max
 var enemy1
@@ -315,7 +315,15 @@ func _on_skill_pressed():
 func _on_defend_pressed():
 	print("Defend Button Pressed")
 	
-	defendingPlayers[currentPlayerCounter] = 1
+	if currentPlayerCounter == 0:
+		defendingPlayers[currentPlayerCounter] = player0
+	elif currentPlayerCounter == 1:
+		defendingPlayers[currentPlayerCounter] = player1
+	elif currentPlayerCounter == 2:
+		defendingPlayers[currentPlayerCounter] = player2
+	elif currentPlayerCounter == 3:
+		defendingPlayers[currentPlayerCounter] = player3
+	
 	updatePlayerCounter()
 	
 	hideEnemyButtons()
@@ -565,11 +573,22 @@ func processAttacksOld():
 						movesArray[i].target.updateHealth()
 		if movesArray[i].isEnemy == 1:
 			if !movesArray[i].enemySource.enemyData.isDead:
-				movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
+				var targetIsDefending = false
+				
+				# check if the target is defending
+				for j in range (4):
+					if defendingPlayers[j] != null && movesArray[i].enemyTarget == defendingPlayers[j].creatureData:
+						targetIsDefending = true
+				
+				if targetIsDefending:
+					movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
+				else:
+					movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
 	updateBattleGroupHealth()
 	typeOfMove = 0
 	currentMoveIndex = 0
 	Global.friendlyOrNot = -1
+	defendingPlayers = [null, null, null, null]
 	showButtons()
 	hideTextBox()
 
