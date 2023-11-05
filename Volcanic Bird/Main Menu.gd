@@ -80,11 +80,12 @@ func loadSampleItem():
 
 func loadGame():
 	playerData = ResourceLoader.load(saveFilePath + saveFileName)
-	Global.battleGroup = playerData.battleGroup
-	Global.creatureStorage = playerData.creatureStorage
-	Global.itemInventory = playerData.itemInventory
-	Global.itemStorage = playerData.itemStorage
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	if playerData != null:
+		Global.battleGroup = playerData.battleGroup
+		Global.creatureStorage = playerData.creatureStorage
+		Global.itemInventory = playerData.itemInventory
+		Global.itemStorage = playerData.itemStorage
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 func _on_options_pressed():
 	pass # Replace with function body.
