@@ -710,7 +710,7 @@ func _on_player_3_pressed():
 		showButtons()
 		trackBattle()
 	if typeOfMove == 3 and Global.friendlyOrNot == 1:
-		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[2]
+		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[3]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
 		updatePlayerCounter()
