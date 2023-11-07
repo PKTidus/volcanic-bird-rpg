@@ -90,3 +90,4 @@ scroll_active = false
 [connection signal="pressed" from="MainMenuContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Creatures" to="." method="_on_creatures_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Storage Box" to="." method="_on_storage_box_pressed"]
+[connection signal="pressed" from="MainMenuContainer/Save & Quit" to="." method="_on_save__quit_pressed"]

@@ -1,5 +1,10 @@
 extends Control
 
+var saveFilePath = "user://save/"
+var saveFileName = "PlayerSave.tres"
+
+var playerData = PlayerSave.new()
+
 func _on_play_pressed():
 	setupSampleGroup()
 	loadSampleItem()
@@ -73,11 +78,20 @@ func loadSampleItem():
 	tempItem6.initializeItem(sampleItem3)
 	Global.itemStorage.append(tempItem6)
 
-func _on_load_game_pressed():
-	pass # Replace with function body.
+func loadGame():
+	playerData = ResourceLoader.load(saveFilePath + saveFileName)
+	if playerData != null:
+		Global.battleGroup = playerData.battleGroup
+		Global.creatureStorage = playerData.creatureStorage
+		Global.itemInventory = playerData.itemInventory
+		Global.itemStorage = playerData.itemStorage
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 func _on_options_pressed():
 	pass # Replace with function body.
 
 func _on_exit_pressed():
 	get_tree().quit()
+
+func _on_load_pressed():
+	loadGame()
