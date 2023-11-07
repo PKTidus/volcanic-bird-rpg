@@ -9,6 +9,9 @@ var player3 = null
 
 var samepleCreature1
 
+var isBattling = false
+var theEnd = false
+
 # Array for storing the attacks
 # Indices are the players (0-3)
 # Values are the selected enemies (0-3)
@@ -140,9 +143,9 @@ func setupSampleGroup():
 	
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
-	sampleEnemy1 = load("res://Enemies/WizardEnemy.tres")
+	sampleEnemy1 = load("res://Enemies/TreeEnemy.tres")
 	sampleEnemy2 = load("res://Enemies/TreeEnemy.tres")
-	sampleEnemy3 = load("res://Enemies/ShroomEnemy.tres")
+	sampleEnemy3 = load("res://Enemies/TreeEnemy.tres")
 	var loadEnemy1 = EnemyData.new()
 	var loadEnemy2 = EnemyData.new()
 	var loadEnemy3 = EnemyData.new()
@@ -532,8 +535,9 @@ func processAttacksOld():
 				if movesArray[i].move == 1:
 					movesArray[i].target.enemyData.current_hp -= movesArray[i].source.attack_damage
 					movesArray[i].target.updateHealth()
-					# print(currentPlayerCounter)
-					# showTextBox(str(movesArray[i].source.name) + " dealt " + str(movesArray[i].source.attack_damage) + " to " + str(movesArray[i].target.enemyData.enemy_name))
+					print(currentPlayerCounter)
+					showTextBox(str(movesArray[i].source.name) + " dealt " + str(movesArray[i].source.attack_damage) + " to " + str(movesArray[i].target.enemyData.enemy_name))
+					await get_tree().create_timer(3).timeout
 				# this statement checks if this is a skill move
 				if movesArray[i].move == 2:
 					# this statement checks if this is an attack skill move
@@ -542,35 +546,51 @@ func processAttacksOld():
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(movesArray[i].skill.damage_cal))
+						await get_tree().create_timer(3).timeout
 					# this statement checks if this is a heal move
 					if movesArray[i].skill.type == 1:
 						movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].skill.heal_cal))
+						await get_tree().create_timer(3).timeout
 					# this statement checks if this is an buff move
 					if movesArray[i].skill.type == 2:
 						movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].skill.buff_value))
+						await get_tree().create_timer(3).timeout
 					# this statement checks if this is a debuff move
 					if movesArray[i].skill.type == -2:
 						movesArray[i].target.enemyData.current_hp *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to debuff " + str(movesArray[i].target.enemyData.enemy_name) + " and debuffed for " + str(movesArray[i].skill.buff_value))
+						await get_tree().create_timer(3).timeout
 				if movesArray[i].move == 3:
 					# Check if it is consumable item
 					if movesArray[i].itemInUse.type == 0:
 						movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
-					# Check if it is modifier itemd
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
+						await get_tree().create_timer(3).timeout
+					# Check if it is modifier item
+					
+					# This needs to be changed after we implement proper buff techniques
 					if movesArray[i].itemInUse.type == 1:
 						movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
 						movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
 						movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
+						await get_tree().create_timer(3).timeout
 					# Check if it is an attack item
 					if movesArray[i].itemInUse.type == 2:
 						movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
 						movesArray[i].target.updateHealth()
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyData.enemy_name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
+						await get_tree().create_timer(3).timeout
 		if movesArray[i].isEnemy == 1:
 			if !movesArray[i].enemySource.enemyData.isDead:
 				var targetIsDefending = false
@@ -584,13 +604,28 @@ func processAttacksOld():
 					movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
 				else:
 					movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
+					showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(movesArray[i].enemySource.enemyData.damage) + " damage to " + str(movesArray[i].enemyTarget.name))
+					await get_tree().create_timer(3).timeout
 	updateBattleGroupHealth()
+	isBattling = false
+	theEnd = true
 	typeOfMove = 0
 	currentMoveIndex = 0
 	Global.friendlyOrNot = -1
 	defendingPlayers = [null, null, null, null]
 	showButtons()
 	hideTextBox()
+
+func _process(delta):
+	if currentPlayerCounter >= 4 and not isBattling:
+		isBattling = true
+		selectEnemyMoves()
+		processAttacksOld()
+		await get_tree().create_timer(5).timeout
+		currentPlayerCounter = 0
+	if theEnd:
+		theEnd = false
+		trackBattle()
 
 func updateBattleGroupHealth():
 	player0.updateHealth()
@@ -600,12 +635,6 @@ func updateBattleGroupHealth():
 
 func updatePlayerCounter():
 	currentPlayerCounter += 1
-	
-	if currentPlayerCounter >= 4:
-		currentMoveIndex = 0
-		selectEnemyMoves()
-		processAttacksOld()
-		currentPlayerCounter = 0
 
 func selectEnemyMoves():
 	for i in range(7):
