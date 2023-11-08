@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bebrrwvqa76qd"]
 
-[ext_resource type="FontFile" uid="uid://dpqju3ati8j4v" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_64lfj"]
+[ext_resource type="FontFile" uid="uid://s67rugnlm3d0" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_64lfj"]
 
 [node name="Results" type="Control"]
 layout_mode = 3
@@ -23,21 +23,21 @@ grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = -1
+anchor_right = 0.803114
+anchor_bottom = 0.32197
+offset_right = 216.0
+offset_bottom = 175.0
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_direction = 2
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 65
+size_flags_horizontal = 3
 
 [node name="Player 1" type="Label" parent="Panel/HBoxContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1_64lfj")
 theme_override_font_sizes/font_size = 30
 text = "Player 1
@@ -47,14 +47,16 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_direction = 2
 layout_mode = 2
-theme_override_constants/margin_right = 65
+size_flags_horizontal = 3
 
 [node name="Player 2" type="Label" parent="Panel/HBoxContainer/MarginContainer2"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1_64lfj")
 theme_override_font_sizes/font_size = 30
 text = "Player 2
@@ -64,14 +66,16 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_direction = 2
 layout_mode = 2
-theme_override_constants/margin_right = 65
+size_flags_horizontal = 3
 
 [node name="Player 3" type="Label" parent="Panel/HBoxContainer/MarginContainer3"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1_64lfj")
 theme_override_font_sizes/font_size = 30
 text = "Player 3
@@ -81,13 +85,16 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="MarginContainer4" type="MarginContainer" parent="Panel/HBoxContainer"]
+layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Player 4" type="Label" parent="Panel/HBoxContainer/MarginContainer4"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("1_64lfj")
 theme_override_font_sizes/font_size = 30
 text = "Player 4
@@ -97,3 +104,4 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
