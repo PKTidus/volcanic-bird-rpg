@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bebrrwvqa76qd"]
 
-[ext_resource type="FontFile" uid="uid://s67rugnlm3d0" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_64lfj"]
+[ext_resource type="FontFile" uid="uid://bhj2vmar4ktbd" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_64lfj"]
 
 [node name="Results" type="Control"]
 layout_mode = 3

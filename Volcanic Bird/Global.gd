@@ -19,6 +19,10 @@ var current_mp
 var current_hp
 var current_speed
 var current_level
+var current_magic_damage
+var current_defense
+var current_magic_defense
+var current_magic_attack_damage
 
 # For moving stuff around
 var draggedCreature

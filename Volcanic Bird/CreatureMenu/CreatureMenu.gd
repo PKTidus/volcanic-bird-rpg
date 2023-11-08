@@ -27,6 +27,9 @@ func onCreatureSlotFocus():
 	$Stats/CurMP.text = "Current MP = " + str(Global.current_mp)
 	$Stats/Speed.text = "Speed = " + str(Global.current_speed)
 	$Stats/Level.text = "Level = " + str(Global.current_level)
+	$"Stats/Magic Attack Damage".text = "Magic Attack Damage = " + str(Global.current_magic_damage)
+	$"Stats/Magic Defense".text = "Magic Defense = " + str(Global.current_magic_defense)
+	$Stats/Defense.text = "Defense = " + str(Global.current_defense)
 	$CurrentlyCarrying.text = "Currently Carrying = " + str(Global.current_name)
 	
 
