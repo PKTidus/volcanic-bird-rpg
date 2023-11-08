@@ -47,7 +47,7 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer"]
 layout_direction = 2
@@ -66,7 +66,7 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="MarginContainer3" type="MarginContainer" parent="Panel/HBoxContainer"]
 layout_direction = 2
@@ -85,7 +85,7 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="MarginContainer4" type="MarginContainer" parent="Panel/HBoxContainer"]
 layout_direction = 2
@@ -104,4 +104,4 @@ Obtained Skills:
 Brap"
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 2
+autowrap_mode = 3
