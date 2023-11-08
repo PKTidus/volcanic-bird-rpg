@@ -230,19 +230,15 @@ offset_bottom = 136.0
 
 [node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="BackButton" type="Button" parent="Party Panel/Party Container"]
 layout_mode = 2

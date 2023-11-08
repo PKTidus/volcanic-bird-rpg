@@ -260,26 +260,40 @@ func trackBattle():
 		if !player0.creatureData.isDead:
 			print("Player 0's Turn")
 			updateTextBox("It is " + player0.creatureData.name + "'s turn")
+			hideAllColorRects()
+			$"Party Panel/Party Container/Player0/ColorRect".show()
 		else:
 			updatePlayerCounter()
 	if currentPlayerCounter == 1:
 		if !player1.creatureData.isDead:
 			print("Player 1's Turn")
 			updateTextBox("It is " + player1.creatureData.name + "'s turn")
+			hideAllColorRects()
+			$"Party Panel/Party Container/Player1/ColorRect".show()
 		else:
 			updatePlayerCounter()
 	if currentPlayerCounter == 2:
 		if !player2.creatureData.isDead:
 			print("Player 2's Turn")
 			updateTextBox("It is " + player2.creatureData.name + "'s turn")
+			hideAllColorRects()
+			$"Party Panel/Party Container/Player2/ColorRect".show()
 		else:
 			updatePlayerCounter()
 	if currentPlayerCounter == 3:
 		if !player3.creatureData.isDead:
 			print("Player 3's Turn")
 			updateTextBox("It is " + player3.creatureData.name + "'s turn")
+			hideAllColorRects()
+			$"Party Panel/Party Container/Player3/ColorRect".show()
 		else:
 			updatePlayerCounter()
+
+func hideAllColorRects():
+	$"Party Panel/Party Container/Player0/ColorRect".hide()
+	$"Party Panel/Party Container/Player1/ColorRect".hide()
+	$"Party Panel/Party Container/Player2/ColorRect".hide()
+	$"Party Panel/Party Container/Player3/ColorRect".hide()
 
 func _on_attack_pressed():
 	typeOfMove = 1
@@ -618,6 +632,7 @@ func processAttacksOld():
 
 func _process(delta):
 	if currentPlayerCounter >= 4 and not isBattling:
+		hideAllColorRects()
 		isBattling = true
 		selectEnemyMoves()
 		processAttacksOld()
