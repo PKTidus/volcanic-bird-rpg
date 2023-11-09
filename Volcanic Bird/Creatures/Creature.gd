@@ -103,4 +103,4 @@ func setLevel(level):
 
 func defend(receivingAttack):
 	receivingAttack /= (self.defense + 100 / 100)
-	self.cur_hp -= receivingAttack
+	self.cur_hp -= max(1, receivingAttack)
