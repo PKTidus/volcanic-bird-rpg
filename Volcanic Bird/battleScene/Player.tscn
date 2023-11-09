@@ -66,4 +66,5 @@ visible = false
 layout_mode = 0
 offset_right = 227.0
 offset_bottom = 136.0
+mouse_filter = 2
 color = Color(0.956863, 0, 0.180392, 0.164706)

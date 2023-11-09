@@ -535,7 +535,7 @@ func processAttacks():
 	# Execute all moves in the order they occur
 	var bh = BattleHelper.new(movesArray)
 	bh.processBattle()
-		
+	
 	updateBattleGroupHealth()
 	typeOfMove = 0
 	Global.friendlyOrNot = -1
