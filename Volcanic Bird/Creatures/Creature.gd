@@ -30,12 +30,12 @@ class_name Creatures
 
 
 func levelUp():
-	agility += 5
-	strength += 5
-	intelligence += 5
-	modifyStrength(5)
-	modifyIntelligence(5)
-	modifyAgility(5)
+	agility += AGI_growth
+	strength += STR_growth
+	intelligence += INT_growth
+	modifyStrength(STR_growth)
+	modifyIntelligence(INT_growth)
+	modifyAgility(AGI_growth)
 	
 func modifyStrength(value : int):
 	attack_damage += value
