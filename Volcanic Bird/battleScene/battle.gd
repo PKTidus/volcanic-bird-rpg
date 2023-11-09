@@ -573,10 +573,12 @@ func processAttacksOld():
 		if movesArray[i].isEnemy == 0:
 			if !movesArray[i].source.isDead:
 				if movesArray[i].move == 1:
-					movesArray[i].target.enemyData.current_hp -= movesArray[i].source.attack_damage
+					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyData.defense)
+					
+					movesArray[i].target.enemyData.current_hp -= currentDamage
 					movesArray[i].target.updateHealth()
 					print(currentPlayerCounter)
-					showTextBox(str(movesArray[i].source.name) + " dealt " + str(movesArray[i].source.attack_damage) + " to " + str(movesArray[i].target.enemyData.enemy_name))
+					showTextBox(str(movesArray[i].source.name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
 					await get_tree().create_timer(3).timeout
 				# this statement checks if this is a skill move
 				if movesArray[i].move == 2:
@@ -634,6 +636,7 @@ func processAttacksOld():
 		if movesArray[i].isEnemy == 1:
 			if !movesArray[i].enemySource.enemyData.isDead:
 				var targetIsDefending = false
+				var currentDamage = 0
 				
 				# check if the target is defending
 				for j in range (4):
@@ -641,11 +644,13 @@ func processAttacksOld():
 						targetIsDefending = true
 				
 				if targetIsDefending:
-					movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
+					currentDamage = movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
 				else:
-					movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
-					showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(movesArray[i].enemySource.enemyData.damage) + " damage to " + str(movesArray[i].enemyTarget.name))
-					await get_tree().create_timer(3).timeout
+					currentDamage = max(1, movesArray[i].enemySource.enemyData.damage / movesArray[i].enemyTarget.defense)
+				
+				movesArray[i].enemyTarget.cur_hp -= currentDamage
+				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
+				await get_tree().create_timer(3).timeout
 	updateBattleGroupHealth()
 	isBattling = false
 	theEnd = true
