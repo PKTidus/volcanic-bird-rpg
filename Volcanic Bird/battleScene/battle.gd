@@ -239,9 +239,18 @@ func trackBattle():
 	print("Selected Enemies:  " + str(selectedEnemies))
 	print("Defending Players: " + str(defendingPlayers))
 	
-	# Check if battle is over
+	# Check if the player's party has been defeated
+	if partyIsDead():
+		print("Party is dead")
+		updateTextBox("Your party has been defeated!")
+		await get_tree().create_timer(3).timeout
+		updateTextBox("You ran away...")
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	
+	# Check if the enemies are dead
 	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
-		print("BATTLE OVER")
+		print("Enemies are dead")
 		updateTextBox("You and your party won!")
 		disableButtons()
 		
@@ -288,6 +297,9 @@ func trackBattle():
 			$"Party Panel/Party Container/Player3/ColorRect".show()
 		else:
 			updatePlayerCounter()
+
+func partyIsDead():
+	return player0.creatureData.isDead && player1.creatureData.isDead && player2.creatureData.isDead && player3.creatureData.isDead
 
 func hideAllColorRects():
 	$"Party Panel/Party Container/Player0/ColorRect".hide()
@@ -369,17 +381,31 @@ func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
 	var randomNumber = rng.randi_range(1, 100)
 	
+	print(randomNumber)
+	
 	# Low Chance: Party escapes unharmed
 	if randomNumber >= 1 && randomNumber <= 20:
 		showTextBox("You and your party ran away.")
 	
 	# High Chance: Party escapes with hp damage
 	elif randomNumber >= 21 && randomNumber <= 100:
-		showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
 		player0.creatureData.decreaseHealth(5)
 		player1.creatureData.decreaseHealth(5)
 		player2.creatureData.decreaseHealth(5)
 		player3.creatureData.decreaseHealth(5)
+		
+		player0.updateHealth()
+		player1.updateHealth()
+		player2.updateHealth()
+		player3.updateHealth()
+		
+		if partyIsDead():
+			updateTextBox("Your party loses 5 HP and has been defeated!\n")
+			await get_tree().create_timer(3).timeout
+			updateTextBox("You ran away...")
+			await get_tree().create_timer(3).timeout
+		else:
+			showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
 		
 		updateBattleGroupHealth()
 	

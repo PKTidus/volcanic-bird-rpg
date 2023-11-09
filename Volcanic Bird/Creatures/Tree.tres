@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://bpxjfercakhen" path="res://Resources/Sprites/tree-32.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cky0am07yc6e8" path="res://Resources/Sprites/tree-32.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -8,14 +8,14 @@ script = ExtResource("2")
 name = "Blood Eyed Tree"
 description = "Why bro bleeding from his eyes?"
 texture = ExtResource("1")
-level = 1
-experience = 1
 agility = 5
 strength = 10
 intelligence = 10
+level = 1
+experience = 1
 max_hp = 20
 max_mp = 15
-cur_hp = 20
+cur_hp = 1
 cur_mp = 15
 attack_damage = 20
 magic_attack_damage = 0
@@ -27,3 +27,4 @@ AGI_growth = 2
 INT_growth = 1
 skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres"])
 skillList = Array[Resource]([])
+isDead = false
