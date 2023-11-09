@@ -39,16 +39,16 @@ func levelUp():
 	
 func modifyStrength(value : int):
 	attack_damage += value
-	max_hp += value
-	defense += value
+	max_hp += value*2
+	defense += value+2
 
 func modifyAgility(value : int):
 	speed += value
 
 func modifyIntelligence(value : int):
-	magic_attack_damage += value
-	magic_defense += value
-	max_mp += value
+	magic_attack_damage += value+5
+	magic_defense += value+2
+	max_mp += value*2
 	
 func initializeCreature(sampleCreature):
 	name = sampleCreature.name
