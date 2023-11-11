@@ -24,5 +24,13 @@ static var List = [
 	),
 	
 	# demo event 3
-	Event.new("k", "l", "m", "n", "o"),
+	Event.new(
+		"Spontaneous Party", 
+		
+		"A spontaneous party erupts out of nowhere. A mob of rowdy townspeople are drinking, hollering, and having a great time. It would, however, be a great time to search through their belongings...", 
+		
+		"Pickpocket them", 
+		"Ignore them", 
+		"Join in"
+	),
 ]
