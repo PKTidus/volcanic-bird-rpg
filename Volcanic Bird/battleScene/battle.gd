@@ -359,7 +359,6 @@ func _on_item_pressed():
 	if Global.itemInventory.size() != 0:
 		for node in $"Item List Panel/Item List Container".get_children():
 			if Global.itemInventory[index].inUse == false:
-				print("in here bitch")
 				oneItemExists = true
 				node.Item = Global.itemInventory[index]
 				node.emit_signal("updateItemButton")
