@@ -56,9 +56,9 @@ func addToBattleGroup():
 	emit_signal("battleGroup_changed")
 	
 func addToInventory():
-	print("1")
+	if itemInventory.size() >= 12:
+		return
 	if draggedItemStorage != null:
-		print("2")
 		itemInventory.append(draggedItemStorage)
 		itemStorage.erase(draggedItemStorage)
 		draggedItemStorage = null

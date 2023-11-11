@@ -28,6 +28,7 @@ func instanceSlots():
 			newStorageSlot.Item = Global.itemStorage[storageIndex]
 			
 		$StorageContainer/VBoxContainer.add_child(newStorageSlot)
+	$"Current Amount".text = "Current = " + str(Global.itemInventory.size())
 
 
 func _on_add_to_storage_pressed():
