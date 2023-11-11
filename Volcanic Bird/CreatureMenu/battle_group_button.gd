@@ -1,10 +1,13 @@
 extends Button
 
+signal updateBattleButton
+
 @export var creatureData : Resource
 
 func _ready():
 	#self.group = Global.playerBattleGroup_buttongroup
 	Global.connect("battleGroup_changed", onBattleGroupChange)
+	self.connect("updateBattleButton", updateSlot)
 	updateSlot()
 
 func onBattleGroupChange():
