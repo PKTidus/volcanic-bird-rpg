@@ -308,3 +308,4 @@ grow_vertical = 0
 [connection signal="pressed" from="Party Panel/Party Container/Player1" to="." method="_on_player_1_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player2" to="." method="_on_player_2_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player3" to="." method="_on_player_3_pressed"]
+[connection signal="pressed" from="Party Panel/Party Container/BackButton" to="." method="_on_back_button_pressed"]
