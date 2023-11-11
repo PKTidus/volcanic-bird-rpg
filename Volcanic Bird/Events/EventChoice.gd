@@ -1,10 +1,17 @@
 extends Node2D
 
+var event_manager: EventManager
+var event: Event
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	self.event_manager = EventManager.new()
+	self.event = self.event_manager.event
+	$"EventTitle".text = self.event.title
+	$"EventDescription".text = self.event.description
+	$"Option A".text = self.event.option_a_label
+	$"Option B".text = self.event.option_b_label
+	$"Option C".text = self.event.option_c_label
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

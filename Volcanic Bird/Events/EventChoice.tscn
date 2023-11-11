@@ -20,14 +20,14 @@ color = Color(0, 0.576471, 0.0941176, 1)
 [node name="EventTitle" type="RichTextLabel" parent="."]
 offset_left = 20.0
 offset_top = 44.0
-offset_right = 374.0
+offset_right = 1128.0
 offset_bottom = 102.0
 size_flags_stretch_ratio = 3.55
 theme_override_fonts/normal_font = ExtResource("1_ibbpp")
 theme_override_font_sizes/normal_font_size = 65
 text = "EVENT TITLE"
 
-[node name="EventTitle2" type="RichTextLabel" parent="."]
+[node name="EventDescription" type="RichTextLabel" parent="."]
 offset_left = 20.0
 offset_top = 157.0
 offset_right = 763.0
@@ -35,12 +35,13 @@ offset_bottom = 404.0
 size_flags_stretch_ratio = 3.55
 theme_override_fonts/normal_font = ExtResource("1_ibbpp")
 theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut sem nulla pharetra diam. Iaculis nunc sed augue lacus viverra vitae congue eu consequat. Enim tortor at auctor urna nunc id. Dolor sit amet consectetur adipiscing elit."
 
 [node name="Option A" type="Button" parent="."]
-offset_left = 62.0
+offset_left = 201.0
 offset_top = 543.0
-offset_right = 269.0
+offset_right = 408.0
 offset_bottom = 611.0
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_ibbpp")
@@ -58,9 +59,9 @@ theme_override_font_sizes/font_size = 30
 text = "Option B"
 
 [node name="Option C" type="Button" parent="."]
-offset_left = 893.0
+offset_left = 763.0
 offset_top = 543.0
-offset_right = 1100.0
+offset_right = 970.0
 offset_bottom = 611.0
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("1_ibbpp")
