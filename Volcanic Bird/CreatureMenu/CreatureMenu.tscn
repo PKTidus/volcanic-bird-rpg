@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://CreatureMenu/CreatureMenu.gd" id="1_4q546"]
 [ext_resource type="PackedScene" uid="uid://cs8rlnooal4yd" path="res://CreatureMenu/creature_button.tscn" id="1_xh84t"]
 [ext_resource type="PackedScene" uid="uid://cabx0stuuqixk" path="res://CreatureMenu/battle_group.tscn" id="2_exaw5"]
-[ext_resource type="FontFile" uid="uid://b1h3f7pjc7o6" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_odtno"]
+[ext_resource type="FontFile" uid="uid://blsm6ywontfgr" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_odtno"]
 
 [node name="Inventory" type="Panel"]
 anchors_preset = 15

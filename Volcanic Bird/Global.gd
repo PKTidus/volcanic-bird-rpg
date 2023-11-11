@@ -49,6 +49,7 @@ func addToBattleGroup():
 			battleGroup[battleGroup.find(draggedCreature)] = null
 	battleGroup[draggedCreatureIndex] = draggedCreature
 	emit_signal("battleGroup_changed")
+	emit_signal("battleGroup_changed")
 	
 func addToInventory():
 	print("1")
