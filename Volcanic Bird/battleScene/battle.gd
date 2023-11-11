@@ -356,9 +356,10 @@ func _on_item_pressed():
 		
 	var index = 0
 	var oneItemExists = false
-	if Global.itemInventory.size() >= 0:
+	if Global.itemInventory.size() != 0:
 		for node in $"Item List Panel/Item List Container".get_children():
 			if Global.itemInventory[index].inUse == false:
+				print("in here bitch")
 				oneItemExists = true
 				node.Item = Global.itemInventory[index]
 				node.emit_signal("updateItemButton")
@@ -366,9 +367,9 @@ func _on_item_pressed():
 			index += 1
 			if index >= Global.itemInventory.size():
 				break
-			if oneItemExists:
-				$"Item List Panel".show()
-				showTextBox("Which Item")
+		if oneItemExists:
+			$"Item List Panel".show()
+			showTextBox("Which Item")
 
 func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
