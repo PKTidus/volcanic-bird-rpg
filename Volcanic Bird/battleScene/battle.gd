@@ -367,15 +367,20 @@ func _on_item_pressed():
 		node.hide()
 		
 	var index = 0
-	for node in $"Item List Panel/Item List Container".get_children():
-		node.Item = Global.itemInventory[index]
-		node.emit_signal("updateItemButton")
-		node.show()
-		index += 1
-		if index >= Global.itemInventory.size():
-			break
-	$"Item List Panel".show()
-	showTextBox("Which Item?")
+	var oneItemExists = false
+	if Global.itemInventory.size() != 0:
+		for node in $"Item List Panel/Item List Container".get_children():
+			if Global.itemInventory[index].inUse == false:
+				oneItemExists = true
+				node.Item = Global.itemInventory[index]
+				node.emit_signal("updateItemButton")
+				node.show()
+			index += 1
+			if index >= Global.itemInventory.size():
+				break
+		if oneItemExists:
+			$"Item List Panel".show()
+			showTextBox("Which Item")
 
 func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
@@ -501,6 +506,7 @@ func _on_enemy1_pressed():
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
 	if typeOfMove == 3:
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		Global.clickedItem.inUse = true
 		
 	updatePlayerCounter()
 	
@@ -521,6 +527,7 @@ func _on_enemy2_pressed():
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
 	if typeOfMove == 3:
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		Global.clickedItem.inUse = true
 	
 	updatePlayerCounter()
 	
@@ -541,6 +548,7 @@ func _on_enemy3_pressed():
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
 	if typeOfMove == 3:
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		Global.clickedItem.inUse = true
 	
 	updatePlayerCounter()
 	
@@ -589,21 +597,21 @@ func processAttacksOld():
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(movesArray[i].skill.damage_cal))
-						await get_tree().create_timer(3).timeout
+						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a heal move
 					if movesArray[i].skill.type == 1:
 						movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].skill.heal_cal))
-						await get_tree().create_timer(3).timeout
+						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is an buff move
 					if movesArray[i].skill.type == 2:
 						movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].skill.buff_value))
-						await get_tree().create_timer(3).timeout
+						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a debuff move
 					if movesArray[i].skill.type == -2:
 						movesArray[i].target.enemyData.current_hp *= movesArray[i].skill.buff_value
@@ -611,28 +619,31 @@ func processAttacksOld():
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to debuff " + str(movesArray[i].target.enemyData.enemy_name) + " and debuffed for " + str(movesArray[i].skill.buff_value))
-						await get_tree().create_timer(3).timeout
+						await get_tree().create_timer(1.5).timeout
 				if movesArray[i].move == 3:
 					# Check if it is consumable item
 					if movesArray[i].itemInUse.type == 0:
 						movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
-						await get_tree().create_timer(3).timeout
+						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
+						
 					# Check if it is modifier item
-					
 					# This needs to be changed after we implement proper buff techniques
 					if movesArray[i].itemInUse.type == 1:
 						movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
 						movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
 						movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
-						await get_tree().create_timer(3).timeout
+						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
 					# Check if it is an attack item
 					if movesArray[i].itemInUse.type == 2:
 						movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
 						movesArray[i].target.updateHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyData.enemy_name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
-						await get_tree().create_timer(3).timeout
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyData.enemy_name) + " and damaged for " + str(movesArray[i].itemInUse.damage))
+						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
 		if movesArray[i].isEnemy == 1:
 			if !movesArray[i].enemySource.enemyData.isDead:
 				var targetIsDefending = false
@@ -650,7 +661,8 @@ func processAttacksOld():
 				
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
-				await get_tree().create_timer(3).timeout
+				await get_tree().create_timer(1.5).timeout
+        
 	updateBattleGroupHealth()
 	isBattling = false
 	theEnd = true
@@ -700,6 +712,7 @@ func _on_player_0_pressed():
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[0]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		Global.clickedItem.inUse = true
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
@@ -720,6 +733,7 @@ func _on_player_1_pressed():
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[1]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		Global.clickedItem.inUse = true
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
@@ -740,6 +754,7 @@ func _on_player_2_pressed():
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[2]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		Global.clickedItem.inUse = true
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
@@ -759,6 +774,7 @@ func _on_player_3_pressed():
 		selectedEnemies[currentPlayerCounter].friendlyTarget = Global.battleGroup[3]
 		selectedEnemies[currentPlayerCounter].move = typeOfMove
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
+		Global.clickedItem.inUse = true
 		updatePlayerCounter()
 		hideTextBox()
 		showButtons()
@@ -770,3 +786,16 @@ func _on_player_3_pressed():
 func _on_timer_timeout():
 	currentMoveIndex += 1
 	processAttacksOld()
+
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+# NEED TO IMPLEMENT
+func _on_back_button_pressed():
+	pass # Replace with function body.

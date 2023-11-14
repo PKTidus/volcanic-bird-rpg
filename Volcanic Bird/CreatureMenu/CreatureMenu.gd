@@ -3,10 +3,19 @@ extends Panel
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.connect("battleGroup_changed", battleGroupChanged)
+	fillBattleButtons()
 	instanceInventorySlots()
+	loadInBattleGroup()
 
 func battleGroupChanged():
 	instanceInventorySlots()
+
+func loadInBattleGroup():
+	var battleGroupIndex = 0
+	for node in $BattleGroup.get_children():
+		node.creatureData = Global.battleGroup[battleGroupIndex]
+		battleGroupIndex += 1
+		node.emit_signal("updateBattleButton")
 
 func instanceInventorySlots():
 	# Removing current nodes in storage
@@ -19,6 +28,7 @@ func instanceInventorySlots():
 		newCreatureSlot.creatureData = Global.creatureStorage[itemIndex]
 		$Characters/VBoxContainer.add_child(newCreatureSlot)
 		newCreatureSlot.connect("creatureSlotFocus", onCreatureSlotFocus)
+
 func onCreatureSlotFocus():
 	$Name.text = "Name = " + str(Global.current_name)
 	$Description.text = str(Global.current_description)
@@ -31,8 +41,6 @@ func onCreatureSlotFocus():
 	$"Stats/Magic Defense".text = "Magic Defense = " + str(Global.current_magic_defense)
 	$Stats/Defense.text = "Defense = " + str(Global.current_defense)
 	$CurrentlyCarrying.text = "Currently Carrying = " + str(Global.current_name)
-	
-
 
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
