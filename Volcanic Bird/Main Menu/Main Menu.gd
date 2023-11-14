@@ -66,9 +66,10 @@ func loadSampleItem():
 	tempItem3.initializeItem(sampleItem3)
 	Global.itemInventory.append(tempItem3)
 	
-	var tempItem4 = Item.new()
-	tempItem4.initializeItem(sampleItem)
-	Global.itemStorage.append(tempItem4)
+	for i in range(15):
+		var tempItem4 = Item.new()
+		tempItem4.initializeItem(sampleItem)
+		Global.itemStorage.append(tempItem4)
 	
 	var tempItem5 = Item.new()
 	tempItem5.initializeItem(sampleItem2)
