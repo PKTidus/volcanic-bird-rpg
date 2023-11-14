@@ -346,16 +346,20 @@ func _on_skill_pressed():
 	# Creature in that specific index and then I emit the signal to update those changes
 	# to the buttons interface and then I show that specific node that does contain a skill
 	var index = 0
+	var oneSkillExists = false
 	for node in $"Skill List Panel/Skill List Container".get_children():
 		if Global.battleGroup[currentPlayerCounter].skillList.size() != 0:
-			node.skill = Global.battleGroup[currentPlayerCounter].skillList[index]
-			node.emit_signal("updateSkillButton")
-			node.show()
+			if Global.battleGroup[currentPlayerCounter].level >= Global.battleGroup[currentPlayerCounter].skillList[index].unlockLevel:
+				oneSkillExists = true
+				node.skill = Global.battleGroup[currentPlayerCounter].skillList[index]
+				node.emit_signal("updateSkillButton")
+				node.show()
 			index += 1
 			if index >= Global.battleGroup[currentPlayerCounter].skillList.size():
 				break
-	$"Skill List Panel".show()
-	showTextBox("Which Skill?")
+	if oneSkillExists:
+		$"Skill List Panel".show()
+		showTextBox("Which Skill?")
 
 func _on_defend_pressed():
 	print("Defend Button Pressed")
@@ -805,29 +809,23 @@ func _on_timer_timeout():
 	currentMoveIndex += 1
 	processAttacksOld()
 
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
-# NEED TO IMPLEMENT
 func _on_back_button_pressed():
 	# Decrement if needed
 	if currentPlayerCounter <= 0:
 		currentPlayerCounter = 0
 	if currentPlayerCounter >= 1:
 		currentPlayerCounter -= 1
-	
+	$"Item List Panel".hide()
+	$"Skill List Panel".hide()
+	showButtons()
 	# Reset all the choices
 	selectedEnemies[currentPlayerCounter].target = null
 	selectedEnemies[currentPlayerCounter].friendlyTarget = null
 	selectedEnemies[currentPlayerCounter].skill = null
-	selectedEnemies[currentPlayerCounter].itemInUse.inUse = false
+	if selectedEnemies[currentPlayerCounter].itemInUse != null:
+		selectedEnemies[currentPlayerCounter].itemInUse.inUse = false
 	selectedEnemies[currentPlayerCounter].itemInUse = null
 	selectedEnemies[currentPlayerCounter].move = 0
+	typeOfMove = 0
 	
 	trackBattle()

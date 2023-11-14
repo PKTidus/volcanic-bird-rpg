@@ -7,6 +7,7 @@ class_name Skill
 @export var damage_cal : int
 @export var heal_cal : int
 @export var buff_value : float
+@export var unlockLevel : int
 
 # 0 = attack
 # 1 = heal
