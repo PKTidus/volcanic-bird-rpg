@@ -597,6 +597,10 @@ func processAttacks():
 	Global.friendlyOrNot = -1
 	showButtons()
 	hideTextBox()
+	
+func playAnimation(index):
+	if movesArray[index].target == $"Enemies Container/Enemy1":
+		$"Enemies Container/Enemy1/AnimationPlayer".play("enemy_damaged")
 
 func processAttacksOld():
 	for i in range(7):
@@ -607,9 +611,10 @@ func processAttacksOld():
 					
 					movesArray[i].target.enemyData.current_hp -= currentDamage
 					movesArray[i].target.updateHealth()
-					print(currentPlayerCounter)
+					movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
+					
 					showTextBox(str(movesArray[i].source.name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
-					await get_tree().create_timer(3).timeout
+					await get_tree().create_timer(1.5).timeout
 				# this statement checks if this is a skill move
 				if movesArray[i].move == 2:
 					# this statement checks if this is an attack skill move
@@ -618,6 +623,7 @@ func processAttacksOld():
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
+						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(movesArray[i].skill.damage_cal))
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a heal move
@@ -640,6 +646,7 @@ func processAttacksOld():
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
+						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to debuff " + str(movesArray[i].target.enemyData.enemy_name) + " and debuffed for " + str(movesArray[i].skill.buff_value))
 						await get_tree().create_timer(1.5).timeout
 				if movesArray[i].move == 3:
@@ -663,6 +670,7 @@ func processAttacksOld():
 					if movesArray[i].itemInUse.type == 2:
 						movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
 						movesArray[i].target.updateHealth()
+						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyData.enemy_name) + " and damaged for " + str(movesArray[i].itemInUse.damage))
 						Global.itemInventory.erase(movesArray[i].itemInUse)
 						await get_tree().create_timer(1.5).timeout
