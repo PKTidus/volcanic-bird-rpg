@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://dwdfqw467p7kn"]
 
-[ext_resource type="Texture2D" uid="uid://b2rapegp5xut0" path="res://Resources/Sprites/flower.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bvxug5fox8ui2" path="res://Resources/Sprites/flower.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -19,7 +19,7 @@ cur_hp = 10
 cur_mp = 10
 attack_damage = 5
 magic_attack_damage = 0
-defense = 0
+defense = 1
 magic_defense = 0
 speed = 1000000
 STR_growth = 0

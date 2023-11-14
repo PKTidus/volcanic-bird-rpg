@@ -14,3 +14,4 @@ damage = 50
 nameLabel = "Deadly Poison"
 costLabel = "Deal 50 damage"
 descriptionLabel = "It sort of stinks."
+inUse = false

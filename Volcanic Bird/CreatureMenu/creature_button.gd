@@ -34,6 +34,9 @@ func _on_focus_entered():
 		Global.current_mp = str(creatureData.cur_mp) + "/" + str(creatureData.max_mp)
 		Global.current_speed = str(creatureData.speed)
 		Global.current_level = str(creatureData.level)
+		Global.current_defense = str(creatureData.defense)
+		Global.current_magic_defense = str(creatureData.magic_defense)
+		Global.current_magic_damage = str(creatureData.magic_attack_damage)
 	emit_signal("creatureSlotFocus")
 
 func _on_pressed():

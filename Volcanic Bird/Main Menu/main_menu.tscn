@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk7bif3ksvmqv"]
+[gd_scene load_steps=3 format=3 uid="uid://b86apxscyb08y"]
 
-[ext_resource type="Script" path="res://Main Menu.gd" id="1_m5dlg"]
-[ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_02ror"]
+[ext_resource type="Script" path="res://Main Menu/Main Menu.gd" id="1_or7ag"]
+[ext_resource type="FontFile" uid="uid://blsm6ywontfgr" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_02ror"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_m5dlg")
+script = ExtResource("1_or7ag")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
