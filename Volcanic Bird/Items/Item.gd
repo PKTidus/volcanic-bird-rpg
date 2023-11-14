@@ -4,17 +4,17 @@ class_name Item
 
 # Type is used to define what kind of item it is.
 # 0 = Consumable, 1 = Modifier, 2 = Attack
-var type : int
-var modify_strength : int
-var modify_agility: int
-var modify_intelligence : int
-var mp_heal : int
-var hp_heal : int
-var damage : int
-var nameLabel : String
-var costLabel : String
-var descriptionLabel : String
-var inUse : bool
+@export var type : int
+@export var modify_strength : int
+@export var modify_agility: int
+@export var modify_intelligence : int
+@export var mp_heal : int
+@export var hp_heal : int
+@export var damage : int
+@export var nameLabel : String
+@export var costLabel : String
+@export var descriptionLabel : String
+@export var inUse : bool
 
 func initializeItem(item):
 	type = item.type
