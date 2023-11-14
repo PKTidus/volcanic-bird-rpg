@@ -6,6 +6,14 @@ func _ready():
 	instanceInventorySlots()
 	loadInBattleGroup()
 
+func hideNameChange():
+	$"Creature Name".hide()
+	$NameButton.hide()
+
+func showNameChange():
+	$"Creature Name".show()
+	$NameButton.show()
+
 func battleGroupChanged():
 	instanceInventorySlots()
 
@@ -40,7 +48,18 @@ func onCreatureSlotFocus():
 	$"Stats/Magic Defense".text = "Magic Defense = " + str(Global.current_magic_defense)
 	$Stats/Defense.text = "Defense = " + str(Global.current_defense)
 	$CurrentlyCarrying.text = "Currently Carrying = " + str(Global.current_name)
+	showNameChange()
 
 func _on_button_pressed():
 	Global.draggedCreature = null
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+
+func _on_name_button_pressed():
+	if Global.draggedCreature != null:
+		var newName = $"Creature Name".text
+		print(newName)
+		Global.draggedCreature.name = newName
+		$"Creature Name".clear()
+		instanceInventorySlots()
+		loadInBattleGroup()
+		$Name.text = "Name = " + str(newName)
