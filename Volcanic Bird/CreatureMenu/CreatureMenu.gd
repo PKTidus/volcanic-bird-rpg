@@ -3,6 +3,7 @@ extends Panel
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.connect("battleGroup_changed", battleGroupChanged)
+	fillBattleButtons()
 	instanceInventorySlots()
 	loadInBattleGroup()
 
