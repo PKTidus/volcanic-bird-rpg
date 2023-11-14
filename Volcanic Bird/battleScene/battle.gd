@@ -239,9 +239,18 @@ func trackBattle():
 	print("Selected Enemies:  " + str(selectedEnemies))
 	print("Defending Players: " + str(defendingPlayers))
 	
-	# Check if battle is over
+	# Check if the player's party has been defeated
+	if partyIsDead():
+		print("Party is dead")
+		updateTextBox("Your party has been defeated!")
+		await get_tree().create_timer(3).timeout
+		updateTextBox("You ran away...")
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	
+	# Check if the enemies are dead
 	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
-		print("BATTLE OVER")
+		print("Enemies are dead")
 		updateTextBox("You and your party won!")
 		disableButtons()
 		
@@ -288,6 +297,9 @@ func trackBattle():
 			$"Party Panel/Party Container/Player3/ColorRect".show()
 		else:
 			updatePlayerCounter()
+
+func partyIsDead():
+	return player0.creatureData.isDead && player1.creatureData.isDead && player2.creatureData.isDead && player3.creatureData.isDead
 
 func hideAllColorRects():
 	$"Party Panel/Party Container/Player0/ColorRect".hide()
@@ -374,17 +386,31 @@ func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
 	var randomNumber = rng.randi_range(1, 100)
 	
+	print(randomNumber)
+	
 	# Low Chance: Party escapes unharmed
 	if randomNumber >= 1 && randomNumber <= 20:
 		showTextBox("You and your party ran away.")
 	
 	# High Chance: Party escapes with hp damage
 	elif randomNumber >= 21 && randomNumber <= 100:
-		showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
 		player0.creatureData.decreaseHealth(5)
 		player1.creatureData.decreaseHealth(5)
 		player2.creatureData.decreaseHealth(5)
 		player3.creatureData.decreaseHealth(5)
+		
+		player0.updateHealth()
+		player1.updateHealth()
+		player2.updateHealth()
+		player3.updateHealth()
+		
+		if partyIsDead():
+			updateTextBox("Your party loses 5 HP and has been defeated!\n")
+			await get_tree().create_timer(3).timeout
+			updateTextBox("You ran away...")
+			await get_tree().create_timer(3).timeout
+		else:
+			showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
 		
 		updateBattleGroupHealth()
 	
@@ -555,11 +581,13 @@ func processAttacksOld():
 		if movesArray[i].isEnemy == 0:
 			if !movesArray[i].source.isDead:
 				if movesArray[i].move == 1:
-					movesArray[i].target.enemyData.current_hp -= movesArray[i].source.attack_damage
+					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyData.defense)
+					
+					movesArray[i].target.enemyData.current_hp -= currentDamage
 					movesArray[i].target.updateHealth()
 					print(currentPlayerCounter)
-					showTextBox(str(movesArray[i].source.name) + " dealt " + str(movesArray[i].source.attack_damage) + " to " + str(movesArray[i].target.enemyData.enemy_name))
-					await get_tree().create_timer(1.5).timeout
+					showTextBox(str(movesArray[i].source.name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
+					await get_tree().create_timer(3).timeout
 				# this statement checks if this is a skill move
 				if movesArray[i].move == 2:
 					# this statement checks if this is an attack skill move
@@ -619,6 +647,7 @@ func processAttacksOld():
 		if movesArray[i].isEnemy == 1:
 			if !movesArray[i].enemySource.enemyData.isDead:
 				var targetIsDefending = false
+				var currentDamage = 0
 				
 				# check if the target is defending
 				for j in range (4):
@@ -626,11 +655,14 @@ func processAttacksOld():
 						targetIsDefending = true
 				
 				if targetIsDefending:
-					movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
+					currentDamage = movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
 				else:
-					movesArray[i].enemyTarget.cur_hp -= movesArray[i].enemySource.enemyData.damage
-					showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(movesArray[i].enemySource.enemyData.damage) + " damage to " + str(movesArray[i].enemyTarget.name))
-					await get_tree().create_timer(1.5).timeout
+					currentDamage = max(1, movesArray[i].enemySource.enemyData.damage / movesArray[i].enemyTarget.defense)
+				
+				movesArray[i].enemyTarget.cur_hp -= currentDamage
+				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
+				await get_tree().create_timer(1.5).timeout
+        
 	updateBattleGroupHealth()
 	isBattling = false
 	theEnd = true
