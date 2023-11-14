@@ -1,16 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://boe11sr5b1bb1"]
 
 [ext_resource type="Script" path="res://battleScene/Player.gd" id="1_maeio"]
-[ext_resource type="FontFile" uid="uid://dpqju3ati8j4v" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
+[ext_resource type="FontFile" uid="uid://bhj2vmar4ktbd" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
 
 [node name="Player" type="Button"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -960.0
-offset_bottom = -520.0
+offset_right = -925.0
+offset_bottom = -512.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_maeio")
 
 [node name="Name" type="Label" parent="."]
@@ -58,3 +60,11 @@ offset_bottom = 98.0
 theme_override_fonts/font = ExtResource("2_gonme")
 theme_override_font_sizes/font_size = 27
 text = "100"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 227.0
+offset_bottom = 136.0
+mouse_filter = 2
+color = Color(0.956863, 0, 0.180392, 0.164706)

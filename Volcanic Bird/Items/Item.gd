@@ -14,6 +14,7 @@ var damage : int
 var nameLabel : String
 var costLabel : String
 var descriptionLabel : String
+var inUse : bool
 
 func initializeItem(item):
 	type = item.type
@@ -26,3 +27,4 @@ func initializeItem(item):
 	nameLabel = item.nameLabel
 	costLabel = item.costLabel
 	descriptionLabel = item.descriptionLabel
+	inUse = item.inUse

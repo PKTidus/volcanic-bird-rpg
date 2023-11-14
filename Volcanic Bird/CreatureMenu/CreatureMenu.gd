@@ -5,15 +5,16 @@ func _ready():
 	Global.connect("battleGroup_changed", battleGroupChanged)
 	fillBattleButtons()
 	instanceInventorySlots()
+	loadInBattleGroup()
 
 func battleGroupChanged():
 	instanceInventorySlots()
 
-func fillBattleButtons():
-	var currentIndex = 0
+func loadInBattleGroup():
+	var battleGroupIndex = 0
 	for node in $BattleGroup.get_children():
-		node.creatureData = Global.battleGroup[currentIndex]
-		currentIndex += 1
+		node.creatureData = Global.battleGroup[battleGroupIndex]
+		battleGroupIndex += 1
 		node.emit_signal("updateBattleButton")
 
 func instanceInventorySlots():
@@ -27,6 +28,7 @@ func instanceInventorySlots():
 		newCreatureSlot.creatureData = Global.creatureStorage[itemIndex]
 		$Characters/VBoxContainer.add_child(newCreatureSlot)
 		newCreatureSlot.connect("creatureSlotFocus", onCreatureSlotFocus)
+
 func onCreatureSlotFocus():
 	$Name.text = "Name = " + str(Global.current_name)
 	$Description.text = str(Global.current_description)
@@ -35,6 +37,9 @@ func onCreatureSlotFocus():
 	$Stats/CurMP.text = "Current MP = " + str(Global.current_mp)
 	$Stats/Speed.text = "Speed = " + str(Global.current_speed)
 	$Stats/Level.text = "Level = " + str(Global.current_level)
+	$"Stats/Magic Attack Damage".text = "Magic Attack Damage = " + str(Global.current_magic_damage)
+	$"Stats/Magic Defense".text = "Magic Defense = " + str(Global.current_magic_defense)
+	$Stats/Defense.text = "Defense = " + str(Global.current_defense)
 	$CurrentlyCarrying.text = "Currently Carrying = " + str(Global.current_name)
 
 func _on_button_pressed():

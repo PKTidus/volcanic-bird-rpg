@@ -50,11 +50,12 @@ layout_mode = 2
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
-offset_left = 681.0
-offset_top = 58.0
-offset_right = 728.0
-offset_bottom = 84.0
+offset_left = 680.0
+offset_top = 64.0
+offset_right = 727.0
+offset_bottom = 90.0
 theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
 
 [node name="CurrentlyCarrying" type="Label" parent="."]
 layout_mode = 0
@@ -68,36 +69,58 @@ theme_override_fonts/font = ExtResource("3_odtno")
 layout_mode = 0
 offset_left = 755.0
 offset_top = 394.0
-offset_right = 844.0
-offset_bottom = 420.0
+offset_right = 1088.0
+offset_bottom = 584.0
 theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="Stats" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 679.0
 offset_top = 96.0
-offset_right = 972.0
-offset_bottom = 256.0
-
-[node name="CurHP" type="Label" parent="Stats"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_odtno")
-
-[node name="CurMP" type="Label" parent="Stats"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_odtno")
-
-[node name="Speed" type="Label" parent="Stats"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_odtno")
-
-[node name="AttackDamage" type="Label" parent="Stats"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_odtno")
+offset_right = 1024.0
+offset_bottom = 412.0
 
 [node name="Level" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+
+[node name="CurHP" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+
+[node name="CurMP" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+
+[node name="Speed" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+
+[node name="AttackDamage" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+
+[node name="Magic Attack Damage" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+
+[node name="Defense" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
+
+[node name="Magic Defense" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
+theme_override_font_sizes/font_size = 22
 
 [node name="BattleGroup" parent="." instance=ExtResource("2_exaw5")]
 layout_mode = 0
