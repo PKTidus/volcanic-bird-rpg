@@ -9,6 +9,7 @@ func onBattleGroupChanged():
 	fillBattleGroupSlots()
 	
 func fillBattleGroupSlots():
+	print(Global.battleGroup.size())
 	$BattleGroupButton.creatureData = Global.battleGroup[0]
 	$BattleGroupButton2.creatureData = Global.battleGroup[1]
 	$BattleGroupButton3.creatureData = Global.battleGroup[2]

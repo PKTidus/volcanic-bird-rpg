@@ -3,7 +3,6 @@ extends Panel
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.connect("battleGroup_changed", battleGroupChanged)
-	fillBattleButtons()
 	instanceInventorySlots()
 	loadInBattleGroup()
 
@@ -43,4 +42,5 @@ func onCreatureSlotFocus():
 	$CurrentlyCarrying.text = "Currently Carrying = " + str(Global.current_name)
 
 func _on_button_pressed():
+	Global.draggedCreature = null
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")

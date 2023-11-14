@@ -246,6 +246,7 @@ func trackBattle():
 		await get_tree().create_timer(3).timeout
 		updateTextBox("You ran away...")
 		await get_tree().create_timer(3).timeout
+		deleteCreaturesAndItems()
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	
 	# Check if the enemies are dead
@@ -297,6 +298,21 @@ func trackBattle():
 			$"Party Panel/Party Container/Player3/ColorRect".show()
 		else:
 			updatePlayerCounter()
+
+func deleteCreaturesAndItems():
+	Global.itemInventory.clear()
+	
+	var creatureOne = Global.battleGroup[0] 
+	var creatureTwo = Global.battleGroup[1]
+	var creatureThree = Global.battleGroup[2]
+	var creatureFour = Global.battleGroup[3]
+	Global.creatureStorage.erase(creatureOne)
+	Global.creatureStorage.erase(creatureTwo)
+	Global.creatureStorage.erase(creatureThree)
+	Global.creatureStorage.erase(creatureFour)
+	
+	for i in range(4):
+		Global.battleGroup[i] = null
 
 func partyIsDead():
 	return player0.creatureData.isDead && player1.creatureData.isDead && player2.creatureData.isDead && player3.creatureData.isDead
@@ -408,6 +424,7 @@ func _on_run_pressed():
 			updateTextBox("Your party loses 5 HP and has been defeated!\n")
 			await get_tree().create_timer(3).timeout
 			updateTextBox("You ran away...")
+			deleteCreaturesAndItems()
 			await get_tree().create_timer(3).timeout
 		else:
 			showTextBox("Your party loses 5 HP!\nYou and your party ran away.")
@@ -663,7 +680,7 @@ func processAttacksOld():
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
 				await get_tree().create_timer(1.5).timeout
-        
+		
 	updateBattleGroupHealth()
 	isBattling = false
 	theEnd = true
