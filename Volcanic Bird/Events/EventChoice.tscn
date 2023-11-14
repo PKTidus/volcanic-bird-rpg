@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://kjxt60rlxvce"]
+
+[ext_resource type="Script" path="res://Events/EventChoice.gd" id="1_35lji"]
+[ext_resource type="FontFile" uid="uid://byjdmkks75jpg" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_ibbpp"]
+
+[node name="EventChoice" type="Node2D"]
+script = ExtResource("1_35lji")
+
+[node name="EventDetailsColor" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 496.0
+color = Color(0, 0.498039, 0.0941176, 1)
+
+[node name="EventDetailsColor2" type="ColorRect" parent="."]
+offset_top = 496.0
+offset_right = 1152.0
+offset_bottom = 647.0
+color = Color(0, 0.576471, 0.0941176, 1)
+
+[node name="EventTitle" type="RichTextLabel" parent="."]
+offset_left = 20.0
+offset_top = 44.0
+offset_right = 1128.0
+offset_bottom = 102.0
+size_flags_stretch_ratio = 3.55
+theme_override_fonts/normal_font = ExtResource("1_ibbpp")
+theme_override_font_sizes/normal_font_size = 65
+text = "EVENT TITLE"
+
+[node name="EventDescription" type="RichTextLabel" parent="."]
+offset_left = 20.0
+offset_top = 157.0
+offset_right = 763.0
+offset_bottom = 404.0
+size_flags_stretch_ratio = 3.55
+theme_override_fonts/normal_font = ExtResource("1_ibbpp")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut sem nulla pharetra diam. Iaculis nunc sed augue lacus viverra vitae congue eu consequat. Enim tortor at auctor urna nunc id. Dolor sit amet consectetur adipiscing elit."
+
+[node name="Option A" type="Button" parent="."]
+offset_left = 201.0
+offset_top = 543.0
+offset_right = 408.0
+offset_bottom = 611.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_ibbpp")
+theme_override_font_sizes/font_size = 30
+text = "Option A"
+
+[node name="Option B" type="Button" parent="."]
+offset_left = 480.0
+offset_top = 543.0
+offset_right = 687.0
+offset_bottom = 611.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_ibbpp")
+theme_override_font_sizes/font_size = 30
+text = "Option B"
+
+[node name="Option C" type="Button" parent="."]
+offset_left = 763.0
+offset_top = 543.0
+offset_right = 970.0
+offset_bottom = 611.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_ibbpp")
+theme_override_font_sizes/font_size = 30
+text = "Option C"
+
+[connection signal="pressed" from="Option A" to="." method="_on_option_a_pressed"]
+[connection signal="pressed" from="Option B" to="." method="_on_option_b_pressed"]
+[connection signal="pressed" from="Option C" to="." method="_on_option_c_pressed"]

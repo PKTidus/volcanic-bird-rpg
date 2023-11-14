@@ -5,9 +5,18 @@ var saveFileName = "PlayerSave.tres"
 
 var playerData = PlayerSave.new()
 
+func flipACoin():
+	var rng = RandomNumberGenerator.new()
+	var res = rng.randi() % 2;
+	if res == 0:
+		return true
+	return false
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://battleScene/battle.tscn")
+	if (flipACoin()):
+		get_tree().change_scene_to_file("res://Events/EventChoice.tscn"	)
+	else:
+		get_tree().change_scene_to_file("res://battleScene/battle.tscn")
 
 
 func _on_creatures_pressed():
