@@ -14,5 +14,6 @@ level = 4
 health_points = 5
 magic_points = 5
 defense = 2
+magic_defense = 2
 speed = 13
 isDead = false

@@ -628,11 +628,17 @@ func processAttacksOld():
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(movesArray[i].skill.damage_cal))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated magical damage move
 					if movesArray[i].skill.type == 4:
-						# TODO
+						var currentDamage = max(1, movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.magic_defense)
+						movesArray[i].target.enemyData.current_hp -= currentDamage
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+						movesArray[i].target.updateHealth()
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
+						await get_tree().create_timer(1.5).timeout
 				if movesArray[i].move == 3:
 					# Check if it is consumable item
 					if movesArray[i].itemInUse.type == 0:
