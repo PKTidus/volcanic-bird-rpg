@@ -41,3 +41,4 @@ func _on_focus_entered():
 
 func _on_pressed():
 	Global.draggedCreature = creatureData
+	print(Global.creatureStorage.size())

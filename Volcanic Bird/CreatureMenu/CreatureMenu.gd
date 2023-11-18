@@ -48,7 +48,6 @@ func onCreatureSlotFocus():
 	$"Stats/Magic Attack Damage".text = "Magic Attack Damage = " + str(Global.current_magic_damage)
 	$"Stats/Magic Defense".text = "Magic Defense = " + str(Global.current_magic_defense)
 	$Stats/Defense.text = "Defense = " + str(Global.current_defense)
-	$CurrentlyCarrying.text = "Currently Carrying = " + str(Global.current_name)
 	showNameChange()
 
 func _on_button_pressed():
