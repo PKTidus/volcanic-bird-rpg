@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c8c1ymckexux0"]
 
-[ext_resource type="Texture2D" uid="uid://b1insyxkey8an" path="res://Resources/Sprites/wizard.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b1insyxkey8an" path="res://Resources/Sprites/wizard-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]
@@ -13,6 +13,6 @@ max_hp = 20
 level = 4
 health_points = 5
 magic_points = 5
-defense = 1
+defense = 2
 speed = 13
 isDead = false
