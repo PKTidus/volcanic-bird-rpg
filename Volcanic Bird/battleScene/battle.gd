@@ -715,7 +715,6 @@ func _process(delta):
 		isBattling = true
 		selectEnemyMoves()
 		processAttacksOld()
-		await get_tree().create_timer(5).timeout
 		currentPlayerCounter = 0
 	if theEnd:
 		theEnd = false
