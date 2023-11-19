@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://dgerk3u8ur5os" path="res://Resources/Sprites/shroom.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://yoe51dab47vt" path="res://Resources/Sprites/shroom.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -8,10 +8,10 @@ script = ExtResource("2")
 name = "Shroom"
 description = "Better than a Goomba"
 texture = ExtResource("1")
-agility = 5
-strength = 10
-intelligence = 10
-level = 1
+agility = 0.0
+strength = 0.0
+intelligence = 0.0
+level = 30
 experience = 1
 max_hp = 20
 max_mp = 15
@@ -20,11 +20,11 @@ cur_mp = 15
 attack_damage = 20
 magic_attack_damage = 0
 defense = 20
-magic_defense = 5
+magic_defense = 21
 speed = 5
 STR_growth = 6
 AGI_growth = 2
 INT_growth = 1
-skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres"])
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/Buff.tres", "res://Skills/Heal.tres", "res://Skills/Debuff.tres"])
 skillList = Array[Resource]([])
 isDead = false

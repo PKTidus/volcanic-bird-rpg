@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c4bdxbcvptv55"]
 
 [ext_resource type="Script" path="res://Skills/Skill.gd" id="1_vwcxl"]
 
@@ -8,7 +8,8 @@ hp_cost = 0
 mp_cost = 3
 damage_cal = 0
 heal_cal = 2
-buff_value = 0
+buff_value = 0.0
+unlockLevel = 4
 type = 1
 nameLabel = "Heal"
 costLabel = "0 HP 3 MP"

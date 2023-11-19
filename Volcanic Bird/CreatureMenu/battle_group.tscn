@@ -28,7 +28,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="pressed" from="BattleGroupButton" to="." method="_on_battle_group_button_pressed"]
-[connection signal="pressed" from="BattleGroupButton2" to="." method="_on_battle_group_button_2_pressed"]
-[connection signal="pressed" from="BattleGroupButton3" to="." method="_on_battle_group_button_3_pressed"]
-[connection signal="pressed" from="BattleGroupButton4" to="." method="_on_battle_group_button_4_pressed"]
+[connection signal="gui_input" from="BattleGroupButton" to="." method="_on_battle_group_button_gui_input"]
+[connection signal="gui_input" from="BattleGroupButton2" to="." method="_on_battle_group_button_2_gui_input"]
+[connection signal="gui_input" from="BattleGroupButton3" to="." method="_on_battle_group_button_3_gui_input"]
+[connection signal="gui_input" from="BattleGroupButton4" to="." method="_on_battle_group_button_4_gui_input"]

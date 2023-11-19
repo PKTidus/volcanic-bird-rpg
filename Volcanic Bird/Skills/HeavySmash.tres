@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://cylbhu0duf7bs"]
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dtb8vsltaycvd"]
 
 [ext_resource type="Script" path="res://Skills/Skill.gd" id="1_vwcxl"]
 
@@ -9,6 +9,7 @@ mp_cost = 0
 damage_cal = 3
 heal_cal = 0
 buff_value = 0.0
+unlockLevel = 2
 type = 3
 nameLabel = "Heavy Smash"
 costLabel = "5 HP 0 MP"

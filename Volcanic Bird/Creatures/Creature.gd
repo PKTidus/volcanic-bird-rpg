@@ -24,6 +24,7 @@ class_name Creatures
 @export var STR_growth : int
 @export var AGI_growth : int
 @export var INT_growth : int
+# IMPORTANT!!!! PLEASE ORDER SKILLS FROM LOWEST TO HIGHEST LEVELS!!!!
 @export var skillPreload : Array[String]
 @export var skillList : Array[Resource]
 @export var isDead : bool
@@ -86,6 +87,7 @@ func initializeSkillsList(newSkill, newSkillMove):
 	newSkillMove.damage_cal = newSkill.damage_cal
 	newSkillMove.heal_cal = newSkill.heal_cal
 	newSkillMove.buff_value = newSkill.buff_value
+	newSkillMove.unlockLevel = newSkill.unlockLevel
 	newSkillMove.type = newSkill.type
 	newSkillMove.nameLabel = newSkill.nameLabel
 	newSkillMove.costLabel = newSkill.costLabel

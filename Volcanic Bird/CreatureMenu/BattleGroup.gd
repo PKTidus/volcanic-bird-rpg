@@ -14,15 +14,42 @@ func fillBattleGroupSlots():
 	$BattleGroupButton3.creatureData = Global.battleGroup[2]
 	$BattleGroupButton4.creatureData = Global.battleGroup[3]
 
-func _on_battle_group_button_pressed():
-	Global.draggedCreatureIndex = 0
-	Global.addToBattleGroup()
-func _on_battle_group_button_2_pressed():
-	Global.draggedCreatureIndex = 1
-	Global.addToBattleGroup()
-func _on_battle_group_button_3_pressed():
-	Global.draggedCreatureIndex = 2
-	Global.addToBattleGroup()
-func _on_battle_group_button_4_pressed():
-	Global.draggedCreatureIndex = 3
-	Global.addToBattleGroup()
+func _on_battle_group_button_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if !(Global.draggedCreature == null):
+			Global.draggedCreatureIndex = 0
+			Global.addToBattleGroup()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		Global.draggedCreature = null
+		Global.draggedCreatureIndex = 0
+		Global.addToBattleGroup()
+
+func _on_battle_group_button_2_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if !(Global.draggedCreature == null):
+			Global.draggedCreatureIndex = 1
+			Global.addToBattleGroup()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		Global.draggedCreature = null
+		Global.draggedCreatureIndex = 1
+		Global.addToBattleGroup()
+
+func _on_battle_group_button_3_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if !(Global.draggedCreature == null):
+			Global.draggedCreatureIndex = 2
+			Global.addToBattleGroup()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		Global.draggedCreature = null
+		Global.draggedCreatureIndex = 2
+		Global.addToBattleGroup()
+
+func _on_battle_group_button_4_gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if !(Global.draggedCreature == null):
+			Global.draggedCreatureIndex = 3
+			Global.addToBattleGroup()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		Global.draggedCreature = null
+		Global.draggedCreatureIndex = 3
+		Global.addToBattleGroup()

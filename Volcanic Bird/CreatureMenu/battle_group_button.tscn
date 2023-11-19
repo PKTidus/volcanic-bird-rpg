@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://c16hqaadkji2q"]
 
 [ext_resource type="Script" path="res://CreatureMenu/battle_group_button.gd" id="1_ckcsq"]
-[ext_resource type="FontFile" uid="uid://blsm6ywontfgr" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_yxqo0"]
+[ext_resource type="FontFile" uid="uid://bqr10us4wgrcv" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_yxqo0"]
 
 [node name="BattleGroupButton" type="Button"]
 offset_right = 8.0
 offset_bottom = 8.0
 theme_override_fonts/font = ExtResource("1_yxqo0")
-text = "PlaceHolder"
+text_overrun_behavior = 3
 script = ExtResource("1_ckcsq")
