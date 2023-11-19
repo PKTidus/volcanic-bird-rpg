@@ -12,6 +12,7 @@ class_name EnemyData
 @export var health_points : int
 @export var magic_points : int
 @export var defense : int
+@export var magic_defense : int
 @export var speed : int
 @export var isDead : bool
 @export var useMagic : bool
@@ -27,4 +28,5 @@ func initializeEnemyData(enemy):
 	health_points = enemy.health_points
 	magic_points = enemy.magic_points
 	defense = enemy.defense
+	magic_defense = enemy.magic_defense
 	speed = enemy.speed
