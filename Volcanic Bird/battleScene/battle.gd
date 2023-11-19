@@ -143,7 +143,7 @@ func setupSampleGroup():
 	
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
-	sampleEnemy1 = load("res://Enemies/WizardEnemy.tres")
+	sampleEnemy1 = load("res://Enemies/TreeEnemy.tres")
 	sampleEnemy2 = load("res://Enemies/TreeEnemy.tres")
 	sampleEnemy3 = load("res://Enemies/ShroomEnemy.tres")
 	var loadEnemy1 = EnemyData.new()
@@ -690,7 +690,12 @@ func processAttacksOld():
 				if targetIsDefending:
 					currentDamage = movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
 				else:
-					currentDamage = max(1, movesArray[i].enemySource.enemyData.damage / movesArray[i].enemyTarget.defense)
+					# Physical enemy attack
+					if movesArray[i].enemySource.enemyData.useMagic == false:
+						currentDamage = max(1, movesArray[i].enemySource.enemyData.damage / movesArray[i].enemyTarget.defense)
+					elif movesArray[i].enemySource.enemyData.useMagic == true:
+						print("weak magic defense lol")
+						currentDamage = max(1, movesArray[i].enemySource.enemyData.magic_damage / movesArray[i].enemyTarget.magic_defense)
 				
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				updateBattleGroupHealth()
@@ -733,11 +738,43 @@ func resetEnemyMoves():
 	for i in range(7):
 		if movesArray[i].isEnemy == 1:
 			movesArray[i].enemyTarget = null
+			movesArray[i].enemySource.enemyData.useMagic = false
 
 func selectEnemyMoves():
 	for i in range(7):
 		if movesArray[i].isEnemy == 1:
-			movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
+			var coin = randi_range(0, 100)
+			# Asshole mode
+			if coin >= 70:
+				print("asshole mode")
+				var minimum = Global.battleGroup[0]
+				if minimum.isDead:
+					for j in range(1, 4):
+						if !Global.battleGroup[j].isDead:
+							minimum = Global.battleGroup[j]
+							break
+				for j in range(4):
+					if minimum.cur_hp > Global.battleGroup[j].cur_hp and !Global.battleGroup[j].isDead:
+						minimum = Global.battleGroup[j]
+				movesArray[i].enemyTarget = minimum
+				if minimum.defense > minimum.magic_defense:
+					print("targeting weaker magic defense")
+					movesArray[i].enemySource.enemyData.useMagic = true
+				elif minimum.defense < minimum.magic_defense:
+					print("targeting weaker physical defense")
+					movesArray[i].enemySource.enemyData.useMagic = false
+			# rando mode
+			elif coin <= 69:
+				print("rando mode")
+				movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
+				while movesArray[i].enemyTarget.isDead:
+					print("found dead boi")
+					movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
+				var coin2 = randi_range(0, 100)
+				if coin2 >= 50:
+					movesArray[i].enemySource.enemyData.useMagic = true
+				else:
+					movesArray[i].enemySource.enemyData.useMagic = false
 
 func _on_player_0_pressed():
 	if typeOfMove == 2 and Global.friendlyOrNot == 1:
