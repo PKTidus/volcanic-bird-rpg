@@ -1,7 +1,7 @@
 class_name OptionResult
 
 var description: String
-var type: String # can be "battle" or "buff"
+var type: String # can be "battle" or "escape"
 var enemy_paths: Array[String] # the resource paths of the enemies to be loaded
 var chance: int # chance of event occuring
 

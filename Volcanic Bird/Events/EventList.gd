@@ -12,27 +12,39 @@ static var List = [
 			"Join in",
 			[
 				OptionResult.new(
-					"It's a trap! 1", # description
+					"It's a trap!", # description
 					"battle", # type
-					100, # chance
+					75, # chance
 					[ # enemies
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres"
 					]
+				),
+				OptionResult.new(
+					"You step into the circle, the shrooms dance around you a bit. They seem friendly, and thank you for your cooperation. You aren't sure what they did.",
+					"escape",
+					25,
+					[]
 				)
 			]
 		), 
 		
 		# option B
 		Option.new(
-			"Politely excuse your party",
+			"Politely leave",
 			[
+				OptionResult.new(
+					"They accept your refusal, and continue their ritual without you.",
+					"escape",
+					75,
+					[]
+				),
 				OptionResult.new(
 					"It's a trap!", # description
 					"battle", # type
-					100, # chance
+					25, # chance
 					[ # enemies
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
@@ -45,10 +57,10 @@ static var List = [
 		
 		# option C
 		Option.new(
-			"Join in",
+			"Attack",
 			[
 				OptionResult.new(
-					"It's a trap! 3", # description
+					"You draw your weapons, but the shrooms do not seem scared.", # description
 					"battle", # type
 					100, # chance
 					[ # enemies

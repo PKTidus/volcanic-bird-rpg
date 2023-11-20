@@ -13,6 +13,7 @@ var itemStorage = []
 
 # EVENTS
 var selected_enemy_paths = []
+var event: Event = null
 
 # Creature Parts For Creature Menu
 var current_name
