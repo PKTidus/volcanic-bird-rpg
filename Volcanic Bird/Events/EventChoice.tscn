@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://kjxt60rlxvce"]
 
 [ext_resource type="Script" path="res://Events/EventChoice.gd" id="1_35lji"]
-[ext_resource type="FontFile" uid="uid://byjdmkks75jpg" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_ibbpp"]
+[ext_resource type="FontFile" uid="uid://daf5rqnyc8ya6" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_ibbpp"]
 
 [node name="EventChoice" type="Node2D"]
 script = ExtResource("1_35lji")

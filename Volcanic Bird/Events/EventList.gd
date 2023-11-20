@@ -3,34 +3,62 @@ class_name EventList
 static var List = [
 	# demo event 1
 	Event.new(
-		"Lost Travelers", 
+		"Shroom Villagers", 
 		
-		"A group of travelers are completely lost. They ask you for directions to the local tavern, where they can find good ale and a good sleep.", 
+		"You find a village of shrooms, which are performing a strange ritual. They notice your presence, and ask you to stand in the middle of their ritual circle.", 
 		
-		"Lie to them", 
-		"Ignore them", 
-		"Assist them"
-	),
-	
-	# demo event 2
-	Event.new(
-		"Dead Wizard", 
+		# option A
+		Option.new(
+			"Join in",
+			[
+				OptionResult.new(
+					"It's a trap! 1", # description
+					"battle", # type
+					100, # chance
+					[ # enemies
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres"
+					]
+				)
+			]
+		), 
 		
-		"A wizard lies dead before you. No obvious cause for death, and in his hands lies a gold pouch.", 
+		# option B
+		Option.new(
+			"Politely excuse your party",
+			[
+				OptionResult.new(
+					"It's a trap!", # description
+					"battle", # type
+					100, # chance
+					[ # enemies
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres"
+					]
+				)
+			]
+		), 
 		
-		"Take the pouch", 
-		"Ignore the body", 
-		"Perform burial rites"
-	),
-	
-	# demo event 3
-	Event.new(
-		"Spontaneous Party", 
-		
-		"A spontaneous party erupts out of nowhere. A mob of rowdy townspeople are drinking, hollering, and having a great time. It would, however, be a great time to search through their belongings...", 
-		
-		"Pickpocket them", 
-		"Ignore them", 
-		"Join in"
+		# option C
+		Option.new(
+			"Join in",
+			[
+				OptionResult.new(
+					"It's a trap! 3", # description
+					"battle", # type
+					100, # chance
+					[ # enemies
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/ShroomEnemy.tres"
+					]
+				)
+			]
+		), 
 	),
 ]

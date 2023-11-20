@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtp18akevrn8v"]
 
-[ext_resource type="FontFile" uid="uid://blsm6ywontfgr" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_1muuf"]
+[ext_resource type="FontFile" uid="uid://daf5rqnyc8ya6" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_1muuf"]
 [ext_resource type="Script" path="res://Inventory/TestButton.gd" id="2_glntv"]
 
 [node name="Inventory" type="Panel"]

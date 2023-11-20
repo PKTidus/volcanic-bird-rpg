@@ -9,9 +9,9 @@ func _ready():
 	self.event = self.event_manager.event
 	$"EventTitle".text = self.event.title
 	$"EventDescription".text = self.event.description
-	$"Option A".text = self.event.option_a_label
-	$"Option B".text = self.event.option_b_label
-	$"Option C".text = self.event.option_c_label
+	$"Option A".text = self.event.option_a.option_title
+	$"Option B".text = self.event.option_b.option_title
+	$"Option C".text = self.event.option_c.option_title
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -19,6 +19,8 @@ func _process(delta):
 
 # Button handlers
 func _on_option_a_pressed():
+	var choice = self.event.option_a.collapse().enemy_paths
+	Global.selected_enemy_paths = choice
 	goToBattle()
 
 func _on_option_b_pressed():

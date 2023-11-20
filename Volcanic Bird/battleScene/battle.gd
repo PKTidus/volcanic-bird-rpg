@@ -143,9 +143,9 @@ func setupSampleGroup():
 	
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
-	sampleEnemy1 = load("res://Enemies/TreeEnemy.tres")
-	sampleEnemy2 = load("res://Enemies/TreeEnemy.tres")
-	sampleEnemy3 = load("res://Enemies/ShroomEnemy.tres")
+	sampleEnemy1 = load(Global.selected_enemy_paths[0])
+	sampleEnemy2 = load(Global.selected_enemy_paths[1])
+	sampleEnemy3 = load(Global.selected_enemy_paths[2])
 	var loadEnemy1 = EnemyData.new()
 	var loadEnemy2 = EnemyData.new()
 	var loadEnemy3 = EnemyData.new()
