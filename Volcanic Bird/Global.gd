@@ -11,6 +11,9 @@ var creatureStorage = []
 var itemInventory = [] 
 var itemStorage = []
 
+# EVENTS
+var selected_enemy_paths = []
+
 # Creature Parts For Creature Menu
 var current_name
 var current_description
