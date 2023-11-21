@@ -54,7 +54,7 @@ func _ready():
 	# comment this function to load sample creatures from the main menu scene while save battle data
 	# uncomment this function to load sample creatures from the battle scene while not saving battle data 
 	# setupSampleGroup() # testing purposes
-	
+	$Background.set_texture(load("res://Resources/Backgrounds/battleback1.png"))
 	setupSampleEnemy() # testing purposes
 	connectSignals()
 	hideEnemyButtons()
@@ -480,6 +480,8 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 		hasLeveledUp = true
 	
 	if hasLeveledUp:
+		player.creatureData.cur_hp = player.creatureData.max_hp
+		player.creatureData.cur_mp = player.creatureData.max_mp
 		playerExperience -= calculateExperience(playerLevel)
 	
 	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))

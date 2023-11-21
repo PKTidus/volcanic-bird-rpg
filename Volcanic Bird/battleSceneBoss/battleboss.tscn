@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://58bcubyq8no6"]
+[gd_scene load_steps=15 format=3 uid="uid://c51qhjghaaf8f"]
 
-[ext_resource type="Script" path="res://battleSceneBoss/battleboss.gd" id="1_t25x4"]
-[ext_resource type="Texture2D" uid="uid://c4kajy6t7wq70" path="res://Resources/Backgrounds/forest_bg_edit.png" id="2_65ygh"]
-[ext_resource type="FontFile" uid="uid://b0xmjfr43o883" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_60rmg"]
-[ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="4_gb60p"]
-[ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_viwmj"]
-[ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_p66f7"]
-[ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_4dl1o"]
-[ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_a7a5g"]
+[ext_resource type="Script" path="res://battleSceneBoss/battleBoss.gd" id="1_3ys05"]
+[ext_resource type="Texture2D" uid="uid://c8dk2bkoern48" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_rxbnw"]
+[ext_resource type="FontFile" uid="uid://b81w0epvungx2" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_6c5yq"]
+[ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="4_ff702"]
+[ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_easlu"]
+[ext_resource type="Script" path="res://battleSceneBoss/Enemy.gd" id="5_sr3tq"]
+[ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_f0tyx"]
+[ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_gaunx"]
+[ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_1un2p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -26,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t25x4")
+script = ExtResource("1_3ys05")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="TextureRect" parent="."]
@@ -36,7 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_65ygh")
+texture = ExtResource("2_rxbnw")
 expand_mode = 5
 stretch_mode = 5
 
@@ -53,7 +54,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("3_60rmg")
+theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 30
 text = "Battle Text"
 horizontal_alignment = 1
@@ -68,8 +69,10 @@ offset_top = 64.0
 offset_bottom = 448.0
 grow_horizontal = 2
 
-[node name="Enemy1" parent="Enemies Container" instance=ExtResource("4_gb60p")]
+[node name="Enemy1" parent="Enemies Container" instance=ExtResource("4_ff702")]
 position = Vector2(576, 192)
+script = ExtResource("5_sr3tq")
+enemyBoss = null
 
 [node name="Button" type="Button" parent="Enemies Container/Enemy1"]
 offset_left = -104.0
@@ -97,7 +100,7 @@ alignment = 1
 [node name="Attack" type="Button" parent="Actions Panel/Actions Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_60rmg")
+theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_35rru")
 text = "Attack"
@@ -105,7 +108,7 @@ text = "Attack"
 [node name="Skill" type="Button" parent="Actions Panel/Actions Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_60rmg")
+theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_f8d6x")
 text = "Skill"
@@ -113,7 +116,7 @@ text = "Skill"
 [node name="Defend" type="Button" parent="Actions Panel/Actions Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_60rmg")
+theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0hxcs")
 text = "Defend"
@@ -121,7 +124,7 @@ text = "Defend"
 [node name="Item" type="Button" parent="Actions Panel/Actions Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_60rmg")
+theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_fkgmw")
 text = "Item"
@@ -129,7 +132,7 @@ text = "Item"
 [node name="Run" type="Button" parent="Actions Panel/Actions Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_60rmg")
+theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uyegs")
 text = "Run"
@@ -149,39 +152,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Skill 1" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 1" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 
-[node name="Skill 2" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 2" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(192, 0)
 
-[node name="Skill 3" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 3" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(384, 0)
 
-[node name="Skill 4" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 4" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(576, 0)
 
-[node name="Skill 5" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 5" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(768, 0)
 
-[node name="Skill 6" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 6" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(960, 0)
 
-[node name="Skill 7" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 7" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(0, 192)
 
-[node name="Skill 8" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 8" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(192, 192)
 
-[node name="Skill 9" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 9" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(384, 192)
 
-[node name="Skill 10" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 10" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(576, 192)
 
-[node name="Skill 11" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 11" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(768, 192)
 
-[node name="Skill 12" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_viwmj")]
+[node name="Skill 12" parent="Skill List Panel/Skill List Container" instance=ExtResource("5_easlu")]
 position = Vector2(960, 192)
 
 [node name="Item List Panel" type="Panel" parent="."]
@@ -199,39 +202,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Item" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 
-[node name="Item2" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item2" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(192, 0)
 
-[node name="Item3" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item3" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(384, 0)
 
-[node name="Item4" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item4" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(576, 0)
 
-[node name="Item5" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item5" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(768, 0)
 
-[node name="Item6" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item6" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(960, 0)
 
-[node name="Item7" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item7" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(0, 192)
 
-[node name="Item8" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item8" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(192, 192)
 
-[node name="Item9" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item9" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(384, 192)
 
-[node name="Item10" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item10" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(576, 192)
 
-[node name="Item11" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item11" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(768, 192)
 
-[node name="Item12" parent="Item List Panel/Item List Container" instance=ExtResource("6_p66f7")]
+[node name="Item12" parent="Item List Panel/Item List Container" instance=ExtResource("6_f0tyx")]
 position = Vector2(960, 192)
 
 [node name="Party Panel" type="Panel" parent="."]
@@ -249,26 +252,26 @@ layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 136.0
 
-[node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("7_4dl1o")]
+[node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("7_gaunx")]
 layout_mode = 2
 
-[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_4dl1o")]
+[node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_gaunx")]
 layout_mode = 2
 
-[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("7_4dl1o")]
+[node name="Player2" parent="Party Panel/Party Container" instance=ExtResource("7_gaunx")]
 layout_mode = 2
 
-[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("7_4dl1o")]
+[node name="Player3" parent="Party Panel/Party Container" instance=ExtResource("7_gaunx")]
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="Party Panel/Party Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_fonts/font = ExtResource("3_60rmg")
+theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 27
 text = "Back Button"
 
-[node name="Results" parent="." instance=ExtResource("8_a7a5g")]
+[node name="Results" parent="." instance=ExtResource("8_1un2p")]
 visible = false
 layout_mode = 2
 offset_left = 576.0

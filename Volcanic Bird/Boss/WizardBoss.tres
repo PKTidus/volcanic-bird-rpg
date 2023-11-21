@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="enemyBoss" load_steps=3 format=3 uid="uid://b401a3g37020d"]
+
+[ext_resource type="Texture2D" uid="uid://bq8yk6f8adls0" path="res://Resources/Sprites/wizard-256.png" id="1"]
+[ext_resource type="Script" path="res://Boss/EnemyBoss.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+enemy_name = "Big Booty Wizard"
+asset = ExtResource("1")
+current_hp = 50
+max_hp = 50
+health_points = 0
+magic_points = 0
+defense = 2
+magic_defense = 4
+speed = 6
+isDead = false
+moveSetPreload = Array[String]([])
+moveSetArray = Array[Resource]([])
