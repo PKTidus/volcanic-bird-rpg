@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://c1di4g4gmpqg7" path="res://Resources/Sprites/wizard.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dw5sa4i1hya6o" path="res://Resources/Sprites/wizard.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -16,7 +16,7 @@ experience = 6
 max_hp = 15
 max_mp = 50
 cur_hp = 15
-cur_mp = 50
+cur_mp = 1
 attack_damage = 20
 magic_attack_damage = 5
 defense = 20

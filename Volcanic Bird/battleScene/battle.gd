@@ -99,15 +99,30 @@ func connectSignals():
 	Global.connect("itemObtained", closePanelAndShowAlliesItems)
 
 func closePanelAndShowEnemiesSkills():
-	if Global.friendlyOrNot == 0:
-		print("reached the signal")
-		$"Skill List Panel".hide()
-		showTextBox("Which enemy?")
-		showEnemyButtons()
-	elif Global.friendlyOrNot == 1:
-		print("reached Frinedly")
-		$"Skill List Panel".hide()
-		showTextBox("Which ally?")
+	if (selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost) and (Global.clickedSkill.mp_cost != 0):
+		if Global.friendlyOrNot == 0:
+			print("reached the signal")
+			$"Skill List Panel".hide()
+			showTextBox("Which enemy?")
+			showEnemyButtons()
+			return
+		elif Global.friendlyOrNot == 1:
+			print("reached Frinedly")
+			$"Skill List Panel".hide()
+			showTextBox("Which ally?")
+			return
+	elif (selectedEnemies[currentPlayerCounter].source.cur_hp >= Global.clickedSkill.hp_cost) and (Global.clickedSkill.hp_cost != 0):
+		if Global.friendlyOrNot == 0:
+			print("reached the signal")
+			$"Skill List Panel".hide()
+			showTextBox("Which enemy?")
+			showEnemyButtons()
+			return
+		elif Global.friendlyOrNot == 1:
+			print("reached Frinedly")
+			$"Skill List Panel".hide()
+			showTextBox("Which ally?")
+			return
 
 func closePanelAndShowAlliesItems():
 	if Global.friendlyOrNot == 1:

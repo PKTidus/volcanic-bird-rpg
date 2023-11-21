@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://yoe51dab47vt" path="res://Resources/Sprites/shroom.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dhthgwokmut77" path="res://Resources/Sprites/shroom.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -16,7 +16,7 @@ experience = 1
 max_hp = 20
 max_mp = 15
 cur_hp = 20
-cur_mp = 15
+cur_mp = 1
 attack_damage = 20
 magic_attack_damage = 0
 defense = 20
