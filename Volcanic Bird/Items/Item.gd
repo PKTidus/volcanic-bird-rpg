@@ -2,6 +2,8 @@ extends Resource
 
 class_name Item
 
+enum RARITY {Common, Rare}
+
 # Type is used to define what kind of item it is.
 # 0 = Consumable, 1 = Modifier, 2 = Attack
 @export var type : int
@@ -15,8 +17,6 @@ class_name Item
 @export var costLabel : String
 @export var descriptionLabel : String
 @export var inUse : bool
-
-enum RARITY {Common, Rare}
 @export var itemRarity = RARITY.Common
 
 func initializeItem(item):
@@ -31,3 +31,4 @@ func initializeItem(item):
 	costLabel = item.costLabel
 	descriptionLabel = item.descriptionLabel
 	inUse = item.inUse
+	itemRarity = item.itemRarity
