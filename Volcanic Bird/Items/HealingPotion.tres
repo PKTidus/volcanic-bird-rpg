@@ -15,7 +15,4 @@ nameLabel = "Healing Potion"
 costLabel = "Heals 30 HP"
 descriptionLabel = "A good drink."
 inUse = false
-itemRarity = {
-"Common": 0,
-"Rare": 1
-}
+itemRarity = 0

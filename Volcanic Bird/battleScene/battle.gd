@@ -515,9 +515,14 @@ func updateInventory():
 		var randomNum = rng.randi_range(1, 100)
 		
 		if randomNum <= 100 && randomNum >= 21: # Common Item
-			# TODO
+			print("Common")
+			for i in Global.commonItems:
+				print(i)
 		else: # Rare Item
-			# TODO
+			print("Rare")
+			for i in Global.rareItems:
+				print(i)
+			
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()

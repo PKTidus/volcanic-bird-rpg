@@ -15,7 +15,4 @@ nameLabel = "Deadly Poison"
 costLabel = "Deal 50 damage"
 descriptionLabel = "It sort of stinks."
 inUse = false
-itemRarity = {
-"Common": 0,
-"Rare": 1
-}
+itemRarity = 0

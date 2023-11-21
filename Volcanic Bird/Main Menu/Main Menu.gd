@@ -8,6 +8,7 @@ var playerData = PlayerSave.new()
 func _on_play_pressed():
 	setupSampleGroup()
 	loadSampleItem()
+	loadItemList()
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 # Simply for loading in sample creatures, not needed for final build
@@ -84,6 +85,22 @@ func loadSampleItem():
 	var tempItem6 = Item.new()
 	tempItem6.initializeItem(sampleItem3)
 	Global.itemStorage.append(tempItem6)
+
+func loadItemList():
+	var dir = DirAccess.open("res://Items/")
+	if dir:
+		dir.list_dir_begin()
+		var fileName = dir.get_next()
+		while fileName != "":
+			if fileName.ends_with(".tres"):
+				print("Found Item: " + dir.get_current_dir() + "/" + fileName)
+				var currentItemPath = dir.get_current_dir() + "/" + fileName
+				var currentItem = Item.new()
+				currentItem.initializeItem(load(currentItemPath))
+				Global.itemsMaster.append(currentItem)
+			fileName = dir.get_next()
+	else:
+		print("Could not load \"res://Items/\"")
 
 func loadGame():
 	playerData = ResourceLoader.load(saveFilePath + saveFileName)
