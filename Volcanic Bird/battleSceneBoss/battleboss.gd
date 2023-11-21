@@ -72,7 +72,7 @@ func _ready():
 
 # This is an implementation of selection sort
 func basicSort():
-	for i in range(7):
+	for i in range(4):
 		var maximumIndex = i
 		
 		for j in range(i + 1, 7):
@@ -122,9 +122,7 @@ func closePanelAndShowEnemiesSkills():
 			print("reached Frinedly")
 			$"Skill List Panel".hide()
 			showTextBox("Which ally?")
-		return
-	Global.clickedSkill = null
-	print(Global.clickedSkill)
+			return
 
 func closePanelAndShowAlliesItems():
 	if Global.friendlyOrNot == 1:
@@ -161,20 +159,12 @@ func setupSampleGroup():
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
 	sampleEnemy1 = load("res://Enemies/TreeEnemy.tres")
-	sampleEnemy2 = load("res://Enemies/TreeEnemy.tres")
-	sampleEnemy3 = load("res://Enemies/ShroomEnemy.tres")
 	var loadEnemy1 = EnemyData.new()
-	var loadEnemy2 = EnemyData.new()
-	var loadEnemy3 = EnemyData.new()
 	
 	loadEnemy1.initializeEnemyData(sampleEnemy1)
-	loadEnemy2.initializeEnemyData(sampleEnemy2)
-	loadEnemy3.initializeEnemyData(sampleEnemy3)
 	
 	sampleArray.append(loadEnemy1)
-	sampleArray.append(loadEnemy2)
-	sampleArray.append(loadEnemy3)
-  
+
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
 	var currentIndex = 0
@@ -253,9 +243,6 @@ func getEnemyInfo():
 	enemy3 = $"Enemies Container/Enemy3"
 
 func trackBattle():
-	print("Selected Enemies:  " + str(selectedEnemies))
-	print("Defending Players: " + str(defendingPlayers))
-	
 	# Check if the player's party has been defeated
 	if partyIsDead():
 		print("Party is dead")
@@ -267,7 +254,7 @@ func trackBattle():
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	
 	# Check if the enemies are dead
-	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
+	if (enemy1.enemyData.isDead):
 		print("Enemies are dead")
 		updateTextBox("You and your party won!")
 		disableButtons()
@@ -523,18 +510,10 @@ func disableButtons():
 func hideEnemyButtons():
 	if has_node("Enemies Container/Enemy1"):
 		$"Enemies Container/Enemy1/Button".hide()
-	if has_node("Enemies Container/Enemy2"):
-		$"Enemies Container/Enemy2/Button".hide()
-	if has_node("Enemies Container/Enemy3"):
-		$"Enemies Container/Enemy3/Button".hide()
 
 func showEnemyButtons():
 	if !enemy1.enemyData.isDead:
 		$"Enemies Container/Enemy1/Button".show()
-	if !enemy2.enemyData.isDead:
-		$"Enemies Container/Enemy2/Button".show()
-	if !enemy3.enemyData.isDead:
-		$"Enemies Container/Enemy3/Button".show()
 
 func _on_enemy1_pressed():
 	# attackEnemy(enemy1)
@@ -547,48 +526,6 @@ func _on_enemy1_pressed():
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
 		Global.clickedItem.inUse = true
 		
-	updatePlayerCounter()
-	
-	print(selectedEnemies)
-	
-	hideEnemyButtons()
-	hideTextBox()
-	showButtons()
-	
-	trackBattle()
-
-func _on_enemy2_pressed():
-	# attackEnemy(enemy2)
-	selectedEnemies[currentPlayerCounter].target = enemy2
-	selectedEnemies[currentPlayerCounter].move = typeOfMove
-	
-	if typeOfMove == 2:
-		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-	if typeOfMove == 3:
-		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
-		Global.clickedItem.inUse = true
-	
-	updatePlayerCounter()
-	
-	print(selectedEnemies)
-	
-	hideEnemyButtons()
-	hideTextBox()
-	showButtons()
-	
-	trackBattle()
-
-func _on_enemy3_pressed():
-	# attackEnemy(enemy3)
-	selectedEnemies[currentPlayerCounter].target = enemy3
-	selectedEnemies[currentPlayerCounter].move = typeOfMove
-	
-	if typeOfMove == 2:
-		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-	if typeOfMove == 3:
-		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
-		Global.clickedItem.inUse = true
-	
 	updatePlayerCounter()
 	
 	print(selectedEnemies)
@@ -616,7 +553,7 @@ func processAttacks():
 	hideTextBox()
 
 func processAttacksOld():
-	for i in range(7):
+	for i in range(4):
 		if movesArray[i].isEnemy == 0:
 			if !movesArray[i].source.isDead:
 				if movesArray[i].move == 1:
@@ -753,7 +690,7 @@ func _process(delta):
 	if currentPlayerCounter >= 4 and not isBattling:
 		hideAllColorRects()
 		isBattling = true
-		selectEnemyMoves()
+		selectBossMoves()
 		processAttacksOld()
 		currentPlayerCounter = 0
 	if theEnd:
@@ -775,41 +712,8 @@ func resetEnemyMoves():
 			movesArray[i].enemyTarget = null
 			movesArray[i].enemySource.enemyData.useMagic = false
 
-func selectEnemyMoves():
-	for i in range(7):
-		if movesArray[i].isEnemy == 1:
-			var coin = randi_range(0, 100)
-			# Asshole mode
-			if coin >= 70:
-				print("asshole mode")
-				var minimum = Global.battleGroup[0]
-				if minimum.isDead:
-					for j in range(1, 4):
-						if !Global.battleGroup[j].isDead:
-							minimum = Global.battleGroup[j]
-							break
-				for j in range(4):
-					if minimum.cur_hp > Global.battleGroup[j].cur_hp and !Global.battleGroup[j].isDead:
-						minimum = Global.battleGroup[j]
-				movesArray[i].enemyTarget = minimum
-				if minimum.defense > minimum.magic_defense:
-					print("targeting weaker magic defense")
-					movesArray[i].enemySource.enemyData.useMagic = true
-				elif minimum.defense < minimum.magic_defense:
-					print("targeting weaker physical defense")
-					movesArray[i].enemySource.enemyData.useMagic = false
-			# rando mode
-			elif coin <= 69:
-				print("rando mode")
-				movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
-				while movesArray[i].enemyTarget.isDead:
-					print("found dead boi")
-					movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
-				var coin2 = randi_range(0, 100)
-				if coin2 >= 50:
-					movesArray[i].enemySource.enemyData.useMagic = true
-				else:
-					movesArray[i].enemySource.enemyData.useMagic = false
+func selectBossMoves():
+	pass
 
 func _on_player_0_pressed():
 	if typeOfMove == 2 and Global.friendlyOrNot == 1 and Global.clickedSkill != null:
@@ -895,7 +799,7 @@ func _on_player_3_pressed():
 	typeOfMove = -1
 
 func resetMoves():
-	for i in range(7):
+	for i in range(4):
 		if movesArray[i].isEnemy == 0:
 			movesArray[i].target = null
 			movesArray[i].friendlyTarget = null
