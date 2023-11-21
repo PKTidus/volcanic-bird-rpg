@@ -613,6 +613,34 @@ func processAttacksOld():
 						movesArray[i].target.updateHealth()
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyBoss.enemy_name) + " and dealt " + str(currentDamage))
 						await get_tree().create_timer(1.5).timeout
+					if movesArray[i].skill.type == 5:
+						pass
+					if movesArray[i].skill.type == 6:
+						pass
+					if movesArray[i].skill.type == 7:
+						pass
+					if movesArray[i].skill.type == 8:
+						pass
+					if movesArray[i].skill.type == 9:
+						pass
+					if movesArray[i].skill.type == 10:
+						pass
+					if movesArray[i].skill.type == -10:
+						pass
+					if movesArray[i].skill.type == 11:
+						pass
+					if movesArray[i].skill.type == -11:
+						pass
+					if movesArray[i].skill.type == 12:
+						pass
+					if movesArray[i].skill.type == 13:
+						pass
+					if movesArray[i].skill.type == 14:
+						pass
+					if movesArray[i].skill.type == 15:
+						pass
+					if movesArray[i].skill.type == 16:
+						pass
 				if movesArray[i].move == 3:
 					# Check if it is consumable item
 					if movesArray[i].itemInUse.type == 0:
