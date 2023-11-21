@@ -269,7 +269,7 @@ func trackBattle():
 		# Add items to the player's inventory
 		updateInventory()
 		
-		await get_tree().create_timer(3).timeout # pause the game for 1.5 seconds
+		await get_tree().create_timer(3).timeout # pause the game for 3 seconds
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 		return
 	
@@ -513,16 +513,18 @@ func updateInventory():
 		# 80% is for common items
 		# 20% is for rare items
 		var randomNum = rng.randi_range(1, 100)
+		print(randomNum)
 		
 		if randomNum <= 100 && randomNum >= 21: # Common Item
-			print("Common")
-			for i in Global.commonItems:
-				print(i)
+			randomNum = rng.randi_range(0, Global.commonItemsMaster.size() - 1)
+			Global.itemInventory.append(Global.commonItemsMaster[randomNum])
+			updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!")
 		else: # Rare Item
-			print("Rare")
-			for i in Global.rareItems:
-				print(i)
-			
+			randomNum = rng.randi_range(0, Global.rareItemsMaster.size() - 1)
+			Global.itemInventory.append(Global.rareItemsMaster[randomNum])
+			updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!")
+		
+		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()
