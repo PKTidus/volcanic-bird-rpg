@@ -41,6 +41,7 @@ var clickedSkill
 var friendlyOrNot = 0
 
 func ringSkillSignal():
+	print("hiiiii")
 	emit_signal("skillObtained")
 
 func ringItemSignal():

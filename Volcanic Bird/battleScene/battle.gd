@@ -99,6 +99,7 @@ func connectSignals():
 	Global.connect("itemObtained", closePanelAndShowAlliesItems)
 
 func closePanelAndShowEnemiesSkills():
+	print(Global.friendlyOrNot)
 	if Global.friendlyOrNot == 0:
 		print("reached the signal")
 		$"Skill List Panel".hide()
