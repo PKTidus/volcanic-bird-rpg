@@ -516,12 +516,23 @@ func updateInventory():
 		
 		if randomNum <= 100 && randomNum >= 21: # Common Item
 			randomNum = rng.randi_range(0, Global.commonItemsMaster.size() - 1)
-			Global.itemInventory.append(Global.commonItemsMaster[randomNum])
-			updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!")
+			
+			if Global.itemInventory.size() < 12:
+				Global.itemInventory.append(Global.commonItemsMaster[randomNum])
+				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!")
+			else:
+				Global.itemStorage.append(Global.commonItemsMaster[randomNum])
+				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
 		else: # Rare Item
 			randomNum = rng.randi_range(0, Global.rareItemsMaster.size() - 1)
-			Global.itemInventory.append(Global.rareItemsMaster[randomNum])
-			updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!")
+			
+			if Global.itemInventory.size() < 12:
+				Global.itemInventory.append(Global.rareItemsMaster[randomNum])
+				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!")
+			else:
+				Global.itemStorage.append(Global.rareItemsMaster[randomNum])
+				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
+		
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 
 func hideButtons():
