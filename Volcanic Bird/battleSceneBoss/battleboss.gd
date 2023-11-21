@@ -571,20 +571,28 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a heal move
 					if movesArray[i].skill.type == 1:
-						movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
-						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].skill.heal_cal))
-						await get_tree().create_timer(1.5).timeout
+						if !movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
+							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].skill.heal_cal))
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " tried to heal " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
+							await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is an buff move
 					if movesArray[i].skill.type == 2:
-						movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
-						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
-						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
-						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].skill.buff_value))
-						await get_tree().create_timer(1.5).timeout
+						if !movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.cur_hp *= movesArray[i].skill.buff_value
+							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].skill.buff_value))
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " tried to buff " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
+							await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a debuff move
 					if movesArray[i].skill.type == -2:
 						movesArray[i].target.enemyBoss.current_hp *= movesArray[i].skill.buff_value
@@ -644,22 +652,29 @@ func processAttacksOld():
 				if movesArray[i].move == 3:
 					# Check if it is consumable item
 					if movesArray[i].itemInUse.type == 0:
-						movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
-						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
-						Global.itemInventory.erase(movesArray[i].itemInUse)
-						await get_tree().create_timer(1.5).timeout
-						
+						if !movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " tried to heal " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
+							await get_tree().create_timer(1.5).timeout
 					# Check if it is modifier item
 					# This needs to be changed after we implement proper buff techniques
 					if movesArray[i].itemInUse.type == 1:
-						movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
-						movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
-						movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
-						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
-						Global.itemInventory.erase(movesArray[i].itemInUse)
-						await get_tree().create_timer(1.5).timeout
+						if !movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
+							movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
+							movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " tried to buff " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
+							await get_tree().create_timer(1.5).timeout
 					# Check if it is an attack item
 					if movesArray[i].itemInUse.type == 2:
 						movesArray[i].target.enemyBoss.current_hp -= movesArray[i].itemInUse.damage
