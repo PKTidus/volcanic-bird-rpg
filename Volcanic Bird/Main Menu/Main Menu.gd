@@ -16,6 +16,8 @@ func setupSampleGroup():
 	var samepleCreature2 = load("res://Creatures/Purple_Flower.tres")
 	var samepleCreature3 = load("res://Creatures/Shroom.tres")
 	var samepleCreature4 = load("res://Creatures/Wizard.tres")
+	var dummyCreature = load("res://Creatures/Dummy.tres")
+	
 	var creature1 = Creatures.new()
 	var creature2 = Creatures.new()
 	var creature3 = Creatures.new()
@@ -30,6 +32,10 @@ func setupSampleGroup():
 	Global.battleGroup[1] = creature2
 	Global.battleGroup[2] = creature3
 	Global.battleGroup[3] = creature4
+	
+	for i in range(4):
+		if Global.battleGroup[i] == null:
+			Global.battleGroup[i] = dummyCreature
 	
 	var creature5 = Creatures.new()
 	var creature6 = Creatures.new()

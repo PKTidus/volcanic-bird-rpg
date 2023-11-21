@@ -50,7 +50,7 @@ func addToBattleGroup():
 	print(draggedCreatureIndex)
 	if battleGroup.has(draggedCreature) == true:
 		if battleGroup.find(draggedCreature) != draggedCreatureIndex:
-			battleGroup[battleGroup.find(draggedCreature)] = null
+			battleGroup[battleGroup.find(draggedCreature)] = load("res://Creatures/Dummy.tres")
 	battleGroup[draggedCreatureIndex] = draggedCreature
 	emit_signal("battleGroup_changed")
 	emit_signal("battleGroup_changed")

@@ -266,6 +266,8 @@ func trackBattle():
 		$"Results".show() # display results scene
 		return
 	
+	print(player0.creatureData.isDead)
+	
 	if currentPlayerCounter == 0:
 		if !player0.creatureData.isDead:
 			print("Player 0's Turn")
