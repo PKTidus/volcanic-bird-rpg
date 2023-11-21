@@ -97,7 +97,15 @@ func loadItemList():
 				var currentItemPath = dir.get_current_dir() + "/" + fileName
 				var currentItem = Item.new()
 				currentItem.initializeItem(load(currentItemPath))
+				
+				# Add the current item to the master item list
 				Global.itemsMaster.append(currentItem)
+				
+				# Add the current item to the common or rare item list
+				if currentItem.itemRarity == 0:
+					Global.commonItemsMaster.append(currentItem)
+				elif currentItem.itemRarity == 1:
+					Global.rareItemsMaster.append(currentItem)
 			fileName = dir.get_next()
 	else:
 		print("Could not load \"res://Items/\"")
