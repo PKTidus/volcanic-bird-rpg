@@ -265,6 +265,12 @@ func trackBattle():
 		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
 		
 		$"Results".show() # display results scene
+		
+		# Add items to the player's inventory
+		updateInventory()
+		
+		await get_tree().create_timer(3).timeout # pause the game for 1.5 seconds
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 		return
 	
 	if currentPlayerCounter == 0:
@@ -494,13 +500,24 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	
 	player.creatureData.setExperience(playerExperience)
 	player.creatureData.setLevel(playerLevel)
-	
-	await get_tree().create_timer(3).timeout # pause the game for 1.5 seconds
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
 func calculateExperience(playerLevel: int):
 	var exp = ceil((4 * playerLevel ** 3 / 5.0))
 	return ceil(exp)
+
+func updateInventory():
+	var rng = RandomNumberGenerator.new()
+	
+	for node in $"Enemies Container".get_children():
+		# Calculate item drop rng:
+		# 80% is for common items
+		# 20% is for rare items
+		var randomNum = rng.randi_range(1, 100)
+		
+		if randomNum <= 100 && randomNum >= 21: # Common Item
+			# TODO
+		else: # Rare Item
+			# TODO
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()

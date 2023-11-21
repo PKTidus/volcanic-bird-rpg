@@ -16,6 +16,9 @@ class_name Item
 @export var descriptionLabel : String
 @export var inUse : bool
 
+enum RARITY {Common, Rare}
+@export var itemRarity = RARITY.Common
+
 func initializeItem(item):
 	type = item.type
 	modify_strength = item.modify_strength

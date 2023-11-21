@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://blnt1dt42d188"]
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="20"]
 
@@ -15,3 +15,7 @@ nameLabel = "Healing Potion"
 costLabel = "Heals 30 HP"
 descriptionLabel = "A good drink."
 inUse = false
+itemRarity = {
+"Common": 0,
+"Rare": 1
+}
