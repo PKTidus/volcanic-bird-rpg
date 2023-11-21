@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_vwcxl")
 hp_cost = 0
-mp_cost = 1
+mp_cost = 10
 damage_cal = 0
 heal_cal = 0
-buff_value = 1.5
-unlockLevel = 3
+buff_value = 1.2
+unlockLevel = 5
 type = 2
 nameLabel = "Buff"
-costLabel = "0 HP 1 MP"
-descriptionLabel = "Boost ally defense by 150%"
+costLabel = "0 HP 10 MP"
+descriptionLabel = "Boost ally defense by 20%"
