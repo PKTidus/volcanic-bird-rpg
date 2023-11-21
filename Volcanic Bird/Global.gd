@@ -23,7 +23,8 @@ var current_magic_damage
 var current_defense
 var current_magic_defense
 var current_magic_attack_damage
-
+var current_texture
+var current_skills
 # For moving stuff around
 var draggedCreature
 var draggedCreatureIndex = 0
