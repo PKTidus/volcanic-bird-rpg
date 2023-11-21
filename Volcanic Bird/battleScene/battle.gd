@@ -263,13 +263,12 @@ func trackBattle():
 		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience)
 		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience)
 		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
-		
 		$"Results".show() # display results scene
 		
 		# Add items to the player's inventory
 		updateInventory()
 		
-		await get_tree().create_timer(3).timeout # pause the game for 3 seconds
+		await get_tree().create_timer(4.5).timeout # pause the game for 4.5 seconds
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 		return
 	
@@ -523,7 +522,6 @@ func updateInventory():
 			randomNum = rng.randi_range(0, Global.rareItemsMaster.size() - 1)
 			Global.itemInventory.append(Global.rareItemsMaster[randomNum])
 			updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!")
-		
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 
 func hideButtons():
