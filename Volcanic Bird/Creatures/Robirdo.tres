@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://dw5sa4i1hya6o" path="res://Resources/Sprites/wizard.png" id="1"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/robirdo-256.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
