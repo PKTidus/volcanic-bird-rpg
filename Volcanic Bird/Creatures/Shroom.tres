@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://cyl5gkgioh661" path="res://Resources/Sprites/shroom.png" id="1"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/shroom-256.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -17,14 +17,14 @@ max_hp = 20
 max_mp = 15
 cur_hp = 20
 cur_mp = 15
-attack_damage = 7
-magic_attack_damage = 0
-defense = 20
-magic_defense = 21
-speed = 5
-STR_growth = 6
-AGI_growth = 2
-INT_growth = 1
+attack_damage = 10
+magic_attack_damage = 10
+defense = 10
+magic_defense = 10
+speed = 15
+STR_growth = 3
+AGI_growth = 6
+INT_growth = 3
 skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/Buff.tres", "res://Skills/Heal.tres", "res://Skills/Debuff.tres"])
 skillList = Array[Resource]([])
 isDead = false

@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_vwcxl")
 hp_cost = 0
-mp_cost = 6
+mp_cost = 3
 damage_cal = 0
-heal_cal = 30
+heal_cal = 10
 buff_value = 0.0
-unlockLevel = 4
+unlockLevel = 2
 type = 1
-nameLabel = "Heal"
-costLabel = "0 HP 6 MP"
-descriptionLabel = "Heal 30 HP to one ally"
+nameLabel = "Small Heal"
+costLabel = "0 HP 3 MP"
+descriptionLabel = "Heal 10 HP to one ally"

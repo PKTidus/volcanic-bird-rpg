@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_ju01k")
 hp_cost = 0
-mp_cost = 5
-damage_cal = 3
+mp_cost = 2
+damage_cal = 0
 heal_cal = 0
-buff_value = 0.0
-unlockLevel = 3
-type = 4
-nameLabel = "Solar Arrow"
-costLabel = "0 HP 5 MP"
-descriptionLabel = "Deal 3 times magic damage"
+buff_value = 0.1
+unlockLevel = 1
+type = 10
+nameLabel = "Read Book"
+costLabel = "0 HP 2 MP"
+descriptionLabel = "Increase magic damage by 10%"
