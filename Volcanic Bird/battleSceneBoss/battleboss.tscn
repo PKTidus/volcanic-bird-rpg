@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c51qhjghaaf8f"]
+[gd_scene load_steps=14 format=3 uid="uid://b7db01mwjsr0s"]
 
-[ext_resource type="Script" path="res://battleSceneBoss/battleBoss.gd" id="1_3ys05"]
+[ext_resource type="Script" path="res://battleScene/battle.gd" id="1_jjdam"]
 [ext_resource type="Texture2D" uid="uid://c8dk2bkoern48" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_rxbnw"]
 [ext_resource type="FontFile" uid="uid://b81w0epvungx2" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_6c5yq"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="4_ff702"]
 [ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_easlu"]
-[ext_resource type="Script" path="res://battleSceneBoss/Enemy.gd" id="5_sr3tq"]
 [ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_f0tyx"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_gaunx"]
 [ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_1un2p"]
@@ -27,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3ys05")
+script = ExtResource("1_jjdam")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="TextureRect" parent="."]
@@ -71,8 +70,6 @@ grow_horizontal = 2
 
 [node name="Enemy1" parent="Enemies Container" instance=ExtResource("4_ff702")]
 position = Vector2(576, 192)
-script = ExtResource("5_sr3tq")
-enemyBoss = null
 
 [node name="Button" type="Button" parent="Enemies Container/Enemy1"]
 offset_left = -104.0
@@ -84,8 +81,8 @@ offset_bottom = 120.0
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 448.0
-offset_bottom = 512.0
+offset_top = 440.0
+offset_bottom = 504.0
 grow_horizontal = 2
 
 [node name="Actions Container" type="HBoxContainer" parent="Actions Panel"]
@@ -269,7 +266,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("3_6c5yq")
 theme_override_font_sizes/font_size = 27
-text = "Back Button"
+text = "Undo"
 
 [node name="Results" parent="." instance=ExtResource("8_1un2p")]
 visible = false
@@ -280,6 +277,12 @@ offset_right = 576.0
 offset_bottom = 320.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="SeparatorPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 504.0
+offset_right = 1152.0
+offset_bottom = 512.0
 
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Attack" to="." method="_on_attack_pressed"]
