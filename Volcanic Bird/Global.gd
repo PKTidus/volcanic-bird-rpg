@@ -11,6 +11,10 @@ var creatureStorage = []
 var itemInventory = [] 
 var itemStorage = []
 
+var itemsMaster = []
+var commonItemsMaster = []
+var rareItemsMaster = []
+
 # Creature Parts For Creature Menu
 var current_name
 var current_description
@@ -41,6 +45,7 @@ var clickedSkill
 var friendlyOrNot = 0
 
 func ringSkillSignal():
+	print("hiiiii")
 	emit_signal("skillObtained")
 
 func ringItemSignal():
