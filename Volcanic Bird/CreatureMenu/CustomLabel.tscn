@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dho0fto6mrvln"]
+
+[ext_resource type="FontFile" uid="uid://b81w0epvungx2" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_6d5ab"]
+
+[node name="CustomLabel" type="Label"]
+theme_override_fonts/font = ExtResource("1_6d5ab")
+horizontal_alignment = 1
+autowrap_mode = 3

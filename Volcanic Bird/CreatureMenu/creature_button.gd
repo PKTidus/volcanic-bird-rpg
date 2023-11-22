@@ -37,6 +37,8 @@ func _on_focus_entered():
 		Global.current_defense = str(creatureData.defense)
 		Global.current_magic_defense = str(creatureData.magic_defense)
 		Global.current_magic_damage = str(creatureData.magic_attack_damage)
+		Global.current_texture = creatureData.texture
+		Global.current_skills = creatureData.skillList
 	emit_signal("creatureSlotFocus")
 
 func _on_pressed():

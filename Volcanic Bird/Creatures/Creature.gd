@@ -72,6 +72,7 @@ func initializeCreature(sampleCreature):
 	STR_growth = sampleCreature.STR_growth
 	AGI_growth = sampleCreature.AGI_growth
 	INT_growth = sampleCreature.INT_growth
+	isDead = sampleCreature.isDead
 	initializeSkills(sampleCreature)
 	
 func initializeSkills(sampleCreature):

@@ -1,7 +1,6 @@
 extends Control
 
-var saveFilePath = "user://save/"
-var saveFileName = "PlayerSave.tres"
+var saveFilePath = "user://PlayerSave.tres"
 
 var playerData = PlayerSave.new()
 
@@ -13,6 +12,17 @@ func flipACoin():
 	return false
 
 func _on_play_pressed():
+	# Check if party is dead
+	var deadPartyMembers = 0
+	
+	for i in range(4):
+		if Global.battleGroup[i].isDead:
+			deadPartyMembers += 1
+	
+	if deadPartyMembers == 4:
+		return
+	
+	# Load the game
 	if (flipACoin()):
 		get_tree().change_scene_to_file("res://Events/EventChoice.tscn"	)
 	else:
@@ -35,6 +45,5 @@ func save():
 	playerData.creatureStorage = Global.creatureStorage
 	playerData.itemInventory = Global.itemInventory
 	playerData.itemStorage = Global.itemStorage
-	ResourceSaver.save(playerData, saveFilePath + saveFileName)
-
+	ResourceSaver.save(playerData, saveFilePath)
 	get_tree().change_scene_to_file("res://Main Menu/main_menu.tscn")

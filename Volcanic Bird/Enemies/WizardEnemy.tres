@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c8c1ymckexux0"]
 
-[ext_resource type="Texture2D" uid="uid://bxtoovau0jc4" path="res://Resources/Sprites/wizard-256.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b05f0x6cj771n" path="res://Resources/Sprites/wizard-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]
@@ -9,7 +9,7 @@ enemy_name = "Wizard"
 asset = ExtResource("1")
 damage = 4
 magic_damage = 5
-current_hp = 20
+current_hp = 1
 max_hp = 20
 level = 4
 health_points = 5
