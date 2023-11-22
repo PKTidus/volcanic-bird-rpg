@@ -20,7 +20,7 @@ func _on_battle_group_button_gui_input(event):
 			Global.draggedCreatureIndex = 0
 			Global.addToBattleGroup()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		Global.draggedCreature = null
+		Global.draggedCreature = load("res://Creatures/Dummy.tres")
 		Global.draggedCreatureIndex = 0
 		Global.addToBattleGroup()
 
@@ -30,7 +30,7 @@ func _on_battle_group_button_2_gui_input(event):
 			Global.draggedCreatureIndex = 1
 			Global.addToBattleGroup()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		Global.draggedCreature = null
+		Global.draggedCreature = load("res://Creatures/Dummy.tres")
 		Global.draggedCreatureIndex = 1
 		Global.addToBattleGroup()
 
@@ -40,7 +40,7 @@ func _on_battle_group_button_3_gui_input(event):
 			Global.draggedCreatureIndex = 2
 			Global.addToBattleGroup()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		Global.draggedCreature = null
+		Global.draggedCreature = load("res://Creatures/Dummy.tres")
 		Global.draggedCreatureIndex = 2
 		Global.addToBattleGroup()
 
@@ -50,6 +50,6 @@ func _on_battle_group_button_4_gui_input(event):
 			Global.draggedCreatureIndex = 3
 			Global.addToBattleGroup()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		Global.draggedCreature = null
+		Global.draggedCreature = load("res://Creatures/Dummy.tres")
 		Global.draggedCreatureIndex = 3
 		Global.addToBattleGroup()

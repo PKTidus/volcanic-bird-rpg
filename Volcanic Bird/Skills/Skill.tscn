@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://r4ctkdh2s8lg"]
 
 [ext_resource type="Script" path="res://Skills/SkillLoad.gd" id="1_a6w7y"]
-[ext_resource type="FontFile" uid="uid://bqr10us4wgrcv" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_f666y"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_f666y"]
 
 [node name="Skill" type="Node2D"]
 script = ExtResource("1_a6w7y")

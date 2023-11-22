@@ -275,12 +275,17 @@ func trackBattle():
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 		
 		# Update the text labels in the results scene
-		updateResultsTextBox(player0, 0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
-		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
-		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
-		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
-		
+		updateResultsTextBox(player0, 0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience)
+		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience)
+		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience)
+		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
 		$"Results".show() # display results scene
+		
+		# Add items to the player's inventory
+		updateInventory()
+		
+		await get_tree().create_timer(4.5).timeout # pause the game for 4.5 seconds
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 		return
 	
 	if currentPlayerCounter == 0:
@@ -467,12 +472,14 @@ func showTextBox(text):
 func updateTextBox(text):
 	$"Textbox Panel/Textbox".text = text
 
-func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int, skillsLearned):
+func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int):
 	var initialLevel = playerLevel
 	playerExperience += calculateExperience(playerLevel)
 	var nextLevelExperience = calculateExperience(playerLevel + 1)
 	var hasLeveledUp = false
+	var skillsLearned = ""
 	
+	# Update the creature's level
 	while playerExperience >= nextLevelExperience:
 		playerLevel += 1
 		player.creatureData.levelUp()
@@ -484,22 +491,67 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 		player.creatureData.cur_mp = player.creatureData.max_mp
 		playerExperience -= calculateExperience(playerLevel)
 	
+	# Keep track of unlocked skills
+	var index = 0
+	for node in $"Skill List Panel/Skill List Container".get_children():
+		var currentSkill = Global.battleGroup[currentPlayerCounter].skillList[index]
+		
+		if Global.battleGroup[currentPlayerCounter].skillList.size() == 0:
+			break
+		
+		if initialLevel < currentSkill.unlockLevel && playerLevel >= currentSkill.unlockLevel:
+			skillsLearned += currentSkill.nameLabel + "\n"
+		
+		index += 1
+		
+		if index >= Global.battleGroup[currentPlayerCounter].skillList.size():
+			break
+	
 	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
+	var skillsLearnedStr = ("Obtained Skills:\n" + str(skillsLearned)) if (skillsLearned != "") else ""
 	
 	$"Results/Panel/HBoxContainer/".get_child(playerIndex).get_child(0).text = playerName + "\n" + \
 	"Level " + levelStr + "\n" + \
 	"To Next: " + str(playerExperience) + "/" + str(calculateExperience(playerLevel + 1)) + "\n" + \
-	"Obtained Skills:\n" + str(skillsLearned)
+	skillsLearnedStr
 	
 	player.creatureData.setExperience(playerExperience)
 	player.creatureData.setLevel(playerLevel)
-	
-	await get_tree().create_timer(3).timeout # pause the game for 1.5 seconds
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
 func calculateExperience(playerLevel: int):
 	var exp = ceil((4 * playerLevel ** 3 / 5.0))
 	return ceil(exp)
+
+func updateInventory():
+	var rng = RandomNumberGenerator.new()
+	
+	for node in $"Enemies Container".get_children():
+		# Calculate item drop rng:
+		# 80% is for common items
+		# 20% is for rare items
+		var randomNum = rng.randi_range(1, 100)
+		print(randomNum)
+		
+		if randomNum <= 100 && randomNum >= 21: # Common Item
+			randomNum = rng.randi_range(0, Global.commonItemsMaster.size() - 1)
+			
+			if Global.itemInventory.size() < 12:
+				Global.itemInventory.append(Global.commonItemsMaster[randomNum])
+				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!")
+			else:
+				Global.itemStorage.append(Global.commonItemsMaster[randomNum])
+				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
+		else: # Rare Item
+			randomNum = rng.randi_range(0, Global.rareItemsMaster.size() - 1)
+			
+			if Global.itemInventory.size() < 12:
+				Global.itemInventory.append(Global.rareItemsMaster[randomNum])
+				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!")
+			else:
+				Global.itemStorage.append(Global.rareItemsMaster[randomNum])
+				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
+		
+		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()

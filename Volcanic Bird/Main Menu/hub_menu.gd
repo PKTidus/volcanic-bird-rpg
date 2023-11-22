@@ -12,6 +12,17 @@ func flipACoin():
 	return false
 
 func _on_play_pressed():
+	# Check if party is dead
+	var deadPartyMembers = 0
+	
+	for i in range(4):
+		if Global.battleGroup[i].isDead:
+			deadPartyMembers += 1
+	
+	if deadPartyMembers == 4:
+		return
+	
+	# Load the game
 	if (flipACoin()):
 		get_tree().change_scene_to_file("res://Events/EventChoice.tscn"	)
 	else:
