@@ -1,7 +1,6 @@
 extends Control
 
-var saveFilePath = "user://save/"
-var saveFileName = "PlayerSave.tres"
+var saveFilePath = "user://PlayerSave.tres"
 
 var playerData = PlayerSave.new()
 
@@ -46,6 +45,5 @@ func save():
 	playerData.creatureStorage = Global.creatureStorage
 	playerData.itemInventory = Global.itemInventory
 	playerData.itemStorage = Global.itemStorage
-	ResourceSaver.save(playerData, saveFilePath + saveFileName)
-
+	ResourceSaver.save(playerData, saveFilePath)
 	get_tree().change_scene_to_file("res://Main Menu/main_menu.tscn")

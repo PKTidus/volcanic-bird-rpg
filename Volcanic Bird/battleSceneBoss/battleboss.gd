@@ -53,8 +53,8 @@ var currentEnemyCounter # range from 1-3
 func _ready():
 	# comment this function to load sample creatures from the main menu scene while save battle data
 	# uncomment this function to load sample creatures from the battle scene while not saving battle data 
-	# setupSampleGroup() # testing purposes
-	$Background.set_texture(load("res://Resources/Backgrounds/battleback1.png"))
+	setupSampleGroup() # testing purposes
+	
 	setupSampleEnemy() # testing purposes
 	connectSignals()
 	hideEnemyButtons()
@@ -72,21 +72,21 @@ func _ready():
 
 # This is an implementation of selection sort
 func basicSort():
-	for i in range(7):
+	for i in range(5):
 		var maximumIndex = i
 		
-		for j in range(i + 1, 7):
+		for j in range(i + 1, 5):
 			if movesArray[j].isEnemy == 1 and movesArray[maximumIndex].isEnemy == 1:
-				if movesArray[maximumIndex].enemySource.enemyData.speed < movesArray[j].enemySource.enemyData.speed:
+				if movesArray[maximumIndex].enemySource.enemyBoss.speed < movesArray[j].enemySource.enemyBoss.speed:
 					maximumIndex = j
 			elif movesArray[j].isEnemy == 0 and movesArray[maximumIndex].isEnemy == 0:
 				if movesArray[maximumIndex].source.speed < movesArray[j].source.speed:
 					maximumIndex = j
 			elif movesArray[j].isEnemy == 0 and movesArray[maximumIndex].isEnemy == 1:
-				if movesArray[maximumIndex].enemySource.enemyData.speed < movesArray[j].source.speed:
+				if movesArray[maximumIndex].enemySource.enemyBoss.speed < movesArray[j].source.speed:
 					maximumIndex = j
 			elif movesArray[j].isEnemy == 1 and movesArray[maximumIndex].isEnemy == 0:
-				if movesArray[maximumIndex].source.speed < movesArray[j].enemySource.enemyData.speed:
+				if movesArray[maximumIndex].source.speed < movesArray[j].enemySource.enemyBoss.speed:
 					maximumIndex = j
 		# Swap the biggest element
 		var temp = movesArray[maximumIndex]
@@ -160,20 +160,12 @@ func setupSampleGroup():
 	
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
-	sampleEnemy1 = load("res://Enemies/TreeEnemy.tres")
-	sampleEnemy2 = load("res://Enemies/TreeEnemy.tres")
-	sampleEnemy3 = load("res://Enemies/ShroomEnemy.tres")
-	var loadEnemy1 = EnemyData.new()
-	var loadEnemy2 = EnemyData.new()
-	var loadEnemy3 = EnemyData.new()
+	sampleEnemy1 = load("res://Boss/WizardBoss.tres")
+	var loadEnemy1 = enemyBoss.new()
 	
-	loadEnemy1.initializeEnemyData(sampleEnemy1)
-	loadEnemy2.initializeEnemyData(sampleEnemy2)
-	loadEnemy3.initializeEnemyData(sampleEnemy3)
+	loadEnemy1.initializeEnemyBoss(sampleEnemy1)
 	
 	sampleArray.append(loadEnemy1)
-	sampleArray.append(loadEnemy2)
-	sampleArray.append(loadEnemy3)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
@@ -189,7 +181,7 @@ func loadCreatures():
 func loadEnemies():
 	var currentIndex = 0
 	for node in $"Enemies Container".get_children():
-		node.enemyData = sampleArray[currentIndex]
+		node.enemyBoss = sampleArray[currentIndex]
 		currentIndex += 1 
 		node.emit_signal("updateEnemy")
 
@@ -210,33 +202,19 @@ func initializeMoves():
 	currentMove.enemyTarget = null
 	currentMove.isEnemy = 1
 	selectedCreatures[0] = currentMove
-	
-	currentMove = Moves.new()
-	currentMove.move = 0
-	currentMove.enemySource = enemy2
-	currentMove.enemyTarget = null
-	currentMove.isEnemy = 1
-	selectedCreatures[1] = currentMove
-	
-	currentMove = Moves.new()
-	currentMove.move = 0
-	currentMove.enemySource = enemy3
-	currentMove.enemyTarget = null
-	currentMove.isEnemy = 1
-	selectedCreatures[2] = currentMove
  
 func sortArrayBySpeed():
 	for i in range(4):
 		movesArray.append(selectedEnemies[i])
-	for i in range(3):
+	for i in range(1):
 		movesArray.append(selectedCreatures[i])
 	
 	basicSort()
 	
-	for i in range(7):
+	for i in range(5):
 		if movesArray[i].isEnemy == 1:
-			print(movesArray[i].enemySource.enemyData.speed)
-			print(movesArray[i].enemySource.enemyData.enemy_name)
+			print(movesArray[i].enemySource.enemyBoss.speed)
+			print(movesArray[i].enemySource.enemyBoss.enemy_name)
 		elif movesArray[i].isEnemy == 0:
 			print(movesArray[i].source.speed)
 			print(movesArray[i].source.name)
@@ -249,8 +227,6 @@ func getPlayerInfo():
 
 func getEnemyInfo():
 	enemy1 = $"Enemies Container/Enemy1"
-	enemy2 = $"Enemies Container/Enemy2"
-	enemy3 = $"Enemies Container/Enemy3"
 
 func trackBattle():
 	print("Selected Enemies:  " + str(selectedEnemies))
@@ -267,7 +243,7 @@ func trackBattle():
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	
 	# Check if the enemies are dead
-	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
+	if (enemy1.enemyBoss.isDead):
 		print("Enemies are dead")
 		updateTextBox("You and your party won!")
 		disableButtons()
@@ -275,17 +251,12 @@ func trackBattle():
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 		
 		# Update the text labels in the results scene
-		updateResultsTextBox(player0, 0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience)
-		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience)
-		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience)
-		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
+		updateResultsTextBox(player0, 0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience, null)
+		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience, null)
+		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience, null)
+		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience, null)
+		
 		$"Results".show() # display results scene
-		
-		# Add items to the player's inventory
-		updateInventory()
-		
-		await get_tree().create_timer(4.5).timeout # pause the game for 4.5 seconds
-		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 		return
 	
 	if currentPlayerCounter == 0:
@@ -472,14 +443,12 @@ func showTextBox(text):
 func updateTextBox(text):
 	$"Textbox Panel/Textbox".text = text
 
-func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int):
+func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int, skillsLearned):
 	var initialLevel = playerLevel
 	playerExperience += calculateExperience(playerLevel)
 	var nextLevelExperience = calculateExperience(playerLevel + 1)
 	var hasLeveledUp = false
-	var skillsLearned = ""
 	
-	# Update the creature's level
 	while playerExperience >= nextLevelExperience:
 		playerLevel += 1
 		player.creatureData.levelUp()
@@ -491,67 +460,22 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 		player.creatureData.cur_mp = player.creatureData.max_mp
 		playerExperience -= calculateExperience(playerLevel)
 	
-	# Keep track of unlocked skills
-	var index = 0
-	for node in $"Skill List Panel/Skill List Container".get_children():
-		var currentSkill = Global.battleGroup[currentPlayerCounter].skillList[index]
-		
-		if Global.battleGroup[currentPlayerCounter].skillList.size() == 0:
-			break
-		
-		if initialLevel < currentSkill.unlockLevel && playerLevel >= currentSkill.unlockLevel:
-			skillsLearned += currentSkill.nameLabel + "\n"
-		
-		index += 1
-		
-		if index >= Global.battleGroup[currentPlayerCounter].skillList.size():
-			break
-	
 	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
-	var skillsLearnedStr = ("Obtained Skills:\n" + str(skillsLearned)) if (skillsLearned != "") else ""
 	
 	$"Results/Panel/HBoxContainer/".get_child(playerIndex).get_child(0).text = playerName + "\n" + \
 	"Level " + levelStr + "\n" + \
 	"To Next: " + str(playerExperience) + "/" + str(calculateExperience(playerLevel + 1)) + "\n" + \
-	skillsLearnedStr
+	"Obtained Skills:\n" + str(skillsLearned)
 	
 	player.creatureData.setExperience(playerExperience)
 	player.creatureData.setLevel(playerLevel)
+	
+	await get_tree().create_timer(3).timeout # pause the game for 1.5 seconds
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
 func calculateExperience(playerLevel: int):
 	var exp = ceil((4 * playerLevel ** 3 / 5.0))
 	return ceil(exp)
-
-func updateInventory():
-	var rng = RandomNumberGenerator.new()
-	
-	for node in $"Enemies Container".get_children():
-		# Calculate item drop rng:
-		# 80% is for common items
-		# 20% is for rare items
-		var randomNum = rng.randi_range(1, 100)
-		print(randomNum)
-		
-		if randomNum <= 100 && randomNum >= 21: # Common Item
-			randomNum = rng.randi_range(0, Global.commonItemsMaster.size() - 1)
-			
-			if Global.itemInventory.size() < 12:
-				Global.itemInventory.append(Global.commonItemsMaster[randomNum])
-				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!")
-			else:
-				Global.itemStorage.append(Global.commonItemsMaster[randomNum])
-				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
-		else: # Rare Item
-			randomNum = rng.randi_range(0, Global.rareItemsMaster.size() - 1)
-			
-			if Global.itemInventory.size() < 12:
-				Global.itemInventory.append(Global.rareItemsMaster[randomNum])
-				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!")
-			else:
-				Global.itemStorage.append(Global.rareItemsMaster[randomNum])
-				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
-		
-		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 
 func hideButtons():
 	$"Actions Panel/Actions Container/Attack".hide()
@@ -577,18 +501,10 @@ func disableButtons():
 func hideEnemyButtons():
 	if has_node("Enemies Container/Enemy1"):
 		$"Enemies Container/Enemy1/Button".hide()
-	if has_node("Enemies Container/Enemy2"):
-		$"Enemies Container/Enemy2/Button".hide()
-	if has_node("Enemies Container/Enemy3"):
-		$"Enemies Container/Enemy3/Button".hide()
 
 func showEnemyButtons():
-	if !enemy1.enemyData.isDead:
+	if !enemy1.enemyBoss.isDead:
 		$"Enemies Container/Enemy1/Button".show()
-	if !enemy2.enemyData.isDead:
-		$"Enemies Container/Enemy2/Button".show()
-	if !enemy3.enemyData.isDead:
-		$"Enemies Container/Enemy3/Button".show()
 
 func _on_enemy1_pressed():
 	# attackEnemy(enemy1)
@@ -611,51 +527,9 @@ func _on_enemy1_pressed():
 	
 	trackBattle()
 
-func _on_enemy2_pressed():
-	# attackEnemy(enemy2)
-	selectedEnemies[currentPlayerCounter].target = enemy2
-	selectedEnemies[currentPlayerCounter].move = typeOfMove
-	
-	if typeOfMove == 2:
-		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-	if typeOfMove == 3:
-		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
-		Global.clickedItem.inUse = true
-	
-	updatePlayerCounter()
-	
-	print(selectedEnemies)
-	
-	hideEnemyButtons()
-	hideTextBox()
-	showButtons()
-	
-	trackBattle()
-
-func _on_enemy3_pressed():
-	# attackEnemy(enemy3)
-	selectedEnemies[currentPlayerCounter].target = enemy3
-	selectedEnemies[currentPlayerCounter].move = typeOfMove
-	
-	if typeOfMove == 2:
-		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
-	if typeOfMove == 3:
-		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
-		Global.clickedItem.inUse = true
-	
-	updatePlayerCounter()
-	
-	print(selectedEnemies)
-	
-	hideEnemyButtons()
-	hideTextBox()
-	showButtons()
-	
-	trackBattle()
-
 func attackEnemy(enemy):
-	print(enemy.enemyData.enemy_name + " clicked fr")
-	enemy.enemyData.current_hp -= 5
+	print(enemy.enemyBoss.enemy_name + " clicked fr")
+	enemy.enemyBoss.current_hp -= 5
 	enemy.updateHealth()
 
 func processAttacks():
@@ -670,30 +544,30 @@ func processAttacks():
 	hideTextBox()
 
 func processAttacksOld():
-	for i in range(7):
+	for i in range(5):
 		if movesArray[i].isEnemy == 0:
 			if !movesArray[i].source.isDead:
 				if movesArray[i].move == 1:
-					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyData.defense)
+					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyBoss.defense)
 					
-					movesArray[i].target.enemyData.current_hp -= currentDamage
+					movesArray[i].target.enemyBoss.current_hp -= currentDamage
 					movesArray[i].target.updateHealth()
 					movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 					updateBattleGroupHealth()
 					
-					showTextBox(str(movesArray[i].source.name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
+					showTextBox(str(movesArray[i].source.name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].target.enemyBoss.enemy_name))
 					await get_tree().create_timer(1.5).timeout
 				# this statement checks if this is a skill move
 				if movesArray[i].move == 2:
 					# this statement checks if this is a constant damage skill move
 					if movesArray[i].skill.type == 0:
-						movesArray[i].target.enemyData.current_hp -= movesArray[i].skill.damage_cal
+						movesArray[i].target.enemyBoss.current_hp -= movesArray[i].skill.damage_cal
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						updateBattleGroupHealth()
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(movesArray[i].skill.damage_cal))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyBoss.enemy_name) + " and dealt " + str(movesArray[i].skill.damage_cal))
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a heal move
 					if movesArray[i].skill.type == 1:
@@ -721,31 +595,31 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a debuff move
 					if movesArray[i].skill.type == -2:
-						movesArray[i].target.enemyData.current_hp *= movesArray[i].skill.buff_value
+						movesArray[i].target.enemyBoss.current_hp *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
 						updateBattleGroupHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to debuff " + str(movesArray[i].target.enemyData.enemy_name) + " and debuffed for " + str(movesArray[i].skill.buff_value))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to debuff " + str(movesArray[i].target.enemyBoss.enemy_name) + " and debuffed for " + str(movesArray[i].skill.buff_value))
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated physical damage move
 					if movesArray[i].skill.type == 3:
-						var currentDamage = max(1, movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.defense)
-						movesArray[i].target.enemyData.current_hp -= currentDamage
+						var currentDamage = max(1, movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyBoss.defense)
+						movesArray[i].target.enemyBoss.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyBoss.enemy_name) + " and dealt " + str(currentDamage))
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated magical damage move
 					if movesArray[i].skill.type == 4:
-						var currentDamage = max(1, movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.magic_defense)
-						movesArray[i].target.enemyData.current_hp -= currentDamage
+						var currentDamage = max(1, movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyBoss.magic_defense)
+						movesArray[i].target.enemyBoss.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						movesArray[i].target.updateHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyBoss.enemy_name) + " and dealt " + str(currentDamage))
 						await get_tree().create_timer(1.5).timeout
 					if movesArray[i].skill.type == 5:
 						pass
@@ -803,14 +677,14 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# Check if it is an attack item
 					if movesArray[i].itemInUse.type == 2:
-						movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
+						movesArray[i].target.enemyBoss.current_hp -= movesArray[i].itemInUse.damage
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyData.enemy_name) + " and damaged for " + str(movesArray[i].itemInUse.damage))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyBoss.enemy_name) + " and damaged for " + str(movesArray[i].itemInUse.damage))
 						Global.itemInventory.erase(movesArray[i].itemInUse)
 						await get_tree().create_timer(1.5).timeout
 		if movesArray[i].isEnemy == 1:
-			if !movesArray[i].enemySource.enemyData.isDead:
+			if !movesArray[i].enemySource.enemyBoss.isDead:
 				var targetIsDefending = false
 				var currentDamage = 0
 				print("hi")
@@ -820,18 +694,18 @@ func processAttacksOld():
 						targetIsDefending = true
 				
 				if targetIsDefending:
-					currentDamage = movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyData.damage)
+					currentDamage = movesArray[i].enemyTarget.defend(movesArray[i].enemySource.enemyBoss.damage)
 				else:
 					# Physical enemy attack
-					if movesArray[i].enemySource.enemyData.useMagic == false:
-						currentDamage = max(1, movesArray[i].enemySource.enemyData.damage / movesArray[i].enemyTarget.defense)
-					elif movesArray[i].enemySource.enemyData.useMagic == true:
+					if movesArray[i].enemySource.enemyBoss.useMagic == false:
+						currentDamage = max(1, movesArray[i].enemySource.enemyBoss.damage / movesArray[i].enemyTarget.defense)
+					elif movesArray[i].enemySource.enemyBoss.useMagic == true:
 						print("weak magic defense lol")
-						currentDamage = max(1, movesArray[i].enemySource.enemyData.magic_damage / movesArray[i].enemyTarget.magic_defense)
+						currentDamage = max(1, movesArray[i].enemySource.enemyBoss.magic_damage / movesArray[i].enemyTarget.magic_defense)
 				
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				updateBattleGroupHealth()
-				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
+				showTextBox(str(movesArray[i].enemySource.enemyBoss.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
 				await get_tree().create_timer(1.5).timeout
 		
 	updateBattleGroupHealth()
@@ -867,46 +741,14 @@ func updatePlayerCounter():
 	currentPlayerCounter += 1
 
 func resetEnemyMoves():
-	for i in range(7):
+	for i in range(5):
 		if movesArray[i].isEnemy == 1:
 			movesArray[i].enemyTarget = null
-			movesArray[i].enemySource.enemyData.useMagic = false
+			movesArray[i].enemySource.enemyBoss.useMagic = false
 
+# REDO FOR BOSS AI
 func selectEnemyMoves():
-	for i in range(7):
-		if movesArray[i].isEnemy == 1:
-			var coin = randi_range(0, 100)
-			# Asshole mode
-			if coin >= 85:
-				print("asshole mode")
-				var minimum = Global.battleGroup[0]
-				if minimum.isDead:
-					for j in range(1, 4):
-						if !Global.battleGroup[j].isDead:
-							minimum = Global.battleGroup[j]
-							break
-				for j in range(4):
-					if minimum.cur_hp > Global.battleGroup[j].cur_hp and !Global.battleGroup[j].isDead:
-						minimum = Global.battleGroup[j]
-				movesArray[i].enemyTarget = minimum
-				if minimum.defense > minimum.magic_defense:
-					print("targeting weaker magic defense")
-					movesArray[i].enemySource.enemyData.useMagic = true
-				elif minimum.defense < minimum.magic_defense:
-					print("targeting weaker physical defense")
-					movesArray[i].enemySource.enemyData.useMagic = false
-			# rando mode
-			elif coin <= 84:
-				print("rando mode")
-				movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
-				while movesArray[i].enemyTarget.isDead:
-					print("found dead boi")
-					movesArray[i].enemyTarget = Global.battleGroup[randi_range(0, 3)]
-				var coin2 = randi_range(0, 100)
-				if coin2 >= 50:
-					movesArray[i].enemySource.enemyData.useMagic = true
-				else:
-					movesArray[i].enemySource.enemyData.useMagic = false
+	pass
 
 func _on_player_0_pressed():
 	if typeOfMove == 2 and Global.friendlyOrNot == 1 and Global.clickedSkill != null:
@@ -992,7 +834,7 @@ func _on_player_3_pressed():
 	typeOfMove = -1
 
 func resetMoves():
-	for i in range(7):
+	for i in range(5):
 		if movesArray[i].isEnemy == 0:
 			movesArray[i].target = null
 			movesArray[i].friendlyTarget = null

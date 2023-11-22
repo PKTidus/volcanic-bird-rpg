@@ -1,7 +1,6 @@
 extends Control
 
-var saveFilePath = "user://save/"
-var saveFileName = "PlayerSave.tres"
+var saveFilePath = "user://PlayerSave.tres"
 
 var playerData = PlayerSave.new()
 
@@ -111,7 +110,7 @@ func loadItemList():
 		print("Could not load \"res://Items/\"")
 
 func loadGame():
-	playerData = ResourceLoader.load(saveFilePath + saveFileName)
+	playerData = ResourceLoader.load(saveFilePath)
 	if playerData != null:
 		Global.battleGroup = playerData.battleGroup
 		Global.creatureStorage = playerData.creatureStorage

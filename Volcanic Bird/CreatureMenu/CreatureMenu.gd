@@ -48,6 +48,14 @@ func onCreatureSlotFocus():
 	$"Stats/Magic Attack Damage".text = "Magic Attack Damage = " + str(Global.current_magic_damage)
 	$"Stats/Magic Defense".text = "Magic Defense = " + str(Global.current_magic_defense)
 	$Stats/Defense.text = "Defense = " + str(Global.current_defense)
+	$TextureRect.texture = Global.current_texture
+	for node in $ScrollContainer/VBoxContainer.get_children():
+		node.queue_free()
+	for skills in Global.current_skills:
+		var label = load("res://CreatureMenu/CustomLabel.tscn")
+		var newLabel = label.instantiate()
+		newLabel.text = str(skills.nameLabel) + "\n" + "Cost: " + str(skills.costLabel) + "\n" + str(skills.descriptionLabel) + "\nUnlock Level: " + str(skills.unlockLevel)
+		$ScrollContainer/VBoxContainer.add_child(newLabel)
 	showNameChange()
 
 func _on_button_pressed():
