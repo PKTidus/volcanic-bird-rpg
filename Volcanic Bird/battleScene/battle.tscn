@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
-[ext_resource type="Texture2D" uid="uid://ct3h3g1hf2d4k" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_2yjw6"]
+[ext_resource type="Texture2D" uid="uid://c8dk2bkoern48" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_2yjw6"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
-[ext_resource type="FontFile" uid="uid://b0xmjfr43o883" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
+[ext_resource type="FontFile" uid="uid://b81w0epvungx2" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
 [ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_u4d07"]
 [ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_h375h"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_uu1e0"]
@@ -99,8 +99,8 @@ offset_bottom = 128.0
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 448.0
-offset_bottom = 512.0
+offset_top = 440.0
+offset_bottom = 504.0
 grow_horizontal = 2
 
 [node name="Actions Container" type="HBoxContainer" parent="Actions Panel"]
@@ -284,7 +284,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_ivqmm")
 theme_override_font_sizes/font_size = 27
-text = "Back Button"
+text = "Undo"
 
 [node name="Results" parent="." instance=ExtResource("8_vd5q4")]
 visible = false
@@ -295,6 +295,12 @@ offset_right = 576.0
 offset_bottom = 320.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="SeparatorPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 504.0
+offset_right = 1152.0
+offset_bottom = 512.0
 
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
