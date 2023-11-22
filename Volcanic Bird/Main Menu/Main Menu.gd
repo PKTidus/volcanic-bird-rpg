@@ -12,8 +12,8 @@ func _on_play_pressed():
 
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
-	var samepleCreature1 = load("res://Creatures/Purple_Flower.tres")
-	var samepleCreature2 = load("res://Creatures/Purple_Flower.tres")
+	var samepleCreature1 = load("res://Creatures/USB_Micro.tres")
+	var samepleCreature2 = load("res://Creatures/Robirdo.tres")
 	var samepleCreature3 = load("res://Creatures/Shroom.tres")
 	var samepleCreature4 = load("res://Creatures/Wizard.tres")
 	var dummyCreature = load("res://Creatures/Dummy.tres")

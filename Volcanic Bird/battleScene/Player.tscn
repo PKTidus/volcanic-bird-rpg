@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://boe11sr5b1bb1"]
 
 [ext_resource type="Script" path="res://battleScene/Player.gd" id="1_maeio"]
-[ext_resource type="FontFile" uid="uid://b81w0epvungx2" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
+[ext_resource type="FontFile" uid="uid://dvghr5x2oddd8" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
 
 [node name="Player" type="Button"]
 anchors_preset = 15
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+text_overrun_behavior = 3
 script = ExtResource("1_maeio")
 
 [node name="Name" type="Label" parent="."]
@@ -25,6 +26,7 @@ text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+text_overrun_behavior = 3
 
 [node name="HPLabel" type="Label" parent="."]
 layout_mode = 0
