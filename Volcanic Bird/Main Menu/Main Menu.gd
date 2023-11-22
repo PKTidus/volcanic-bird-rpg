@@ -116,6 +116,8 @@ func loadGame():
 		Global.creatureStorage = playerData.creatureStorage
 		Global.itemInventory = playerData.itemInventory
 		Global.itemStorage = playerData.itemStorage
+		Global.eventCounter = playerData.eventCounter
+		Global.floorCounter = playerData.floorCounter
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 func _on_options_pressed():

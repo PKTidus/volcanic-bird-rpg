@@ -10,6 +10,8 @@ var battleGroup = [null, null, null, null] # 4x null because of 4 creatures in g
 var creatureStorage = []
 var itemInventory = [] 
 var itemStorage = []
+var eventCounter = 0
+var floorCounter = 0
 
 var itemsMaster = []
 var commonItemsMaster = []

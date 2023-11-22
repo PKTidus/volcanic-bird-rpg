@@ -66,6 +66,25 @@ theme_override_fonts/font = ExtResource("2_gonme")
 theme_override_font_sizes/font_size = 27
 text = "100"
 
+[node name="Level" type="Label" parent="."]
+layout_mode = 0
+offset_top = 104.0
+offset_right = 32.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("2_gonme")
+theme_override_font_sizes/font_size = 27
+text = "LV:"
+
+[node name="Level2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 104.0
+offset_right = 88.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("2_gonme")
+theme_override_font_sizes/font_size = 26
+text = "100"
+
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 layout_mode = 0

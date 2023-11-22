@@ -21,6 +21,7 @@ func updateButton():
 	$"Name".text = creatureData.name
 	$"HPNumber".text = str(creatureData.cur_hp) + "/" + str(creatureData.max_hp)
 	$"MPNumber".text = str(creatureData.cur_mp) + "/" + str(creatureData.max_mp)
+	$Level2.text = str(creatureData.level)
 
 func updateHealth():
 	# Check if dummy creature
