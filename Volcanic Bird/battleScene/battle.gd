@@ -100,7 +100,7 @@ func connectSignals():
 func closePanelAndShowEnemiesSkills():
 	if (selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost) and (Global.clickedSkill.mp_cost != 0):
 		if Global.friendlyOrNot == 0:
-			print("reached the signal")
+			print("I love penis")
 			$"Skill List Panel".hide()
 			showTextBox("Which enemy?")
 			showEnemyButtons()
