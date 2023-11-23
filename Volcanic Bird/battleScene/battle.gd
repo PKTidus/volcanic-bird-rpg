@@ -753,7 +753,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread physical
 					if movesArray[i].skill.type == 5:
-						var outgoingDamage = movesArray[i].source.attack_damage * float(movesArray[i].skill.damage_cal)
+						var outgoingDamage = movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal
 						print(movesArray[i].source.attack_damage)
 						print(movesArray[i].skill.damage_cal)
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -770,11 +770,15 @@ func processAttacksOld():
 					# spread magic
 					if movesArray[i].skill.type == 6:
 						var outgoingDamage = movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal
+						print(movesArray[i].source.magic_attack_damage)
+						print(movesArray[i].skill.damage_cal)
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						for node in $"Enemies Container".get_children():
+							print(outgoingDamage)
+							print(outgoingDamage / node.enemyData.magic_defense)
 							node.enemyData.current_hp -= outgoingDamage / node.enemyData.magic_defense
-							node.enemyData.updateHealth()
+							node.updateHealth()
 							node.get_node("AnimationPlayer").play("enemy_damaged")
 						updateBattleGroupHealth()
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to damage all enemies!")
