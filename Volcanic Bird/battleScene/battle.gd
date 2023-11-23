@@ -499,7 +499,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	if hasLeveledUp:
 		player.creatureData.cur_hp = player.creatureData.max_hp
 		player.creatureData.cur_mp = player.creatureData.max_mp
-		player.emit_signal("updateButtons")
+		player.creatureData.isDead = false
 		playerExperience -= calculateExperience(playerLevel)
 	
 	# Keep track of unlocked skills
