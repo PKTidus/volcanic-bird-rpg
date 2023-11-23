@@ -13,4 +13,4 @@ unlockLevel = 7
 type = 9
 nameLabel = "Fuzzy Sun"
 costLabel = "5 HP 25 MP"
-descriptionLabel = "Heal 200 HP to all allies"
+descriptionLabel = "Heal 100 HP to all allies"

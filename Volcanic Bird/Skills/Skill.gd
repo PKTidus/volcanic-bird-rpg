@@ -4,7 +4,7 @@ class_name Skill
 
 @export var hp_cost : int
 @export var mp_cost : int
-@export var damage_cal : int
+@export var damage_cal : float
 @export var heal_cal : int
 @export var buff_value : float
 @export var unlockLevel : int
