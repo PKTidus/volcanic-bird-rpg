@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
+
+[ext_resource type="Texture2D" path="res://Resources/Sprites/robirdo-256.png" id="1"]
+[ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+enemy_name = "Robirdo"
+asset = ExtResource("1")
+damage = 5
+magic_damage = 1
+current_hp = 30
+max_hp = 30
+level = 1
+health_points = 5
+magic_points = 5
+defense = 6
+magic_defense = 4
+speed = 6
+isDead = false
+useMagic = false
