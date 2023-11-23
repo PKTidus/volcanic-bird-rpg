@@ -98,27 +98,38 @@ func connectSignals():
 	Global.connect("itemObtained", closePanelAndShowAlliesItems)
 
 func closePanelAndShowEnemiesSkills():
-	if (selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost) and (Global.clickedSkill.mp_cost != 0):
+	if ((selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) and (selectedEnemies[currentPlayerCounter].source.cur_hp >= Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
 		if Global.friendlyOrNot == 0:
-			print("I love penis")
+			print("mp hp")
 			$"Skill List Panel".hide()
 			showTextBox("Which enemy?")
 			showEnemyButtons()
 			return
 		elif Global.friendlyOrNot == 1:
-			print("reached Frinedly")
+			$"Skill List Panel".hide()
+			showTextBox("Which ally?")
+			return
+	elif ((selectedEnemies[currentPlayerCounter].source.cur_mp <= Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) or (selectedEnemies[currentPlayerCounter].source.cur_hp <= Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
+		return
+	elif (selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost) and (Global.clickedSkill.mp_cost != 0):
+		if Global.friendlyOrNot == 0:
+			print("mp")
+			$"Skill List Panel".hide()
+			showTextBox("Which enemy?")
+			showEnemyButtons()
+			return
+		elif Global.friendlyOrNot == 1:
 			$"Skill List Panel".hide()
 			showTextBox("Which ally?")
 			return
 	elif (selectedEnemies[currentPlayerCounter].source.cur_hp >= Global.clickedSkill.hp_cost) and (Global.clickedSkill.hp_cost != 0):
 		if Global.friendlyOrNot == 0:
-			print("reached the signal")
+			print("hp")
 			$"Skill List Panel".hide()
 			showTextBox("Which enemy?")
 			showEnemyButtons()
 			return
 		elif Global.friendlyOrNot == 1:
-			print("reached Frinedly")
 			$"Skill List Panel".hide()
 			showTextBox("Which ally?")
 		return
