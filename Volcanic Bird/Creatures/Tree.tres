@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" path="res://Resources/Sprites/tree-256.png" id="1"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/tree-32.png" id="1"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/tree-256.png" id="3"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -8,6 +9,7 @@ script = ExtResource("2")
 name = "Blood Eyed Tree"
 description = "Why bro bleeding from his eyes?"
 texture = ExtResource("1")
+texture256 = ExtResource("3")
 agility = 0.0
 strength = 0.0
 intelligence = 0.0

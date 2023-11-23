@@ -6,3 +6,5 @@ class_name PlayerSave
 @export var creatureStorage : Array
 @export var itemInventory : Array
 @export var itemStorage : Array
+@export var eventCounter : int
+@export var floorCounter : int

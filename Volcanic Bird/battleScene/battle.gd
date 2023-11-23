@@ -488,6 +488,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	if hasLeveledUp:
 		player.creatureData.cur_hp = player.creatureData.max_hp
 		player.creatureData.cur_mp = player.creatureData.max_mp
+		player.emit_signal("updateButtons")
 		playerExperience -= calculateExperience(playerLevel)
 	
 	# Keep track of unlocked skills
@@ -594,7 +595,7 @@ func _on_enemy1_pressed():
 	selectedEnemies[currentPlayerCounter].target = enemy1
 	selectedEnemies[currentPlayerCounter].move = typeOfMove
 	
-	if typeOfMove == 2:
+	if typeOfMove == 2 and Global.clickedSkill != null:
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
 	if typeOfMove == 3:
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
@@ -615,7 +616,7 @@ func _on_enemy2_pressed():
 	selectedEnemies[currentPlayerCounter].target = enemy2
 	selectedEnemies[currentPlayerCounter].move = typeOfMove
 	
-	if typeOfMove == 2:
+	if typeOfMove == 2 and Global.clickedSkill != null:
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
 	if typeOfMove == 3:
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem
@@ -636,7 +637,7 @@ func _on_enemy3_pressed():
 	selectedEnemies[currentPlayerCounter].target = enemy3
 	selectedEnemies[currentPlayerCounter].move = typeOfMove
 	
-	if typeOfMove == 2:
+	if typeOfMove == 2 and Global.clickedSkill != null:
 		selectedEnemies[currentPlayerCounter].skill = Global.clickedSkill
 	if typeOfMove == 3:
 		selectedEnemies[currentPlayerCounter].itemInUse = Global.clickedItem

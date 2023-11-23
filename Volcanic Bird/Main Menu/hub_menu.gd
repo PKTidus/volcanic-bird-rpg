@@ -11,6 +11,10 @@ func flipACoin():
 		return true
 	return false
 
+func _ready():
+	print(Global.eventCounter)
+	print(Global.floorCounter)
+
 func _on_play_pressed():
 	# Check if party is dead
 	var deadPartyMembers = 0
@@ -45,5 +49,7 @@ func save():
 	playerData.creatureStorage = Global.creatureStorage
 	playerData.itemInventory = Global.itemInventory
 	playerData.itemStorage = Global.itemStorage
+	playerData.eventCounter = Global.eventCounter
+	playerData.floorCounter = Global.floorCounter
 	ResourceSaver.save(playerData, saveFilePath)
 	get_tree().change_scene_to_file("res://Main Menu/main_menu.tscn")

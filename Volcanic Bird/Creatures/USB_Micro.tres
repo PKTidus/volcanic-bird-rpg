@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" path="res://Resources/Sprites/usbmicro-256.png" id="1"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/microusb-32.png" id="1"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/microusb-256.png" id="3"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -8,15 +9,16 @@ script = ExtResource("2")
 name = "USB Michael"
 description = "The most evil warrior of the USB clan"
 texture = ExtResource("1")
+texture256 = ExtResource("3")
 agility = 0.0
 strength = 0.0
 intelligence = 0.0
-level = 30
+level = 3
 experience = 6
 max_hp = 30
 max_mp = 30
-cur_hp = 20
-cur_mp = 20
+cur_hp = 30
+cur_mp = 30
 attack_damage = 15
 magic_attack_damage = 15
 defense = 10
@@ -25,6 +27,6 @@ speed = 20
 STR_growth = 3
 AGI_growth = 5
 INT_growth = 3
-skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres", "res://Skills/SolarArrow.tres"])
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/SolarArrow.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres"])
 skillList = Array[Resource]([])
 isDead = false

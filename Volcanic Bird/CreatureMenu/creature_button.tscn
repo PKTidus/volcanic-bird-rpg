@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cs8rlnooal4yd"]
 
-[ext_resource type="FontFile" uid="uid://bqr10us4wgrcv" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_affag"]
+[ext_resource type="FontFile" uid="uid://dvghr5x2oddd8" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_affag"]
 [ext_resource type="Script" path="res://CreatureMenu/creature_button.gd" id="1_sbntr"]
 [ext_resource type="Resource" uid="uid://mcjq5uunblqo" path="res://Creatures/Wizard.tres" id="2_7bkdl"]
 
