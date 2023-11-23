@@ -31,6 +31,13 @@ func _on_option_b_pressed():
 		collapse_event('b')
 	elif self.outcome.type == "battle":
 		get_tree().change_scene_to_file("res://battleScene/battle.tscn"	)
+	elif self.outcome.type == "character-addition":
+		for path in self.outcome.enemy_paths:
+			var creature = load(path)
+			var newCreature = Creatures.new()
+			newCreature.initializeCreature(creature)
+			Global.creatureStorage.append(newCreature)
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn"	)
 	else:
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn"	)
 

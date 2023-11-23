@@ -143,20 +143,11 @@ func setupSampleGroup():
 	
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
-	sampleEnemy1 = load(Global.selected_enemy_paths[0])
-	sampleEnemy2 = load(Global.selected_enemy_paths[1])
-	sampleEnemy3 = load(Global.selected_enemy_paths[2])
-	var loadEnemy1 = EnemyData.new()
-	var loadEnemy2 = EnemyData.new()
-	var loadEnemy3 = EnemyData.new()
-	
-	loadEnemy1.initializeEnemyData(sampleEnemy1)
-	loadEnemy2.initializeEnemyData(sampleEnemy2)
-	loadEnemy3.initializeEnemyData(sampleEnemy3)
-	
-	sampleArray.append(loadEnemy1)
-	sampleArray.append(loadEnemy2)
-	sampleArray.append(loadEnemy3)
+	for i in range(4):
+		var enemy = load(Global.selected_enemy_paths[i])
+		var loadEnemy = EnemyData.new()
+		loadEnemy.initializeEnemyData(enemy)
+		sampleArray.append(enemy)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():

@@ -14,7 +14,7 @@ func _init(option_title, option_results):
 		print(option_results[i].description)
 		total_chance += option_results[i].chance
 		self.option_results.append(option_results[i])
-	assert(total_chance == 100)
+	assert(total_chance == 100) # if you've crashed here, your percentages are fucked
 
 func collapse():
 	var num = self._getRand()
