@@ -1,5 +1,6 @@
 extends Control
 
+var copies = [null, null, null, null]
 
 # 4 party members max
 var player0 = null
@@ -63,11 +64,26 @@ func _ready():
 	loadEnemies()
 	initializeMoves()
 	sortArrayBySpeed()
+	copyCreatures()
 	
 	currentPlayerCounter = 0
 	currentEnemyCounter = 0
 	
 	trackBattle()
+
+func copyCreatures():
+	for i in range(4):
+		var tempCreature = Creatures.new()
+		tempCreature.initializeCreature(Global.battleGroup[i])
+		copies[i] = tempCreature
+
+# Resetting the buffs so it doesn't overstack
+func resetCreatures():
+	for i in range(4):
+		Global.battleGroup[i].defense = copies[i].defense
+		Global.battleGroup[i].magic_defense = copies[i].magic_defense
+		Global.battleGroup[i].attack_damage = copies[i].attack_damage
+		Global.battleGroup[i].magic_attack_damage = copies[i].magic_attack_damage
 
 # This is an implementation of selection sort
 func basicSort():
@@ -97,6 +113,8 @@ func connectSignals():
 	Global.connect("itemObtained", closePanelAndShowAlliesItems)
 
 func closePanelAndShowEnemiesSkills():
+	print("penus")
+	print(Global.friendlyOrNot)
 	if ((selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) and (selectedEnemies[currentPlayerCounter].source.cur_hp >= Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
 		if Global.friendlyOrNot == 0:
 			print("mp hp")
@@ -108,7 +126,7 @@ func closePanelAndShowEnemiesSkills():
 			$"Skill List Panel".hide()
 			showTextBox("Which ally?")
 			return
-	elif ((selectedEnemies[currentPlayerCounter].source.cur_mp <= Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) or (selectedEnemies[currentPlayerCounter].source.cur_hp <= Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
+	elif ((selectedEnemies[currentPlayerCounter].source.cur_mp < Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) or (selectedEnemies[currentPlayerCounter].source.cur_hp < Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
 		return
 	elif (selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost) and (Global.clickedSkill.mp_cost != 0):
 		if Global.friendlyOrNot == 0:
@@ -273,12 +291,17 @@ func trackBattle():
 		updateTextBox("You ran away...")
 		await get_tree().create_timer(3).timeout
 		deleteCreaturesAndItems()
-		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+		if Global.creatureStorage.is_empty():
+			print("Game over pls implement game over scene")
+			get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+		else:
+			get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	
 	# Check if the enemies are dead
 	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
 		print("Enemies are dead")
 		updateTextBox("You and your party won!")
+		resetCreatures()
 		disableButtons()
 		
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
@@ -438,7 +461,7 @@ func _on_run_pressed():
 	var randomNumber = rng.randi_range(1, 100)
 	
 	print(randomNumber)
-	
+	resetCreatures()
 	# Low Chance: Party escapes unharmed
 	if randomNumber >= 1 && randomNumber <= 20:
 		showTextBox("You and your party ran away.")
