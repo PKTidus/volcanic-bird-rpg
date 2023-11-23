@@ -113,8 +113,6 @@ func connectSignals():
 	Global.connect("itemObtained", closePanelAndShowAlliesItems)
 
 func closePanelAndShowEnemiesSkills():
-	print("penus")
-	print(Global.friendlyOrNot)
 	if ((selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) and (selectedEnemies[currentPlayerCounter].source.cur_hp >= Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
 		if Global.friendlyOrNot == 0:
 			print("mp hp")
