@@ -93,7 +93,6 @@ func basicSort():
 		movesArray[maximumIndex] = movesArray[i]
 		movesArray[i] = temp
 
-
 func connectSignals():
 	Global.connect("skillObtained", closePanelAndShowEnemiesSkills)
 	Global.connect("itemObtained", closePanelAndShowAlliesItems)
@@ -754,10 +753,28 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread physical
 					if movesArray[i].skill.type == 5:
-						pass
+						var outgoingDamage = movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+						for node in $"Enemies Container".get_children():
+							node.enemyData.cur_hp -= outgoingDamage / node.enemyData.defense
+							node.enemyData.updateHealth()
+							node.get_node("AnimationPlayer").play("enemy_damaged")
+						updateBattleGroupHealth()
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to damage all enemies!")
+						await get_tree().create_timer(1.5).timeout
 					# spread magic
 					if movesArray[i].skill.type == 6:
-						pass
+						var outgoingDamage = movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+						for node in $"Enemies Container".get_children():
+							node.enemyData.cur_hp -= outgoingDamage / node.enemyData.magic_defense
+							node.enemyData.updateHealth()
+							node.get_node("AnimationPlayer").play("enemy_damaged")
+						updateBattleGroupHealth()
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to damage all enemies!")
+						await get_tree().create_timer(1.5).timeout
 					# lifesteal physical damage
 					if movesArray[i].skill.type == 7:
 						var currentDamage = max(1, movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.defense)
@@ -786,7 +803,12 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread heal
 					if movesArray[i].skill.type == 9:
-						pass
+						for creature in Global.battleGroup:
+							if !creature.isDead:
+								creature.cur_hp += movesArray[i].skill.heal_cal
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal the party for " + str(movesArray[i].skill.heal_cal))
+						updateBattleGroupHealth()
+						await get_tree().create_timer(1.5).timeout
 					# buff magic damage
 					if movesArray[i].skill.type == 10:
 						if !movesArray[i].friendlyTarget.isDead:
