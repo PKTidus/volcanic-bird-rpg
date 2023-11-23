@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_ju01k")
 hp_cost = 0
-mp_cost = 2
-damage_cal = 0
+mp_cost = 5
+damage_cal = 1
 heal_cal = 0
-buff_value = 1.1
+buff_value = 0.0
 unlockLevel = 1
-type = 10
-nameLabel = "Read Book"
-costLabel = "0 HP 2 MP"
-descriptionLabel = "Increase magic damage by 10%"
+type = 12
+nameLabel = "Fire Slash"
+costLabel = "0 HP 5 MP"
+descriptionLabel = "Deal mixed damage that pierces defenses"
