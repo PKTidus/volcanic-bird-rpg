@@ -54,7 +54,6 @@ func _ready():
 	# comment this function to load sample creatures from the main menu scene while save battle data
 	# uncomment this function to load sample creatures from the battle scene while not saving battle data 
 	# setupSampleGroup() # testing purposes
-	$Background.set_texture(load("res://Resources/Backgrounds/battleback1.png"))
 	setupSampleEnemy() # testing purposes
 	connectSignals()
 	hideEnemyButtons()
