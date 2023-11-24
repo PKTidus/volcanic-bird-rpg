@@ -274,6 +274,10 @@ func trackBattle():
 	
 	# Check if the enemies are dead
 	if (enemy1.enemyBoss.isDead):
+		# Change music
+		$"Battle Music".playing = false
+		$"Victory Music".play()
+		
 		print("Enemies are dead")
 		updateTextBox("You and your party won!")
 		disableButtons()
