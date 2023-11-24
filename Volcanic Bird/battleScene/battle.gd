@@ -715,7 +715,9 @@ func processAttacks():
 func processAttacksOld():
 	for i in range(7):
 		if movesArray[i].isEnemy == 0:
-			if !movesArray[i].source.isDead:
+			if movesArray[i].target.enemyData.isDead: # skip player turns if the enemy is dead 
+				continue
+			elif !movesArray[i].source.isDead:
 				if movesArray[i].move == 1:
 					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyData.defense)
 					
