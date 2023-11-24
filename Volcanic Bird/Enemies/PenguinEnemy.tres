@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
+
+[ext_resource type="Texture2D" path="res://Resources/Sprites/penguin-256.png" id="1"]
+[ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+enemy_name = "Super Penguin III"
+asset = ExtResource("1")
+damage = 4
+magic_damage = 2
+current_hp = 25
+max_hp = 25
+level = 1
+health_points = 5
+magic_points = 5
+defense = 3
+magic_defense = 1
+speed = 7
+isDead = false
+useMagic = false
