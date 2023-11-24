@@ -12,8 +12,12 @@ func flipACoin():
 	return false
 
 func _ready():
-	print(Global.eventCounter)
-	print(Global.floorCounter)
+	if Global.eventCompleted:
+		Global.eventCounter += 1
+		Global.eventCompleted = false
+	if Global.eventCounter >= 10:
+		$"MainMenuContainer/Next Event"
+	$EventCounterNumber.text = str(Global.eventCounter)
 
 func _on_play_pressed():
 	# Check if party is dead
@@ -53,3 +57,8 @@ func save():
 	playerData.floorCounter = Global.floorCounter
 	ResourceSaver.save(playerData, saveFilePath)
 	get_tree().change_scene_to_file("res://Main Menu/main_menu.tscn")
+
+
+func _on_next_event_pressed():
+	Global.floorCounter += 1
+	Global.eventCounter = 0

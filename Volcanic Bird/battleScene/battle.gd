@@ -301,6 +301,7 @@ func trackBattle():
 		updateTextBox("You and your party won!")
 		resetCreatures()
 		disableButtons()
+		Global.eventCompleted = true
 		
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 		
@@ -715,7 +716,7 @@ func processAttacks():
 func processAttacksOld():
 	for i in range(7):
 		if movesArray[i].isEnemy == 0:
-			if movesArray[i].target.enemyData.isDead: # skip player turns if the enemy is dead 
+			if movesArray[i].target != null and movesArray[i].target.enemyData.isDead: # skip player turns if the enemy is dead 
 				continue
 			elif !movesArray[i].source.isDead:
 				if movesArray[i].move == 1:
@@ -769,6 +770,10 @@ func processAttacksOld():
 					if movesArray[i].skill.type == -2:
 						movesArray[i].target.enemyData.defense *= movesArray[i].skill.buff_value
 						movesArray[i].target.enemyData.magic_defense *= movesArray[i].skill.buff_value
+						if movesArray[i].target.enemyData.defense <= 0:
+							movesArray[i].target.enemyData.defense = 1
+						if movesArray[i].target.enemyData.magic_defense <= 0:
+							movesArray[i].target.enemyData.magic_defense = 1
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						updateBattleGroupHealth()

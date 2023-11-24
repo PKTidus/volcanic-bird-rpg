@@ -12,6 +12,7 @@ var itemInventory = []
 var itemStorage = []
 var eventCounter = 0
 var floorCounter = 0
+var eventCompleted = false
 
 var itemsMaster = []
 var commonItemsMaster = []
