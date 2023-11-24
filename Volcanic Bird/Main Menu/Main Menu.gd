@@ -109,6 +109,7 @@ func loadItemList():
 		print("Could not load \"res://Items/\"")
 
 func loadGame():
+	loadItemList()
 	playerData = ResourceLoader.load(saveFilePath)
 	if playerData != null:
 		Global.battleGroup = playerData.battleGroup

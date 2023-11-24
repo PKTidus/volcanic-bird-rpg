@@ -12,12 +12,14 @@ func flipACoin():
 	return false
 
 func _ready():
+	$"MainMenuContainer/Next Event".hide()
 	if Global.eventCompleted:
 		Global.eventCounter += 1
 		Global.eventCompleted = false
-	if Global.eventCounter >= 10:
-		$"MainMenuContainer/Next Event"
+	if Global.eventCounter >= Global.eventThreshold[Global.floorCounter]:
+		$"MainMenuContainer/Next Event".show()
 	$EventCounterNumber.text = str(Global.eventCounter)
+	$EventThresholdNumber.text = str(Global.eventThreshold[Global.floorCounter])
 
 func _on_play_pressed():
 	# Check if party is dead
@@ -60,5 +62,8 @@ func save():
 
 
 func _on_next_event_pressed():
+	$"MainMenuContainer/Next Event".hide()
 	Global.floorCounter += 1
 	Global.eventCounter = 0
+	$EventCounterNumber.text = str(Global.eventCounter)
+	$EventThresholdNumber.text = str(Global.eventThreshold[Global.floorCounter])
