@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://cwwmypka6kef0"]
 
 [ext_resource type="Script" path="res://battleSceneBoss/battleBoss.gd" id="1_70gqp"]
-[ext_resource type="Texture2D" uid="uid://d1t0jcmb6ldjp" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_ydx0m"]
-[ext_resource type="FontFile" uid="uid://x4h11kxv73cl" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_n3ulm"]
+[ext_resource type="Texture2D" uid="uid://b3ltygn0icuwn" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_ydx0m"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_n3ulm"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="4_aamn0"]
 [ext_resource type="Script" path="res://battleSceneBoss/Enemy.gd" id="5_6qkyb"]
 [ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_q1snr"]
