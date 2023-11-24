@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=16 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="Texture2D" uid="uid://b3ltygn0icuwn" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_2yjw6"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_h375h"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_uu1e0"]
 [ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_vd5q4"]
+[ext_resource type="AudioStream" uid="uid://cn33ty6yd3ycj" path="res://Resources/Music/3-11_Battle_With_True_Despair.mp3" id="9_wu1yy"]
+[ext_resource type="AudioStream" uid="uid://cio6hiqgylmba" path="res://Resources/Music/106_Fanfare.mp3" id="10_5twwv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -301,6 +303,14 @@ layout_mode = 0
 offset_top = 504.0
 offset_right = 1152.0
 offset_bottom = 512.0
+
+[node name="Battle Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_wu1yy")
+volume_db = -10.0
+autoplay = true
+
+[node name="Victory Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_5twwv")
 
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
