@@ -557,6 +557,10 @@ func updateInventory():
 	var rng = RandomNumberGenerator.new()
 	
 	for node in $"Enemies Container".get_children():
+		if node.enemyData.asset == null:
+			print("Dummy enemy found")
+			continue
+		
 		# Calculate item drop rng:
 		# 80% is for common items
 		# 20% is for rare items
