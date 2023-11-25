@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Creatures" load_steps=2 format=3 uid="uid://w5v8wu2scdlt"]
+
+[ext_resource type="Script" path="res://Creatures/Creature.gd" id="1_2chux"]
+
+[resource]
+script = ExtResource("1_2chux")
+name = ""
+description = ""
+agility = 0.0
+strength = 0.0
+intelligence = 0.0
+level = 0
+experience = 0
+max_hp = 0
+max_mp = 0
+cur_hp = 0
+cur_mp = 0
+attack_damage = 0
+magic_attack_damage = 0
+defense = 0
+magic_defense = 0
+speed = 0
+STR_growth = 0
+AGI_growth = 0
+INT_growth = 0
+skillPreload = Array[String]([])
+skillList = Array[Resource]([])
+isDead = true

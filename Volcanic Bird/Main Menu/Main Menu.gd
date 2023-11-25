@@ -1,21 +1,22 @@
 extends Control
 
-var saveFilePath = "user://save/"
-var saveFileName = "PlayerSave.tres"
+var saveFilePath = "user://PlayerSave.tres"
 
 var playerData = PlayerSave.new()
 
 func _on_play_pressed():
-	setupSampleGroup()
 	loadSampleItem()
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	loadItemList()
+	get_tree().change_scene_to_file("res://Main Menu/StartScene.tscn")
 
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
-	var samepleCreature1 = load("res://Creatures/Purple_Flower.tres")
-	var samepleCreature2 = load("res://Creatures/Purple_Flower.tres")
+	var samepleCreature1 = load("res://Creatures/Villager_F.tres")
+	var samepleCreature2 = load("res://Creatures/Robirdo.tres")
 	var samepleCreature3 = load("res://Creatures/Shroom.tres")
 	var samepleCreature4 = load("res://Creatures/Wizard.tres")
+	var dummyCreature = load("res://Creatures/Dummy.tres")
+	
 	var creature1 = Creatures.new()
 	var creature2 = Creatures.new()
 	var creature3 = Creatures.new()
@@ -30,6 +31,10 @@ func setupSampleGroup():
 	Global.battleGroup[1] = creature2
 	Global.battleGroup[2] = creature3
 	Global.battleGroup[3] = creature4
+	
+	for i in range(4):
+		if Global.battleGroup[i] == null:
+			Global.battleGroup[i] = dummyCreature
 	
 	var creature5 = Creatures.new()
 	var creature6 = Creatures.new()
@@ -79,13 +84,40 @@ func loadSampleItem():
 	tempItem6.initializeItem(sampleItem3)
 	Global.itemStorage.append(tempItem6)
 
+func loadItemList():
+	var dir = DirAccess.open("res://Items/")
+	if dir:
+		dir.list_dir_begin()
+		var fileName = dir.get_next()
+		while fileName != "":
+			if fileName.ends_with(".tres"):
+				print("Found Item: " + dir.get_current_dir() + "/" + fileName)
+				var currentItemPath = dir.get_current_dir() + "/" + fileName
+				var currentItem = Item.new()
+				currentItem.initializeItem(load(currentItemPath))
+				
+				# Add the current item to the master item list
+				Global.itemsMaster.append(currentItem)
+				
+				# Add the current item to the common or rare item list
+				if currentItem.itemRarity == 0:
+					Global.commonItemsMaster.append(currentItem)
+				elif currentItem.itemRarity == 1:
+					Global.rareItemsMaster.append(currentItem)
+			fileName = dir.get_next()
+	else:
+		print("Could not load \"res://Items/\"")
+
 func loadGame():
-	playerData = ResourceLoader.load(saveFilePath + saveFileName)
+	loadItemList()
+	playerData = ResourceLoader.load(saveFilePath)
 	if playerData != null:
 		Global.battleGroup = playerData.battleGroup
 		Global.creatureStorage = playerData.creatureStorage
 		Global.itemInventory = playerData.itemInventory
 		Global.itemStorage = playerData.itemStorage
+		Global.eventCounter = playerData.eventCounter
+		Global.floorCounter = playerData.floorCounter
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 func _on_options_pressed():

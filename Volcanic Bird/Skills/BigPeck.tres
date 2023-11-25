@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dtb8vsltaycvd"]
+
+[ext_resource type="Script" path="res://Skills/Skill.gd" id="1_vwcxl"]
+
+[resource]
+script = ExtResource("1_vwcxl")
+hp_cost = 5
+mp_cost = 10
+damage_cal = 2
+heal_cal = 0
+buff_value = 0.0
+unlockLevel = 3
+type = 7
+nameLabel = "Big Peck"
+costLabel = "5 HP 10 MP"
+descriptionLabel = "Deal 2 times normal damage and lifesteal"

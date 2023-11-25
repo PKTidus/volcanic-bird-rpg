@@ -7,6 +7,7 @@ class_name Creatures
 @export var name : String
 @export var description : String
 @export var texture : Resource
+@export var texture256 : Resource
 @export var agility : float
 @export var strength : float
 @export var intelligence : float
@@ -55,6 +56,7 @@ func initializeCreature(sampleCreature):
 	name = sampleCreature.name
 	description = sampleCreature.description
 	texture = sampleCreature.texture
+	texture256 = sampleCreature.texture256
 	level = sampleCreature.level
 	experience = sampleCreature.experience
 	agility = sampleCreature.agility
@@ -72,6 +74,7 @@ func initializeCreature(sampleCreature):
 	STR_growth = sampleCreature.STR_growth
 	AGI_growth = sampleCreature.AGI_growth
 	INT_growth = sampleCreature.INT_growth
+	isDead = sampleCreature.isDead
 	initializeSkills(sampleCreature)
 	
 func initializeSkills(sampleCreature):

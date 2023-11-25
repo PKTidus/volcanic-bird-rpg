@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://qsiytlf42ajo"]
 
 [ext_resource type="Script" path="res://battleScene/Enemy.gd" id="1_5xfbd"]
-[ext_resource type="Texture2D" uid="uid://djdohdhr75ipw" path="res://Resources/Sprites/tree-256.png" id="2_hxnv8"]
-[ext_resource type="FontFile" uid="uid://bqr10us4wgrcv" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
+[ext_resource type="Texture2D" uid="uid://c2gwkhxm0ocmp" path="res://Resources/Sprites/tree-256.png" id="2_hxnv8"]
+[ext_resource type="FontFile" uid="uid://dvghr5x2oddd8" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4wj1"]
 bg_color = Color(1, 0, 0, 1)

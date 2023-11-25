@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://CreatureMenu/CreatureMenu.gd" id="1_4q546"]
 [ext_resource type="PackedScene" uid="uid://cs8rlnooal4yd" path="res://CreatureMenu/creature_button.tscn" id="1_xh84t"]
 [ext_resource type="PackedScene" uid="uid://cabx0stuuqixk" path="res://CreatureMenu/battle_group.tscn" id="2_exaw5"]
-[ext_resource type="FontFile" uid="uid://bqr10us4wgrcv" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_odtno"]
+[ext_resource type="FontFile" uid="uid://b81w0epvungx2" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_odtno"]
 
 [node name="Inventory" type="Panel"]
 anchors_preset = 15
@@ -18,11 +18,12 @@ layout_mode = 0
 offset_left = 210.0
 offset_top = 1.0
 offset_right = 543.0
-offset_bottom = 644.0
+offset_bottom = 320.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Characters"]
-custom_minimum_size = Vector2(333, 500)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="CreatureButton" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
 layout_mode = 2
@@ -31,6 +32,51 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="CreatureButton3" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton9" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton10" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton11" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton12" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton13" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton14" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton15" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton16" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton17" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton18" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton19" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton20" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton21" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton22" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
+layout_mode = 2
+
+[node name="CreatureButton23" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
 layout_mode = 2
 
 [node name="CreatureButton4" parent="Characters/VBoxContainer" instance=ExtResource("1_xh84t")]
@@ -50,9 +96,9 @@ layout_mode = 2
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 0
-offset_left = 680.0
+offset_left = 856.0
 offset_top = 64.0
-offset_right = 1128.0
+offset_right = 1152.0
 offset_bottom = 90.0
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
@@ -61,60 +107,68 @@ text_overrun_behavior = 3
 
 [node name="Description" type="Label" parent="."]
 layout_mode = 0
-offset_left = 755.0
+offset_left = 856.0
 offset_top = 394.0
-offset_right = 1088.0
-offset_bottom = 480.0
+offset_right = 1152.0
+offset_bottom = 504.0
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
 autowrap_mode = 3
 
 [node name="Stats" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 679.0
+offset_left = 856.0
 offset_top = 96.0
-offset_right = 1024.0
+offset_right = 1152.0
 offset_bottom = 412.0
 
 [node name="Level" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="CurHP" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="CurMP" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="Speed" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="AttackDamage" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="Magic Attack Damage" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="Defense" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="Magic Defense" type="Label" parent="Stats"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_odtno")
 theme_override_font_sizes/font_size = 22
+autowrap_mode = 3
 
 [node name="BattleGroup" parent="." instance=ExtResource("2_exaw5")]
 layout_mode = 0
@@ -138,9 +192,9 @@ text = "Back"
 
 [node name="Creature Name" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 528.0
+offset_left = 704.0
 offset_top = 536.0
-offset_right = 744.0
+offset_right = 920.0
 offset_bottom = 572.0
 theme_override_fonts/font = ExtResource("3_odtno")
 placeholder_text = "Enter Name"
@@ -148,12 +202,37 @@ alignment = 1
 
 [node name="NameButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 528.0
+offset_left = 704.0
 offset_top = 584.0
-offset_right = 744.0
+offset_right = 920.0
 offset_bottom = 612.0
 theme_override_fonts/font = ExtResource("3_odtno")
 text = "Change Name"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 0
+offset_left = 592.0
+offset_top = 96.0
+offset_right = 632.0
+offset_bottom = 136.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 336.0
+offset_right = 525.0
+offset_bottom = 640.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_odtno")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="NameButton" to="." method="_on_name_button_pressed"]

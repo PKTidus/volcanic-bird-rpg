@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
+
+[ext_resource type="Texture2D" path="res://Resources/Sprites/villager1-32.png" id="1"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/villager1-256.png" id="3"]
+[ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+name = "Village Chap"
+description = "Probably suffering from severe overwork"
+texture = ExtResource("1")
+texture256 = ExtResource("3")
+agility = 0.0
+strength = 0.0
+intelligence = 0.0
+level = 1
+experience = 0
+max_hp = 50
+max_mp = 10
+cur_hp = 50
+cur_mp = 10
+attack_damage = 40
+magic_attack_damage = 0
+defense = 20
+magic_defense = 20
+speed = 5
+STR_growth = 2
+AGI_growth = 2
+INT_growth = 2
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/FlyingKnee.tres", "res://Skills/Haymaker.tres", "res://Skills/HeavySmash.tres", "res://Skills/BlindingJab.tres", "res://Skills/PunchFlurry.tres"])
+skillList = Array[Resource]([])
+isDead = false

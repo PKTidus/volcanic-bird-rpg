@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
+
+[ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
+
+[resource]
+script = ExtResource("2")
+enemy_name = ""
+damage = 0
+magic_damage = 0
+current_hp = 0
+max_hp = 0
+level = 1
+health_points = 0
+magic_points = 0
+defense = 1
+magic_defense = 1
+speed = 0
+isDead = true
+useMagic = false

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bac6yxy3e7il8"]
 
 [ext_resource type="Script" path="res://Main Menu/hub_menu.gd" id="1_tpf0c"]
-[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_jih23"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_jih23"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -42,6 +42,14 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_jih23")
 theme_override_font_sizes/font_size = 30
 text = "Play"
+
+[node name="Next Event" type="Button" parent="MainMenuContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_jih23")
+theme_override_font_sizes/font_size = 30
+text = "Next Floor"
 
 [node name="Creatures" type="Button" parent="MainMenuContainer"]
 layout_mode = 2
@@ -87,7 +95,54 @@ text = "Hub Menu
 fit_content = true
 scroll_active = false
 
+[node name="EventCounterLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 224.0
+offset_right = 928.0
+offset_bottom = 247.0
+theme_override_fonts/font = ExtResource("2_jih23")
+theme_override_font_sizes/font_size = 25
+text = "Event Counter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EventCounterNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 248.0
+offset_right = 928.0
+offset_bottom = 271.0
+theme_override_fonts/font = ExtResource("2_jih23")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EventThresholdLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 224.0
+offset_right = 1138.0
+offset_bottom = 247.0
+theme_override_fonts/font = ExtResource("2_jih23")
+theme_override_font_sizes/font_size = 25
+text = "Event Threshold"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EventThresholdNumber" type="Label" parent="."]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 248.0
+offset_right = 1136.0
+offset_bottom = 271.0
+theme_override_fonts/font = ExtResource("2_jih23")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="MainMenuContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenuContainer/Next Event" to="." method="_on_next_event_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Creatures" to="." method="_on_creatures_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Storage Box" to="." method="_on_storage_box_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Save & Quit" to="." method="_on_save__quit_pressed"]

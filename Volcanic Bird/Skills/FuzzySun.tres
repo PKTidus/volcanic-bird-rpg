@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://c4bdxbcvptv55"]
+
+[ext_resource type="Script" path="res://Skills/Skill.gd" id="1_vwcxl"]
+
+[resource]
+script = ExtResource("1_vwcxl")
+hp_cost = 5
+mp_cost = 20
+damage_cal = 0
+heal_cal = 100
+buff_value = 0.0
+unlockLevel = 6
+type = 9
+nameLabel = "Fuzzy Sun"
+costLabel = "5 HP 25 MP"
+descriptionLabel = "Heal 100 HP to all allies"

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c8c1ymckexux0"]
 
-[ext_resource type="Texture2D" uid="uid://bxtoovau0jc4" path="res://Resources/Sprites/wizard-256.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bsjf7ads1oodm" path="res://Resources/Sprites/wizard-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]

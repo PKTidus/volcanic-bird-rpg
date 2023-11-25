@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bf0thl055kjs1"]
+
+[ext_resource type="Script" path="res://Skills/Skill.gd" id="1_ju01k"]
+
+[resource]
+script = ExtResource("1_ju01k")
+hp_cost = 0
+mp_cost = 2
+damage_cal = 0
+heal_cal = 0
+buff_value = 1.1
+unlockLevel = 1
+type = 10
+nameLabel = "Read Book"
+costLabel = "0 HP 2 MP"
+descriptionLabel = "Increase magic damage by 10%"

@@ -1,30 +1,32 @@
-[gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
+[gd_resource type="Resource" script_class="Creatures" load_steps=4 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://c1di4g4gmpqg7" path="res://Resources/Sprites/wizard.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b5xir66kfwcjf" path="res://Resources/Sprites/wizard-32.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://biyajsknnb834" path="res://Resources/Sprites/wizard-256.png" id="3"]
 
 [resource]
 script = ExtResource("2")
 name = "Booty Wizard"
 description = "Wizard with a massive Booty"
 texture = ExtResource("1")
+texture256 = ExtResource("3")
 agility = 0.0
 strength = 0.0
 intelligence = 0.0
-level = 30
-experience = 6
+level = 1
+experience = 0
 max_hp = 15
 max_mp = 50
 cur_hp = 15
 cur_mp = 50
-attack_damage = 20
-magic_attack_damage = 5
-defense = 20
-magic_defense = 5
+attack_damage = 10
+magic_attack_damage = 20
+defense = 10
+magic_defense = 20
 speed = 10
-STR_growth = 6
-AGI_growth = 2
-INT_growth = 1
-skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres", "res://Skills/SolarArrow.tres"])
+STR_growth = 2
+AGI_growth = 3
+INT_growth = 5
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/ReadBook.tres", "res://Skills/RockBarrage.tres", "res://Skills/SolarArrow.tres", "res://Skills/HealAll.tres", "res://Skills/Buff.tres", "res://Skills/MasterHeal.tres", "res://Skills/Necroblast.tres", "res://Skills/BootyBeam.tres"])
 skillList = Array[Resource]([])
 isDead = false

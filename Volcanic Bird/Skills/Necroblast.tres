@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Skills/Skill.gd" id="1_ju01k"]
+
+[resource]
+script = ExtResource("1_ju01k")
+hp_cost = 5
+mp_cost = 15
+damage_cal = 5
+heal_cal = 0
+buff_value = 0.0
+unlockLevel = 6
+type = 8
+nameLabel = "Necroblast"
+costLabel = "5 HP 10 MP"
+descriptionLabel = "5 times magic damage and MP drain"

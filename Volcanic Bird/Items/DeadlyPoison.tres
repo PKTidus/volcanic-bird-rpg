@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://d4iyyma65gjae"]
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="20"]
 
@@ -15,3 +15,4 @@ nameLabel = "Deadly Poison"
 costLabel = "Deal 50 damage"
 descriptionLabel = "It sort of stinks."
 inUse = false
+itemRarity = 0
