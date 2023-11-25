@@ -1,14 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwwmypka6kef0"]
+[gd_scene load_steps=17 format=3 uid="uid://cwwmypka6kef0"]
 
 [ext_resource type="Script" path="res://battleSceneBoss/battleBoss.gd" id="1_70gqp"]
-[ext_resource type="Texture2D" uid="uid://d1t0jcmb6ldjp" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_ydx0m"]
-[ext_resource type="FontFile" uid="uid://x4h11kxv73cl" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_n3ulm"]
+[ext_resource type="Texture2D" uid="uid://b3ltygn0icuwn" path="res://Resources/Backgrounds/scifi-bg-1.png" id="2_ydx0m"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_n3ulm"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="4_aamn0"]
 [ext_resource type="Script" path="res://battleSceneBoss/Enemy.gd" id="5_6qkyb"]
 [ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_q1snr"]
 [ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_fqigj"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_dkcxg"]
 [ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_ldmas"]
+[ext_resource type="AudioStream" uid="uid://dv5idc88nkrp3" path="res://Resources/Music/28_Fight_Against_Powerful_Enemies.mp3" id="10_lijb0"]
+[ext_resource type="AudioStream" uid="uid://cio6hiqgylmba" path="res://Resources/Music/106_Fanfare.mp3" id="11_i646e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -286,6 +288,13 @@ layout_mode = 0
 offset_top = 504.0
 offset_right = 1152.0
 offset_bottom = 512.0
+
+[node name="Battle Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_lijb0")
+autoplay = true
+
+[node name="Victory Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_i646e")
 
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Actions Panel/Actions Container/Attack" to="." method="_on_attack_pressed"]

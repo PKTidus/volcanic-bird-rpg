@@ -288,6 +288,10 @@ func trackBattle():
 	
 	# Check if the enemies are dead
 	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
+		# Change music
+		$"Battle Music".playing = false
+		$"Victory Music".play()
+		
 		print("Enemies are dead")
 		updateTextBox("You and your party won!")
 		resetCreatures()
