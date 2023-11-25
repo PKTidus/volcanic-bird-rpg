@@ -1,5 +1,6 @@
 extends Control
 
+var copies = [null, null, null, null]
 
 # 4 party members max
 var player0 = null
@@ -54,7 +55,6 @@ func _ready():
 	# comment this function to load sample creatures from the main menu scene while save battle data
 	# uncomment this function to load sample creatures from the battle scene while not saving battle data 
 	# setupSampleGroup() # testing purposes
-	$Background.set_texture(load("res://Resources/Backgrounds/battleback1.png"))
 	setupSampleEnemy() # testing purposes
 	connectSignals()
 	hideEnemyButtons()
@@ -64,11 +64,26 @@ func _ready():
 	loadEnemies()
 	initializeMoves()
 	sortArrayBySpeed()
+	copyCreatures()
 	
 	currentPlayerCounter = 0
 	currentEnemyCounter = 0
 	
 	trackBattle()
+
+func copyCreatures():
+	for i in range(4):
+		var tempCreature = Creatures.new()
+		tempCreature.initializeCreature(Global.battleGroup[i])
+		copies[i] = tempCreature
+
+# Resetting the buffs so it doesn't overstack
+func resetCreatures():
+	for i in range(4):
+		Global.battleGroup[i].defense = copies[i].defense
+		Global.battleGroup[i].magic_defense = copies[i].magic_defense
+		Global.battleGroup[i].attack_damage = copies[i].attack_damage
+		Global.battleGroup[i].magic_attack_damage = copies[i].magic_attack_damage
 
 # This is an implementation of selection sort
 func basicSort():
@@ -98,27 +113,38 @@ func connectSignals():
 	Global.connect("itemObtained", closePanelAndShowAlliesItems)
 
 func closePanelAndShowEnemiesSkills():
-	if (selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost) and (Global.clickedSkill.mp_cost != 0):
+	if ((selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) and (selectedEnemies[currentPlayerCounter].source.cur_hp >= Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
 		if Global.friendlyOrNot == 0:
-			print("I love penis")
+			print("mp hp")
 			$"Skill List Panel".hide()
 			showTextBox("Which enemy?")
 			showEnemyButtons()
 			return
 		elif Global.friendlyOrNot == 1:
-			print("reached Frinedly")
+			$"Skill List Panel".hide()
+			showTextBox("Which ally?")
+			return
+	elif ((selectedEnemies[currentPlayerCounter].source.cur_mp < Global.clickedSkill.mp_cost and Global.clickedSkill.mp_cost != 0) or (selectedEnemies[currentPlayerCounter].source.cur_hp < Global.clickedSkill.hp_cost and Global.clickedSkill.hp_cost != 0)):
+		return
+	elif (selectedEnemies[currentPlayerCounter].source.cur_mp >= Global.clickedSkill.mp_cost) and (Global.clickedSkill.mp_cost != 0):
+		if Global.friendlyOrNot == 0:
+			print("mp")
+			$"Skill List Panel".hide()
+			showTextBox("Which enemy?")
+			showEnemyButtons()
+			return
+		elif Global.friendlyOrNot == 1:
 			$"Skill List Panel".hide()
 			showTextBox("Which ally?")
 			return
 	elif (selectedEnemies[currentPlayerCounter].source.cur_hp >= Global.clickedSkill.hp_cost) and (Global.clickedSkill.hp_cost != 0):
 		if Global.friendlyOrNot == 0:
-			print("reached the signal")
+			print("hp")
 			$"Skill List Panel".hide()
 			showTextBox("Which enemy?")
 			showEnemyButtons()
 			return
 		elif Global.friendlyOrNot == 1:
-			print("reached Frinedly")
 			$"Skill List Panel".hide()
 			showTextBox("Which ally?")
 		return
@@ -263,13 +289,19 @@ func trackBattle():
 		updateTextBox("You ran away...")
 		await get_tree().create_timer(3).timeout
 		deleteCreaturesAndItems()
-		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+		if Global.creatureStorage.is_empty():
+			print("Game over pls implement game over scene")
+			get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+		else:
+			get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	
 	# Check if the enemies are dead
 	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
 		print("Enemies are dead")
 		updateTextBox("You and your party won!")
+		resetCreatures()
 		disableButtons()
+		Global.eventCompleted = true
 		
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
 		
@@ -428,7 +460,7 @@ func _on_run_pressed():
 	var randomNumber = rng.randi_range(1, 100)
 	
 	print(randomNumber)
-	
+	resetCreatures()
 	# Low Chance: Party escapes unharmed
 	if randomNumber >= 1 && randomNumber <= 20:
 		showTextBox("You and your party ran away.")
@@ -488,7 +520,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	if hasLeveledUp:
 		player.creatureData.cur_hp = player.creatureData.max_hp
 		player.creatureData.cur_mp = player.creatureData.max_mp
-		player.emit_signal("updateButtons")
+		player.creatureData.isDead = false
 		playerExperience -= calculateExperience(playerLevel)
 	
 	# Keep track of unlocked skills
@@ -526,6 +558,10 @@ func updateInventory():
 	var rng = RandomNumberGenerator.new()
 	
 	for node in $"Enemies Container".get_children():
+		if node.enemyData.asset == null:
+			print("Dummy enemy found")
+			continue
+		
 		# Calculate item drop rng:
 		# 80% is for common items
 		# 20% is for rare items
@@ -536,19 +572,27 @@ func updateInventory():
 			randomNum = rng.randi_range(0, Global.commonItemsMaster.size() - 1)
 			
 			if Global.itemInventory.size() < 12:
-				Global.itemInventory.append(Global.commonItemsMaster[randomNum])
+				var tempItem = Item.new()
+				tempItem.initializeItem(Global.commonItemsMaster[randomNum])
+				Global.itemInventory.append(tempItem)
 				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!")
 			else:
-				Global.itemStorage.append(Global.commonItemsMaster[randomNum])
+				var tempItem = Item.new()
+				tempItem.initializeItem(Global.commonItemsMaster[randomNum])
+				Global.itemStorage.append(tempItem)
 				updateTextBox("You found " + Global.commonItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
 		else: # Rare Item
 			randomNum = rng.randi_range(0, Global.rareItemsMaster.size() - 1)
 			
 			if Global.itemInventory.size() < 12:
-				Global.itemInventory.append(Global.rareItemsMaster[randomNum])
+				var tempItem = Item.new()
+				tempItem.initializeItem(Global.rareItemsMaster[randomNum])
+				Global.itemInventory.append(tempItem)
 				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!")
 			else:
-				Global.itemStorage.append(Global.rareItemsMaster[randomNum])
+				var tempItem = Item.new()
+				tempItem.initializeItem(Global.rareItemsMaster[randomNum])
+				Global.itemStorage.append(tempItem)
 				updateTextBox("You found " + Global.rareItemsMaster[randomNum].nameLabel + "!" + "\n" + "It has been placed into the storage")
 		
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
@@ -672,7 +716,9 @@ func processAttacks():
 func processAttacksOld():
 	for i in range(7):
 		if movesArray[i].isEnemy == 0:
-			if !movesArray[i].source.isDead:
+			if movesArray[i].target != null and movesArray[i].target.enemyData.isDead: # skip player turns if the enemy is dead 
+				continue
+			elif !movesArray[i].source.isDead:
 				if movesArray[i].move == 1:
 					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyData.defense)
 					
@@ -724,6 +770,10 @@ func processAttacksOld():
 					if movesArray[i].skill.type == -2:
 						movesArray[i].target.enemyData.defense *= movesArray[i].skill.buff_value
 						movesArray[i].target.enemyData.magic_defense *= movesArray[i].skill.buff_value
+						if movesArray[i].target.enemyData.defense <= 0:
+							movesArray[i].target.enemyData.defense = 1
+						if movesArray[i].target.enemyData.magic_defense <= 0:
+							movesArray[i].target.enemyData.magic_defense = 1
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						updateBattleGroupHealth()

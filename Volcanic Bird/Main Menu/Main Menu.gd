@@ -5,10 +5,9 @@ var saveFilePath = "user://PlayerSave.tres"
 var playerData = PlayerSave.new()
 
 func _on_play_pressed():
-	setupSampleGroup()
 	loadSampleItem()
 	loadItemList()
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	get_tree().change_scene_to_file("res://Main Menu/StartScene.tscn")
 
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
@@ -110,6 +109,7 @@ func loadItemList():
 		print("Could not load \"res://Items/\"")
 
 func loadGame():
+	loadItemList()
 	playerData = ResourceLoader.load(saveFilePath)
 	if playerData != null:
 		Global.battleGroup = playerData.battleGroup
