@@ -58,8 +58,10 @@ func save():
 
 
 func _on_next_event_pressed():
-	$"MainMenuContainer/Next Event".hide()
+	get_tree().change_scene_to_file("res://Main Menu/demo_complete.tscn")
+	# Uncomment this for full game
+	"""$"MainMenuContainer/Next Event".hide()
 	Global.floorCounter += 1
 	Global.eventCounter = 0
 	$EventCounterNumber.text = str(Global.eventCounter)
-	$EventThresholdNumber.text = str(Global.eventThreshold[Global.floorCounter])
+	$EventThresholdNumber.text = str(Global.eventThreshold[Global.floorCounter])"""

@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://mcjq5uunblqo"]
+[gd_resource type="Resource" script_class="Creatures" load_steps=4 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" path="res://Resources/Sprites/tree-32.png" id="1"]
-[ext_resource type="Texture2D" path="res://Resources/Sprites/tree-256.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://sh7wpcycx60d" path="res://Resources/Sprites/tree-32.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cyqqpryjoc4gu" path="res://Resources/Sprites/tree-256.png" id="3"]
 
 [resource]
 script = ExtResource("2")
@@ -14,7 +14,7 @@ agility = 0.0
 strength = 0.0
 intelligence = 0.0
 level = 1
-experience = 0
+experience = 35
 max_hp = 35
 max_mp = 35
 cur_hp = 35

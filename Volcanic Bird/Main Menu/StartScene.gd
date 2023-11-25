@@ -7,7 +7,7 @@ func _ready():
 
 func _on_option_a_pressed():
 	var samepleCreature1 = load("res://Creatures/Joey.tres")
-	var samepleCreature2 = load("res://Creatures/Tree.tres")
+	var samepleCreature2 = load("res://Creatures/Funky_Frog.tres")
 	var samepleCreature3 = load("res://Creatures/Table.tres")
 	var samepleCreature4 = load("res://Creatures/Wizard.tres")
 	var dummyCreature = load("res://Creatures/Dummy.tres")
@@ -38,7 +38,7 @@ func _on_option_b_pressed():
 	var samepleCreature1 = load("res://Creatures/Robirdo.tres")
 	var samepleCreature2 = load("res://Creatures/Crowilla.tres")
 	var samepleCreature3 = load("res://Creatures/Penguin.tres")
-	var samepleCreature4 = load("res://Creatures/Crowilla.tres")
+	var samepleCreature4 = load("res://Creatures/USB_Micro.tres")
 	var dummyCreature = load("res://Creatures/Dummy.tres")
 	
 	var creature1 = Creatures.new()
@@ -65,8 +65,8 @@ func _on_option_b_pressed():
 
 func _on_option_c_pressed():
 	var samepleCreature1 = load("res://Creatures/Shroom.tres")
-	var samepleCreature2 = load("res://Creatures/Shroom.tres")
-	var samepleCreature3 = load("res://Creatures/Shroom.tres")
+	var samepleCreature2 = load("res://Creatures/Dizzy_Mug.tres")
+	var samepleCreature3 = load("res://Creatures/Phone.tres")
 	var samepleCreature4 = load("res://Creatures/Shroom.tres")
 	var dummyCreature = load("res://Creatures/Dummy.tres")
 	

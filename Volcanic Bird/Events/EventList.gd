@@ -90,7 +90,7 @@ static var List = [
 					]
 				),
 				OptionResult.new(
-					"Two of the trees are upset with being awaken, but one wishes to join you. 1 Tree can be found in creature storage.",
+					"Two of the trees are upset with being awakened, but one wishes to join you. 1 Tree can be found in creature storage.",
 					"character-addition",
 					30,
 					[
@@ -105,7 +105,7 @@ static var List = [
 			"Chop their wood.",
 			[
 				OptionResult.new(
-					"The trees are chopped before they have a chance to fight back. They wimper quietly as their sap is drained by your blades.",
+					"The trees are chopped before they have a chance to fight back. They whimper quietly as their sap is drained by your blades.",
 					"escape",
 					75,
 					[]

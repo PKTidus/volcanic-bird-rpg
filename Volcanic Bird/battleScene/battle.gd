@@ -730,7 +730,7 @@ func processAttacksOld():
 					movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 					updateBattleGroupHealth()
 					
-					showTextBox(str(movesArray[i].source.name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
+					showTextBox(str(movesArray[i].source.name) + " dealt " + str(int(currentDamage)) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
 					await get_tree().create_timer(1.5).timeout
 				# this statement checks if this is a skill move
 				if movesArray[i].move == 2:
@@ -792,7 +792,7 @@ func processAttacksOld():
 						updateBattleGroupHealth()
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated magical damage move
 					if movesArray[i].skill.type == 4:
@@ -803,7 +803,7 @@ func processAttacksOld():
 						updateBattleGroupHealth()
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# spread physical
 					if movesArray[i].skill.type == 5:
@@ -819,7 +819,7 @@ func processAttacksOld():
 							node.updateHealth()
 							node.get_node("AnimationPlayer").play("enemy_damaged")
 						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to damage all enemies!")
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to damage all enemies!!")
 						await get_tree().create_timer(1.5).timeout
 					# spread magic
 					if movesArray[i].skill.type == 6:
@@ -835,7 +835,7 @@ func processAttacksOld():
 							node.updateHealth()
 							node.get_node("AnimationPlayer").play("enemy_damaged")
 						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to damage all enemies!")
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to damage all enemies!!")
 						await get_tree().create_timer(1.5).timeout
 					# lifesteal physical damage
 					if movesArray[i].skill.type == 7:
@@ -848,7 +848,7 @@ func processAttacksOld():
 						# lifesteal effect, heals half damage dealt
 						movesArray[i].source.cur_hp += currentDamage / 2
 						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# manasteal magic damage
 					if movesArray[i].skill.type == 8:
@@ -861,7 +861,7 @@ func processAttacksOld():
 						# manasteal effect, heals half damage dealt
 						movesArray[i].source.cur_mp += currentDamage / 2
 						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# spread heal
 					if movesArray[i].skill.type == 9:

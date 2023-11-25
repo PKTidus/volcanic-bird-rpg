@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0841jo25yrnq"]
 
 [ext_resource type="Script" path="res://Main Menu/StartScene.gd" id="1_0der2"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_hxhkk"]
+[ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_hxhkk"]
 
 [node name="EventChoice" type="Node2D"]
 script = ExtResource("1_0der2")
@@ -36,7 +36,7 @@ size_flags_stretch_ratio = 3.55
 theme_override_fonts/normal_font = ExtResource("2_hxhkk")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "You woke up in your little shop where you sell creatures to the local townfolk. You were disturbed by the chatter of the local about a plague going around effecting the creatures and scenery around you. Before you venture out, what creatures will you choose to aid you in your expedition?"
+text = "You woke up in your little shop where you sell creatures to the local townfolk. You were disturbed by the chatter of the local about a plague going around affecting the creatures and scenery around you. Before you venture out, what creatures will you choose to aid you in your expedition?"
 
 [node name="Option A" type="Button" parent="."]
 offset_left = 201.0
@@ -66,7 +66,7 @@ offset_bottom = 611.0
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_hxhkk")
 theme_override_font_sizes/font_size = 30
-text = "Shroomy"
+text = "a bit Shroomy"
 
 [connection signal="pressed" from="Option A" to="." method="_on_option_a_pressed"]
 [connection signal="pressed" from="Option B" to="." method="_on_option_b_pressed"]

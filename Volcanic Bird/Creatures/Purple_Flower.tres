@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=3 format=3 uid="uid://dwdfqw467p7kn"]
 
-[ext_resource type="Texture2D" uid="uid://bvxug5fox8ui2" path="res://Resources/Sprites/flower.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cj34l7jtmvf4q" path="res://Resources/Sprites/flower.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
 
 [resource]
@@ -25,6 +25,6 @@ speed = 1000000
 STR_growth = 0
 AGI_growth = 0
 INT_growth = 0
-skillPreload =  Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/SolarArrow.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres"])
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/SolarArrow.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres"])
 skillList = Array[Resource]([])
 isDead = false
