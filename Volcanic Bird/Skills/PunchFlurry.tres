@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bf0thl055kjs1"]
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://Skills/Skill.gd" id="1_ju01k"]
 
@@ -9,8 +9,8 @@ mp_cost = 10
 damage_cal = 3
 heal_cal = 0
 buff_value = 0.0
-unlockLevel = 8
-type = 16
-nameLabel = "Omniblast"
+unlockLevel = 7
+type = 13
+nameLabel = "Punch Flurry"
 costLabel = "10 HP 10 MP"
-descriptionLabel = "Deal all powerful holy damage"
+descriptionLabel = "3 times phys+speed and pierce defense"
