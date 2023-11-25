@@ -65,6 +65,9 @@ func _ready():
 	initializeMoves()
 	sortArrayBySpeed()
 	copyCreatures()
+	print(enemy1.enemyData)
+	print(enemy2.enemyData)
+	print(enemy3.enemyData)
 	
 	currentPlayerCounter = 0
 	currentEnemyCounter = 0
@@ -185,11 +188,12 @@ func setupSampleGroup():
 	
 # Simply for loading in sample creatures, not need for final build
 func setupSampleEnemy():
-	for i in range(4):
+	for i in range(3):
 		var enemy = load(Global.selected_enemy_paths[i])
 		var loadEnemy = EnemyData.new()
+		print(loadEnemy)
 		loadEnemy.initializeEnemyData(enemy)
-		sampleArray.append(enemy)
+		sampleArray.append(loadEnemy)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
@@ -453,6 +457,7 @@ func _on_item_pressed():
 func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
 	var randomNumber = rng.randi_range(1, 100)
+	Global.eventCompleted = false
 	
 	print(randomNumber)
 	resetCreatures()
@@ -709,7 +714,11 @@ func processAttacks():
 	hideTextBox()
 
 func processAttacksOld():
+	hideEnemyButtons()
 	for i in range(7):
+		print("enemy one " + str(enemy1.enemyData.isDead))
+		print("enemy two " + str(enemy1.enemyData.isDead))
+		print("enemy three " + str(enemy1.enemyData.isDead))
 		if movesArray[i].isEnemy == 0:
 			if movesArray[i].target != null and movesArray[i].target.enemyData.isDead: # skip player turns if the enemy is dead 
 				continue

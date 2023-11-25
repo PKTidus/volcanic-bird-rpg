@@ -16,6 +16,7 @@ func _ready():
 	$"Option B".text = self.event.option_b.option_title
 	$"Option C".text = self.event.option_c.option_title
 	self.event_collapsed = false
+	Global.eventCompleted = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

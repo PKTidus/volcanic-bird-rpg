@@ -18,13 +18,12 @@ static var List = [
 					[ # enemies
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
-						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres"
 					]
 				),
 				OptionResult.new(
 					"You step into the circle, the shrooms dance around you a bit. They seem friendly, and thank you for your cooperation. You aren't sure what they did.",
-					"escape",
+					"escape-buff",
 					25,
 					[]
 				)
@@ -48,7 +47,6 @@ static var List = [
 					[ # enemies
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
-						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres"
 					]
 				)
@@ -64,7 +62,6 @@ static var List = [
 					"battle", # type
 					100, # chance
 					[ # enemies
-						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres"
@@ -97,7 +94,6 @@ static var List = [
 					"character-addition",
 					30,
 					[
-						"res://Creatures/Tree.tres",
 						"res://Creatures/Tree.tres"
 					]
 				)
@@ -121,7 +117,6 @@ static var List = [
 					[ # enemies
 						"res://Enemies/TreeEnemy.tres",
 						"res://Enemies/TreeEnemy.tres",
-						"res://Enemies/TreeEnemy.tres",
 						"res://Enemies/TreeEnemy.tres"
 					]
 				)
@@ -139,8 +134,7 @@ static var List = [
 					[ # enemies
 						"res://Enemies/TreeEnemy.tres",
 						"res://Enemies/TreeEnemy.tres",
-						"res://Enemies/TreeEnemy.tres",
-						"res://Enemies/TreeEnemy.tres"
+						"res://Enemies/DummyEnemy.tres"
 					]
 				),
 				OptionResult.new(
@@ -172,8 +166,7 @@ static var List = [
 					[
 						"res://Enemies/WizardEnemy.tres",
 						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres"
 					]
 				),
 				OptionResult.new(
@@ -196,7 +189,7 @@ static var List = [
 					[
 						"res://Enemies/WizardEnemy.tres",
 						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres"
 					]
 				),
 				OptionResult.new(
@@ -219,7 +212,7 @@ static var List = [
 					[ # enemies
 						"res://Enemies/WizardEnemy.tres",
 						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres"
 					]
 				)
 			]

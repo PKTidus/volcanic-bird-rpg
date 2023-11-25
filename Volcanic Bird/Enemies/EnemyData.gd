@@ -11,8 +11,8 @@ class_name EnemyData
 @export var level : int
 @export var health_points : int
 @export var magic_points : int
-@export var defense : int
-@export var magic_defense : int
+@export var defense : float
+@export var magic_defense : float
 @export var speed : int
 @export var isDead : bool
 @export var useMagic : bool

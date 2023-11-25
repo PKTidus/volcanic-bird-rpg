@@ -5,14 +5,13 @@
 [resource]
 script = ExtResource("20")
 type = 2
-modify_strength = 0
-modify_agility = 0
-modify_intelligence = 0
+modify_defense = 0.0
+modify_attack = 0.0
 mp_heal = 0
 hp_heal = 0
-damage = 50
+damage = 15
 nameLabel = "Deadly Poison"
-costLabel = "Deal 50 damage"
+costLabel = "Deal 15 damage"
 descriptionLabel = "It sort of stinks."
 inUse = false
 itemRarity = 0

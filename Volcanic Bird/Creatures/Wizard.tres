@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=4 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://b5xir66kfwcjf" path="res://Resources/Sprites/wizard-32.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c5lxvorkgvqan" path="res://Resources/Sprites/wizard-32.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://biyajsknnb834" path="res://Resources/Sprites/wizard-256.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://qng21t873yxn" path="res://Resources/Sprites/wizard-256.png" id="3"]
 
 [resource]
 script = ExtResource("2")
@@ -27,6 +27,6 @@ speed = 10
 STR_growth = 2
 AGI_growth = 3
 INT_growth = 5
-skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/ReadBook.tres", "res://Skills/RockBarrage.tres", "res://Skills/SolarArrow.tres", "res://Skills/HealAll.tres", "res://Skills/Buff.tres", "res://Skills/MasterHeal.tres", "res://Skills/Necroblast.tres", "res://Skills/BootyBeam.tres"])
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/Fireball.tres", "res://Skills/ReadBook.tres", "res://Skills/RockBarrage.tres", "res://Skills/SolarArrow.tres", "res://Skills/HealAll.tres", "res://Skills/Buff.tres", "res://Skills/MasterHeal.tres", "res://Skills/Necroblast.tres", "res://Skills/BootyBeam.tres"])
 skillList = Array[Resource]([])
 isDead = false

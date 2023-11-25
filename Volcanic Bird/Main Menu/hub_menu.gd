@@ -31,8 +31,8 @@ func _on_play_pressed():
 	
 	if deadPartyMembers == 4:
 		return
-  
-  get_tree().change_scene_to_file("res://Events/EventChoice.tscn"	)
+	
+	get_tree().change_scene_to_file("res://Events/EventChoice.tscn")
 
 
 func _on_creatures_pressed():

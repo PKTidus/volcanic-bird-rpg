@@ -10,6 +10,9 @@ func _ready():
 
 func updateAsset():
 	# Load the texture of the enemy
+	if enemyData.asset == null:
+		$"Enemy Container".hide()
+		enemyData.isDead = true
 	if enemyData.asset != null:
 		$"Enemy Container/Sprite".texture = enemyData.asset
 	updateHealth()

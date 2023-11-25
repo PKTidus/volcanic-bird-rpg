@@ -7,9 +7,10 @@ enum RARITY {Common, Rare}
 # Type is used to define what kind of item it is.
 # 0 = Consumable, 1 = Modifier, 2 = Attack
 @export var type : int
-@export var modify_strength : int
-@export var modify_agility: int
-@export var modify_intelligence : int
+@export var modify_attack: float
+@export var modify_magic_attack: float
+@export var modify_defense : float
+@export var modify_magic_defense : float
 @export var mp_heal : int
 @export var hp_heal : int
 @export var damage : int
@@ -21,9 +22,8 @@ enum RARITY {Common, Rare}
 
 func initializeItem(item):
 	type = item.type
-	modify_strength = item.modify_strength
-	modify_agility = item.modify_agility
-	modify_intelligence = item.modify_intelligence
+	modify_defense = item.modify_defense
+	modify_attack = item.modify_attack
 	mp_heal = item.mp_heal
 	hp_heal = item.hp_heal
 	damage = item.damage
