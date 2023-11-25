@@ -23,7 +23,7 @@ static var List = [
 				),
 				OptionResult.new(
 					"You step into the circle, the shrooms dance around you a bit. They seem friendly, and thank you for your cooperation. You aren't sure what they did.",
-					"escape-buff",
+					"escape",
 					25,
 					[]
 				)
