@@ -2,13 +2,14 @@ class_name Event
 
 var title: String
 var description: String
-var option_a_label: String
-var option_b_label: String
-var option_c_label: String
 
-func _init(title, description, option_a_label, option_b_label, option_c_label):
+var option_a: Option
+var option_b: Option
+var option_c: Option
+
+func _init(title, description, option_a, option_b, option_c):
 	self.title = title
 	self.description = description
-	self.option_a_label = option_a_label
-	self.option_b_label = option_b_label
-	self.option_c_label = option_c_label
+	self.option_a = option_a
+	self.option_b = option_b
+	self.option_c = option_c

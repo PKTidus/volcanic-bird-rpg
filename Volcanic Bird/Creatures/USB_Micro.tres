@@ -27,6 +27,6 @@ speed = 20
 STR_growth = 3
 AGI_growth = 5
 INT_growth = 3
-skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/SolarArrow.tres", "res://Skills/Heal.tres", "res://Skills/Buff.tres", "res://Skills/Debuff.tres"])
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/HeavySmash.tres", "res://Skills/SolarArrow.tres", "res://Skills/Debuff.tres", "res://Skills/CracklingBolt.tres", "res://Skills/BlindingJab.tres", "res://Skills/Incompatability.tres"])
 skillList = Array[Resource]([])
 isDead = false
