@@ -5,8 +5,10 @@
 [resource]
 script = ExtResource("20")
 type = 2
-modify_defense = 0.0
 modify_attack = 0.0
+modify_magic_attack = 0.0
+modify_defense = 0.0
+modify_magic_defense = 0.0
 mp_heal = 0
 hp_heal = 0
 damage = 15

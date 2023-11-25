@@ -191,7 +191,6 @@ func setupSampleEnemy():
 	for i in range(3):
 		var enemy = load(Global.selected_enemy_paths[i])
 		var loadEnemy = EnemyData.new()
-		print(loadEnemy)
 		loadEnemy.initializeEnemyData(enemy)
 		sampleArray.append(loadEnemy)
   
