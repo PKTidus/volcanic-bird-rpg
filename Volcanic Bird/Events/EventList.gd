@@ -70,7 +70,8 @@ static var List = [
 					]
 				)
 			]
-		), 
+		),
+		"res://Resources/Backgrounds/forest.png",
 	),
 	Event.new(
 		"Slumbering Trees", 
@@ -153,7 +154,8 @@ static var List = [
 					]
 				)
 			]
-		), 
+		),
+		"res://Resources/Backgrounds/ice.png",
 	),
 	Event.new(
 		"Blockade", 
@@ -222,6 +224,7 @@ static var List = [
 				)
 			]
 		),
+		"res://Resources/Backgrounds/scifi.png",
 	),
 	
 	Event.new(
@@ -291,5 +294,6 @@ static var List = [
 				)
 			]
 		),
+		"res://Resources/Backgrounds/forest.png",
 	),
 ]

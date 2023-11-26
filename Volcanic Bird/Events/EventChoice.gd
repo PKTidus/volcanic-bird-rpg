@@ -87,6 +87,7 @@ func collapse_event(option):
 		self.outcome = self.event.option_c.collapse()
 	var enemy_paths = self.outcome.enemy_paths
 	Global.selected_enemy_paths = enemy_paths
+	Global.background = self.event.background
 	$"Option A".visible = false
 	$"Option C".visible = false
 	$"Option B".text = "Proceed"
