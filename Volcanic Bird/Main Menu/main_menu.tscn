@@ -53,14 +53,6 @@ theme_override_font_sizes/font_size = 30
 text = "Load Game
 "
 
-[node name="Options" type="Button" parent="MainMenuContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_02ror")
-theme_override_font_sizes/font_size = 30
-text = "Options
-"
-
 [node name="Exit" type="Button" parent="MainMenuContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -95,5 +87,4 @@ autoplay = true
 
 [connection signal="pressed" from="MainMenuContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Load" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="MainMenuContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Exit" to="." method="_on_exit_pressed"]

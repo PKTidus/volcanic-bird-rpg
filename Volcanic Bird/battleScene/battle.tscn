@@ -353,3 +353,5 @@ stream = ExtResource("10_5twwv")
 [connection signal="pressed" from="Party Panel/Party Container/Player2" to="." method="_on_player_2_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player3" to="." method="_on_player_3_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/BackButton" to="." method="_on_back_button_pressed"]
+
+[editable path="Party Panel/Party Container/Player0"]

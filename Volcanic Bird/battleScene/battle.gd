@@ -65,6 +65,7 @@ func _ready():
 	initializeMoves()
 	sortArrayBySpeed()
 	copyCreatures()
+	hideCreatureDamageRects()
 	print(enemy1.enemyData)
 	print(enemy2.enemyData)
 	print(enemy3.enemyData)
@@ -73,6 +74,12 @@ func _ready():
 	currentEnemyCounter = 0
 	
 	trackBattle()
+
+func hideCreatureDamageRects():
+	player0.get_node("Damaged").hide()
+	player1.get_node("Damaged").hide()
+	player2.get_node("Damaged").hide()
+	player3.get_node("Damaged").hide()
 
 func copyCreatures():
 	for i in range(4):
@@ -1023,6 +1030,7 @@ func processAttacksOld():
 						currentDamage = max(1, movesArray[i].enemySource.enemyData.magic_damage / movesArray[i].enemyTarget.magic_defense)
 				
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
+				playCreatureDamaged(movesArray[i].enemyTarget)
 				updateBattleGroupHealth()
 				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
 				await get_tree().create_timer(1.5).timeout
@@ -1038,6 +1046,20 @@ func processAttacksOld():
 	defendingPlayers = [null, null, null, null]
 	showButtons()
 	hideTextBox()
+
+func playCreatureDamaged(target):
+	if target == Global.battleGroup[0]:
+		player0.get_node("Damaged").show()
+		player0.get_node("AnimationPlayer").play("creature_damaged")
+	if target == Global.battleGroup[1]:
+		player1.get_node("Damaged").show()
+		player1.get_node("AnimationPlayer").play("creature_damaged")
+	if target == Global.battleGroup[2]:
+		player2.get_node("Damaged").show()
+		player2.get_node("AnimationPlayer").play("creature_damaged")
+	if target == Global.battleGroup[3]:
+		player3.get_node("Damaged").show()
+		player3.get_node("AnimationPlayer").play("creature_damaged")
 
 func _process(delta):
 	if currentPlayerCounter >= 4 and not isBattling:
