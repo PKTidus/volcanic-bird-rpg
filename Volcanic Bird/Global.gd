@@ -23,6 +23,7 @@ var rareItemsMaster = []
 var selected_enemy_paths = []
 var event: Event = null
 var background
+var usedEvents = {}
 
 # Creature Parts For Creature Menu
 var current_name

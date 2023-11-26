@@ -52,6 +52,7 @@ var currentPlayerCounter # range from 1-4
 var currentEnemyCounter # range from 1-3
 
 func _ready():
+	$Background.set_texture(load(Global.background))
 	# comment this function to load sample creatures from the main menu scene while save battle data
 	# uncomment this function to load sample creatures from the battle scene while not saving battle data 
 	# setupSampleGroup() # testing purposes
