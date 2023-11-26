@@ -533,9 +533,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	
 	# Keep track of unlocked skills
 	var index = 0
-	for skill in Global.battleGroup[playerIndex].skillList:
-		var currentSkill = Global.battleGroup[playerIndex].skillList[index]
-		
+	for currentSkill in Global.battleGroup[playerIndex].skillList:
 		if Global.battleGroup[playerIndex].skillList.size() == 0:
 			break
 		
@@ -547,7 +545,6 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 		if index >= Global.battleGroup[playerIndex].skillList.size():
 			break
 	
-	print()
 	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
 	var skillsLearnedStr = ("Obtained Skills:\n" + str(skillsLearned)) if (skillsLearned != "") else ""
 	
