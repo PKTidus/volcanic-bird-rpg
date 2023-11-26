@@ -5,7 +5,8 @@ var saveFilePath = "user://PlayerSave.tres"
 var playerData = PlayerSave.new()
 
 func _on_play_pressed():
-	loadSampleItem()
+	Global.itemInventory.clear()
+	Global.itemStorage.clear()
 	loadItemList()
 	get_tree().change_scene_to_file("res://Main Menu/StartScene.tscn")
 
@@ -54,35 +55,6 @@ func setupSampleGroup():
 	Global.creatureStorage.append(creature6)
 	Global.creatureStorage.append(creature7)
 	Global.creatureStorage.append(creature8)
-	
-func loadSampleItem():
-	var tempItem = Item.new()
-	var sampleItem = load("res://Items/HealingPotion.tres")
-	tempItem.initializeItem(sampleItem)
-	Global.itemInventory.append(tempItem)
-	
-	var tempItem2 = Item.new()
-	var sampleItem2 = load("res://Items/Steroid.tres")
-	tempItem2.initializeItem(sampleItem2)
-	Global.itemInventory.append(tempItem2)
-	
-	var tempItem3 = Item.new()
-	var sampleItem3 = load("res://Items/DeadlyPoison.tres")
-	tempItem3.initializeItem(sampleItem3)
-	Global.itemInventory.append(tempItem3)
-	
-	for i in range(15):
-		var tempItem4 = Item.new()
-		tempItem4.initializeItem(sampleItem)
-		Global.itemStorage.append(tempItem4)
-	
-	var tempItem5 = Item.new()
-	tempItem5.initializeItem(sampleItem2)
-	Global.itemStorage.append(tempItem5)
-	
-	var tempItem6 = Item.new()
-	tempItem6.initializeItem(sampleItem3)
-	Global.itemStorage.append(tempItem6)
 
 func loadItemList():
 	var dir = DirAccess.open("res://Items/")
@@ -119,9 +91,6 @@ func loadGame():
 		Global.eventCounter = playerData.eventCounter
 		Global.floorCounter = playerData.floorCounter
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
-
-func _on_options_pressed():
-	pass # Replace with function body.
 
 func _on_exit_pressed():
 	get_tree().quit()

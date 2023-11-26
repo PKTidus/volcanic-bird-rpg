@@ -66,6 +66,7 @@ func _ready():
 	initializeMoves()
 	sortArrayBySpeed()
 	copyCreatures()
+	hideCreatureDamageRects()
 	print(enemy1.enemyData)
 	print(enemy2.enemyData)
 	print(enemy3.enemyData)
@@ -74,6 +75,12 @@ func _ready():
 	currentEnemyCounter = 0
 	
 	trackBattle()
+
+func hideCreatureDamageRects():
+	player0.get_node("Damaged").hide()
+	player1.get_node("Damaged").hide()
+	player2.get_node("Damaged").hide()
+	player3.get_node("Damaged").hide()
 
 func copyCreatures():
 	for i in range(4):
@@ -275,6 +282,7 @@ func getEnemyInfo():
 func trackBattle():
 	print("Selected Enemies:  " + str(selectedEnemies))
 	print("Defending Players: " + str(defendingPlayers))
+	$"Party Panel/Party Container/BackButton".disabled = false
 	
 	# Check if the player's party has been defeated
 	if partyIsDead():
@@ -293,6 +301,7 @@ func trackBattle():
 	# Check if the enemies are dead
 	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
 		# Change music
+		$"Party Panel/Party Container/BackButton".disabled = true
 		$"Battle Music".playing = false
 		$"Victory Music".play()
 		
@@ -525,10 +534,8 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	
 	# Keep track of unlocked skills
 	var index = 0
-	for node in $"Skill List Panel/Skill List Container".get_children():
-		var currentSkill = Global.battleGroup[currentPlayerCounter].skillList[index]
-		
-		if Global.battleGroup[currentPlayerCounter].skillList.size() == 0:
+	for currentSkill in Global.battleGroup[playerIndex].skillList:
+		if Global.battleGroup[playerIndex].skillList.size() == 0:
 			break
 		
 		if initialLevel < currentSkill.unlockLevel && playerLevel >= currentSkill.unlockLevel:
@@ -536,7 +543,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 		
 		index += 1
 		
-		if index >= Global.battleGroup[currentPlayerCounter].skillList.size():
+		if index >= Global.battleGroup[playerIndex].skillList.size():
 			break
 	
 	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
@@ -714,6 +721,7 @@ func processAttacks():
 	hideTextBox()
 
 func processAttacksOld():
+	$"Party Panel/Party Container/BackButton".disabled = true
 	hideEnemyButtons()
 	for i in range(7):
 		print("enemy one " + str(enemy1.enemyData.isDead))
@@ -983,9 +991,8 @@ func processAttacksOld():
 					# This needs to be changed after we implement proper buff techniques
 					if movesArray[i].itemInUse.type == 1:
 						if !movesArray[i].friendlyTarget.isDead:
-							movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
-							movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
-							movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
+							movesArray[i].friendlyTarget.defense *= movesArray[i].itemInUse.modify_defense
+							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].itemInUse.modify_magic_defense
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
 							Global.itemInventory.erase(movesArray[i].itemInUse)
@@ -1022,6 +1029,7 @@ func processAttacksOld():
 						currentDamage = max(1, movesArray[i].enemySource.enemyData.magic_damage / movesArray[i].enemyTarget.magic_defense)
 				
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
+				playCreatureDamaged(movesArray[i].enemyTarget)
 				updateBattleGroupHealth()
 				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
 				await get_tree().create_timer(1.5).timeout
@@ -1037,6 +1045,20 @@ func processAttacksOld():
 	defendingPlayers = [null, null, null, null]
 	showButtons()
 	hideTextBox()
+
+func playCreatureDamaged(target):
+	if target == Global.battleGroup[0]:
+		player0.get_node("Damaged").show()
+		player0.get_node("AnimationPlayer").play("creature_damaged")
+	if target == Global.battleGroup[1]:
+		player1.get_node("Damaged").show()
+		player1.get_node("AnimationPlayer").play("creature_damaged")
+	if target == Global.battleGroup[2]:
+		player2.get_node("Damaged").show()
+		player2.get_node("AnimationPlayer").play("creature_damaged")
+	if target == Global.battleGroup[3]:
+		player3.get_node("Damaged").show()
+		player3.get_node("AnimationPlayer").play("creature_damaged")
 
 func _process(delta):
 	if currentPlayerCounter >= 4 and not isBattling:
@@ -1213,4 +1235,15 @@ func _on_back_button_pressed():
 	selectedEnemies[currentPlayerCounter].move = 0
 	typeOfMove = 0
 	
+	trackBattle()
+
+
+func _on_skill_back_pressed():
+	$"Skill List Panel".hide()
+	showButtons()
+	trackBattle()
+
+func _on_item_back_pressed():
+	$"Item List Panel".hide()
+	showButtons()
 	trackBattle()
