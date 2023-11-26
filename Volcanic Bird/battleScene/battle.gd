@@ -461,7 +461,7 @@ func _on_item_pressed():
 				break
 		if oneItemExists:
 			$"Item List Panel".show()
-			showTextBox("Which Item")
+			showTextBox("Which Item?")
 
 func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
@@ -976,7 +976,7 @@ func processAttacksOld():
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
 						await get_tree().create_timer(1.5).timeout
 				if movesArray[i].move == 3:
-					# Check if it is consumable item
+					# Check if it is healing item
 					if movesArray[i].itemInUse.type == 0:
 						if !movesArray[i].friendlyTarget.isDead:
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
@@ -987,8 +987,7 @@ func processAttacksOld():
 						else:
 							showTextBox(str(movesArray[i].source.name) + " tried to heal " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
 							await get_tree().create_timer(1.5).timeout
-					# Check if it is modifier item
-					# This needs to be changed after we implement proper buff techniques
+					# Check if it is buff defense item
 					if movesArray[i].itemInUse.type == 1:
 						if !movesArray[i].friendlyTarget.isDead:
 							movesArray[i].friendlyTarget.defense *= movesArray[i].itemInUse.modify_defense
@@ -1007,6 +1006,66 @@ func processAttacksOld():
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyData.enemy_name) + " and damaged for " + str(movesArray[i].itemInUse.damage))
 						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
+					# Check if heal mp item
+					if movesArray[i].itemInUse.type == 3:
+						if !movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.cur_mp += movesArray[i].itemInUse.mp_heal
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + "'s MP by " + str(movesArray[i].itemInUse.mp_heal))
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " tried to heal " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
+							await get_tree().create_timer(1.5).timeout
+					# Check if damage all item
+					if movesArray[i].itemInUse.type == 4:
+						for node in $"Enemies Container".get_children():
+							node.enemyData.current_hp -= movesArray[i].itemInUse.damage
+							node.updateHealth()
+							node.get_node("AnimationPlayer").play("enemy_damaged")
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage all enemies for " + str(movesArray[i].itemInUse.damage))
+						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
+					# Check if revive to half item
+					if movesArray[i].itemInUse.type == 5:
+						if movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.isDead = false
+							movesArray[i].friendlyTarget.cur_hp = movesArray[i].friendlyTarget.max_hp / 2
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "!!")
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "but they're alive!!")
+							await get_tree().create_timer(1.5).timeout
+					# Check if revive to full item
+					if movesArray[i].itemInUse.type == 6:
+						if movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.isDead = false
+							movesArray[i].friendlyTarget.cur_hp = movesArray[i].friendlyTarget.max_hp
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "!!")
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "but they're alive!!")
+							await get_tree().create_timer(1.5).timeout
+					# Check if heal all item
+					if movesArray[i].itemInUse.type == 7:
+						for creature in Global.battleGroup:
+							if !creature.isDead:
+								creature.cur_hp += movesArray[i].itemInUse.hp_heal
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal the party's HP by " + str(movesArray[i].itemInUse.hp_heal))
+						updateBattleGroupHealth()
+						await get_tree().create_timer(1.5).timeout
+					# Check if heal mp all item
+					if movesArray[i].itemInUse.type == 8:
+						for creature in Global.battleGroup:
+							if !creature.isDead:
+								creature.cur_mp += movesArray[i].itemInUse.mp_heal
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal the party's MP by " + str(movesArray[i].itemInUse.mp_heal))
+						updateBattleGroupHealth()
 						await get_tree().create_timer(1.5).timeout
 		if movesArray[i].isEnemy == 1:
 			if !movesArray[i].enemySource.enemyData.isDead:
