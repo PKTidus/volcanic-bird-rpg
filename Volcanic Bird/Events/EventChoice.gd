@@ -31,14 +31,45 @@ func _on_option_b_pressed():
 	if not event_collapsed:
 		collapse_event('b')
 	elif self.outcome.type == "battle":
-		get_tree().change_scene_to_file("res://battleScene/battle.tscn"	)
+		get_tree().change_scene_to_file("res://battleScene/battle.tscn")
 	elif self.outcome.type == "character-addition":
 		for path in self.outcome.enemy_paths:
 			var creature = load(path)
 			var newCreature = Creatures.new()
 			newCreature.initializeCreature(creature)
 			Global.creatureStorage.append(newCreature)
-		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn"	)
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	elif self.outcome.type == "item-addition":
+		for path in self.outcome.enemy_paths:
+			var tempItem = load(path)
+			var newItem = Item.new()
+			newItem.initializeItem(tempItem)
+			Global.itemStorage.append(newItem)
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	elif self.outcome.type == "attack-buff":
+		var modifier = self.outcome.enemy_paths[0]
+		for creature in Global.battleGroup:
+			creature.buffAttack(modifier)
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	elif self.outcome.type == "defense-buff":
+		var modifier = self.outcome.enemy_paths[0]
+		for creature in Global.battleGroup:
+			creature.buffDefense(modifier)
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	elif self.outcome.type == "speed-buff":
+		var modifier = self.outcome.enemy_paths[0]
+		for creature in Global.battleGroup:
+			creature.buffSpeed(modifier)
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	elif self.outcome.type == "all-buff":
+		var modifier = int(self.outcome.enemy_paths[0])
+		for creature in Global.battleGroup:
+			creature.buffAll(modifier)
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	elif self.outcome.type == "level-up":
+		for creature in Global.battleGroup:
+			creature.levelUp()
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	else:
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn"	)
 

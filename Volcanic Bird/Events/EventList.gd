@@ -14,7 +14,7 @@ static var List = [
 				OptionResult.new(
 					"It's a trap!", # description
 					"battle", # type
-					75, # chance
+					50, # chance
 					[ # enemies
 						"res://Enemies/ShroomEnemy.tres",
 						"res://Enemies/ShroomEnemy.tres",
@@ -22,10 +22,12 @@ static var List = [
 					]
 				),
 				OptionResult.new(
-					"You step into the circle, the shrooms dance around you a bit. They seem friendly, and thank you for your cooperation. You aren't sure what they did.",
-					"escape",
-					25,
-					[]
+					"You step into the circle, the shrooms dance around you a bit. They seem friendly, and thank you for your cooperation. You aren't sure what they did. All your creatures' stats increased by 3!",
+					"all-buff",
+					50,
+					[
+						"3"
+					]
 				)
 			]
 		), 
@@ -73,11 +75,11 @@ static var List = [
 	Event.new(
 		"Slumbering Trees", 
 		
-		"You stumble upon a group of three trees. You notice these are no normal trees, but living trees.", 
+		"You stumble upon a group of three trees. You notice these are no normal trees, but sentient trees.", 
 		
 		# option A
 		Option.new(
-			"Gently wake them.",
+			"Gently wake them",
 			[
 				OptionResult.new(
 					"They welcome your presence and wish to join you. 3 Trees can be found in creature storage.", # description
@@ -102,13 +104,16 @@ static var List = [
 		
 		# option B
 		Option.new(
-			"Chop their wood.",
+			"Chop their wood",
 			[
 				OptionResult.new(
-					"The trees are chopped before they have a chance to fight back. They whimper quietly as their sap is drained by your blades.",
-					"escape",
+					"The trees are chopped before they have a chance to fight back. They whimper quietly as their sap is drained by your blades. Tree sap and tree bark have been added to storage.",
+					"item-addition",
 					75,
-					[]
+					[ # items
+						"res://Items/HealingPotion.tres",
+						"res://Items/HealingPotion.tres"
+					]
 				),
 				OptionResult.new(
 					"Before you can swing, a tree you didn't notice steps between you and knocks you back.", # description
@@ -138,7 +143,7 @@ static var List = [
 					]
 				),
 				OptionResult.new(
-					"You are unable to torch any of the trees before they are able to attack.", # description
+					"You are unable to torch any of the trees before they notice.", # description
 					"battle", # type
 					40, # chance
 					[ # enemies
@@ -216,6 +221,75 @@ static var List = [
 					]
 				)
 			]
+		),
+	),
+	
+	Event.new(
+		"Village Acquaintances", 
+		
+		"You and your party walk into a cave. While inside, a group of wizards set up camp near the entrance.", 
+		
+		# option A
+		Option.new(
+			"Exit quietly",
+			[
+				OptionResult.new(
+					"The wizards notice you trying to escape", # description
+					"battle", # type
+					70, # chance
+					[
+						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The wizards are unaware of you. You escape without notice.",
+					"escape",
+					30,
+					[]
+				)
+			]
 		), 
+		
+		# option B
+		Option.new(
+			"Wait.",
+			[
+				OptionResult.new(
+					"The wizards keep their camp. Eventually, they notice you.",
+					"battle",
+					70,
+					[
+						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The wizards pack camp and move on. You pass by.", # description
+					"escape", # type
+					30, # chance
+					[]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Attack the wizards",
+			[
+				OptionResult.new(
+					"You engage the wizards in combat", # description
+					"battle", # type
+					100, # chance
+					[ # enemies
+						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres"
+					]
+				)
+			]
+		),
 	),
 ]

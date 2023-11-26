@@ -51,7 +51,25 @@ func modifyIntelligence(value : int):
 	magic_attack_damage += value+5
 	magic_defense += value+2
 	max_mp += value*2
+
+func buffAttack(value : int):
+	attack_damage += value
+	magic_attack_damage += value
+
+func buffDefense(value : int):
+	defense += value
+	magic_defense += value
 	
+func buffSpeed(value : int):
+	speed += value
+	
+func buffAll(value : int):
+	attack_damage += value
+	magic_attack_damage += value
+	defense += value
+	magic_defense += value
+	speed += value
+
 func initializeCreature(sampleCreature):
 	name = sampleCreature.name
 	description = sampleCreature.description
