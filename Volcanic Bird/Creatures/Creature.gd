@@ -19,8 +19,8 @@ class_name Creatures
 @export var cur_mp : int
 @export var attack_damage : int # Strength
 @export var magic_attack_damage : int # Intelligence
-@export var defense : int # Strength
-@export var magic_defense : int # Intelligence
+@export var defense : float # Strength
+@export var magic_defense : float # Intelligence
 @export var speed : int # Agility
 @export var STR_growth : int
 @export var AGI_growth : int
@@ -41,16 +41,16 @@ func levelUp():
 	
 func modifyStrength(value : int):
 	attack_damage += value
-	max_hp += value*2
-	defense += value+2
+	max_hp += value * 2
+	defense += value * 0.1
 
 func modifyAgility(value : int):
 	speed += value
 
 func modifyIntelligence(value : int):
-	magic_attack_damage += value+5
-	magic_defense += value+2
-	max_mp += value*2
+	magic_attack_damage += value + 5
+	magic_defense += value * 0.1
+	max_mp += value * 2
 
 func buffAttack(value : int):
 	attack_damage += value

@@ -1093,7 +1093,7 @@ func processAttacksOld():
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				playCreatureDamaged(movesArray[i].enemyTarget)
 				updateBattleGroupHealth()
-				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
+				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(int(currentDamage)) + " damage to " + str(movesArray[i].enemyTarget.name))
 				await get_tree().create_timer(1.5).timeout
 		
 	updateBattleGroupHealth()
