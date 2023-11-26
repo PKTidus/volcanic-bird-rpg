@@ -1037,8 +1037,8 @@ func processAttacksOld():
 							Global.itemInventory.erase(movesArray[i].itemInUse)
 							await get_tree().create_timer(1.5).timeout
 						else:
-							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "but they're alive!!")
-							await get_tree().create_timer(1.5).timeout
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + " but they're alive!!")
+							await get_tree().create_timer(2).timeout
 					# Check if revive to full item
 					if movesArray[i].itemInUse.type == 6:
 						if movesArray[i].friendlyTarget.isDead:
@@ -1049,8 +1049,8 @@ func processAttacksOld():
 							Global.itemInventory.erase(movesArray[i].itemInUse)
 							await get_tree().create_timer(1.5).timeout
 						else:
-							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "but they're alive!!")
-							await get_tree().create_timer(1.5).timeout
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + " but they're alive!!")
+							await get_tree().create_timer(2).timeout
 					# Check if heal all item
 					if movesArray[i].itemInUse.type == 7:
 						for creature in Global.battleGroup:
@@ -1058,6 +1058,7 @@ func processAttacksOld():
 								creature.cur_hp += movesArray[i].itemInUse.hp_heal
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal the party's HP by " + str(movesArray[i].itemInUse.hp_heal))
 						updateBattleGroupHealth()
+						Global.itemInventory.erase(movesArray[i].itemInUse)
 						await get_tree().create_timer(1.5).timeout
 					# Check if heal mp all item
 					if movesArray[i].itemInUse.type == 8:
@@ -1066,6 +1067,7 @@ func processAttacksOld():
 								creature.cur_mp += movesArray[i].itemInUse.mp_heal
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal the party's MP by " + str(movesArray[i].itemInUse.mp_heal))
 						updateBattleGroupHealth()
+						Global.itemInventory.erase(movesArray[i].itemInUse)
 						await get_tree().create_timer(1.5).timeout
 		if movesArray[i].isEnemy == 1:
 			if !movesArray[i].enemySource.enemyData.isDead:
