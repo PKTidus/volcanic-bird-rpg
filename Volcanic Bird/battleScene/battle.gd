@@ -533,10 +533,10 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	
 	# Keep track of unlocked skills
 	var index = 0
-	for node in $"Skill List Panel/Skill List Container".get_children():
-		var currentSkill = Global.battleGroup[currentPlayerCounter].skillList[index]
+	for skill in Global.battleGroup[playerIndex].skillList:
+		var currentSkill = Global.battleGroup[playerIndex].skillList[index]
 		
-		if Global.battleGroup[currentPlayerCounter].skillList.size() == 0:
+		if Global.battleGroup[playerIndex].skillList.size() == 0:
 			break
 		
 		if initialLevel < currentSkill.unlockLevel && playerLevel >= currentSkill.unlockLevel:
@@ -544,9 +544,10 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 		
 		index += 1
 		
-		if index >= Global.battleGroup[currentPlayerCounter].skillList.size():
+		if index >= Global.battleGroup[playerIndex].skillList.size():
 			break
 	
+	print()
 	var levelStr = str(initialLevel) if (initialLevel == playerLevel) else (str(initialLevel) + "->" + str(playerLevel))
 	var skillsLearnedStr = ("Obtained Skills:\n" + str(skillsLearned)) if (skillsLearned != "") else ""
 	
