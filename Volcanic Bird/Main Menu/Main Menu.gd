@@ -5,6 +5,8 @@ var saveFilePath = "user://PlayerSave.tres"
 var playerData = PlayerSave.new()
 
 func _on_play_pressed():
+	Global.itemInventory.clear()
+	Global.itemStorage.clear()
 	loadSampleItem()
 	loadItemList()
 	get_tree().change_scene_to_file("res://Main Menu/StartScene.tscn")

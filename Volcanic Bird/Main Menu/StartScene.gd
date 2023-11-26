@@ -6,6 +6,8 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_option_a_pressed():
+	clearBattleGroup()
+	Global.creatureStorage.clear()
 	var samepleCreature1 = load("res://Creatures/Joey.tres")
 	var samepleCreature2 = load("res://Creatures/Funky_Frog.tres")
 	var samepleCreature3 = load("res://Creatures/Table.tres")
@@ -34,7 +36,13 @@ func _on_option_a_pressed():
 	
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
+func clearBattleGroup():
+	for i in range(4):
+		Global.battleGroup[i] = null
+
 func _on_option_b_pressed():
+	clearBattleGroup()
+	Global.creatureStorage.clear()
 	var samepleCreature1 = load("res://Creatures/Robirdo.tres")
 	var samepleCreature2 = load("res://Creatures/Crowilla.tres")
 	var samepleCreature3 = load("res://Creatures/Penguin.tres")
@@ -64,6 +72,8 @@ func _on_option_b_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 func _on_option_c_pressed():
+	clearBattleGroup()
+	Global.creatureStorage.clear()
 	var samepleCreature1 = load("res://Creatures/Shroom.tres")
 	var samepleCreature2 = load("res://Creatures/Dizzy_Mug.tres")
 	var samepleCreature3 = load("res://Creatures/Phone.tres")

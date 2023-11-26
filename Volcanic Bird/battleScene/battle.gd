@@ -274,6 +274,7 @@ func getEnemyInfo():
 func trackBattle():
 	print("Selected Enemies:  " + str(selectedEnemies))
 	print("Defending Players: " + str(defendingPlayers))
+	$"Party Panel/Party Container/BackButton".disabled = false
 	
 	# Check if the player's party has been defeated
 	if partyIsDead():
@@ -292,6 +293,7 @@ func trackBattle():
 	# Check if the enemies are dead
 	if (enemy1.enemyData.isDead && enemy2.enemyData.isDead && enemy3.enemyData.isDead):
 		# Change music
+		$"Party Panel/Party Container/BackButton".disabled = true
 		$"Battle Music".playing = false
 		$"Victory Music".play()
 		
@@ -713,6 +715,7 @@ func processAttacks():
 	hideTextBox()
 
 func processAttacksOld():
+	$"Party Panel/Party Container/BackButton".disabled = true
 	hideEnemyButtons()
 	for i in range(7):
 		print("enemy one " + str(enemy1.enemyData.isDead))
@@ -982,9 +985,8 @@ func processAttacksOld():
 					# This needs to be changed after we implement proper buff techniques
 					if movesArray[i].itemInUse.type == 1:
 						if !movesArray[i].friendlyTarget.isDead:
-							movesArray[i].friendlyTarget.strength += movesArray[i].itemInUse.modify_strength
-							movesArray[i].friendlyTarget.agility += movesArray[i].itemInUse.modify_agility
-							movesArray[i].friendlyTarget.intelligence += movesArray[i].itemInUse.modify_intelligence
+							movesArray[i].friendlyTarget.defense *= movesArray[i].itemInUse.modify_defense
+							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].itemInUse.modify_magic_defense
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
 							Global.itemInventory.erase(movesArray[i].itemInUse)
@@ -1212,4 +1214,15 @@ func _on_back_button_pressed():
 	selectedEnemies[currentPlayerCounter].move = 0
 	typeOfMove = 0
 	
+	trackBattle()
+
+
+func _on_skill_back_pressed():
+	$"Skill List Panel".hide()
+	showButtons()
+	trackBattle()
+
+func _on_item_back_pressed():
+	$"Item List Panel".hide()
+	showButtons()
 	trackBattle()
