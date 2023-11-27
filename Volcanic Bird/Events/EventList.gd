@@ -215,9 +215,19 @@ static var List = [
 				OptionResult.new(
 					"You engage the wizards in combat", # description
 					"battle", # type
-					100, # chance
+					60, # chance
 					[ # enemies
 						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres",
+						"res://Enemies/WizardEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"You catch the wizards off guard and one runs away in fear! The other wizards prepare to fight.", # description
+					"battle", # type
+					40, # chance
+					[ # enemies
+						"res://Enemies/DummyEnemy.tres",
 						"res://Enemies/WizardEnemy.tres",
 						"res://Enemies/WizardEnemy.tres"
 					]
@@ -277,7 +287,9 @@ static var List = [
 					"battle", # type
 					30, # chance
 					[
-						"res://Enemies/Villager_MEnemy.tres"
+						"res://Enemies/DummyEnemy.tres",
+						"res://Enemies/Villager_MEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
 					]
 				)
 			]
