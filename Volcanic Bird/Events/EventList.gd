@@ -112,8 +112,8 @@ static var List = [
 					"item-addition",
 					75,
 					[ # items
-						"res://Items/HealingPotion.tres",
-						"res://Items/HealingPotion.tres"
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeSap.tres"
 					]
 				),
 				OptionResult.new(
@@ -237,7 +237,7 @@ static var List = [
 			"Request supplies",
 			[
 				OptionResult.new(
-					"The villagers happily donate an assortment of restoration items to you!", # description
+					"The villagers happily donate an assortment of helpful items to you! You put them away in storage.", # description
 					"item-addition", # type
 					70, # chance
 					[
@@ -307,4 +307,81 @@ static var List = [
 		),
 		"res://Resources/Backgrounds/forest.png",
 	),
+	
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	)
 ]
