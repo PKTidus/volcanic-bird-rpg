@@ -230,24 +230,27 @@ static var List = [
 	Event.new(
 		"Village Acquaintances", 
 		
-		"You and your party walk into a cave. While inside, a group of wizards set up camp near the entrance.", 
+		"You come across a peaceful village and are greeted by some friendly looking villagers.", 
 		
 		# option A
 		Option.new(
-			"Exit quietly",
+			"Request supplies",
 			[
 				OptionResult.new(
-					"The wizards notice you trying to escape", # description
-					"battle", # type
+					"The villagers happily donate an assortment of restoration items to you!", # description
+					"item-addition", # type
 					70, # chance
 					[
-						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres"
+						"res://Items/Type8.tres",
+						"res://Items/Type3.tres",
+						"res://Items/Type4.tres",
+						"res://Items/Type5.tres",
+						"res://Items/Type6.tres",
+						"res://Items/Type7.tres"
 					]
 				),
 				OptionResult.new(
-					"The wizards are unaware of you. You escape without notice.",
+					"The villagers' happy expressions quickly fade and they ask you to leave.",
 					"escape",
 					30,
 					[]
@@ -257,39 +260,47 @@ static var List = [
 		
 		# option B
 		Option.new(
-			"Wait.",
+			"Attack",
 			[
 				OptionResult.new(
-					"The wizards keep their camp. Eventually, they notice you.",
+					"The villagers were prepared and ready their arms.",
 					"battle",
 					70,
 					[
-						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres"
+						"res://Enemies/Villager_FEnemy.tres",
+						"res://Enemies/Villager_MEnemy.tres",
+						"res://Enemies/Villager_FEnemy.tres"
 					]
 				),
 				OptionResult.new(
-					"The wizards pack camp and move on. You pass by.", # description
-					"escape", # type
+					"Most of them run in fear but one villager assumes a fighting pose.", # description
+					"battle", # type
 					30, # chance
-					[]
+					[
+						"res://Enemies/Villager_MEnemy.tres"
+					]
 				)
 			]
 		), 
 		
 		# option C
 		Option.new(
-			"Attack the wizards",
+			"Request cooperation",
 			[
 				OptionResult.new(
-					"You engage the wizards in combat", # description
-					"battle", # type
-					100, # chance
+					"A burly looking villager is eager to join you on your quest!", # description
+					"character-addition", # type
+					55, # chance
 					[ # enemies
-						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres",
-						"res://Enemies/WizardEnemy.tres"
+						"res://Creatures/Villager_M.tres"
+					]
+				),
+				OptionResult.new(
+					"A smart looking villager is eager to join you on your quest!", # description
+					"character-addition", # type
+					45, # chance
+					[ # enemies
+						"res://Creatures/Villager_F.tres"
 					]
 				)
 			]

@@ -8,6 +8,8 @@ func _on_play_pressed():
 	Global.itemInventory.clear()
 	Global.itemStorage.clear()
 	loadItemList()
+	Global.eventCounter = 0
+	Global.floorCounter = 0
 	# TESTING NEW ITEM TYPES !!!!!
 	var tempItem = load("res://Items/Type3.tres")
 	var newItem = Item.new()
