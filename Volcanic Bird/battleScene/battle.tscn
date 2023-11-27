@@ -296,6 +296,12 @@ offset_bottom = 136.0
 [node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 
+[node name="Buff" parent="Party Panel/Party Container/Player0" index="9"]
+color = Color(0.14902, 0.603922, 0.368627, 0)
+
+[node name="Heal" parent="Party Panel/Party Container/Player0" index="10"]
+color = Color(0.784314, 0.129412, 0.882353, 0.529412)
+
 [node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 
@@ -336,6 +342,15 @@ autoplay = true
 [node name="Victory Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_5twwv")
 
+[node name="AttackBackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 960.0
+offset_right = 1152.0
+offset_bottom = 56.0
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+text = "BACK"
+
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy3/Button" to="." method="_on_enemy3_pressed"]
@@ -351,5 +366,6 @@ stream = ExtResource("10_5twwv")
 [connection signal="pressed" from="Party Panel/Party Container/Player2" to="." method="_on_player_2_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player3" to="." method="_on_player_3_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="AttackBackButton" to="." method="_on_attack_back_button_pressed"]
 
 [editable path="Party Panel/Party Container/Player0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://boe11sr5b1bb1"]
+[gd_scene load_steps=8 format=3 uid="uid://boe11sr5b1bb1"]
 
 [ext_resource type="Script" path="res://battleScene/Player.gd" id="1_maeio"]
 [ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
@@ -17,6 +17,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0.956863, 0, 0.180392, 0.529412)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Heal:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.784314, 0.129412, 0.882353, 0.529412)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Buff:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.14902, 0.603922, 0.368627, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_66q76"]
 resource_name = "creature_damaged"
@@ -34,10 +58,44 @@ tracks/0/keys = {
 "values": [Color(0.956863, 0, 0.180392, 0), Color(0.956863, 0, 0.180392, 0.380392), Color(0.956863, 0, 0.180392, 0), Color(0.956863, 0, 0.180392, 0.380392), Color(0.956863, 0, 0.180392, 0), Color(0.956863, 0, 0.180392, 0.380392), Color(0.956863, 0, 0.180392, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ioj76"]
+resource_name = "creature_heal"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Heal:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.784314, 0.129412, 0.882353, 0), Color(0.784314, 0.129412, 0.882353, 0.529412), Color(0.784314, 0.129412, 0.882353, 0), Color(0.784314, 0.129412, 0.882353, 0.529412), Color(0.784314, 0.129412, 0.882353, 0), Color(0.784314, 0.129412, 0.882353, 0.529412), Color(0.784314, 0.129412, 0.882353, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sry5p"]
+resource_name = "creature_buff"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Buff:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sp01y"]
 _data = {
 "RESET": SubResource("Animation_eh7sc"),
-"creature_damaged": SubResource("Animation_66q76")
+"creature_buff": SubResource("Animation_sry5p"),
+"creature_damaged": SubResource("Animation_66q76"),
+"creature_heal": SubResource("Animation_ioj76")
 }
 
 [node name="Player" type="Button"]
@@ -131,11 +189,28 @@ mouse_filter = 2
 color = Color(0, 0.52549, 0.901961, 0.152941)
 
 [node name="Damaged" type="ColorRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 227.0
 offset_bottom = 136.0
 mouse_filter = 2
 color = Color(0.956863, 0, 0.180392, 0.529412)
+
+[node name="Buff" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 227.0
+offset_bottom = 136.0
+mouse_filter = 2
+color = Color(0.14902, 0.603922, 0.368627, 0)
+
+[node name="Heal" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 227.0
+offset_bottom = 136.0
+mouse_filter = 2
+color = Color(0.784314, 0.129412, 0.882353, 0.529412)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Damaged")
