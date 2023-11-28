@@ -514,15 +514,12 @@ func updateTextBox(text):
 	# Reset the current text
 	var currentText = ""
 	$"Textbox Panel/Textbox".text = ""
-	disableButtons()
 	
 	# Update the text
 	for i in range(text.length()):
 		currentText += text[i]
 		$"Textbox Panel/Textbox".text = currentText
 		await get_tree().create_timer(0.02).timeout
-	
-	enableButtons()
 
 func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int):
 	var initialLevel = playerLevel
