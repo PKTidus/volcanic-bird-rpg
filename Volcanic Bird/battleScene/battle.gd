@@ -507,10 +507,21 @@ func hideTextBox():
 
 func showTextBox(text):
 	hideButtons()
-	$"Textbox Panel/Textbox".text = text
+	updateTextBox(text)
 
 func updateTextBox(text):
-	$"Textbox Panel/Textbox".text = text
+	# Reset the current text
+	var currentText = ""
+	$"Textbox Panel/Textbox".text = ""
+	disableButtons()
+	
+	# Update the text
+	for i in range(text.length()):
+		currentText += text[i]
+		$"Textbox Panel/Textbox".text = currentText
+		await get_tree().create_timer(0.02).timeout
+	
+	enableButtons()
 
 func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int):
 	var initialLevel = playerLevel
@@ -624,6 +635,13 @@ func disableButtons():
 	$"Actions Panel/Actions Container/Defend".disabled = true
 	$"Actions Panel/Actions Container/Item".disabled = true
 	$"Actions Panel/Actions Container/Run".disabled = true
+
+func enableButtons():
+	$"Actions Panel/Actions Container/Attack".disabled = false
+	$"Actions Panel/Actions Container/Skill".disabled = false
+	$"Actions Panel/Actions Container/Defend".disabled = false
+	$"Actions Panel/Actions Container/Item".disabled = false
+	$"Actions Panel/Actions Container/Run".disabled = false
 
 func hideEnemyButtons():
 	if has_node("Enemies Container/Enemy1"):
