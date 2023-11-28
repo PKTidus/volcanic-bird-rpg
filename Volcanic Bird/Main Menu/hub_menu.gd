@@ -16,6 +16,7 @@ func _ready():
 	if Global.eventCompleted:
 		Global.eventCounter += 1
 		Global.eventCompleted = false
+		Global.totalEventsCompleted += 1
 	if Global.eventCounter >= Global.eventThreshold[Global.floorCounter]:
 		$"MainMenuContainer/Next Event".show()
 	$EventCounterNumber.text = str(Global.eventCounter)

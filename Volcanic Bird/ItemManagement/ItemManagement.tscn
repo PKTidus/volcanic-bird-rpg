@@ -3,9 +3,8 @@
 [ext_resource type="Script" path="res://ItemManagement/ItemManagement.gd" id="1_ainkq"]
 [ext_resource type="PackedScene" uid="uid://gew6rpa0i0nl" path="res://ItemManagement/ItemButton.tscn" id="1_mf5xk"]
 [ext_resource type="PackedScene" uid="uid://voecyqrxfcqc" path="res://ItemManagement/StorageItem.tscn" id="2_jflef"]
-[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="4_t535t"]
-[ext_resource type="AudioStream" uid="uid://btdrbjkyjxbbj" path="res://Resources/Music/05 Choose a File.mp3" id="5_itbok"]
-
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="4_t535t"]
+[ext_resource type="AudioStream" uid="uid://c6mfwkyxn2bes" path="res://Resources/Music/05 Choose a File.mp3" id="5_itbok"]
 
 [node name="ItemManagement" type="Panel"]
 anchors_preset = 15

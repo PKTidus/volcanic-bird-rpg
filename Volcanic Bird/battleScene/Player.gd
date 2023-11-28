@@ -16,6 +16,8 @@ func updateButton():
 		$"HPNumber".text = ""
 		$"MPLabel".text = ""
 		$"MPNumber".text = ""
+		$Level.text = ""
+		$Level2.text = "" 
 		return
 	
 	$"Name".text = creatureData.name

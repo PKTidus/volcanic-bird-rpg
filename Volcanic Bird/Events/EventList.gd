@@ -189,7 +189,7 @@ static var List = [
 		
 		# option B
 		Option.new(
-			"Wait.",
+			"Wait",
 			[
 				OptionResult.new(
 					"The wizards keep their camp. Eventually, they notice you.",
@@ -938,7 +938,7 @@ static var List = [
 		
 		# option B
 		Option.new(
-			"Request cooperation",
+			"Recruit",
 			[
 				OptionResult.new(
 					"Two Joeys and the Table are eager to join you! They await you in creature storage.",
@@ -999,7 +999,7 @@ static var List = [
 			[
 				OptionResult.new(
 					"The mushrooms were actually some sentient forest Shrooms! You persuade them to join you. They await you in craeture storage.", # description
-					"creature-addition", # type
+					"character-addition", # type
 					100, # chance
 					[
 						"res://Creatures/Shroom.tres",

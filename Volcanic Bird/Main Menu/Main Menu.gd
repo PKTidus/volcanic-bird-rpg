@@ -10,37 +10,7 @@ func _on_play_pressed():
 	loadItemList()
 	Global.eventCounter = 0
 	Global.floorCounter = 0
-	# TESTING NEW ITEM TYPES !!!!!
-	var tempItem = load("res://Items/Type3.tres")
-	var newItem = Item.new()
-	newItem.initializeItem(tempItem)
-	Global.itemStorage.append(newItem)
-	
-	tempItem = load("res://Items/Type4.tres")
-	newItem = Item.new()
-	newItem.initializeItem(tempItem)
-	Global.itemStorage.append(newItem)
-	
-	tempItem = load("res://Items/Type5.tres")
-	newItem = Item.new()
-	newItem.initializeItem(tempItem)
-	Global.itemStorage.append(newItem)
-	
-	tempItem = load("res://Items/Type6.tres")
-	newItem = Item.new()
-	newItem.initializeItem(tempItem)
-	Global.itemStorage.append(newItem)
-	
-	tempItem = load("res://Items/Type7.tres")
-	newItem = Item.new()
-	newItem.initializeItem(tempItem)
-	Global.itemStorage.append(newItem)
-	
-	tempItem = load("res://Items/Type8.tres")
-	newItem = Item.new()
-	newItem.initializeItem(tempItem)
-	Global.itemStorage.append(newItem)
-	
+	Global.totalEventsCompleted = 0
 	get_tree().change_scene_to_file("res://Main Menu/StartScene.tscn")
 
 # Simply for loading in sample creatures, not needed for final build

@@ -294,6 +294,7 @@ func trackBattle():
 	
 	# Check if the player's party has been defeated
 	if partyIsDead():
+		Global.eventCompleted = false
 		print("Party is dead")
 		updateTextBox("Your party has been defeated!")
 		await get_tree().create_timer(3).timeout
@@ -320,19 +321,20 @@ func trackBattle():
 		Global.eventCompleted = true
 		
 		await get_tree().create_timer(1.5).timeout # pause the game for 1.5 seconds
-		
+		print("hei")
 		# Update the text labels in the results scene
 		updateResultsTextBox(player0, 0, player0.creatureData.name, player0.creatureData.level, player0.creatureData.experience)
 		updateResultsTextBox(player1, 1, player1.creatureData.name, player1.creatureData.level, player1.creatureData.experience)
 		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience)
 		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
+		print("hello")
 		$"Results".show() # display results scene
 		$"Continue Button".show() # display continue button
 		
 		# Add items to the player's inventory
 		updateInventory()
 		await get_tree().create_timer(4.5).timeout
-		
+		print("poenis")
 		# Display the total exp the party gained
 		updateTextBox("Everyone gained " + str(50) + " experience!")
 		return
@@ -383,7 +385,10 @@ func deleteCreaturesAndItems():
 	Global.creatureStorage.erase(creatureFour)
 	
 	for i in range(4):
-		Global.battleGroup[i] = null
+		var tempCreature = load("res://Creatures/Dummy.tres")
+		var newCreature = Creatures.new()
+		newCreature.initializeCreature(tempCreature)
+		Global.battleGroup[i] = tempCreature
 
 func partyIsDead():
 	return player0.creatureData.isDead && player1.creatureData.isDead && player2.creatureData.isDead && player3.creatureData.isDead
@@ -500,6 +505,7 @@ func _on_run_pressed():
 		player3.updateHealth()
 		
 		if partyIsDead():
+			Global.eventCompleted = false
 			updateTextBox("Your party loses 5 HP and has been defeated!\n")
 			await get_tree().create_timer(3).timeout
 			updateTextBox("You ran away...")
@@ -545,6 +551,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	while playerExperience >= nextLevelExperience:
 		# playerLevel += 1 MOVING THIS TO LEVELUP FUNCTION
 		player.creatureData.levelUp()
+		playerLevel = player.creatureData.level
 		nextLevelExperience = calculateExperience(playerLevel + 1)
 		hasLeveledUp = true
 	

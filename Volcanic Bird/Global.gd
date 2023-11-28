@@ -15,6 +15,7 @@ var eventCounter = 0
 var floorCounter = 0
 var eventCompleted = false
 var eventThreshold = [10, 15, 25]
+var totalEventsCompleted = 0
 
 var itemsMaster = []
 var commonItemsMaster = []
