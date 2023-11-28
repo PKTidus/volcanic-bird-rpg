@@ -295,6 +295,7 @@ func trackBattle():
 	# Check if the player's party has been defeated
 	if partyIsDead():
 		Global.eventCompleted = false
+		disableButtons()
 		print("Party is dead")
 		updateTextBox("Your party has been defeated!")
 		await get_tree().create_timer(3).timeout
@@ -302,8 +303,7 @@ func trackBattle():
 		await get_tree().create_timer(3).timeout
 		deleteCreaturesAndItems()
 		if Global.creatureStorage.is_empty():
-			print("Game over pls implement game over scene")
-			get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+			get_tree().change_scene_to_file("res://Main Menu/GameOver.tscn")
 		else:
 			get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	
@@ -518,7 +518,10 @@ func _on_run_pressed():
 	
 	$"Run Away".play()
 	await get_tree().create_timer(3).timeout # pause the game for 3 seconds
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
+	if Global.creatureStorage.is_empty():
+		get_tree().change_scene_to_file("res://Main Menu/GameOver.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
 func hideTextBox():
 	showButtons()
@@ -763,9 +766,6 @@ func processAttacksOld():
 	$"Party Panel/Party Container/BackButton".disabled = true
 	hideEnemyButtons()
 	for i in range(7):
-		print("enemy one " + str(enemy1.enemyData.isDead))
-		print("enemy two " + str(enemy1.enemyData.isDead))
-		print("enemy three " + str(enemy1.enemyData.isDead))
 		if movesArray[i].isEnemy == 0:
 			if movesArray[i].target != null and movesArray[i].target.enemyData.isDead: # skip player turns if the enemy is dead 
 				continue
@@ -1266,10 +1266,14 @@ func selectEnemyMoves():
 					if minimum.cur_hp > Global.battleGroup[j].cur_hp and !Global.battleGroup[j].isDead:
 						minimum = Global.battleGroup[j]
 				movesArray[i].enemyTarget = minimum
-				if minimum.defense > minimum.magic_defense:
+				
+				var currentDamagePhysical = movesArray[i].enemySource.enemyData.damage / movesArray[i].enemyTarget.defense
+				var currentDamageMagic = movesArray[i].enemySource.enemyData.magic_damage / movesArray[i].enemyTarget.magic_defense
+				
+				if currentDamageMagic > currentDamagePhysical:
 					print("targeting weaker magic defense")
 					movesArray[i].enemySource.enemyData.useMagic = true
-				elif minimum.defense < minimum.magic_defense:
+				elif currentDamageMagic < currentDamagePhysical:
 					print("targeting weaker physical defense")
 					movesArray[i].enemySource.enemyData.useMagic = false
 			# rando mode

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
 
-[ext_resource type="Texture2D" uid="uid://bseybuu32we6x" path="res://Resources/Sprites/crowilla-256.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cjat3k5ml63qt" path="res://Resources/Sprites/crowilla-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]

@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqqnhh2dnaoaa"]
+[gd_scene load_steps=4 format=3 uid="uid://cdx08n8o4bugd"]
 
-[ext_resource type="Script" path="res://GameOver.gd" id="1_uwl1k"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_fuih2"]
+[ext_resource type="Script" path="res://Main Menu/GameOver.gd" id="1_h3l2w"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_cm02i"]
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4u84v"]
 file = "res://Resources/Videos/frong_1.ogg"
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_uwl1k")
+script = ExtResource("1_h3l2w")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 0
@@ -29,7 +29,7 @@ offset_left = 456.0
 offset_top = 536.0
 offset_right = 652.0
 offset_bottom = 564.0
-theme_override_fonts/font = ExtResource("2_fuih2")
+theme_override_fonts/font = ExtResource("2_cm02i")
 theme_override_font_sizes/font_size = 27
 text = "Go to main Menu"
 

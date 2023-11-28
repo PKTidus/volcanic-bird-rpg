@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
 
-[ext_resource type="Texture2D" uid="uid://df7h3apr4fv0l" path="res://Resources/Sprites/penguin-256.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b6w62m3xa88cf" path="res://Resources/Sprites/penguin-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]

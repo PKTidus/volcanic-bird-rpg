@@ -162,7 +162,7 @@ static var List = [
 	Event.new(
 		"Blockade", 
 		
-		"You and your party walk into a cave. While inside, a group of wizards set up camp near the entrance.", 
+		"You and your party walk into a cave. While inside, a group of wizards set up camp near the entrance. What do you do?", 
 		
 		# option A
 		Option.new(
@@ -212,7 +212,7 @@ static var List = [
 		
 		# option C
 		Option.new(
-			"Attack the wizards",
+			"Attack",
 			[
 				OptionResult.new(
 					"You engage the wizards in combat", # description
@@ -242,11 +242,11 @@ static var List = [
 	Event.new(
 		"Village Acquaintances", 
 		
-		"You come across a peaceful village and are greeted by some friendly looking villagers.", 
+		"You come across a peaceful village and are greeted by some friendly looking villagers. What do you ask them for?", 
 		
 		# option A
 		Option.new(
-			"Request supplies",
+			"Supplies",
 			[
 				OptionResult.new(
 					"The villagers happily donate an assortment of helpful items to you! You put them away in storage.", # description
@@ -272,7 +272,7 @@ static var List = [
 		
 		# option B
 		Option.new(
-			"Attack",
+			"A fight",
 			[
 				OptionResult.new(
 					"The villagers were prepared and ready their arms.",
@@ -299,7 +299,7 @@ static var List = [
 		
 		# option C
 		Option.new(
-			"Request cooperation",
+			"Cooperation",
 			[
 				OptionResult.new(
 					"A burly looking villager is eager to join you on your quest!", # description
@@ -614,7 +614,7 @@ static var List = [
 			"Request Lessons",
 			[
 				OptionResult.new(
-					"The frogs misunderstood your request and teach you their secret martial arts instead. You train with them for a week! Your creatures attack greatly increases!", # description
+					"The frogs misunderstood your request and teach you their secret martial arts instead. You train with them for a week! Your creatures' attack greatly increases!", # description
 					"attack-buff", # type
 					60, # chance
 					[ # enemies
@@ -720,9 +720,9 @@ static var List = [
 					"battle",
 					30,
 					[
-						"res://Enemies/Phone.tres",
-						"res://Enemies/Phone.tres",
-						"res://Enemies/Phone.tres"
+						"res://Enemies/PhoneEnemy.tres",
+						"res://Enemies/PhoneEnemy.tres",
+						"res://Enemies/PhoneEnemy.tres"
 					]
 				)
 			]
@@ -895,7 +895,7 @@ static var List = [
 			"Cower in fear",
 			[
 				OptionResult.new(
-					"You freak out for a while and decide to leave. You escape with no incident. That penguin could definitely kill you.", # description
+					"You freak out for a while and decide to leave. You escape with no incident. That penguin could have definitely killed you.", # description
 					"escape", # type
 					70, # chance
 					[]
@@ -998,7 +998,7 @@ static var List = [
 			"Mushrooms",
 			[
 				OptionResult.new(
-					"The mushrooms were actually some sentient forest Shrooms! You persuade them to join you. They await you in craeture storage.", # description
+					"The mushrooms were actually some sentient forest Shrooms! You persuade them to join you. They await you in creature storage.", # description
 					"character-addition", # type
 					100, # chance
 					[
