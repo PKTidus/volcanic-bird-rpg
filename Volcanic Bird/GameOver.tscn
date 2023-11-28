@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqqnhh2dnaoaa"]
+
+[ext_resource type="Script" path="res://GameOver.gd" id="1_uwl1k"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_fuih2"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4u84v"]
+file = "res://Resources/Videos/frong_1.ogg"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uwl1k")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = SubResource("VideoStreamTheora_4u84v")
+autoplay = true
+expand = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 536.0
+offset_right = 652.0
+offset_bottom = 564.0
+theme_override_fonts/font = ExtResource("2_fuih2")
+theme_override_font_sizes/font_size = 27
+text = "Go to main Menu"
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
