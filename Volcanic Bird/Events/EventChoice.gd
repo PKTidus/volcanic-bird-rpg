@@ -49,22 +49,22 @@ func _on_option_b_pressed():
 	elif self.outcome.type == "attack-buff":
 		var modifier = self.outcome.enemy_paths[0]
 		for creature in Global.battleGroup:
-			creature.buffAttack(modifier)
+			creature.buffAttack(int(modifier))
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	elif self.outcome.type == "defense-buff":
 		var modifier = self.outcome.enemy_paths[0]
 		for creature in Global.battleGroup:
-			creature.buffDefense(modifier)
+			creature.buffDefense(int(modifier))
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	elif self.outcome.type == "speed-buff":
 		var modifier = self.outcome.enemy_paths[0]
 		for creature in Global.battleGroup:
-			creature.buffSpeed(modifier)
+			creature.buffSpeed(int(modifier))
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	elif self.outcome.type == "all-buff":
 		var modifier = int(self.outcome.enemy_paths[0])
 		for creature in Global.battleGroup:
-			creature.buffAll(modifier)
+			creature.buffAll(int(modifier))
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	elif self.outcome.type == "level-up":
 		for creature in Global.battleGroup:

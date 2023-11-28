@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b1vekvrs6g2tj"]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_cbd1w"]
+
+[resource]
+script = ExtResource("1_cbd1w")
+type = 1
+modify_attack = 0.0
+modify_magic_attack = 0.0
+modify_defense = 0.0
+modify_magic_defense = 0.0
+mp_heal = 0
+hp_heal = 30
+damage = 0
+nameLabel = "Tree Sap"
+costLabel = "Heals 30 HP"
+descriptionLabel = "Very sticky."
+inUse = false
+itemRarity = 1

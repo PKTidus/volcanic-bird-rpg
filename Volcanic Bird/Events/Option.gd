@@ -18,6 +18,7 @@ func _init(option_title, option_results):
 
 func collapse():
 	var num = self._getRand()
+	print("Rolled " + str(num))
 	var closest = INF
 	var index = -1
 	for i in range(len(self.option_results)):
