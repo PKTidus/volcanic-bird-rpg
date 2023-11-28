@@ -522,7 +522,7 @@ func updateTextBox(text):
 	for i in range(text.length()):
 		currentText += text[i]
 		$"Textbox Panel/Textbox".text = currentText
-		await get_tree().create_timer(0.02).timeout
+		await get_tree().create_timer(0.0125).timeout
 
 func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int):
 	var initialLevel = playerLevel
