@@ -71,11 +71,7 @@ func _ready():
 	hideCreatureDamageRects()
 	$AttackBackButton.hide()
 	# jar throwing (deprecated)
-	if (Global.totalEventsCompleted > 0):
-		print("SCALING BY " + str(Global.totalEventsCompleted))
-		for node in $"Enemies Container".get_children():
-			node.enemyData.THROWITINTHEJAR(Global.totalEventsCompleted)
-			node.emit_signal("updateEnemy")
+	
 	expGain = enemy1.enemyData.experience + enemy2.enemyData.experience + enemy3.enemyData.experience
 
 	currentPlayerCounter = 0
@@ -218,6 +214,10 @@ func setupSampleEnemy():
 		var loadEnemy = EnemyData.new()
 		loadEnemy.initializeEnemyData(enemy)
 		sampleArray.append(loadEnemy)
+	if (Global.totalEventsCompleted > 0):
+		for i in range(3):
+			print("SCALING BY " + str(Global.totalEventsCompleted))
+			sampleArray[i].THROWITINTHEJAR(Global.totalEventsCompleted)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
