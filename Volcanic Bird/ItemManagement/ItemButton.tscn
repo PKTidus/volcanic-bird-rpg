@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://gew6rpa0i0nl"]
 
-[ext_resource type="FontFile" uid="uid://blsm6ywontfgr" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_cmw5t"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_cmw5t"]
 [ext_resource type="Script" path="res://ItemManagement/ItemButton.gd" id="1_xw75q"]
 
 [node name="ItemButton" type="Button"]
