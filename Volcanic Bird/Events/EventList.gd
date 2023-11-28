@@ -331,6 +331,241 @@ static var List = [
 			[
 				OptionResult.new(
 					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"character-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	
+	# 5 EVENTS BEFORE THIS POINT, AT LEAST 10 AFTER THIS POINT
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"character-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	# Event 6
+	Event.new(
+		"F.K. in the Coffee", 
+		
+		"After a long day of adventuring you sit down and pour yourself a cup of coffee. It says FK in the coffee...",
+		
+		# option A
+		Option.new(
+			"Drink it",
+			[
+				OptionResult.new(
+					"The coffee tastes awful, so you spit it out back into your mug. The mug scolds you and then pleads to join your party!", # description
+					"character-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Dizzy_Mug.tres"
+					]
+				),
+				OptionResult.new(
+					"You spit the coffee to the ground and it tries to kill you! You run away with blinding speed. Your party gained speed!",
+					"speed-buff",
+					30,
+					[
+						"3"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Ponder the meaning",
+			[
+				OptionResult.new(
+					"After a good ponder it hits you clear as a crisp spring morning: FK... Francis Kaysen. Your party gained attack!",
+					"attack-buff",
+					60,
+					[
+						"2"
+					]
+				),
+				OptionResult.new(
+					"You're unable to figure out what FK means, the coffee mug and its cohorts springs to life and attack!", # description
+					"battle", # type
+					40, # chance
+					[
+						"res://Enemies/Dizzy_MugEnemy.tres",
+						"res://Enemies/Dizzy_MugEnemy.tres",
+						"res://Enemies/Dizzy_MugEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Dump it",
+			[
+				OptionResult.new(
+					"The coffee forms into words on the ground after you dump it: Francis Kaysen. So that's what it means. Your party gained defense!", # description
+					"defense-buff", # type
+					60, # chance
+					[ # enemies
+						"0.4"
+					]
+				),
+				OptionResult.new(
+					"The spilled coffee glows blue and becomes mana restoration items! You put your mystic items in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/Type8.tres",
+						"res://Items/Type8.tres",
+						"res://Items/Type8.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/ice.png",
+	),
+	'''
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
 					"creature-addition", # type
 					70, # chance
 					[
@@ -395,5 +630,537 @@ static var List = [
 			]
 		),
 		"res://Resources/Backgrounds/forest.png",
-	)
+	),
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	Event.new(
+		"The Strongest Bird", 
+		
+		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
+		
+		# option A
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
+					"creature-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Crowilla.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla brushes off your attacks with ease and walks away.",
+					"escape",
+					30,
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Try to recruit it",
+			[
+				OptionResult.new(
+					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
+					"battle",
+					70,
+					[
+						"res://Enemies/ShroomEnemy.tres",
+						"res://Enemies/TreeEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla senses your weak aura and attacks!", # description
+					"battle", # type
+					30, # chance
+					[
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Run away",
+			[
+				OptionResult.new(
+					"The crowilla senses your weakness from afar and attacks!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/CrowillaEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
+					"item-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeBark.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	)'''
 ]
