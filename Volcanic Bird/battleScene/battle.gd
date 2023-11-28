@@ -464,6 +464,7 @@ func _on_run_pressed():
 	var rng = RandomNumberGenerator.new()
 	var randomNumber = rng.randi_range(1, 100)
 	Global.eventCompleted = false
+	$"Party Panel/Party Container/BackButton".disabled = true
 	
 	print(randomNumber)
 	resetCreatures()
