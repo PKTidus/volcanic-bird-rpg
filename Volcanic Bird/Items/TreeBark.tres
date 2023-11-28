@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="1_cbd1w"]
+
+[resource]
+script = ExtResource("1_cbd1w")
+type = 0
+modify_attack = 0.0
+modify_magic_attack = 0.0
+modify_defense = 1.4
+modify_magic_defense = 1.4
+mp_heal = 0
+hp_heal = 0
+damage = 0
+nameLabel = "Tree Bark"
+costLabel = "Boosts defenses by 40%"
+descriptionLabel = "Tough as steel."
+inUse = false
+itemRarity = 1

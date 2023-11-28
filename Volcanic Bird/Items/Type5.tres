@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Items/Item.gd" id="20"]
+
+[resource]
+script = ExtResource("20")
+type = 5
+modify_attack = 0.0
+modify_magic_attack = 0.0
+modify_defense = 0.0
+modify_magic_defense = 0.0
+mp_heal = 0
+hp_heal = 0
+damage = 0
+nameLabel = "Phoenix Side"
+costLabel = "Revive a dead ally to 50% HP"
+descriptionLabel = "Not from Final Fantasy."
+inUse = false
+itemRarity = 0

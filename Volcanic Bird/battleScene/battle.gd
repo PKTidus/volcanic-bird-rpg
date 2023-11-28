@@ -327,12 +327,14 @@ func trackBattle():
 		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience)
 		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
 		$"Results".show() # display results scene
+		$"Continue Button".show() # display continue button
 		
 		# Add items to the player's inventory
 		updateInventory()
+		await get_tree().create_timer(4.5).timeout
 		
-		await get_tree().create_timer(4.5).timeout # pause the game for 4.5 seconds
-		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
+		# Display the total exp the party gained
+		updateTextBox("Everyone gained " + str(50) + " experience!")
 		return
 	
 	if currentPlayerCounter == 0:
@@ -470,12 +472,14 @@ func _on_item_pressed():
 				break
 		if oneItemExists:
 			$"Item List Panel".show()
-			showTextBox("Which Item")
+			showTextBox("Which Item?")
 
 func _on_run_pressed():
+	$"Party Panel/Party Container/BackButton".disabled = true
 	var rng = RandomNumberGenerator.new()
 	var randomNumber = rng.randi_range(1, 100)
 	Global.eventCompleted = false
+	$"Party Panel/Party Container/BackButton".disabled = true
 	
 	print(randomNumber)
 	resetCreatures()
@@ -506,6 +510,7 @@ func _on_run_pressed():
 		
 		updateBattleGroupHealth()
 	
+	$"Run Away".play()
 	await get_tree().create_timer(3).timeout # pause the game for 3 seconds
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 
@@ -516,10 +521,18 @@ func hideTextBox():
 
 func showTextBox(text):
 	hideButtons()
-	$"Textbox Panel/Textbox".text = text
+	updateTextBox(text)
 
 func updateTextBox(text):
-	$"Textbox Panel/Textbox".text = text
+	# Reset the current text
+	var currentText = ""
+	$"Textbox Panel/Textbox".text = ""
+	
+	# Update the text
+	for i in range(text.length()):
+		currentText += text[i]
+		$"Textbox Panel/Textbox".text = currentText
+		await get_tree().create_timer(0.0125).timeout
 
 func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int):
 	var initialLevel = playerLevel
@@ -530,7 +543,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	
 	# Update the creature's level
 	while playerExperience >= nextLevelExperience:
-		playerLevel += 1
+		# playerLevel += 1 MOVING THIS TO LEVELUP FUNCTION
 		player.creatureData.levelUp()
 		nextLevelExperience = calculateExperience(playerLevel + 1)
 		hasLeveledUp = true
@@ -633,6 +646,13 @@ func disableButtons():
 	$"Actions Panel/Actions Container/Defend".disabled = true
 	$"Actions Panel/Actions Container/Item".disabled = true
 	$"Actions Panel/Actions Container/Run".disabled = true
+
+func enableButtons():
+	$"Actions Panel/Actions Container/Attack".disabled = false
+	$"Actions Panel/Actions Container/Skill".disabled = false
+	$"Actions Panel/Actions Container/Defend".disabled = false
+	$"Actions Panel/Actions Container/Item".disabled = false
+	$"Actions Panel/Actions Container/Run".disabled = false
 
 func hideEnemyButtons():
 	if has_node("Enemies Container/Enemy1"):
@@ -746,6 +766,7 @@ func processAttacksOld():
 				if movesArray[i].move == 1:
 					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyData.defense)
 					
+					$"Attack".play()
 					movesArray[i].target.enemyData.current_hp -= currentDamage
 					movesArray[i].target.updateHealth()
 					movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
@@ -757,6 +778,7 @@ func processAttacksOld():
 				if movesArray[i].move == 2:
 					# this statement checks if this is a constant damage skill move
 					if movesArray[i].skill.type == 0:
+						$"Attack".play()
 						movesArray[i].target.enemyData.current_hp -= movesArray[i].skill.damage_cal
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -768,6 +790,7 @@ func processAttacksOld():
 					# this statement checks if this is a heal move
 					if movesArray[i].skill.type == 1:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Heal".play()
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -782,6 +805,7 @@ func processAttacksOld():
 					# this statement checks if this is an buff move
 					if movesArray[i].skill.type == 2:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Buff".play()
 							movesArray[i].friendlyTarget.defense *= movesArray[i].skill.buff_value
 							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -795,6 +819,7 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a debuff move
 					if movesArray[i].skill.type == -2:
+						$"Debuff".play()
 						movesArray[i].target.enemyData.defense *= movesArray[i].skill.buff_value
 						movesArray[i].target.enemyData.magic_defense *= movesArray[i].skill.buff_value
 						if movesArray[i].target.enemyData.defense <= 0:
@@ -809,6 +834,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated physical damage move
 					if movesArray[i].skill.type == 3:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -820,6 +846,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated magical damage move
 					if movesArray[i].skill.type == 4:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.magic_defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -831,6 +858,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread physical
 					if movesArray[i].skill.type == 5:
+						$"Attack".play()
 						var outgoingDamage = movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal
 						print(movesArray[i].source.attack_damage)
 						print(movesArray[i].skill.damage_cal)
@@ -847,6 +875,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread magic
 					if movesArray[i].skill.type == 6:
+						$"Attack".play()
 						var outgoingDamage = movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal
 						print(movesArray[i].source.magic_attack_damage)
 						print(movesArray[i].skill.damage_cal)
@@ -863,6 +892,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# lifesteal physical damage
 					if movesArray[i].skill.type == 7:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -876,6 +906,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# manasteal magic damage
 					if movesArray[i].skill.type == 8:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.magic_defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -889,16 +920,20 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread heal
 					if movesArray[i].skill.type == 9:
+						$"Heal".play()
 						for creature in Global.battleGroup:
 							if !creature.isDead:
 								creature.cur_hp += movesArray[i].skill.heal_cal
 								playCreatureHealed(creature)
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal the party for " + str(movesArray[i].skill.heal_cal))
 						updateBattleGroupHealth()
 						await get_tree().create_timer(1.5).timeout
 					# buff magic damage
 					if movesArray[i].skill.type == 10:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Attack".play()
 							movesArray[i].friendlyTarget.magic_attack_damage *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -910,6 +945,7 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# debuff magic damage
 					if movesArray[i].skill.type == -10:
+						$"Attack".play()
 						movesArray[i].target.enemyData.magic_attack_damage *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -919,6 +955,7 @@ func processAttacksOld():
 					# buff physical damage
 					if movesArray[i].skill.type == 11:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Buff".play()
 							movesArray[i].friendlyTarget.attack_damage *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -931,6 +968,7 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# debuff physical damage
 					if movesArray[i].skill.type == -11:
+						$"Debuff".play()
 						movesArray[i].target.enemyData.attack_damage *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -939,6 +977,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated physical+magic damage, pierce defenses
 					if movesArray[i].skill.type == 12:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal) + (movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -950,6 +989,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated physical+speed damage, pierce defenses
 					if movesArray[i].skill.type == 13:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal) + (movesArray[i].source.speed * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -961,6 +1001,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated magic+speed damage, pierce defenses
 					if movesArray[i].skill.type == 14:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.speed * movesArray[i].skill.damage_cal) + (movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -972,6 +1013,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated speed damage, pierce defenses
 					if movesArray[i].skill.type == 15:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.speed * movesArray[i].skill.damage_cal)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -983,6 +1025,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated physical+magical+speed damage, pierce defenses
 					if movesArray[i].skill.type == 16:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal) + (movesArray[i].source.speed * movesArray[i].skill.damage_cal) + (movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -993,9 +1036,10 @@ func processAttacksOld():
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
 						await get_tree().create_timer(1.5).timeout
 				if movesArray[i].move == 3:
-					# Check if it is consumable item
+					# Check if it is healing item
 					if movesArray[i].itemInUse.type == 0:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Heal".play()
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
 							playCreatureHealed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
@@ -1005,10 +1049,10 @@ func processAttacksOld():
 						else:
 							showTextBox(str(movesArray[i].source.name) + " tried to heal " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
 							await get_tree().create_timer(1.5).timeout
-					# Check if it is modifier item
-					# This needs to be changed after we implement proper buff techniques
+					# Check if it is buff defense item
 					if movesArray[i].itemInUse.type == 1:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Buff".play()
 							movesArray[i].friendlyTarget.defense *= movesArray[i].itemInUse.modify_defense
 							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].itemInUse.modify_magic_defense
 							playCreatureBuffed(movesArray[i].friendlyTarget)
@@ -1021,10 +1065,73 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# Check if it is an attack item
 					if movesArray[i].itemInUse.type == 2:
+						$"Attack".play()
 						movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage " + str(movesArray[i].target.enemyData.enemy_name) + " and damaged for " + str(movesArray[i].itemInUse.damage))
+						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
+					# Check if heal mp item
+					if movesArray[i].itemInUse.type == 3:
+						if !movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.cur_mp += movesArray[i].itemInUse.mp_heal
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + "'s MP by " + str(movesArray[i].itemInUse.mp_heal))
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " tried to heal " + str(movesArray[i].friendlyTarget.name) + " but they're dead!!")
+							await get_tree().create_timer(1.5).timeout
+					# Check if damage all item
+					if movesArray[i].itemInUse.type == 4:
+						for node in $"Enemies Container".get_children():
+							node.enemyData.current_hp -= movesArray[i].itemInUse.damage
+							node.updateHealth()
+							node.get_node("AnimationPlayer").play("enemy_damaged")
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to damage all enemies for " + str(movesArray[i].itemInUse.damage))
+						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
+					# Check if revive to half item
+					if movesArray[i].itemInUse.type == 5:
+						if movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.isDead = false
+							movesArray[i].friendlyTarget.cur_hp = movesArray[i].friendlyTarget.max_hp / 2
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "!!")
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + " but they're alive!!")
+							await get_tree().create_timer(2).timeout
+					# Check if revive to full item
+					if movesArray[i].itemInUse.type == 6:
+						if movesArray[i].friendlyTarget.isDead:
+							movesArray[i].friendlyTarget.isDead = false
+							movesArray[i].friendlyTarget.cur_hp = movesArray[i].friendlyTarget.max_hp
+							updateBattleGroupHealth()
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + "!!")
+							Global.itemInventory.erase(movesArray[i].itemInUse)
+							await get_tree().create_timer(1.5).timeout
+						else:
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to revive " + str(movesArray[i].friendlyTarget.name) + " but they're alive!!")
+							await get_tree().create_timer(2).timeout
+					# Check if heal all item
+					if movesArray[i].itemInUse.type == 7:
+						for creature in Global.battleGroup:
+							if !creature.isDead:
+								creature.cur_hp += movesArray[i].itemInUse.hp_heal
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal the party's HP by " + str(movesArray[i].itemInUse.hp_heal))
+						updateBattleGroupHealth()
+						Global.itemInventory.erase(movesArray[i].itemInUse)
+						await get_tree().create_timer(1.5).timeout
+					# Check if heal mp all item
+					if movesArray[i].itemInUse.type == 8:
+						for creature in Global.battleGroup:
+							if !creature.isDead:
+								creature.cur_mp += movesArray[i].itemInUse.mp_heal
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal the party's MP by " + str(movesArray[i].itemInUse.mp_heal))
+						updateBattleGroupHealth()
 						Global.itemInventory.erase(movesArray[i].itemInUse)
 						await get_tree().create_timer(1.5).timeout
 		if movesArray[i].isEnemy == 1:
@@ -1047,10 +1154,11 @@ func processAttacksOld():
 						print("weak magic defense lol")
 						currentDamage = max(1, movesArray[i].enemySource.enemyData.magic_damage / movesArray[i].enemyTarget.magic_defense)
 				
+				$"Attack".play()
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				playCreatureDamaged(movesArray[i].enemyTarget)
 				updateBattleGroupHealth()
-				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(currentDamage) + " damage to " + str(movesArray[i].enemyTarget.name))
+				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(int(currentDamage)) + " damage to " + str(movesArray[i].enemyTarget.name))
 				await get_tree().create_timer(1.5).timeout
 		
 	updateBattleGroupHealth()
@@ -1297,9 +1405,11 @@ func _on_item_back_pressed():
 	showButtons()
 	trackBattle()
 
-
 func _on_attack_back_button_pressed():
 	$AttackBackButton.hide()
 	hideEnemyButtons()
 	showButtons()
 	trackBattle()
+
+func _on_continue_button_pressed():
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")

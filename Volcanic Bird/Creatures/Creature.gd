@@ -19,8 +19,8 @@ class_name Creatures
 @export var cur_mp : int
 @export var attack_damage : int # Strength
 @export var magic_attack_damage : int # Intelligence
-@export var defense : int # Strength
-@export var magic_defense : int # Intelligence
+@export var defense : float # Strength
+@export var magic_defense : float # Intelligence
 @export var speed : int # Agility
 @export var STR_growth : int
 @export var AGI_growth : int
@@ -32,31 +32,29 @@ class_name Creatures
 
 
 func levelUp():
-	agility += AGI_growth
-	strength += STR_growth
-	intelligence += INT_growth
+	level += 1
 	modifyStrength(STR_growth)
 	modifyIntelligence(INT_growth)
 	modifyAgility(AGI_growth)
 	
 func modifyStrength(value : int):
 	attack_damage += value
-	max_hp += value*2
-	defense += value+2
+	max_hp += value * 2
+	defense += float(value) * 0.1
 
 func modifyAgility(value : int):
 	speed += value
 
 func modifyIntelligence(value : int):
-	magic_attack_damage += value+5
-	magic_defense += value+2
-	max_mp += value*2
+	magic_attack_damage += value + 5
+	magic_defense += float(value) * 0.1
+	max_mp += value * 2
 
 func buffAttack(value : int):
 	attack_damage += value
 	magic_attack_damage += value
 
-func buffDefense(value : int):
+func buffDefense(value : float):
 	defense += value
 	magic_defense += value
 	
@@ -66,8 +64,8 @@ func buffSpeed(value : int):
 func buffAll(value : int):
 	attack_damage += value
 	magic_attack_damage += value
-	defense += value
-	magic_defense += value
+	defense += float(value)*0.1
+	magic_defense += float(value)*0.1
 	speed += value
 
 func initializeCreature(sampleCreature):

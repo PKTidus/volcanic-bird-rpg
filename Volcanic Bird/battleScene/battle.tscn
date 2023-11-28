@@ -1,14 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=22 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_ivqmm"]
 [ext_resource type="PackedScene" uid="uid://r4ctkdh2s8lg" path="res://Skills/Skill.tscn" id="5_u4d07"]
 [ext_resource type="PackedScene" uid="uid://dygplytqf0ggi" path="res://Items/item_button.tscn" id="6_h375h"]
 [ext_resource type="PackedScene" uid="uid://boe11sr5b1bb1" path="res://battleScene/Player.tscn" id="7_uu1e0"]
 [ext_resource type="PackedScene" uid="uid://bebrrwvqa76qd" path="res://battleScene/Results.tscn" id="8_vd5q4"]
-[ext_resource type="AudioStream" uid="uid://8ty4qs6xw87h" path="res://Resources/Music/3-11_Battle_With_True_Despair.mp3" id="9_wu1yy"]
-[ext_resource type="AudioStream" uid="uid://5rpk75u47hpw" path="res://Resources/Music/106_Fanfare.mp3" id="10_5twwv"]
+[ext_resource type="AudioStream" uid="uid://cn33ty6yd3ycj" path="res://Resources/Music/3-11_Battle_With_True_Despair.mp3" id="9_wu1yy"]
+[ext_resource type="AudioStream" uid="uid://cio6hiqgylmba" path="res://Resources/Music/106_Fanfare.mp3" id="10_5twwv"]
+[ext_resource type="AudioStream" uid="uid://cred8aknctmno" path="res://Resources/Sounds/punch-2-37333.mp3" id="10_mhtbw"]
+[ext_resource type="AudioStream" uid="uid://bu4e2c350b7d0" path="res://Resources/Sounds/power-up-sparkle-1-177983.mp3" id="11_f4fbt"]
+[ext_resource type="AudioStream" uid="uid://d4ged0aqvg0qd" path="res://Resources/Sounds/energy-3-107098.mp3" id="12_0r5xg"]
+[ext_resource type="AudioStream" uid="uid://ddt2u4kfmkb2k" path="res://Resources/Sounds/energy-2-90733.mp3" id="13_6ks0l"]
+[ext_resource type="AudioStream" uid="uid://bfigmxxrw8x0j" path="res://Resources/Sounds/footsteps-running-away-fading-2-103763.mp3" id="14_7xnkn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -19,6 +24,10 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkgmw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyegs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b20tt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b1b8y"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -310,17 +319,42 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_ivqmm")
 theme_override_font_sizes/font_size = 27
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b20tt")
 text = "Undo"
 
 [node name="Results" parent="." instance=ExtResource("8_vd5q4")]
 visible = false
 layout_mode = 2
 offset_left = 576.0
-offset_top = 184.0
+offset_top = 152.0
 offset_right = 576.0
-offset_bottom = 320.0
+offset_bottom = 288.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Continue Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 448.0
+offset_top = 368.0
+offset_right = 704.0
+offset_bottom = 424.0
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b1b8y")
+
+[node name="Label" type="Label" parent="Continue Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SeparatorPanel" type="Panel" parent="."]
 layout_mode = 0
@@ -345,6 +379,23 @@ theme_override_fonts/font = ExtResource("2_ivqmm")
 theme_override_font_sizes/font_size = 30
 text = "BACK"
 
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mhtbw")
+
+[node name="Heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_f4fbt")
+volume_db = -10.0
+
+[node name="Buff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_0r5xg")
+
+[node name="Debuff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_6ks0l")
+
+[node name="Run Away" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_7xnkn")
+volume_db = 5.0
+
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy3/Button" to="." method="_on_enemy3_pressed"]
@@ -361,5 +412,6 @@ text = "BACK"
 [connection signal="pressed" from="Party Panel/Party Container/Player3" to="." method="_on_player_3_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="AttackBackButton" to="." method="_on_attack_back_button_pressed"]
+[connection signal="pressed" from="Continue Button" to="." method="_on_continue_button_pressed"]
 
 [editable path="Party Panel/Party Container/Player0"]

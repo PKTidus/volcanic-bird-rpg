@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="Creatures" load_steps=4 format=3 uid="uid://mcjq5uunblqo"]
 
-[ext_resource type="Texture2D" uid="uid://di4rlu5x7nn4" path="res://Resources/Sprites/wizard-32.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cbf36yos71exn" path="res://Resources/Sprites/wizard-32.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://btjqboi4on51i" path="res://Resources/Sprites/wizard-256.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://b05f0x6cj771n" path="res://Resources/Sprites/wizard-256.png" id="3"]
 
 [resource]
 script = ExtResource("2")
@@ -14,15 +14,15 @@ agility = 0.0
 strength = 0.0
 intelligence = 0.0
 level = 1
-experience = 0
-max_hp = 15
-max_mp = 50
-cur_hp = 15
-cur_mp = 50
+experience = 20
+max_hp = 20
+max_mp = 35
+cur_hp = 20
+cur_mp = 35
 attack_damage = 10
 magic_attack_damage = 20
-defense = 10
-magic_defense = 20
+defense = 2
+magic_defense = 2
 speed = 10
 STR_growth = 2
 AGI_growth = 3
