@@ -4,6 +4,7 @@ signal battleGroup_changed
 signal updateItems
 signal skillObtained
 signal itemObtained
+signal updateItemManagementLabels
 
 # Player Items and Other needed details
 var battleGroup = [null, null, null, null] # 4x null because of 4 creatures in group
@@ -39,9 +40,15 @@ var current_magic_defense
 var current_magic_attack_damage
 var current_texture
 var current_skills
+
 # For moving stuff around
 var draggedCreature
 var draggedCreatureIndex = 0
+
+# For item management stuff
+var current_item_name
+var current_item_description
+var current_item_label
 
 var draggedItemInventory
 var draggedItemIncentoryIndex = 0
@@ -61,6 +68,9 @@ func ringSkillSignal():
 
 func ringItemSignal():
 	emit_signal("itemObtained")
+	
+func ringUpdateItemLabels():
+	emit_signal("updateItemManagementLabels")
 
 func addToBattleGroup():
 	print(draggedCreatureIndex)
