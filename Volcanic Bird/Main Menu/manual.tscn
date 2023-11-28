@@ -1,0 +1,134 @@
+[gd_scene load_steps=3 format=3 uid="uid://yfr7bn0fkvqt"]
+
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_s0vhk"]
+[ext_resource type="Script" path="res://Main Menu/manual.gd" id="1_yltyl"]
+
+[node name="Manual" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.419608, 0.286275, 1)
+script = ExtResource("1_yltyl")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_right = 960.0
+offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 50
+text = "Manual"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Page1" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 448.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = "1"
+
+[node name="Page2" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 256.0
+offset_right = 448.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = "2"
+
+[node name="Page3" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 384.0
+offset_right = 448.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = "3"
+
+[node name="Page4" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 128.0
+offset_right = 896.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = "4"
+
+[node name="Page5" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 256.0
+offset_right = 896.0
+offset_bottom = 320.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = "5"
+
+[node name="Page6" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 640.0
+offset_top = 384.0
+offset_right = 896.0
+offset_bottom = 448.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = "6
+"
+
+[node name="GoLeft" type="Button" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 648.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = "<
+"
+
+[node name="GoRight" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1024.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 40
+text = ">
+"
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 960.0
+offset_bottom = 576.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 25
+
+[node name="PageNum" type="Label" parent="."]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 592.0
+offset_right = 600.0
+offset_bottom = 640.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 45
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="GoLeft" to="." method="_on_go_left_pressed"]
+[connection signal="pressed" from="GoRight" to="." method="_on_go_right_pressed"]
