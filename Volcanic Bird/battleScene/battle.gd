@@ -497,6 +497,7 @@ func _on_run_pressed():
 		
 		updateBattleGroupHealth()
 	
+	$"Run Away".play()
 	await get_tree().create_timer(3).timeout # pause the game for 3 seconds
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
 

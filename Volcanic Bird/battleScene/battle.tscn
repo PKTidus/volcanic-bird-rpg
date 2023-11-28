@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=20 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bu4e2c350b7d0" path="res://Resources/Sounds/power-up-sparkle-1-177983.mp3" id="11_f4fbt"]
 [ext_resource type="AudioStream" uid="uid://d4ged0aqvg0qd" path="res://Resources/Sounds/energy-3-107098.mp3" id="12_0r5xg"]
 [ext_resource type="AudioStream" uid="uid://ddt2u4kfmkb2k" path="res://Resources/Sounds/energy-2-90733.mp3" id="13_6ks0l"]
+[ext_resource type="AudioStream" uid="uid://bfigmxxrw8x0j" path="res://Resources/Sounds/footsteps-running-away-fading-2-103763.mp3" id="14_7xnkn"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_35rru"]
 
@@ -352,6 +353,10 @@ stream = ExtResource("12_0r5xg")
 
 [node name="Debuff" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_6ks0l")
+
+[node name="Run Away" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_7xnkn")
+volume_db = 5.0
 
 [connection signal="pressed" from="Enemies Container/Enemy1/Button" to="." method="_on_enemy1_pressed"]
 [connection signal="pressed" from="Enemies Container/Enemy2/Button" to="." method="_on_enemy2_pressed"]
