@@ -100,3 +100,6 @@ func _on_exit_pressed():
 
 func _on_load_pressed():
 	loadGame()
+
+func _on_manual_pressed():
+	get_tree().change_scene_to_file("res://Main Menu/manual.tscn")

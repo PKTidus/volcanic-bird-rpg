@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bac6yxy3e7il8"]
 
 [ext_resource type="Script" path="res://Main Menu/hub_menu.gd" id="1_tpf0c"]
-[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_jih23"]
-[ext_resource type="AudioStream" uid="uid://clxt766ov2skr" path="res://Resources/Music/22_Ruins.mp3" id="3_un13w"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_jih23"]
+[ext_resource type="AudioStream" uid="uid://dpq0ra4kvqo1k" path="res://Resources/Music/22_Ruins.mp3" id="3_un13w"]
 
 [node name="Main Menu2" type="Control"]
 layout_mode = 3
@@ -30,9 +30,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -143.0
-offset_top = -103.5
+offset_top = -103.0
 offset_right = 143.0
-offset_bottom = 103.5
+offset_bottom = 245.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12

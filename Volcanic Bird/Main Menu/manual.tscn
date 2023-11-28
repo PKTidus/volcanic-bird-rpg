@@ -24,7 +24,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Page1" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 128.0
@@ -35,7 +34,6 @@ theme_override_font_sizes/font_size = 40
 text = "1"
 
 [node name="Page2" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 256.0
@@ -46,7 +44,6 @@ theme_override_font_sizes/font_size = 40
 text = "2"
 
 [node name="Page3" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 384.0
@@ -57,7 +54,6 @@ theme_override_font_sizes/font_size = 40
 text = "3"
 
 [node name="Page4" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 640.0
 offset_top = 128.0
@@ -68,7 +64,6 @@ theme_override_font_sizes/font_size = 40
 text = "4"
 
 [node name="Page5" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 640.0
 offset_top = 256.0
@@ -79,7 +74,6 @@ theme_override_font_sizes/font_size = 40
 text = "5"
 
 [node name="Page6" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 640.0
 offset_top = 384.0
@@ -91,6 +85,7 @@ text = "6
 "
 
 [node name="GoLeft" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 648.0
@@ -100,6 +95,7 @@ text = "<
 "
 
 [node name="GoRight" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1024.0
 offset_right = 1152.0
@@ -109,7 +105,20 @@ theme_override_font_sizes/font_size = 40
 text = ">
 "
 
+[node name="BackButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 768.0
+offset_top = 600.0
+offset_right = 960.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 25
+text = "back
+"
+
 [node name="Description" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 192.0
 offset_top = 128.0
@@ -119,6 +128,7 @@ theme_override_fonts/font = ExtResource("1_s0vhk")
 theme_override_font_sizes/font_size = 25
 
 [node name="PageNum" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 552.0
 offset_top = 592.0
@@ -130,5 +140,24 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Return" type="Button" parent="."]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 600.0
+offset_right = 640.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("1_s0vhk")
+theme_override_font_sizes/font_size = 25
+text = "Return
+"
+
+[connection signal="pressed" from="Page1" to="." method="_on_page_1_pressed"]
+[connection signal="pressed" from="Page2" to="." method="_on_page_2_pressed"]
+[connection signal="pressed" from="Page3" to="." method="_on_page_3_pressed"]
+[connection signal="pressed" from="Page4" to="." method="_on_page_4_pressed"]
+[connection signal="pressed" from="Page5" to="." method="_on_page_5_pressed"]
+[connection signal="pressed" from="Page6" to="." method="_on_page_6_pressed"]
 [connection signal="pressed" from="GoLeft" to="." method="_on_go_left_pressed"]
 [connection signal="pressed" from="GoRight" to="." method="_on_go_right_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

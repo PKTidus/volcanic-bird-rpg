@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b86apxscyb08y"]
 
 [ext_resource type="Script" path="res://Main Menu/Main Menu.gd" id="1_or7ag"]
-[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_02ror"]
-[ext_resource type="AudioStream" uid="uid://0oj2c6hdefcb" path="res://Resources/Music/1-01_Dark_Souls_III.mp3" id="3_rrf58"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_02ror"]
+[ext_resource type="AudioStream" uid="uid://bf8ogc2jnfuc8" path="res://Resources/Music/1-01_Dark_Souls_III.mp3" id="3_rrf58"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -30,9 +30,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -143.0
-offset_top = -103.5
+offset_top = -103.0
 offset_right = 143.0
-offset_bottom = 103.5
+offset_bottom = 212.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
@@ -51,6 +51,14 @@ size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_02ror")
 theme_override_font_sizes/font_size = 30
 text = "Load Game
+"
+
+[node name="Manual" type="Button" parent="MainMenuContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_02ror")
+theme_override_font_sizes/font_size = 30
+text = "Manual
 "
 
 [node name="Exit" type="Button" parent="MainMenuContainer"]
@@ -87,4 +95,5 @@ autoplay = true
 
 [connection signal="pressed" from="MainMenuContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="MainMenuContainer/Manual" to="." method="_on_manual_pressed"]
 [connection signal="pressed" from="MainMenuContainer/Exit" to="." method="_on_exit_pressed"]
