@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=21 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
@@ -24,6 +24,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fkgmw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyegs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b20tt"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -315,6 +317,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_ivqmm")
 theme_override_font_sizes/font_size = 27
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b20tt")
 text = "Undo"
 
 [node name="Results" parent="." instance=ExtResource("8_vd5q4")]
