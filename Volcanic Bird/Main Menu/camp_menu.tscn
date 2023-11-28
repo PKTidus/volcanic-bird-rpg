@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2asrqlw2tkhg"]
 
 [ext_resource type="Script" path="res://Main Menu/camp_menu.gd" id="1_wgg61"]
-[ext_resource type="FontFile" uid="uid://dk1alikiqledi" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_soe8s"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_soe8s"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
