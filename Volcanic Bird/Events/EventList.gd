@@ -1,7 +1,7 @@
 class_name EventList
 
 static var List = [
-	# demo event 1
+	# EVENT 1 SHROOMS
 	Event.new(
 		"Shroom Villagers", 
 		
@@ -73,6 +73,7 @@ static var List = [
 		),
 		"res://Resources/Backgrounds/forest.png",
 	),
+	# EVENT 2 TREES
 	Event.new(
 		"Slumbering Trees", 
 		
@@ -157,6 +158,7 @@ static var List = [
 		),
 		"res://Resources/Backgrounds/ice.png",
 	),
+	# EVENT 3 BLOCKADE
 	Event.new(
 		"Blockade", 
 		
@@ -236,7 +238,7 @@ static var List = [
 		),
 		"res://Resources/Backgrounds/scifi.png",
 	),
-	
+	# EVENT 4 VILLAGERS
 	Event.new(
 		"Village Acquaintances", 
 		
@@ -319,7 +321,7 @@ static var List = [
 		),
 		"res://Resources/Backgrounds/forest.png",
 	),
-	
+	# EVENT 5 CROWILLA
 	Event.new(
 		"The Strongest Bird", 
 		
@@ -365,7 +367,9 @@ static var List = [
 					"battle", # type
 					30, # chance
 					[
-						"res://Enemies/CrowillaEnemy.tres"
+						"res://Enemies/DummyEnemy.tres",
+						"res://Enemies/CrowillaEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
 					]
 				)
 			]
@@ -398,82 +402,6 @@ static var List = [
 	),
 	
 	# 5 EVENTS BEFORE THIS POINT, AT LEAST 10 AFTER THIS POINT
-	Event.new(
-		"The Strongest Bird", 
-		
-		"You spot a crowilla chopping down entire trees, seemingly for no reason other than to test its strength.",
-		
-		# option A
-		Option.new(
-			"Attack",
-			[
-				OptionResult.new(
-					"The crowilla acknowledges your will to fight and joins the party without your consent! The crowilla awaits in storage.", # description
-					"character-addition", # type
-					70, # chance
-					[
-						"res://Creatures/Crowilla.tres"
-					]
-				),
-				OptionResult.new(
-					"The crowilla brushes off your attacks with ease and walks away.",
-					"escape",
-					30,
-					[]
-				)
-			]
-		), 
-		
-		# option B
-		Option.new(
-			"Try to recruit it",
-			[
-				OptionResult.new(
-					"You are suddenly attacked by forest creatures before you are able to reach the crowilla!",
-					"battle",
-					70,
-					[
-						"res://Enemies/ShroomEnemy.tres",
-						"res://Enemies/TreeEnemy.tres",
-						"res://Enemies/DummyEnemy.tres"
-					]
-				),
-				OptionResult.new(
-					"The crowilla senses your weak aura and attacks!", # description
-					"battle", # type
-					30, # chance
-					[
-						"res://Enemies/CrowillaEnemy.tres"
-					]
-				)
-			]
-		), 
-		
-		# option C
-		Option.new(
-			"Run away",
-			[
-				OptionResult.new(
-					"The crowilla senses your weakness from afar and attacks!", # description
-					"battle", # type
-					60, # chance
-					[ # enemies
-						"res://Enemies/CrowillaEnemy.tres"
-					]
-				),
-				OptionResult.new(
-					"The crowilla pursues you! He hands you some tree bark and walks away. Tree bark can be found in storage.", # description
-					"item-addition", # type
-					40, # chance
-					[ # enemies
-						"res://Items/TreeBark.tres",
-						"res://Items/TreeBark.tres"
-					]
-				)
-			]
-		),
-		"res://Resources/Backgrounds/forest.png",
-	),
 	# Event 6
 	Event.new(
 		"F.K. in the Coffee", 
@@ -505,7 +433,7 @@ static var List = [
 		
 		# option B
 		Option.new(
-			"Ponder the meaning",
+			"Ponder it",
 			[
 				OptionResult.new(
 					"After a good ponder it hits you clear as a crisp spring morning: FK... Francis Kaysen. Your party gained attack!",
