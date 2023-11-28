@@ -323,6 +323,11 @@ func trackBattle():
 		
 		# Add items to the player's inventory
 		updateInventory()
+		await get_tree().create_timer(4.5).timeout
+		
+		# Display the total exp the party gained
+		updateTextBox("Everyone gained " + str(50) + " experience!")
+		return
 	
 	if currentPlayerCounter == 0:
 		if !player0.creatureData.isDead:
