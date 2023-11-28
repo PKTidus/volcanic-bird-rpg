@@ -404,7 +404,7 @@ static var List = [
 	# 5 EVENTS BEFORE THIS POINT, AT LEAST 10 AFTER THIS POINT
 	# Event 6
 	Event.new(
-		"F.K. in the Coffee", 
+		"FK in the Coffee", 
 		
 		"After a long day of adventuring you sit down and pour yourself a cup of coffee. It says FK in the coffee...",
 		
@@ -481,5 +481,218 @@ static var List = [
 			]
 		),
 		"res://Resources/Backgrounds/ice.png",
+	),
+	# Event 7 COFFEE TABLE
+	Event.new(
+		"A heated and chilly argument", 
+		
+		"After setting up camp on an iceberg you hear noises coming from nearby. There is a table having a disagreement with a coffee mug... Who do you side with?",
+		
+		# option A
+		Option.new(
+			"Coffee",
+			[
+				OptionResult.new(
+					"You settle the argument in the mug's favor. It would like to join you! It awaits you in creature storage.", # description
+					"character-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Dizzy_Mug.tres"
+					]
+				),
+				OptionResult.new(
+					"The table gathers some allies and attacks!",
+					"battle",
+					30,
+					[
+						"res://Enemy/JoeyEnemy.tres",
+						"res://Enemy/TableEnemy.tres",
+						"res://Enemy/JoeyEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Neither",
+			[
+				OptionResult.new(
+					"They both redirect their anger at you!",
+					"battle",
+					60,
+					[
+						"res://Enemies/Dizzy_MugEnemy.tres",
+						"res://Enemy/DummyEnemy.tres",
+						"res://Enemy/TableEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"You manage to stop the argument... a nice feeling wells up inside you and your whole party levels up once!", # description
+					"escape", # type
+					40, # chance
+					[
+						"1"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Table",
+			[
+				OptionResult.new(
+					"You settle the argument in the table's favor. The table thanks you and teaches you the secret of its strength. Your party's defense greatly increased!", # description
+					"defense-buff", # type
+					60, # chance
+					[ # enemies
+						"0.6"
+					]
+				),
+				OptionResult.new(
+					"You settle the argument in the table's favor. The table eagerly would like to join you! It awaits you in creature storage.", # description
+					"character-addition", # type
+					40, # chance
+					[ # enemies
+						"res://Creatures/Table.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/ice.png",
+	),
+	# EVENT 8
+	Event.new(
+		"A Funky Tune", 
+		
+		"You walk in on a group of frogs performing a song. They finish and turn their attention towards you.",
+		
+		# option A
+		Option.new(
+			"Clap",
+			[
+				OptionResult.new(
+					"The frogs are flattered and would like to join the party! They await you in creature storage.", # description
+					"character-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Funky_Frog.tres",
+						"res://Creatures/Funky_Frog.tres"
+					]
+				),
+				OptionResult.new(
+					"The frogs felt insulted that you would applaud such a subpar performance and leap at you!",
+					"battle",
+					30,
+					[
+						"res://Enemy/Funky_FrogEnemy.tres",
+						"res://Enemy/Funky_FrogEnemy.tres",
+						"res://Enemy/Funky_FrogEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Attack",
+			[
+				OptionResult.new(
+					"The frogs sing a lullaby and you black out! When you wake up the frogs are nowhere to be found.",
+					"escape",
+					100,
+					[]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Request Lessons",
+			[
+				OptionResult.new(
+					"The frogs misunderstood your request and teach you their secret martial arts instead. You train with them for a week! Your creatures attack greatly increases!", # description
+					"attack-buff", # type
+					60, # chance
+					[ # enemies
+						"4"
+					]
+				),
+				OptionResult.new(
+					"The frogs happily teach you some tunes! You felt a warm fuzzy feeling, all your creatures' stats increased slightly!", # type
+					"all-buff",
+					40, # chance
+					[ # enemies
+						"1"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
+	),
+	# EVENT 9
+	Event.new(
+		"Birdwatching", 
+		
+		"You decide to go birdwatching, what kind of bird are you looking for?",
+		
+		# option A
+		Option.new(
+			"Strong",
+			[
+				OptionResult.new(
+					"You check out the forest and see a crowilla punching a bunch of shrooms. You are in awe at its fighting prowess. Your creatures' attack increased!", # description
+					"attack-buff", # type
+					100, # chance
+					[
+						"3"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Flightless",
+			[
+				OptionResult.new(
+					"You check out an icy area and observe some penguins sliding around at crazy speeds! You wish you could be that fast. Your creatures' speed greatly increased!",
+					"speed-buff",
+					100,
+					[
+						"5"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Robotic",
+			[
+				OptionResult.new(
+					"You check out a spaceship hangar. Before you can understand what's going on you are attacked!", # description
+					"battle", # type
+					60, # chance
+					[ # enemies
+						"res://Enemies/RobirdoEnemy.tres",
+						"res://Enemies/RobirdoEnemy.tres",
+						"res://Enemies/RobirdoEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"You check out a spaceship hangar. A group of robirdos approach you and want to join your party! They await you in creature storage.", # type
+					"character-addition",
+					40, # chance
+					[ # enemies
+						"res://Creatures/Robirdo.tres",
+						"res://Creatures/Robirdo.tres",
+						"res://Creatures/Robirdo.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/scifi.png",
 	)
 ]

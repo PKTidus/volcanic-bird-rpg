@@ -66,8 +66,8 @@ func buffSpeed(value : int):
 func buffAll(value : int):
 	attack_damage += value
 	magic_attack_damage += value
-	defense += value
-	magic_defense += value
+	defense += float(value)*0.1
+	magic_defense += float(value)*0.1
 	speed += value
 
 func initializeCreature(sampleCreature):
