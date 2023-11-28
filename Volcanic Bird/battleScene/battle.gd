@@ -734,6 +734,7 @@ func processAttacksOld():
 				if movesArray[i].move == 1:
 					var currentDamage = max(1, movesArray[i].source.attack_damage / movesArray[i].target.enemyData.defense)
 					
+					$"Attack".play()
 					movesArray[i].target.enemyData.current_hp -= currentDamage
 					movesArray[i].target.updateHealth()
 					movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
