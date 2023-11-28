@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://boe11sr5b1bb1"]
+[gd_scene load_steps=7 format=3 uid="uid://boe11sr5b1bb1"]
 
 [ext_resource type="Script" path="res://battleScene/Player.gd" id="1_maeio"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r5tpe"]
 
 [sub_resource type="Animation" id="Animation_eh7sc"]
 length = 0.001
@@ -50,6 +52,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r5tpe")
 text_overrun_behavior = 3
 script = ExtResource("1_maeio")
 
