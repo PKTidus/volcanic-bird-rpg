@@ -522,7 +522,7 @@ func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLe
 	
 	# Update the creature's level
 	while playerExperience >= nextLevelExperience:
-		playerLevel += 1
+		# playerLevel += 1 MOVING THIS TO LEVELUP FUNCTION
 		player.creatureData.levelUp()
 		nextLevelExperience = calculateExperience(playerLevel + 1)
 		hasLeveledUp = true

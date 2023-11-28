@@ -22,7 +22,7 @@ static var List = [
 					]
 				),
 				OptionResult.new(
-					"You step into the circle, the shrooms dance around you a bit. They seem friendly, and thank you for your cooperation. You aren't sure what they did. All your creatures' stats increased by 3!",
+					"You step into the circle, the shrooms dance around you a bit. They seem friendly, and thank you for your cooperation. You aren't sure what they did. All your creatures' stats increased!",
 					"all-buff",
 					40,
 					[
@@ -384,7 +384,9 @@ static var List = [
 					"battle", # type
 					60, # chance
 					[ # enemies
-						"res://Enemies/CrowillaEnemy.tres"
+						"res://Enemies/DummyEnemy.tres",
+						"res://Enemies/CrowillaEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
 					]
 				),
 				OptionResult.new(
@@ -505,9 +507,9 @@ static var List = [
 					"battle",
 					30,
 					[
-						"res://Enemy/JoeyEnemy.tres",
-						"res://Enemy/TableEnemy.tres",
-						"res://Enemy/JoeyEnemy.tres"
+						"res://Enemies/JoeyEnemy.tres",
+						"res://Enemies/TableEnemy.tres",
+						"res://Enemies/JoeyEnemy.tres"
 					]
 				)
 			]
@@ -523,8 +525,8 @@ static var List = [
 					60,
 					[
 						"res://Enemies/Dizzy_MugEnemy.tres",
-						"res://Enemy/DummyEnemy.tres",
-						"res://Enemy/TableEnemy.tres"
+						"res://Enemies/DummyEnemy.tres",
+						"res://Enemies/TableEnemy.tres"
 					]
 				),
 				OptionResult.new(
@@ -586,9 +588,9 @@ static var List = [
 					"battle",
 					30,
 					[
-						"res://Enemy/Funky_FrogEnemy.tres",
-						"res://Enemy/Funky_FrogEnemy.tres",
-						"res://Enemy/Funky_FrogEnemy.tres"
+						"res://Enemies/Funky_FrogEnemy.tres",
+						"res://Enemies/Funky_FrogEnemy.tres",
+						"res://Enemies/Funky_FrogEnemy.tres"
 					]
 				)
 			]
@@ -694,5 +696,344 @@ static var List = [
 			]
 		),
 		"res://Resources/Backgrounds/scifi.png",
+	),
+	# Event 10
+	Event.new(
+		"Pick up the phone", 
+		
+		"Something is ringing in your bag. You found the source of the ringing, it's a landline phone. You don't own a phone and have no clue why anyone would carry around one of these in the first place...",
+		
+		# option A
+		Option.new(
+			"Answer",
+			[
+				OptionResult.new(
+					"You answer the call and speak directly to the phone itself! It would like to join your party. It awaits you in creature storage.", # description
+					"character-addition", # type
+					70, # chance
+					[
+						"res://Creatures/Phone.tres"
+					]
+				),
+				OptionResult.new(
+					"The phone floats out of your hands and you realize you're surrounded by hostile phones!",
+					"battle",
+					30,
+					[
+						"res://Enemies/Phone.tres",
+						"res://Enemies/Phone.tres",
+						"res://Enemies/Phone.tres"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Smash it",
+			[
+				OptionResult.new(
+					"The phone is sadly crushed to bits. You should be a little nicer.",
+					"escape",
+					100,
+					[]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Trade it",
+			[
+				OptionResult.new(
+					"You decide to trade the eternally ringing phone for some creature supplements. Your party's attack increased!", # description
+					"attack-buff", # type
+					60, # chance
+					[ # enemies
+						"2"
+					]
+				),
+				OptionResult.new(
+					"You decide to trade the eternally ringing phone for some creature supplements. Your party's defense increased!", # type
+					"defense-buff",
+					40, # chance
+					[ # enemies
+						"0.3"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/scifi.png",
+	),
+	# Event 11
+	Event.new(
+		"Gamer Troubles", 
+		
+		"You feel nostalgic and boot up a classic, The Last of Us: Part IV, but notice your only controller is dead. How do you react?",
+		
+		# option A
+		Option.new(
+			"Charge it",
+			[
+				OptionResult.new(
+					"Your USB micro does not want to charge your controller and urges you to take it with you on your journey. It awaits you in creature storage.", # description
+					"character-addition", # type
+					60, # chance
+					[
+						"res://Creatures/USB_Micro.tres"
+					]
+				),
+				OptionResult.new(
+					"You grabbed a USB mini by mistake and all your USB micro cables attack in outrage!",
+					"battle",
+					40,
+					[
+						"res://Enemies/USB_MicroEnemy.tres",
+						"res://Enemies/USB_MicroEnemy.tres",
+						"res://Enemies/USB_MicroEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Have a picnic",
+			[
+				OptionResult.new(
+					"You decide to hang out with your creatures outside and share some Panda Express you ordered. Your creatures leveled up!",
+					"level-up",
+					100,
+					[]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Watch a movie",
+			[
+				OptionResult.new(
+					"You decide to watch a movie about a group of high schoolers covering up a murder. It was absolute cinema. All your creatures' stats increased!", # description
+					"all-buff", # type
+					60, # chance
+					[ # enemies
+						"3"
+					]
+				),
+				OptionResult.new(
+					"You decide to watch a movie about a boxing champion that wouldn't stay down no matter how much he was hit. It was inspirational. Your creatures' defenses increased significantly!", # type
+					"defense-buff",
+					40, # chance
+					[ # enemies
+						"0.8"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/scifi.png",
+	),
+	# Event 12 Penguin
+	Event.new(
+		"Transcendent being", 
+		
+		"You hear a rumor about a new species of penguin and go to investigate. You spot a particular penguin is acting strange and moments later are blinded by a flash of light. The penguin has transformed!",
+		
+		# option A
+		Option.new(
+			"Challenge it",
+			[
+				OptionResult.new(
+					"The penguin accepts your challenge!", # description
+					"battle", # type
+					60, # chance
+					[
+						"res://Enemies/DummyEnemy.tres",
+						"res://Enemies/PenguinEnemy.tres",
+						"res://Enemies/DummyEnemy.tres"
+					]
+				),
+				OptionResult.new(
+					"The penguin summons an ally and engages you in battle!",
+					"battle",
+					40,
+					[
+						"res://Enemies/DummyEnemy.tres",
+						"res://Enemies/PenguinEnemy.tres",
+						"res://Enemies/PenguinEnemy.tres"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Recruit it",
+			[
+				OptionResult.new(
+					"You persuade the penguin to accompany you on your journey! It awaits you in creature storage.",
+					"character-addition",
+					60,
+					[
+						"res://Creatures/Penguin.tres"
+					]
+				),
+				OptionResult.new(
+					"The penguin agrees to join, but only if his buddy Joey can come along. They both await you in creature storage.",
+					"character-addition",
+					40,
+					[
+						"res://Creatures/Penguin.tres",
+						"res://Creatures/Joey.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Cower in fear",
+			[
+				OptionResult.new(
+					"You freak out for a while and decide to leave. You escape with no incident. That penguin could definitely kill you.", # description
+					"escape", # type
+					70, # chance
+					[]
+				),
+				OptionResult.new(
+					"As you have a mental breakdown you notice an abandoned backpack full of useful stuff! You put it all in storage.", # type
+					"item-addition",
+					30, # chance
+					[ # enemies
+						"res://Items/TreeBark.tres",
+						"res://Items/TreeSap.tres",
+						"res://Items/Type3.tres",
+						"res://Items/Type8.tres",
+						"res://Items/Type7.tres",
+						"res://Items/Type4.tres"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/ice.png",
+	),
+	# Event 13 Joey
+	Event.new(
+		"Encounter with snowkind", 
+		
+		"You see an abnormally large pile of snowballs on a table. Upon further inspection you realize it is a pack of Joey Snows and an Iced Coffee Table.",
+		
+		# option A
+		Option.new(
+			"Burn them",
+			[
+				OptionResult.new(
+					"Nothing was left after you torched the innocent creatures.", # description
+					"escape", # type
+					100, # chance
+					[]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Request cooperation",
+			[
+				OptionResult.new(
+					"Two Joeys and the Table are eager to join you! They await you in creature storage.",
+					"character-addition",
+					60,
+					[
+						"res://Creatures/Joey.tres",
+						"res://Creatures/Joey.tres",
+						"res://Creatures/Table.tres"
+					]
+				),
+				OptionResult.new(
+					"The table is uninterested and walks away, you decide to move on as well. You notice one of the Joeys from the pile followed you and you decide to take it in. It awaits you in creature storage.",
+					"character-addition",
+					40,
+					[
+						"res://Creatures/Joey.tres"
+					]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Naptime",
+			[
+				OptionResult.new(
+					"You try to take a nap in the shade provided by the table but it does not appreciate this and attacks!", # description
+					"battle", # type
+					65, # chance
+					[
+						"res://Enemies/DummyEnemy",
+						"res://Enemies/TableEnemy.tres",
+						"res://Enemies/DummyEnemy"
+					]
+				),
+				OptionResult.new(
+					"You take a nap in the table's shade. You and your creatures feel great! All your creatures' stats increased!", # type
+					"all-buff",
+					35, # chance
+					[ # enemies
+						"2"
+					]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/ice.png",
+	),
+	# Event 14 Shroom
+	Event.new(
+		"Shady Merchant", 
+		
+		"You meet a merchant selling various kinds of food. He is offering generous free samples, which will you take?",
+		
+		# option A
+		Option.new(
+			"Mushrooms",
+			[
+				OptionResult.new(
+					"The mushrooms were actually some sentient forest Shrooms! You persuade them to join you. They await you in craeture storage.", # description
+					"creature-addition", # type
+					100, # chance
+					[
+						"res://Creatures/Shroom.tres",
+						"res://Creatures/Shroom.tres"
+					]
+				)
+			]
+		), 
+		
+		# option B
+		Option.new(
+			"Cheese",
+			[
+				OptionResult.new(
+					"The cheese made you feel sick. Nothing else of note happened.", # description
+					"escape", # type
+					100, # chance
+					[]
+				)
+			]
+		), 
+		
+		# option C
+		Option.new(
+			"Bananas",
+			[
+				OptionResult.new(
+					"You and your creatures enjoy the bananas as a snack. Your creatures leveled up!", # description
+					"level-up", # type
+					100, # chance
+					[]
+				)
+			]
+		),
+		"res://Resources/Backgrounds/forest.png",
 	)
 ]
