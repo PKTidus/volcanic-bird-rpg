@@ -2,8 +2,13 @@ extends Panel
 
 func _ready():
 	Global.connect("updateItems", instanceSlots)
+	Global.connect("updateItemManagementLabels", updateLabels)
+	$Name.text = "" 
 	instanceSlots()
-	
+
+func updateLabels():
+	$Name.text = str(Global.current_item_name) + "\n" + str(Global.current_item_label) + "\n" + str(Global.current_item_description)
+
 func instanceSlots():
 	for node in $InventoryContainer/VBoxContainer.get_children():
 		node.queue_free()
@@ -29,13 +34,7 @@ func instanceSlots():
 			
 		$StorageContainer/VBoxContainer.add_child(newStorageSlot)
 	$"Current Amount".text = "Current = " + str(Global.itemInventory.size())
-
-
-func _on_add_to_storage_pressed():
-	Global.addToStorage()
-	
-func _on_add_to_inventory_pressed():
-	Global.addToInventory()
+	$Name.text = "" 
 
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")

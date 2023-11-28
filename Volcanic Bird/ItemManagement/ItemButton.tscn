@@ -15,4 +15,4 @@ theme_override_fonts/font = ExtResource("1_cmw5t")
 text = "Placeholder"
 script = ExtResource("1_xw75q")
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

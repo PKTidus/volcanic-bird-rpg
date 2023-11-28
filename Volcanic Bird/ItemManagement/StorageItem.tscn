@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://voecyqrxfcqc"]
 
 [ext_resource type="Script" path="res://ItemManagement/StorageItem.gd" id="1_c44gv"]
-[ext_resource type="FontFile" uid="uid://b1h3f7pjc7o6" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_egwu4"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_egwu4"]
 
 [node name="StorageItem" type="Button"]
 anchors_preset = 15
@@ -15,4 +15,4 @@ theme_override_fonts/font = ExtResource("1_egwu4")
 text = "Placeholder"
 script = ExtResource("1_c44gv")
 
-[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

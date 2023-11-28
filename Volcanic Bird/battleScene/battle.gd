@@ -67,9 +67,7 @@ func _ready():
 	sortArrayBySpeed()
 	copyCreatures()
 	hideCreatureDamageRects()
-	print(enemy1.enemyData)
-	print(enemy2.enemyData)
-	print(enemy3.enemyData)
+	$AttackBackButton.hide()
 	
 	currentPlayerCounter = 0
 	currentEnemyCounter = 0
@@ -81,6 +79,16 @@ func hideCreatureDamageRects():
 	player1.get_node("Damaged").hide()
 	player2.get_node("Damaged").hide()
 	player3.get_node("Damaged").hide()
+	
+	player0.get_node("Heal").hide()
+	player1.get_node("Heal").hide()
+	player2.get_node("Heal").hide()
+	player3.get_node("Heal").hide()
+	
+	player0.get_node("Buff").hide()
+	player1.get_node("Buff").hide()
+	player2.get_node("Buff").hide()
+	player3.get_node("Buff").hide()
 
 func copyCreatures():
 	for i in range(4):
@@ -391,6 +399,7 @@ func _on_attack_pressed():
 	print("Attack Button Pressed")
 	showTextBox("Which enemy?")
 	showEnemyButtons()
+	$AttackBackButton.show()
 
 func _on_skill_pressed():
 	typeOfMove = 2
@@ -679,6 +688,7 @@ func _on_enemy1_pressed():
 	hideEnemyButtons()
 	hideTextBox()
 	showButtons()
+	$AttackBackButton.hide()
 	
 	trackBattle()
 
@@ -700,6 +710,7 @@ func _on_enemy2_pressed():
 	hideEnemyButtons()
 	hideTextBox()
 	showButtons()
+	$AttackBackButton.hide()
 	
 	trackBattle()
 
@@ -721,6 +732,7 @@ func _on_enemy3_pressed():
 	hideEnemyButtons()
 	hideTextBox()
 	showButtons()
+	$AttackBackButton.hide()
 	
 	trackBattle()
 
@@ -782,6 +794,8 @@ func processAttacksOld():
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+							print(movesArray[i].friendlyTarget)
+							playCreatureHealed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].skill.heal_cal))
 							await get_tree().create_timer(1.5).timeout
@@ -796,6 +810,7 @@ func processAttacksOld():
 							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+							playCreatureBuffed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + "'s defenses for " + str(movesArray[i].skill.buff_value))
 							await get_tree().create_timer(1.5).timeout
@@ -909,6 +924,7 @@ func processAttacksOld():
 						for creature in Global.battleGroup:
 							if !creature.isDead:
 								creature.cur_hp += movesArray[i].skill.heal_cal
+								playCreatureHealed(creature)
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal the party for " + str(movesArray[i].skill.heal_cal))
@@ -943,6 +959,7 @@ func processAttacksOld():
 							movesArray[i].friendlyTarget.attack_damage *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
+							playCreatureBuffed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + "'s attack for " + str(movesArray[i].skill.buff_value))
 							await get_tree().create_timer(1.5).timeout
@@ -1024,6 +1041,7 @@ func processAttacksOld():
 						if !movesArray[i].friendlyTarget.isDead:
 							$"Heal".play()
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
+							playCreatureHealed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
 							Global.itemInventory.erase(movesArray[i].itemInUse)
@@ -1037,6 +1055,7 @@ func processAttacksOld():
 							$"Buff".play()
 							movesArray[i].friendlyTarget.defense *= movesArray[i].itemInUse.modify_defense
 							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].itemInUse.modify_magic_defense
+							playCreatureBuffed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
 							Global.itemInventory.erase(movesArray[i].itemInUse)
@@ -1153,6 +1172,35 @@ func processAttacksOld():
 	defendingPlayers = [null, null, null, null]
 	showButtons()
 	hideTextBox()
+	hideCreatureDamageRects()
+
+func playCreatureHealed(target):
+	if target == Global.battleGroup[0]:
+		player0.get_node("Heal").show()
+		player0.get_node("AnimationPlayer").play("creature_heal")
+	if target == Global.battleGroup[1]:
+		player1.get_node("Heal").show()
+		player1.get_node("AnimationPlayer").play("creature_heal")
+	if target == Global.battleGroup[2]:
+		player2.get_node("Heal").show()
+		player2.get_node("AnimationPlayer").play("creature_heal")
+	if target == Global.battleGroup[3]:
+		player3.get_node("Heal").show()
+		player3.get_node("AnimationPlayer").play("creature_heal")
+	
+func playCreatureBuffed(target):
+	if target == Global.battleGroup[0]:
+		player0.get_node("Buff").show()
+		player0.get_node("AnimationPlayer").play("creature_buff")
+	if target == Global.battleGroup[1]:
+		player1.get_node("Buff").show()
+		player1.get_node("AnimationPlayer").play("creature_buff")
+	if target == Global.battleGroup[2]:
+		player2.get_node("Buff").show()
+		player2.get_node("AnimationPlayer").play("creature_buff")
+	if target == Global.battleGroup[3]:
+		player3.get_node("Buff").show()
+		player3.get_node("AnimationPlayer").play("creature_buff")
 
 func playCreatureDamaged(target):
 	if target == Global.battleGroup[0]:
@@ -1332,6 +1380,7 @@ func _on_back_button_pressed():
 		currentPlayerCounter -= 1
 	$"Item List Panel".hide()
 	$"Skill List Panel".hide()
+	hideEnemyButtons()
 	showButtons()
 	# Reset all the choices
 	selectedEnemies[currentPlayerCounter].target = null
@@ -1353,6 +1402,12 @@ func _on_skill_back_pressed():
 
 func _on_item_back_pressed():
 	$"Item List Panel".hide()
+	showButtons()
+	trackBattle()
+
+func _on_attack_back_button_pressed():
+	$AttackBackButton.hide()
+	hideEnemyButtons()
 	showButtons()
 	trackBattle()
 
