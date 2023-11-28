@@ -878,6 +878,8 @@ func processAttacksOld():
 						for creature in Global.battleGroup:
 							if !creature.isDead:
 								creature.cur_hp += movesArray[i].skill.heal_cal
+						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
+						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to heal the party for " + str(movesArray[i].skill.heal_cal))
 						updateBattleGroupHealth()
 						await get_tree().create_timer(1.5).timeout
