@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
 
-[ext_resource type="Texture2D" uid="uid://ce577x3g6mwop" path="res://Resources/Sprites/microusb-256.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://o5kdn2dwvyps" path="res://Resources/Sprites/microusb-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]
 script = ExtResource("2")
-enemy_name = "USB Micheal"
+enemy_name = "USB Michael"
 asset = ExtResource("1")
 damage = 4
 magic_damage = 4
@@ -14,8 +14,9 @@ max_hp = 25
 level = 1
 health_points = 5
 magic_points = 5
-defense = 5
-magic_defense = 5
+defense = 1.6
+magic_defense = 1.6
 speed = 7
 isDead = false
 useMagic = false
+experience = 15
