@@ -1000,6 +1000,7 @@ func processAttacksOld():
 					# Check if it is consumable item
 					if movesArray[i].itemInUse.type == 0:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Heal".play()
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
 							updateBattleGroupHealth()
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
@@ -1012,6 +1013,7 @@ func processAttacksOld():
 					# This needs to be changed after we implement proper buff techniques
 					if movesArray[i].itemInUse.type == 1:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Buff".play()
 							movesArray[i].friendlyTarget.defense *= movesArray[i].itemInUse.modify_defense
 							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].itemInUse.modify_magic_defense
 							updateBattleGroupHealth()
@@ -1023,6 +1025,7 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# Check if it is an attack item
 					if movesArray[i].itemInUse.type == 2:
+						$"Attack".play()
 						movesArray[i].target.enemyData.current_hp -= movesArray[i].itemInUse.damage
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
