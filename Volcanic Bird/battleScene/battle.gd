@@ -746,6 +746,7 @@ func processAttacksOld():
 				if movesArray[i].move == 2:
 					# this statement checks if this is a constant damage skill move
 					if movesArray[i].skill.type == 0:
+						$"Attack".play()
 						movesArray[i].target.enemyData.current_hp -= movesArray[i].skill.damage_cal
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -757,6 +758,7 @@ func processAttacksOld():
 					# this statement checks if this is a heal move
 					if movesArray[i].skill.type == 1:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Heal".play()
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].skill.heal_cal
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -769,6 +771,7 @@ func processAttacksOld():
 					# this statement checks if this is an buff move
 					if movesArray[i].skill.type == 2:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Buff".play()
 							movesArray[i].friendlyTarget.defense *= movesArray[i].skill.buff_value
 							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -781,6 +784,7 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a debuff move
 					if movesArray[i].skill.type == -2:
+						$"Debuff".play()
 						movesArray[i].target.enemyData.defense *= movesArray[i].skill.buff_value
 						movesArray[i].target.enemyData.magic_defense *= movesArray[i].skill.buff_value
 						if movesArray[i].target.enemyData.defense <= 0:
@@ -795,6 +799,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated physical damage move
 					if movesArray[i].skill.type == 3:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -806,6 +811,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated magical damage move
 					if movesArray[i].skill.type == 4:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.magic_defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -817,6 +823,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread physical
 					if movesArray[i].skill.type == 5:
+						$"Attack".play()
 						var outgoingDamage = movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal
 						print(movesArray[i].source.attack_damage)
 						print(movesArray[i].skill.damage_cal)
@@ -833,6 +840,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread magic
 					if movesArray[i].skill.type == 6:
+						$"Attack".play()
 						var outgoingDamage = movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal
 						print(movesArray[i].source.magic_attack_damage)
 						print(movesArray[i].skill.damage_cal)
@@ -849,6 +857,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# lifesteal physical damage
 					if movesArray[i].skill.type == 7:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -862,6 +871,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# manasteal magic damage
 					if movesArray[i].skill.type == 8:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal / movesArray[i].target.enemyData.magic_defense)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -875,6 +885,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# spread heal
 					if movesArray[i].skill.type == 9:
+						$"Heal".play()
 						for creature in Global.battleGroup:
 							if !creature.isDead:
 								creature.cur_hp += movesArray[i].skill.heal_cal
@@ -884,6 +895,7 @@ func processAttacksOld():
 					# buff magic damage
 					if movesArray[i].skill.type == 10:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Attack".play()
 							movesArray[i].friendlyTarget.magic_attack_damage *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -895,6 +907,7 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# debuff magic damage
 					if movesArray[i].skill.type == -10:
+						$"Attack".play()
 						movesArray[i].target.enemyData.magic_attack_damage *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -904,6 +917,7 @@ func processAttacksOld():
 					# buff physical damage
 					if movesArray[i].skill.type == 11:
 						if !movesArray[i].friendlyTarget.isDead:
+							$"Buff".play()
 							movesArray[i].friendlyTarget.attack_damage *= movesArray[i].skill.buff_value
 							movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 							movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -915,6 +929,7 @@ func processAttacksOld():
 							await get_tree().create_timer(1.5).timeout
 					# debuff physical damage
 					if movesArray[i].skill.type == -11:
+						$"Debuff".play()
 						movesArray[i].target.enemyData.attack_damage *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
@@ -923,6 +938,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated physical+magic damage, pierce defenses
 					if movesArray[i].skill.type == 12:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal) + (movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -934,6 +950,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated physical+speed damage, pierce defenses
 					if movesArray[i].skill.type == 13:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal) + (movesArray[i].source.speed * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -945,6 +962,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated magic+speed damage, pierce defenses
 					if movesArray[i].skill.type == 14:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.speed * movesArray[i].skill.damage_cal) + (movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -956,6 +974,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated speed damage, pierce defenses
 					if movesArray[i].skill.type == 15:
+						$"Attack".play()
 						var currentDamage = max(1, movesArray[i].source.speed * movesArray[i].skill.damage_cal)
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
@@ -967,6 +986,7 @@ func processAttacksOld():
 						await get_tree().create_timer(1.5).timeout
 					# calculated physical+magical+speed damage, pierce defenses
 					if movesArray[i].skill.type == 16:
+						$"Attack".play()
 						var currentDamage = max(1, ((movesArray[i].source.attack_damage * movesArray[i].skill.damage_cal) + (movesArray[i].source.speed * movesArray[i].skill.damage_cal) + (movesArray[i].source.magic_attack_damage * movesArray[i].skill.damage_cal)))
 						movesArray[i].target.enemyData.current_hp -= currentDamage
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
