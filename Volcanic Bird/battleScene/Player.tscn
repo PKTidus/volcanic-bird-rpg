@@ -42,6 +42,22 @@ tracks/2/keys = {
 "values": [Color(0.14902, 0.603922, 0.368627, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_sry5p"]
+resource_name = "creature_buff"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Buff:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_66q76"]
 resource_name = "creature_damaged"
 length = 0.6
@@ -72,22 +88,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.784314, 0.129412, 0.882353, 0), Color(0.784314, 0.129412, 0.882353, 0.529412), Color(0.784314, 0.129412, 0.882353, 0), Color(0.784314, 0.129412, 0.882353, 0.529412), Color(0.784314, 0.129412, 0.882353, 0), Color(0.784314, 0.129412, 0.882353, 0.529412), Color(0.784314, 0.129412, 0.882353, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_sry5p"]
-resource_name = "creature_buff"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Buff:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0), Color(0.14902, 0.603922, 0.368627, 0.529412), Color(0.14902, 0.603922, 0.368627, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sp01y"]
@@ -186,7 +186,7 @@ layout_mode = 0
 offset_right = 227.0
 offset_bottom = 136.0
 mouse_filter = 2
-color = Color(0, 0.52549, 0.901961, 0.152941)
+color = Color(0.54902, 0.47451, 0, 0.403922)
 
 [node name="Damaged" type="ColorRect" parent="."]
 visible = false

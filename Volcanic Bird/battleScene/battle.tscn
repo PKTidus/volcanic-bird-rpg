@@ -296,12 +296,6 @@ offset_bottom = 136.0
 [node name="Player0" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 
-[node name="Buff" parent="Party Panel/Party Container/Player0" index="9"]
-color = Color(0.14902, 0.603922, 0.368627, 0)
-
-[node name="Heal" parent="Party Panel/Party Container/Player0" index="10"]
-color = Color(0.784314, 0.129412, 0.882353, 0.529412)
-
 [node name="Player1" parent="Party Panel/Party Container" instance=ExtResource("7_uu1e0")]
 layout_mode = 2
 
