@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://fjahry34au5i"]
+[gd_scene load_steps=22 format=3 uid="uid://fjahry34au5i"]
 
 [ext_resource type="Script" path="res://battleScene/battle.gd" id="1_c1aan"]
 [ext_resource type="PackedScene" uid="uid://qsiytlf42ajo" path="res://battleScene/Enemy.tscn" id="2_864hm"]
@@ -26,6 +26,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uyegs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b20tt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b1b8y"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -324,11 +326,35 @@ text = "Undo"
 visible = false
 layout_mode = 2
 offset_left = 576.0
-offset_top = 184.0
+offset_top = 216.0
 offset_right = 576.0
-offset_bottom = 320.0
+offset_bottom = 352.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Continue Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 704.0
+offset_bottom = 136.0
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b1b8y")
+
+[node name="Label" type="Label" parent="Continue Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_ivqmm")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SeparatorPanel" type="Panel" parent="."]
 layout_mode = 0
@@ -376,5 +402,6 @@ volume_db = 5.0
 [connection signal="pressed" from="Party Panel/Party Container/Player2" to="." method="_on_player_2_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/Player3" to="." method="_on_player_3_pressed"]
 [connection signal="pressed" from="Party Panel/Party Container/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Continue Button" to="." method="_on_continue_button_pressed"]
 
 [editable path="Party Panel/Party Container/Player0"]

@@ -319,13 +319,10 @@ func trackBattle():
 		updateResultsTextBox(player2, 2, player2.creatureData.name, player2.creatureData.level, player2.creatureData.experience)
 		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
 		$"Results".show() # display results scene
+		$"Continue Button".show() # display continue button
 		
 		# Add items to the player's inventory
 		updateInventory()
-		
-		await get_tree().create_timer(4.5).timeout # pause the game for 4.5 seconds
-		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn") # go to the hub menu scene
-		return
 	
 	if currentPlayerCounter == 0:
 		if !player0.creatureData.isDead:
@@ -1288,3 +1285,6 @@ func _on_item_back_pressed():
 	$"Item List Panel".hide()
 	showButtons()
 	trackBattle()
+
+func _on_continue_button_pressed():
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
