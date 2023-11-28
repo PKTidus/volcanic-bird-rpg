@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://boe11sr5b1bb1"]
 
 [ext_resource type="Script" path="res://battleScene/Player.gd" id="1_maeio"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_gonme"]
 
 [sub_resource type="Animation" id="Animation_eh7sc"]
 length = 0.001

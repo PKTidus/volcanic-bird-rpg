@@ -1028,6 +1028,7 @@ func processAttacksOld():
 						print("weak magic defense lol")
 						currentDamage = max(1, movesArray[i].enemySource.enemyData.magic_damage / movesArray[i].enemyTarget.magic_defense)
 				
+				$"Attack".play()
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				playCreatureDamaged(movesArray[i].enemyTarget)
 				updateBattleGroupHealth()
