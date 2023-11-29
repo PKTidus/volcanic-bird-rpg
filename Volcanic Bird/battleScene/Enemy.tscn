@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://qsiytlf42ajo"]
 
 [ext_resource type="Script" path="res://battleScene/Enemy.gd" id="1_5xfbd"]
-[ext_resource type="Texture2D" uid="uid://cdyr5lk11v184" path="res://Resources/Sprites/tree-256.png" id="2_hxnv8"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
+[ext_resource type="Texture2D" uid="uid://cyqqpryjoc4gu" path="res://Resources/Sprites/tree-256.png" id="2_hxnv8"]
+[ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_0nh3q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4wj1"]
 bg_color = Color(1, 0, 0, 1)
@@ -84,6 +84,7 @@ layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_e4wj1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qnr0t")
+max_value = 10000.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="Enemy Container/Health Bar"]
