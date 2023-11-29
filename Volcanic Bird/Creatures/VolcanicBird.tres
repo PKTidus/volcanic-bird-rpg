@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Creatures" load_steps=4 format=3 uid="uid://mcjq5uunblqo"]
+
+[ext_resource type="Texture2D" path="res://Resources/Sprites/volcanicbird-32.png" id="1"]
+[ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/volcanicbird-256.png" id="3"]
+
+[resource]
+script = ExtResource("2")
+name = "Volcanic Bird"
+description = "The source of all chaos"
+texture = ExtResource("1")
+texture256 = ExtResource("3")
+agility = 0.0
+strength = 0.0
+intelligence = 0.0
+level = 100
+experience = 0
+max_hp = 1000
+max_mp = 1000
+cur_hp = 1000
+cur_mp = 1000
+attack_damage = 10000
+magic_attack_damage = 10000
+defense = 5000
+magic_defense = 5000
+speed = 10000
+STR_growth = 900
+AGI_growth = 900
+INT_growth = 900
+skillPreload = Array[String](["res://Skills/Brap.tres", "res://Skills/Fireball.tres", "res://Skills/ReadBook.tres", "res://Skills/RockBarrage.tres", "res://Skills/SolarArrow.tres", "res://Skills/HealAll.tres", "res://Skills/Buff.tres", "res://Skills/MasterHeal.tres", "res://Skills/Necroblast.tres", "res://Skills/BootyBeam.tres"])
+skillList = Array[Resource]([])
+isDead = false

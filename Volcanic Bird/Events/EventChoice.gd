@@ -37,6 +37,13 @@ func _on_option_b_pressed():
 			var creature = load(path)
 			var newCreature = Creatures.new()
 			newCreature.initializeCreature(creature)
+			# SCALING!!!!!!
+			if Global.totalEventsCompleted > 0:
+				newCreature.buffAll(ceil(float(Global.totalEventsCompleted)/1.5))
+				newCreature.max_hp += Global.totalEventsCompleted
+				newCreature.cur_hp += Global.totalEventsCompleted
+				newCreature.max_mp += Global.totalEventsCompleted
+				newCreature.cur_mp += Global.totalEventsCompleted
 			Global.creatureStorage.append(newCreature)
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	elif self.outcome.type == "item-addition":
