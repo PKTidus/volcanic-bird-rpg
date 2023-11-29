@@ -1,8 +1,8 @@
-[gd_resource type="Resource" script_class="Creatures" load_steps=4 format=3 uid="uid://mcjq5uunblqo"]
+[gd_resource type="Resource" script_class="Creatures" load_steps=4 format=3 uid="uid://4wwrgceywgxe"]
 
-[ext_resource type="Texture2D" path="res://Resources/Sprites/ultracrowilla-32.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://7ksn28xkrq6n" path="res://Resources/Sprites/ultracrowilla-32.png" id="1"]
 [ext_resource type="Script" path="res://Creatures/Creature.gd" id="2"]
-[ext_resource type="Texture2D" path="res://Resources/Sprites/ultracrowilla-256.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://ilf8pv3o2pgo" path="res://Resources/Sprites/ultracrowilla-256.png" id="3"]
 
 [resource]
 script = ExtResource("2")
