@@ -62,11 +62,12 @@ func save():
 func _on_next_event_pressed():
 	if Global.floorCounter == 1:
 		get_tree().change_scene_to_file("res://Main Menu/BossSceneFinalReal.tscn")
-	$"MainMenuContainer/Next Event".hide()
-	Global.floorCounter += 1
-	Global.eventCounter = 0
-	$EventCounterNumber.text = str(Global.eventCounter)
-	$EventThresholdNumber.text = str(Global.eventThreshold[Global.floorCounter])
+	else:
+		$"MainMenuContainer/Next Event".hide()
+		Global.floorCounter += 1
+		Global.eventCounter = 0
+		$EventCounterNumber.text = str(Global.eventCounter)
+		$EventThresholdNumber.text = str(Global.eventThreshold[Global.floorCounter])
 
 
 func _on_creatures_2_pressed():
