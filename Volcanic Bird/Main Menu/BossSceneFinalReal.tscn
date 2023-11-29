@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://vg3qngatws7f"]
+[gd_scene load_steps=4 format=3 uid="uid://r2665t0061bo"]
 
 [ext_resource type="Script" path="res://Main Menu/BossSceneFinalReal.gd" id="1_ljune"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_asid0"]
-[ext_resource type="AudioStream" uid="uid://cm35w50uyfpgl" path="res://Resources/Music/202 Sprouting.mp3" id="3_216tt"]
+[ext_resource type="FontFile" uid="uid://c6tb3nafm5nx5" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_asid0"]
+[ext_resource type="AudioStream" uid="uid://b58c4mtarn6x4" path="res://Resources/Music/202 Sprouting.mp3" id="3_216tt"]
 
 [node name="EventChoice" type="Node2D"]
 script = ExtResource("1_ljune")
@@ -37,7 +37,7 @@ size_flags_stretch_ratio = 3.55
 theme_override_fonts/normal_font = ExtResource("2_asid0")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "You reach the end where you find the the origin of all the chaos. The creatures' name is... Mohit"
+text = "At journey's end you come face to face with the greatest evil, the source of all chaos, the volcanic bird. It believes you are worthy to deliver chaos alongside it. What do you do?"
 
 [node name="Option A" type="Button" parent="."]
 offset_left = 201.0

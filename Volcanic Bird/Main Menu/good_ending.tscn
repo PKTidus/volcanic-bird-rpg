@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://i86t56h1t2av"]
+[gd_scene load_steps=4 format=3 uid="uid://l5a2uficlo7u"]
 
 [ext_resource type="Script" path="res://Main Menu/good_ending.gd" id="1_aag7m"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_sxopn"]
-[ext_resource type="AudioStream" uid="uid://cm35w50uyfpgl" path="res://Resources/Music/202 Sprouting.mp3" id="3_cky0c"]
+[ext_resource type="FontFile" uid="uid://c6tb3nafm5nx5" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_sxopn"]
+[ext_resource type="AudioStream" uid="uid://b58c4mtarn6x4" path="res://Resources/Music/202 Sprouting.mp3" id="3_cky0c"]
 
 [node name="EventChoice" type="Node2D"]
 script = ExtResource("1_aag7m")
@@ -37,7 +37,7 @@ size_flags_stretch_ratio = 3.55
 theme_override_fonts/normal_font = ExtResource("2_sxopn")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "You won!"
+text = "With the help of chad the crowilla you have eradicated the threat of the volcanic bird once and for all!"
 
 [node name="Return" type="Button" parent="."]
 offset_left = 480.0
