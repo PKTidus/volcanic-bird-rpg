@@ -1,21 +1,22 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://c017ox45s3k4v"]
 
-[ext_resource type="Texture2D" path="res://Resources/Sprites/volcanicbird-256.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dok4m0fmxr8jw" path="res://Resources/Sprites/volcanicbird-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]
 script = ExtResource("2")
 enemy_name = "Volcanic Bird"
 asset = ExtResource("1")
-damage = 10
-magic_damage = 10
-current_hp = 50
-max_hp = 50
+damage = 40
+magic_damage = 40
+current_hp = 200
+max_hp = 200
 level = 4
 health_points = 5
 magic_points = 5
-defense = 1.8
-magic_defense = 1.8
-speed = 13
+defense = 4.0
+magic_defense = 4.0
+speed = 10
 isDead = false
 useMagic = false
+experience = 0
