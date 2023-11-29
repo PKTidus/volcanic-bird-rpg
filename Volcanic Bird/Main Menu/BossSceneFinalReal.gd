@@ -22,7 +22,7 @@ func _on_option_b_pressed():
 func _on_option_a_pressed():
 	var myArray = [null, null, null]
 	myArray[0] = "res://Enemies/CrowillaEnemy.tres"
-	myArray[1] = "res://Enemies/CrowillaEnemy.tres"
+	myArray[1] = "res://Enemies/UltraCrowillaEnemy.tres"
 	myArray[2] = "res://Enemies/CrowillaEnemy.tres"
 	Global.selected_enemy_paths = myArray
 	$EventDescription.text = "You decided to join the very thing that is seeking to end the world! But no fear, the Crowilla clan and it's clan leader, CHAD the Crowilla will try to put an end to your madness! How dare you!!!!!"

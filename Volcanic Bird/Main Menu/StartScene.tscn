@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0841jo25yrnq"]
 
 [ext_resource type="Script" path="res://Main Menu/StartScene.gd" id="1_0der2"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_hxhkk"]
-[ext_resource type="AudioStream" uid="uid://cm35w50uyfpgl" path="res://Resources/Music/202 Sprouting.mp3" id="3_6i8ik"]
+[ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_hxhkk"]
+[ext_resource type="AudioStream" uid="uid://7bi6rlxlcdg5" path="res://Resources/Music/202 Sprouting.mp3" id="3_6i8ik"]
 
 [node name="EventChoice" type="Node2D"]
 script = ExtResource("1_0der2")

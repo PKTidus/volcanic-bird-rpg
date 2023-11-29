@@ -93,6 +93,7 @@ func loadGame():
 		Global.itemStorage = playerData.itemStorage
 		Global.eventCounter = playerData.eventCounter
 		Global.floorCounter = playerData.floorCounter
+		Global.totalEventsCompleted = playerData.totalEventsCompleted
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 
 func _on_exit_pressed():

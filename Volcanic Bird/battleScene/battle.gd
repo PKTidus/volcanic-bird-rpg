@@ -1435,6 +1435,6 @@ func _on_continue_button_pressed():
 	if Global.whichEnding == 0:
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	if Global.whichEnding == 1:
-		get_tree().change_scene_to_file("res://Main Menu/bird_chaos.tscn")
+		get_tree().change_scene_to_file("res://Main Menu/bad_ending.tscn")
 	if Global.whichEnding == 2:
 		get_tree().change_scene_to_file("res://Main Menu/good_ending.tscn")

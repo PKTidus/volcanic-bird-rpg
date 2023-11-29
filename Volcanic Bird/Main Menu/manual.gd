@@ -146,4 +146,4 @@ func _on_back_button_pressed():
 	showPageButtons()
 
 func _on_return_pressed():
-	get_tree().change_scene_to_file("res://Main Menu/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")

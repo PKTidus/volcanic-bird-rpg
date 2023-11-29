@@ -8,3 +8,4 @@ class_name PlayerSave
 @export var itemStorage : Array
 @export var eventCounter : int
 @export var floorCounter : int
+@export var totalEventsCompleted: int
