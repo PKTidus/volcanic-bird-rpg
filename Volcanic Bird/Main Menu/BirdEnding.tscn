@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtrsksgxvt3uv"]
+[gd_scene load_steps=4 format=3 uid="uid://buw8wxjpgnf66"]
 
 [ext_resource type="Script" path="res://Main Menu/BirdEnding.gd" id="1_4fnkk"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_k7ibf"]
+[ext_resource type="FontFile" uid="uid://c6tb3nafm5nx5" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_k7ibf"]
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4u84v"]
-file = "res://Resources/Videos/bird_1.ogg"
+resource_name = "bird_1"
+file = "res://Resources/Videos/bird_1.ogv"
 
 [node name="Control" type="Control"]
 layout_mode = 3
