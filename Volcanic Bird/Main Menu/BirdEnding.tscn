@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtrsksgxvt3uv"]
+
+[ext_resource type="Script" path="res://Main Menu/BirdEnding.gd" id="1_4fnkk"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_k7ibf"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4u84v"]
+file = "res://Resources/Videos/bird_1.ogg"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4fnkk")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = SubResource("VideoStreamTheora_4u84v")
+autoplay = true
+expand = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 536.0
+offset_right = 652.0
+offset_bottom = 564.0
+theme_override_fonts/font = ExtResource("2_k7ibf")
+theme_override_font_sizes/font_size = 27
+text = "Go to main Menu"
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
