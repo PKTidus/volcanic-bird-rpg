@@ -51,6 +51,8 @@ var sampleArray = []
 var currentPlayerCounter # range from 1-4
 var currentEnemyCounter # range from 1-3
 
+var expGain
+
 func _ready():
 	$Background.set_texture(load(Global.background))
 	# comment this function to load sample creatures from the main menu scene while save battle data
@@ -61,14 +63,17 @@ func _ready():
 	hideEnemyButtons()
 	getPlayerInfo()
 	getEnemyInfo()
-	loadCreatures() 
+	loadCreatures()
 	loadEnemies()
 	initializeMoves()
 	sortArrayBySpeed()
 	copyCreatures()
 	hideCreatureDamageRects()
 	$AttackBackButton.hide()
+	# jar throwing (deprecated)
 	
+	expGain = enemy1.enemyData.experience + enemy2.enemyData.experience + enemy3.enemyData.experience
+
 	currentPlayerCounter = 0
 	currentEnemyCounter = 0
 	
@@ -183,8 +188,8 @@ func closePanelAndShowAlliesItems():
 
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
-	var samepleCreature1 = load("res://Creatures/Purple_Flower.tres")
-	var samepleCreature2 = load("res://Creatures/Purple_Flower.tres")
+	var samepleCreature1 = load("res://Creatures/Crowilla.tres")
+	var samepleCreature2 = load("res://Creatures/Crowilla.tres")
 	var samepleCreature3 = load("res://Creatures/Shroom.tres")
 	var samepleCreature4 = load("res://Creatures/Wizard.tres")
 	var creature1 = Creatures.new()
@@ -209,6 +214,10 @@ func setupSampleEnemy():
 		var loadEnemy = EnemyData.new()
 		loadEnemy.initializeEnemyData(enemy)
 		sampleArray.append(loadEnemy)
+	if (Global.totalEventsCompleted > 0):
+		for i in range(3):
+			print("SCALING BY " + str(Global.totalEventsCompleted))
+			sampleArray[i].THROWITINTHEJAR(Global.totalEventsCompleted)
   
 # To load in the creatures into the buttons and their health and mp
 func loadCreatures():
@@ -336,7 +345,7 @@ func trackBattle():
 		await get_tree().create_timer(4.5).timeout
 		print("poenis")
 		# Display the total exp the party gained
-		updateTextBox("Everyone gained " + str(50) + " experience!")
+		updateTextBox("Everyone gained " + str(expGain) + " experience!")
 		return
 	
 	if currentPlayerCounter == 0:
@@ -545,7 +554,7 @@ func updateTextBox(text):
 
 func updateResultsTextBox(player, playerIndex: int, playerName: String, playerLevel: int, playerExperience: int):
 	var initialLevel = playerLevel
-	playerExperience += calculateExperience(playerLevel)
+	playerExperience += expGain
 	var nextLevelExperience = calculateExperience(playerLevel + 1)
 	var hasLeveledUp = false
 	var skillsLearned = ""
@@ -779,7 +788,7 @@ func processAttacksOld():
 					movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
 					updateBattleGroupHealth()
 					
-					showTextBox(str(movesArray[i].source.name) + " dealt " + str(int(currentDamage)) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
+					showTextBox(str(movesArray[i].source.name) + " dealt " + str(ceil(currentDamage)) + " damage to " + str(movesArray[i].target.enemyData.enemy_name))
 					await get_tree().create_timer(1.5).timeout
 				# this statement checks if this is a skill move
 				if movesArray[i].move == 2:
@@ -849,7 +858,7 @@ func processAttacksOld():
 						updateBattleGroupHealth()
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(ceil(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# this statement checks if this is a calculated magical damage move
 					if movesArray[i].skill.type == 4:
@@ -861,7 +870,7 @@ func processAttacksOld():
 						updateBattleGroupHealth()
 						movesArray[i].target.updateHealth()
 						movesArray[i].target.get_node("AnimationPlayer").play("enemy_damaged")
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(ceil(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# spread physical
 					if movesArray[i].skill.type == 5:
@@ -909,7 +918,7 @@ func processAttacksOld():
 						# lifesteal effect, heals half damage dealt
 						movesArray[i].source.cur_hp += currentDamage / 2
 						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(ceil(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# manasteal magic damage
 					if movesArray[i].skill.type == 8:
@@ -923,7 +932,7 @@ func processAttacksOld():
 						# manasteal effect, heals half damage dealt
 						movesArray[i].source.cur_mp += currentDamage / 2
 						updateBattleGroupHealth()
-						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(int(currentDamage)))
+						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(ceil(currentDamage)))
 						await get_tree().create_timer(1.5).timeout
 					# spread heal
 					if movesArray[i].skill.type == 9:
@@ -1165,7 +1174,7 @@ func processAttacksOld():
 				movesArray[i].enemyTarget.cur_hp -= currentDamage
 				playCreatureDamaged(movesArray[i].enemyTarget)
 				updateBattleGroupHealth()
-				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(int(currentDamage)) + " damage to " + str(movesArray[i].enemyTarget.name))
+				showTextBox(str(movesArray[i].enemySource.enemyData.enemy_name) + " dealt " + str(ceil(currentDamage)) + " damage to " + str(movesArray[i].enemyTarget.name))
 				await get_tree().create_timer(1.5).timeout
 		
 	updateBattleGroupHealth()
@@ -1423,4 +1432,9 @@ func _on_attack_back_button_pressed():
 	trackBattle()
 
 func _on_continue_button_pressed():
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	if Global.whichEnding == 0:
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	if Global.whichEnding == 1:
+		get_tree().change_scene_to_file("res://Main Menu/bird_chaos.tscn")
+	if Global.whichEnding == 2:
+		get_tree().change_scene_to_file("res://Main Menu/good_ending.tscn")

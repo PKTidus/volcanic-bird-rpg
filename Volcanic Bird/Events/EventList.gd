@@ -837,7 +837,7 @@ static var List = [
 	Event.new(
 		"Transcendent being", 
 		
-		"You hear a rumor about a new species of penguin and go to investigate. You spot a particular penguin is acting strange and moments later are blinded by a flash of light. The penguin has transformed!",
+		"You hear a rumor about a new species of penguin and go to investigate. You spot a particular penguin acting strange and moments later are blinded by a flash of light. The penguin has transformed!",
 		
 		# option A
 		Option.new(
@@ -970,9 +970,9 @@ static var List = [
 					"battle", # type
 					65, # chance
 					[
-						"res://Enemies/DummyEnemy",
+						"res://Enemies/DummyEnemy.tres",
 						"res://Enemies/TableEnemy.tres",
-						"res://Enemies/DummyEnemy"
+						"res://Enemies/DummyEnemy.tres"
 					]
 				),
 				OptionResult.new(

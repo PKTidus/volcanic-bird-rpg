@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://bul4xaur2bqkb"]
 
-[ext_resource type="Texture2D" path="res://Resources/Sprites/funkyfrong-256.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cvnhyw8i65tth" path="res://Resources/Sprites/funkyfrong-256.png" id="1"]
 [ext_resource type="Script" path="res://Enemies/EnemyData.gd" id="2"]
 
 [resource]
@@ -14,8 +14,9 @@ max_hp = 20
 level = 1
 health_points = 5
 magic_points = 5
-defense = 4
-magic_defense = 1
-speed = 10
+defense = 1.6
+magic_defense = 1.6
+speed = 12
 isDead = false
 useMagic = false
+experience = 12

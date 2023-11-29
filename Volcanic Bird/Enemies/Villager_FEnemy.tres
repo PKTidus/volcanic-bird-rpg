@@ -19,3 +19,4 @@ magic_defense = 2.5
 speed = 15
 isDead = false
 useMagic = false
+experience = 20
