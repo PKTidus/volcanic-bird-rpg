@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0841jo25yrnq"]
+[gd_scene load_steps=4 format=3 uid="uid://vg3qngatws7f"]
 
-[ext_resource type="Script" path="res://Main Menu/StartScene.gd" id="1_0der2"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_hxhkk"]
-[ext_resource type="AudioStream" uid="uid://cm35w50uyfpgl" path="res://Resources/Music/202 Sprouting.mp3" id="3_6i8ik"]
+[ext_resource type="Script" path="res://Main Menu/BossSceneFinalReal.gd" id="1_ljune"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_asid0"]
+[ext_resource type="AudioStream" uid="uid://cm35w50uyfpgl" path="res://Resources/Music/202 Sprouting.mp3" id="3_216tt"]
 
 [node name="EventChoice" type="Node2D"]
-script = ExtResource("1_0der2")
+script = ExtResource("1_ljune")
 
 [node name="EventDetailsColor" type="ColorRect" parent="."]
 offset_right = 1152.0
@@ -24,9 +24,9 @@ offset_top = 44.0
 offset_right = 1128.0
 offset_bottom = 102.0
 size_flags_stretch_ratio = 3.55
-theme_override_fonts/normal_font = ExtResource("2_hxhkk")
+theme_override_fonts/normal_font = ExtResource("2_asid0")
 theme_override_font_sizes/normal_font_size = 65
-text = "Welcome to the World"
+text = "End of the world"
 
 [node name="EventDescription" type="RichTextLabel" parent="."]
 offset_left = 20.0
@@ -34,10 +34,10 @@ offset_top = 157.0
 offset_right = 763.0
 offset_bottom = 404.0
 size_flags_stretch_ratio = 3.55
-theme_override_fonts/normal_font = ExtResource("2_hxhkk")
+theme_override_fonts/normal_font = ExtResource("2_asid0")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "You woke up in your little shop where you sell creatures to the local townfolk. You were disturbed by the chatter of the local about a plague going around affecting the creatures and scenery around you. Before you venture out, what creatures will you choose to aid you in your expedition?"
+text = "You reach the end where you find the the origin of all the chaos. The creatures' name is... Mohit"
 
 [node name="Option A" type="Button" parent="."]
 offset_left = 201.0
@@ -45,34 +45,35 @@ offset_top = 543.0
 offset_right = 408.0
 offset_bottom = 611.0
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_hxhkk")
+theme_override_fonts/font = ExtResource("2_asid0")
 theme_override_font_sizes/font_size = 30
-text = "Magical"
+text = "Join"
 
 [node name="Option B" type="Button" parent="."]
-offset_left = 480.0
-offset_top = 543.0
-offset_right = 687.0
-offset_bottom = 611.0
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_hxhkk")
-theme_override_font_sizes/font_size = 30
-text = "Feeling Birdy"
-
-[node name="Option C" type="Button" parent="."]
 offset_left = 763.0
 offset_top = 543.0
 offset_right = 970.0
 offset_bottom = 611.0
 size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("2_hxhkk")
+theme_override_fonts/font = ExtResource("2_asid0")
 theme_override_font_sizes/font_size = 30
-text = "a bit Shroomy"
+text = "Annihilate"
+
+[node name="Proceed" type="Button" parent="."]
+visible = false
+offset_left = 480.0
+offset_top = 544.0
+offset_right = 687.0
+offset_bottom = 612.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_asid0")
+theme_override_font_sizes/font_size = 30
+text = "Proceed"
 
 [node name="Event Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_6i8ik")
+stream = ExtResource("3_216tt")
 autoplay = true
 
 [connection signal="pressed" from="Option A" to="." method="_on_option_a_pressed"]
 [connection signal="pressed" from="Option B" to="." method="_on_option_b_pressed"]
-[connection signal="pressed" from="Option C" to="." method="_on_option_c_pressed"]
+[connection signal="pressed" from="Proceed" to="." method="_on_proceed_pressed"]

@@ -188,8 +188,8 @@ func closePanelAndShowAlliesItems():
 
 # Simply for loading in sample creatures, not needed for final build
 func setupSampleGroup():
-	var samepleCreature1 = load("res://Creatures/Purple_Flower.tres")
-	var samepleCreature2 = load("res://Creatures/Purple_Flower.tres")
+	var samepleCreature1 = load("res://Creatures/Crowilla.tres")
+	var samepleCreature2 = load("res://Creatures/Crowilla.tres")
 	var samepleCreature3 = load("res://Creatures/Shroom.tres")
 	var samepleCreature4 = load("res://Creatures/Wizard.tres")
 	var creature1 = Creatures.new()
@@ -1432,4 +1432,9 @@ func _on_attack_back_button_pressed():
 	trackBattle()
 
 func _on_continue_button_pressed():
-	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	if Global.whichEnding == 0:
+		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+	if Global.whichEnding == 1:
+		get_tree().change_scene_to_file("res://Main Menu/bird_chaos.tscn")
+	if Global.whichEnding == 2:
+		get_tree().change_scene_to_file("res://Main Menu/good_ending.tscn")

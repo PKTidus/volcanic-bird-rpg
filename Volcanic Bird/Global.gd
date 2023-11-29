@@ -17,6 +17,10 @@ var eventCompleted = false
 var eventThreshold = [10, 15, 25]
 var totalEventsCompleted = 0
 
+# 1 = Crowilla Ending
+# 2 = Volcanic Bird Ending
+var whichEnding = 0
+
 var itemsMaster = []
 var commonItemsMaster = []
 var rareItemsMaster = []
