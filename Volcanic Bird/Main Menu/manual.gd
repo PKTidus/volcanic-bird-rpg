@@ -97,7 +97,8 @@ func loadPageSix():
 	Events that give your party stat boosts are also good.\n
 	It may be worthwhile recruiting creatures later in your journey, their base stats will be improved even though their level is 1!\n
 	While later battles are more difficult, the experience bounty will be much greater!\n
-	Enemies always drop items, make good use of them!\n"
+	Enemies always drop items, make good use of them!\n
+	Attacks will do nothing if they targeted an enemy that died mid-turn. Plan carefully!"
 	$PageNum.text = "6"
 
 func _on_go_left_pressed():
