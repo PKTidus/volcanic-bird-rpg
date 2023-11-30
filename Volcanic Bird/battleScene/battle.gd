@@ -488,12 +488,18 @@ func _on_item_pressed():
 			$"Item List Panel".show()
 			showTextBox("Which Item?")
 
+func resetAllInUseItems():
+	for item in Global.itemInventory:
+		print(item.inUse)
+		item.inUse = false
+
 func _on_run_pressed():
 	$"Party Panel/Party Container/BackButton".disabled = true
 	var rng = RandomNumberGenerator.new()
 	var randomNumber = rng.randi_range(1, 100)
 	Global.eventCompleted = false
 	$"Party Panel/Party Container/BackButton".disabled = true
+	resetAllInUseItems()
 	
 	print(randomNumber)
 	resetCreatures()
