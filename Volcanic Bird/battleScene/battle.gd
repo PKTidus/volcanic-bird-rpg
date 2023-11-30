@@ -338,7 +338,6 @@ func trackBattle():
 		updateResultsTextBox(player3, 3, player3.creatureData.name, player3.creatureData.level, player3.creatureData.experience)
 		print("hello")
 		$"Results".show() # display results scene
-		$"Continue Button".show() # display continue button
 		
 		# Add items to the player's inventory
 		updateInventory()
@@ -346,6 +345,7 @@ func trackBattle():
 		print("poenis")
 		# Display the total exp the party gained
 		updateTextBox("Everyone gained " + str(expGain) + " experience!")
+		$"Continue Button".show() # display continue button
 		return
 	
 	if currentPlayerCounter == 0:

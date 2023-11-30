@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c3pn6k528tjj5"]
 
 [ext_resource type="Script" path="res://Main Menu/GameOver.gd" id="1_h3l2w"]
-[ext_resource type="FontFile" uid="uid://c6tb3nafm5nx5" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_cm02i"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_cm02i"]
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_4u84v"]
 resource_name = "frong_1"

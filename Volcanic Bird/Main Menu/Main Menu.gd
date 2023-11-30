@@ -65,6 +65,7 @@ func loadItemList():
 	while i < arrayOfItems.size():
 		print("Loading " + arrayOfItems[i])
 		var currentItem = Item.new()
+		var tempItem = load(arrayOfItems[i])
 		currentItem.initializeItem(load(arrayOfItems[i]))
 	# Add the current item to the master item list
 		Global.itemsMaster.append(currentItem)
@@ -73,6 +74,8 @@ func loadItemList():
 			Global.commonItemsMaster.append(currentItem)
 		elif currentItem.itemRarity == 1:
 			Global.rareItemsMaster.append(currentItem)
+		print(currentItem.nameLabel)
+		print(tempItem.nameLabel)
 		i += 1
 
 func loadGame():
