@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://CreatureMenu/CreatureMenu.gd" id="1_4q546"]
 [ext_resource type="PackedScene" uid="uid://cs8rlnooal4yd" path="res://CreatureMenu/creature_button.tscn" id="1_xh84t"]
 [ext_resource type="PackedScene" uid="uid://cabx0stuuqixk" path="res://CreatureMenu/battle_group.tscn" id="2_exaw5"]
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_odtno"]
-[ext_resource type="AudioStream" uid="uid://c6mfwkyxn2bes" path="res://Resources/Music/05 Choose a File.mp3" id="5_7e6ou"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="3_odtno"]
+[ext_resource type="AudioStream" uid="uid://btdrbjkyjxbbj" path="res://Resources/Music/05 Choose a File.mp3" id="5_7e6ou"]
 
 [node name="Inventory" type="Panel"]
 anchors_preset = 15
@@ -241,4 +241,3 @@ autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="NameButton" to="." method="_on_name_button_pressed"]
-[connection signal="finished" from="Music" to="." method="_on_music_finished"]

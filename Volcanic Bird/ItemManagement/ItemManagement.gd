@@ -38,7 +38,3 @@ func instanceSlots():
 
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
-
-
-func _on_music_finished():
-	$Music.play()

@@ -8,7 +8,3 @@ func _ready():
 
 func _on_proceed_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/BirdEnding.tscn")
-
-
-func _on_event_music_finished():
-	$"Event Music".play()

@@ -7,7 +7,3 @@ func _ready():
 
 func _on_return_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/main_menu.tscn")
-
-
-func _on_event_music_finished():
-	$"Event Music".play()

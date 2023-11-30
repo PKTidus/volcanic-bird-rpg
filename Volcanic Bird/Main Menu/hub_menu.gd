@@ -73,7 +73,3 @@ func _on_next_event_pressed():
 
 func _on_creatures_2_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/manual.tscn")
-
-
-func _on_music_finished():
-	$Music.play()

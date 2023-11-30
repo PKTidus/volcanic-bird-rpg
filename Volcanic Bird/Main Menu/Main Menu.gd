@@ -101,7 +101,3 @@ func _on_load_pressed():
 
 func _on_manual_pressed():
 	get_tree().change_scene_to_file("res://Main Menu/manual.tscn")
-
-
-func _on_music_finished():
-	$Music.play()
