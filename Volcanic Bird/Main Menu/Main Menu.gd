@@ -60,28 +60,20 @@ func setupSampleGroup():
 	Global.creatureStorage.append(creature8)
 
 func loadItemList():
-	var dir = DirAccess.open("res://Items/")
-	if dir:
-		dir.list_dir_begin()
-		var fileName = dir.get_next()
-		while fileName != "":
-			if fileName.ends_with(".tres"):
-				print("Found Item: " + dir.get_current_dir() + "/" + fileName)
-				var currentItemPath = dir.get_current_dir() + "/" + fileName
-				var currentItem = Item.new()
-				currentItem.initializeItem(load(currentItemPath))
-				
-				# Add the current item to the master item list
-				Global.itemsMaster.append(currentItem)
-				
-				# Add the current item to the common or rare item list
-				if currentItem.itemRarity == 0:
-					Global.commonItemsMaster.append(currentItem)
-				elif currentItem.itemRarity == 1:
-					Global.rareItemsMaster.append(currentItem)
-			fileName = dir.get_next()
-	else:
-		print("Could not load \"res://Items/\"")
+	var arrayOfItems = ["res://Items/DeadlyPoison.tres", "res://Items/HealingFruit.tres", "res://Items/HealingPotion.tres", "res://Items/Steroid.tres", "res://Items/TreeBark.tres", "res://Items/TreeSap.tres", "res://Items/Type3.tres", "res://Items/Type4.tres", "res://Items/Type5.tres", "res://Items/Type6.tres", "res://Items/Type7.tres", "res://Items/Type8.tres"]
+	var i = 0
+	while i < arrayOfItems.size():
+		print("Loading " + arrayOfItems[i])
+		var currentItem = Item.new()
+		currentItem.initializeItem(load(arrayOfItems[i]))
+	# Add the current item to the master item list
+		Global.itemsMaster.append(currentItem)
+	# Add the current item to the common or rare item list
+		if currentItem.itemRarity == 0:
+			Global.commonItemsMaster.append(currentItem)
+		elif currentItem.itemRarity == 1:
+			Global.rareItemsMaster.append(currentItem)
+		i += 1
 
 func loadGame():
 	loadItemList()

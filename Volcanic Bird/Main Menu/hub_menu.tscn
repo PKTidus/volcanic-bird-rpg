@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bac6yxy3e7il8"]
 
 [ext_resource type="Script" path="res://Main Menu/hub_menu.gd" id="1_tpf0c"]
-[ext_resource type="FontFile" uid="uid://c6tb3nafm5nx5" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_jih23"]
-[ext_resource type="AudioStream" uid="uid://xscxa2teb4ab" path="res://Resources/Music/22_Ruins.mp3" id="3_un13w"]
+[ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_jih23"]
+[ext_resource type="AudioStream" uid="uid://bk2bnqls1k1dq" path="res://Resources/Music/22_Ruins.mp3" id="3_un13w"]
 
 [node name="Main Menu2" type="Control"]
 layout_mode = 3

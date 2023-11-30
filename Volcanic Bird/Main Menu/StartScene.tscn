@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0841jo25yrnq"]
 
 [ext_resource type="Script" path="res://Main Menu/StartScene.gd" id="1_0der2"]
-[ext_resource type="FontFile" uid="uid://c6tb3nafm5nx5" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_hxhkk"]
-[ext_resource type="AudioStream" uid="uid://b58c4mtarn6x4" path="res://Resources/Music/202 Sprouting.mp3" id="3_6i8ik"]
+[ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_hxhkk"]
+[ext_resource type="AudioStream" uid="uid://7bi6rlxlcdg5" path="res://Resources/Music/202 Sprouting.mp3" id="3_6i8ik"]
 
 [node name="EventChoice" type="Node2D"]
 script = ExtResource("1_0der2")
@@ -37,7 +37,7 @@ size_flags_stretch_ratio = 3.55
 theme_override_fonts/normal_font = ExtResource("2_hxhkk")
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "This morning... you woke up. The local news outlet was reporting about a mysterious bird reaching havoc on the world. You do what any sensible person would. go on an adventure! You pack up your manual and choose some creatures to take along with you... which kind feels right today?"
+text = "This morning... you woke up. The local news outlet was reporting about a mysterious bird wreaking havoc on the world. You do what any sensible person would: go on an adventure! You pack up your manual and choose some creatures to take along with you... which kind feels right today?"
 
 [node name="Option A" type="Button" parent="."]
 offset_left = 201.0
