@@ -76,3 +76,4 @@ autoplay = true
 [connection signal="pressed" from="Option A" to="." method="_on_option_a_pressed"]
 [connection signal="pressed" from="Option B" to="." method="_on_option_b_pressed"]
 [connection signal="pressed" from="Option C" to="." method="_on_option_c_pressed"]
+[connection signal="finished" from="Event Music" to="." method="_on_event_music_finished"]

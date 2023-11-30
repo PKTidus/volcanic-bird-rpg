@@ -196,3 +196,4 @@ stream = ExtResource("5_itbok")
 autoplay = true
 
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]

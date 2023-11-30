@@ -1444,3 +1444,12 @@ func _on_continue_button_pressed():
 		get_tree().change_scene_to_file("res://Main Menu/bad_ending.tscn")
 	if Global.whichEnding == 2:
 		get_tree().change_scene_to_file("res://Main Menu/good_ending.tscn")
+
+
+func _on_battle_music_finished():
+	$"Battle Music".play()
+
+
+func _on_victory_music_finished():
+	if $"Battle Music".playing == false:
+		$"Victory Music".play()

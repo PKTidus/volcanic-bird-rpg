@@ -101,3 +101,7 @@ func _on_option_c_pressed():
 	Global.creatureStorage.append(creature4)
 	
 	get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
+
+
+func _on_event_music_finished():
+	$"Event Music".play()

@@ -54,3 +54,4 @@ stream = ExtResource("3_cky0c")
 autoplay = true
 
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="finished" from="Event Music" to="." method="_on_event_music_finished"]

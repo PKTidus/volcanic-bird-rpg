@@ -71,3 +71,7 @@ func _on_name_button_pressed():
 		instanceInventorySlots()
 		loadInBattleGroup()
 		$Name.text = "Name = " + str(newName)
+
+
+func _on_music_finished():
+	$Music.play()

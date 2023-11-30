@@ -100,3 +100,7 @@ func collapse_event(option):
 	$"Option B".text = "Proceed"
 	$"EventDescription".text = self.outcome.description
 	self.event_collapsed = true
+
+
+func _on_event_music_finished():
+	$"Event Music".play()
