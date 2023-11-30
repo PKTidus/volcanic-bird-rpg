@@ -12,6 +12,7 @@ func flipACoin():
 	return false
 
 func _ready():
+	Global.whichEnding = 0
 	$"MainMenuContainer/Next Event".hide()
 	if Global.eventCompleted:
 		Global.eventCounter += 1
