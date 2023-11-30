@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_cbd1w")
-type = 1
+type = 0
 modify_attack = 0.0
 modify_magic_attack = 0.0
 modify_defense = 0.0
