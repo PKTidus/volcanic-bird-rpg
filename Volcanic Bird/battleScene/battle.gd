@@ -1052,6 +1052,7 @@ func processAttacksOld():
 						showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].skill.nameLabel) + " to " + str(movesArray[i].target.enemyData.enemy_name) + " and dealt " + str(currentDamage))
 						await get_tree().create_timer(1.5).timeout
 				if movesArray[i].move == 3:
+					print("healing by " + str(movesArray[i].itemInUse.type))
 					# Check if it is healing item
 					if movesArray[i].itemInUse.type == 0:
 						if !movesArray[i].friendlyTarget.isDead:
@@ -1059,6 +1060,8 @@ func processAttacksOld():
 							movesArray[i].friendlyTarget.cur_hp += movesArray[i].itemInUse.hp_heal
 							playCreatureHealed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
+							print("healing by " + str(movesArray[i].itemInUse.hp_heal))
+							print("WHY ARELIGBHFLKDAJGHNVLJ;FA")
 							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to heal " + str(movesArray[i].friendlyTarget.name) + " and healed for " + str(movesArray[i].itemInUse.hp_heal))
 							Global.itemInventory.erase(movesArray[i].itemInUse)
 							await get_tree().create_timer(1.5).timeout
