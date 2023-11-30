@@ -1073,7 +1073,7 @@ func processAttacksOld():
 							movesArray[i].friendlyTarget.magic_defense *= movesArray[i].itemInUse.modify_magic_defense
 							playCreatureBuffed(movesArray[i].friendlyTarget)
 							updateBattleGroupHealth()
-							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_strength))
+							showTextBox(str(movesArray[i].source.name) + " used " + str(movesArray[i].itemInUse.nameLabel) + " to buff " + str(movesArray[i].friendlyTarget.name) + " and buffed for " + str(movesArray[i].itemInUse.modify_defense))
 							Global.itemInventory.erase(movesArray[i].itemInUse)
 							await get_tree().create_timer(1.5).timeout
 						else:
