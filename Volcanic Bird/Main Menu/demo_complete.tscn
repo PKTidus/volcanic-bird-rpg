@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp85en7xqsxyn"]
 
 [ext_resource type="Script" path="res://Main Menu/Main Menu.gd" id="1_gnqmy"]
-[ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_3tidc"]
-[ext_resource type="AudioStream" uid="uid://coiprofuf4ebd" path="res://Resources/Music/1-01_Dark_Souls_III.mp3" id="3_tqgod"]
+[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_3tidc"]
+[ext_resource type="AudioStream" uid="uid://bf8ogc2jnfuc8" path="res://Resources/Music/1-01_Dark_Souls_III.mp3" id="3_tqgod"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
