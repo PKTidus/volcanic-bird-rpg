@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cx685spb581g1"]
 
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_aroon"]
+[ext_resource type="FontFile" uid="uid://deb72frt1iytf" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_aroon"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cysoxambhyk3j"]
 
-[ext_resource type="FontFile" uid="uid://birjg2s70yadl" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_s0vhk"]
+[ext_resource type="FontFile" uid="uid://c6tb3nafm5nx5" path="res://Resources/Fonts/NESCyrillic.ttf" id="1_s0vhk"]
 [ext_resource type="Script" path="res://Main Menu/manual.gd" id="1_yltyl"]
 
 [node name="Manual" type="ColorRect"]

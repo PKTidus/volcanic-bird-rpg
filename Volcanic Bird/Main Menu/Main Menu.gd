@@ -5,7 +5,6 @@ var saveFilePath = "user://PlayerSave.tres"
 var playerData = PlayerSave.new()
 
 func _on_play_pressed():
-	Global.whichEnding = 0
 	Global.itemInventory.clear()
 	Global.itemStorage.clear()
 	loadItemList()
@@ -80,7 +79,6 @@ func loadItemList():
 		i += 1
 
 func loadGame():
-	Global.whichEnding = 0
 	loadItemList()
 	playerData = ResourceLoader.load(saveFilePath)
 	if playerData != null:
