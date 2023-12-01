@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dxk06bgntn02r"]
 
 [ext_resource type="Script" path="res://Items/Item.gd" id="20"]
 
@@ -9,11 +9,11 @@ modify_attack = 0.0
 modify_magic_attack = 0.0
 modify_defense = 0.0
 modify_magic_defense = 0.0
-mp_heal = 10
+mp_heal = 30
 hp_heal = 0
 damage = 0
 nameLabel = "Mystic Droplet"
-costLabel = "10 MP to one ally"
+costLabel = "30 MP to one ally"
 descriptionLabel = "Not enough for everyone."
 inUse = false
 itemRarity = 0

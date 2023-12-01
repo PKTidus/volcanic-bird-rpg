@@ -968,7 +968,7 @@ func processAttacksOld():
 					# debuff magic damage
 					if movesArray[i].skill.type == -10:
 						$"Attack".play()
-						movesArray[i].target.enemyData.magic_attack_damage *= movesArray[i].skill.buff_value
+						movesArray[i].target.enemyData.magic_damage *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						updateBattleGroupHealth()
@@ -991,7 +991,7 @@ func processAttacksOld():
 					# debuff physical damage
 					if movesArray[i].skill.type == -11:
 						$"Debuff".play()
-						movesArray[i].target.enemyData.attack_damage *= movesArray[i].skill.buff_value
+						movesArray[i].target.enemyData.damage *= movesArray[i].skill.buff_value
 						movesArray[i].source.cur_hp -= movesArray[i].skill.hp_cost
 						movesArray[i].source.cur_mp -= movesArray[i].skill.mp_cost
 						updateBattleGroupHealth()

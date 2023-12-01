@@ -5,12 +5,12 @@
 [resource]
 script = ExtResource("1_vwcxl")
 hp_cost = 0
-mp_cost = 10
-damage_cal = 0
+mp_cost = 5
+damage_cal = 0.0
 heal_cal = 0
-buff_value = 0.8
+buff_value = 0.75
 unlockLevel = 5
 type = -2
 nameLabel = "Debuff"
-costLabel = "0 HP 10 MP"
-descriptionLabel = "Reduces enemy defense by 20%"
+costLabel = "0 HP 5 MP"
+descriptionLabel = "Reduces enemy defense by 25%"

@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_ju01k")
-hp_cost = 10
-mp_cost = 10
+hp_cost = 50
+mp_cost = 50
 damage_cal = 3
 heal_cal = 0
 buff_value = 0.0
 unlockLevel = 8
 type = 16
 nameLabel = "Omniblast"
-costLabel = "10 HP 10 MP"
+costLabel = "50 HP 50 MP"
 descriptionLabel = "Deal all powerful holy damage"

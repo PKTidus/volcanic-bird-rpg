@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_vwcxl")
-hp_cost = 5
-mp_cost = 0
+hp_cost = 15
+mp_cost = 6
 damage_cal = 3
 heal_cal = 0
 buff_value = 0.0
 unlockLevel = 3
 type = 3
 nameLabel = "Heavy Smash"
-costLabel = "5 HP 0 MP"
+costLabel = "15 HP 6 MP"
 descriptionLabel = "Deal 3 times normal damage"
