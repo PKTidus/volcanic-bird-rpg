@@ -4,13 +4,13 @@
 
 [resource]
 script = ExtResource("1_vwcxl")
-hp_cost = 5
-mp_cost = 20
-damage_cal = 0
+hp_cost = 10
+mp_cost = 25
+damage_cal = 0.0
 heal_cal = 100
 buff_value = 0.0
 unlockLevel = 6
 type = 9
 nameLabel = "Fuzzy Sun"
-costLabel = "5 HP 25 MP"
+costLabel = "10 HP 25 MP"
 descriptionLabel = "Heal 100 HP to all allies"

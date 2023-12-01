@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://cnmgcjgb1k6yd"]
 
 [ext_resource type="Script" path="res://Skills/Skill.gd" id="1_ju01k"]
 
 [resource]
 script = ExtResource("1_ju01k")
 hp_cost = 0
-mp_cost = 9
-damage_cal = 0
-heal_cal = 10
+mp_cost = 12
+damage_cal = 0.0
+heal_cal = 15
 buff_value = 0.0
 unlockLevel = 1
 type = 9
-nameLabel = "Small Heal All"
-costLabel = "0 HP 9 MP"
-descriptionLabel = "Heal 10 HP to all allies"
+nameLabel = "S. Heal All"
+costLabel = "0 HP 12 MP"
+descriptionLabel = "Heal 15 HP to all allies"

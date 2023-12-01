@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://cssl3h35qpspj"]
 
 [ext_resource type="Script" path="res://Skills/Skill.gd" id="1_ju01k"]
 
@@ -6,11 +6,11 @@
 script = ExtResource("1_ju01k")
 hp_cost = 0
 mp_cost = 20
-damage_cal = 10
+damage_cal = 5.0
 heal_cal = 0
 buff_value = 0.0
 unlockLevel = 8
 type = 4
 nameLabel = "Booty Beam"
 costLabel = "0 HP 20 MP"
-descriptionLabel = "Deal 10 times magic damage"
+descriptionLabel = "Deal 5 times magic damage"

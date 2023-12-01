@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://b8vk6curle7wk" path="res://Resources/Fonts/NESCyrillic.ttf" id="2_3tidc"]
 [ext_resource type="AudioStream" uid="uid://coiprofuf4ebd" path="res://Resources/Music/1-01_Dark_Souls_III.mp3" id="3_tqgod"]
 
-[node name="Main Menu" type="Control"]
+[node name="Main Menu2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

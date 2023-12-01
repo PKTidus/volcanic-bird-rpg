@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://bvidpygvbg7bn"]
 
 [ext_resource type="Script" path="res://Skills/Skill.gd" id="1_ju01k"]
 
 [resource]
 script = ExtResource("1_ju01k")
-hp_cost = 20
-mp_cost = 20
-damage_cal = 1000
+hp_cost = 60
+mp_cost = 60
+damage_cal = 500.0
 heal_cal = 0
 buff_value = 0.0
 unlockLevel = 8
 type = 0
-nameLabel = "Pure White Ash"
-costLabel = "20 HP 20 MP"
-descriptionLabel = "Deal 1000 damage"
+nameLabel = "P. White Ash"
+costLabel = "60 HP 60 MP"
+descriptionLabel = "Deal 500 damage"

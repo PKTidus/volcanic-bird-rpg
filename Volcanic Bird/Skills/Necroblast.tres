@@ -1,16 +1,16 @@
-[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="Skill" load_steps=2 format=3 uid="uid://dh35dfrg2kuc2"]
 
 [ext_resource type="Script" path="res://Skills/Skill.gd" id="1_ju01k"]
 
 [resource]
 script = ExtResource("1_ju01k")
 hp_cost = 5
-mp_cost = 15
-damage_cal = 5
+mp_cost = 25
+damage_cal = 2.0
 heal_cal = 0
 buff_value = 0.0
 unlockLevel = 6
 type = 8
 nameLabel = "Necroblast"
-costLabel = "5 HP 10 MP"
-descriptionLabel = "5 times magic damage and MP drain"
+costLabel = "5 HP 25 MP"
+descriptionLabel = "2 times magic damage and MP drain"

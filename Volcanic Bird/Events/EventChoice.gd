@@ -76,6 +76,9 @@ func _on_option_b_pressed():
 	elif self.outcome.type == "level-up":
 		for creature in Global.battleGroup:
 			creature.levelUp()
+			creature.cur_hp = creature.max_hp
+			creature.cur_mp = creature.max_mp
+			creature.isDead = false
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn")
 	else:
 		get_tree().change_scene_to_file("res://Main Menu/hub_menu.tscn"	)
